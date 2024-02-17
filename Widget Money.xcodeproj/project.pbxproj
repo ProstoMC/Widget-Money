@@ -64,7 +64,35 @@
 		43D5F5E12B7A7BAB0030DBF5 /* SDWebImage.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D5F5CF2B7A7BA60030DBF5 /* SDWebImage.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43D5F5E42B7A7BAB0030DBF5 /* RxDataSources.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D5F5D12B7A7BA80030DBF5 /* RxDataSources.xcframework */; };
 		43D5F5E52B7A7BAB0030DBF5 /* RxDataSources.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D5F5D12B7A7BA80030DBF5 /* RxDataSources.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43D5F5ED2B7A85750030DBF5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D5F5EC2B7A85750030DBF5 /* WidgetKit.framework */; };
+		43D5F5EF2B7A85750030DBF5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D5F5EE2B7A85750030DBF5 /* SwiftUI.framework */; };
+		43D5F5F22B7A85750030DBF5 /* Widget_Money_ExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5F12B7A85750030DBF5 /* Widget_Money_ExtensionBundle.swift */; };
+		43D5F5F42B7A85750030DBF5 /* Widget_Money_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5F32B7A85750030DBF5 /* Widget_Money_Extension.swift */; };
+		43D5F5F62B7A857D0030DBF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D5F5F52B7A857D0030DBF5 /* Assets.xcassets */; };
+		43D5F5FA2B7A857D0030DBF5 /* Widget Money ExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 43D5F5EB2B7A85750030DBF5 /* Widget Money ExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		43D5F6022B7A86830030DBF5 /* SmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6002B7A86820030DBF5 /* SmallCell.swift */; };
+		43D5F6032B7A86830030DBF5 /* SmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6002B7A86820030DBF5 /* SmallCell.swift */; };
+		43D5F6042B7A86830030DBF5 /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6012B7A86820030DBF5 /* SmallWidgetView.swift */; };
+		43D5F6052B7A86830030DBF5 /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6012B7A86820030DBF5 /* SmallWidgetView.swift */; };
+		43D5F6072B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6062B7A869E0030DBF5 /* MediumWidgetView.swift */; };
+		43D5F6082B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6062B7A869E0030DBF5 /* MediumWidgetView.swift */; };
+		43D5F60A2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6092B7A86D70030DBF5 /* WidgetCellModel.swift */; };
+		43D5F60B2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6092B7A86D70030DBF5 /* WidgetCellModel.swift */; };
+		43D5F60D2B7A86F60030DBF5 /* BigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F60C2B7A86F60030DBF5 /* BigCell.swift */; };
+		43D5F60E2B7A86F60030DBF5 /* BigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F60C2B7A86F60030DBF5 /* BigCell.swift */; };
+		43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
+		43D5F6132B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		43D5F5F82B7A857D0030DBF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43D5F53F2B7A764C0030DBF5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43D5F5EA2B7A85750030DBF5;
+			remoteInfo = "Widget Money ExtensionExtension";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		43D5F5E62B7A7BAC0030DBF5 /* Embed Frameworks */ = {
@@ -86,9 +114,21 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43D5F5FB2B7A857D0030DBF5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				43D5F5FA2B7A857D0030DBF5 /* Widget Money ExtensionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		437ABC802B80C57B00E7EAA0 /* SDWebImageSwiftUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageSwiftUI.xcframework; path = Carthage/Build/SDWebImageSwiftUI.xcframework; sourceTree = "<group>"; };
 		43D5F5472B7A764D0030DBF5 /* Widget Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Widget Money.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D5F54A2B7A764D0030DBF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43D5F54C2B7A764D0030DBF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +179,21 @@
 		43D5F5CE2B7A7BA50030DBF5 /* RxBlocking.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxBlocking.xcframework; path = Carthage/Build/RxBlocking.xcframework; sourceTree = "<group>"; };
 		43D5F5CF2B7A7BA60030DBF5 /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
 		43D5F5D12B7A7BA80030DBF5 /* RxDataSources.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxDataSources.xcframework; path = Carthage/Build/RxDataSources.xcframework; sourceTree = "<group>"; };
+		43D5F5EB2B7A85750030DBF5 /* Widget Money ExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Widget Money ExtensionExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43D5F5EC2B7A85750030DBF5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		43D5F5EE2B7A85750030DBF5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		43D5F5F12B7A85750030DBF5 /* Widget_Money_ExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget_Money_ExtensionBundle.swift; sourceTree = "<group>"; };
+		43D5F5F32B7A85750030DBF5 /* Widget_Money_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget_Money_Extension.swift; sourceTree = "<group>"; };
+		43D5F5F52B7A857D0030DBF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43D5F5F72B7A857D0030DBF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43D5F6002B7A86820030DBF5 /* SmallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCell.swift; sourceTree = "<group>"; };
+		43D5F6012B7A86820030DBF5 /* SmallWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallWidgetView.swift; sourceTree = "<group>"; };
+		43D5F6062B7A869E0030DBF5 /* MediumWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumWidgetView.swift; sourceTree = "<group>"; };
+		43D5F6092B7A86D70030DBF5 /* WidgetCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetCellModel.swift; sourceTree = "<group>"; };
+		43D5F60C2B7A86F60030DBF5 /* BigCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigCell.swift; sourceTree = "<group>"; };
+		43D5F60F2B7A87540030DBF5 /* Widget Money.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget Money.entitlements"; sourceTree = "<group>"; };
+		43D5F6102B7A87750030DBF5 /* Widget Money ExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget Money ExtensionExtension.entitlements"; sourceTree = "<group>"; };
+		43D5F6112B7A89280030DBF5 /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,13 +213,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43D5F5E82B7A85750030DBF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43D5F5EF2B7A85750030DBF5 /* SwiftUI.framework in Frameworks */,
+				43D5F5ED2B7A85750030DBF5 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		43D5F53E2B7A764C0030DBF5 = {
 			isa = PBXGroup;
 			children = (
+				43D5F6102B7A87750030DBF5 /* Widget Money ExtensionExtension.entitlements */,
 				43D5F5492B7A764D0030DBF5 /* Widget Money */,
+				43D5F5F02B7A85750030DBF5 /* Widget Money Extension */,
 				43D5F5482B7A764D0030DBF5 /* Products */,
 				43D5F5C72B7A7BA00030DBF5 /* Frameworks */,
 			);
@@ -174,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				43D5F5472B7A764D0030DBF5 /* Widget Money.app */,
+				43D5F5EB2B7A85750030DBF5 /* Widget Money ExtensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +248,7 @@
 		43D5F5492B7A764D0030DBF5 /* Widget Money */ = {
 			isa = PBXGroup;
 			children = (
+				43D5F60F2B7A87540030DBF5 /* Widget Money.entitlements */,
 				43D5F54A2B7A764D0030DBF5 /* AppDelegate.swift */,
 				43D5F54C2B7A764D0030DBF5 /* SceneDelegate.swift */,
 				43D5F5732B7A79F80030DBF5 /* Workers */,
@@ -196,6 +264,7 @@
 		43D5F5732B7A79F80030DBF5 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				43D5F57C2B7A79F80030DBF5 /* CoreWorker.swift */,
 				43D5F5742B7A79F80030DBF5 /* WidgetWorker.swift */,
 				43D5F5752B7A79F80030DBF5 /* ExchangeWorker.swift */,
 				43D5F5762B7A79F80030DBF5 /* SettingsWorker.swift */,
@@ -204,7 +273,6 @@
 				43D5F5792B7A79F80030DBF5 /* CurrencyFetcher.swift */,
 				43D5F57A2B7A79F80030DBF5 /* CoinPairWorker.swift */,
 				43D5F57B2B7A79F80030DBF5 /* UniversalCoinWorker.swift */,
-				43D5F57C2B7A79F80030DBF5 /* CoreWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -214,6 +282,7 @@
 			children = (
 				43D5F5872B7A7A1C0030DBF5 /* AppColors.swift */,
 				43D5F5882B7A7A1C0030DBF5 /* CoinUniversal.swift */,
+				43D5F6092B7A86D70030DBF5 /* WidgetCellModel.swift */,
 				43D5F5892B7A7A1C0030DBF5 /* Theme.swift */,
 			);
 			path = "Global Models";
@@ -222,10 +291,10 @@
 		43D5F58D2B7A7A260030DBF5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				43D5F5AE2B7A7A260030DBF5 /* TabBarViewController.swift */,
 				43D5F58E2B7A7A260030DBF5 /* Home */,
 				43D5F5A32B7A7A260030DBF5 /* SettingsViewController */,
 				43D5F5A72B7A7A260030DBF5 /* SecondController */,
-				43D5F5AE2B7A7A260030DBF5 /* TabBarViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -233,13 +302,13 @@
 		43D5F58E2B7A7A260030DBF5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				43D5F58F2B7A7A260030DBF5 /* DetailsModule */,
 				43D5F5922B7A7A260030DBF5 /* HomeViewController.swift */,
-				43D5F5932B7A7A260030DBF5 /* SubViews */,
-				43D5F5962B7A7A260030DBF5 /* CurrencyPairModule */,
 				43D5F59B2B7A7A260030DBF5 /* HeaderView.swift */,
-				43D5F59C2B7A7A260030DBF5 /* ChooseCurrencyModule */,
+				43D5F5962B7A7A260030DBF5 /* CurrencyPairModule */,
 				43D5F59F2B7A7A260030DBF5 /* ExchangeModule */,
+				43D5F58F2B7A7A260030DBF5 /* DetailsModule */,
+				43D5F59C2B7A7A260030DBF5 /* ChooseCurrencyModule */,
+				43D5F5932B7A7A260030DBF5 /* SubViews */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -304,8 +373,8 @@
 		43D5F5A72B7A7A260030DBF5 /* SecondController */ = {
 			isa = PBXGroup;
 			children = (
-				43D5F5A82B7A7A260030DBF5 /* CurrencyListTableViewController.swift */,
 				43D5F5A92B7A7A260030DBF5 /* SubViews */,
+				43D5F5A82B7A7A260030DBF5 /* CurrencyListTableViewController.swift */,
 				43D5F5AC2B7A7A260030DBF5 /* CurrencyListViewModelV2.swift */,
 				43D5F5AD2B7A7A260030DBF5 /* SecondViewController.swift */,
 			);
@@ -324,6 +393,7 @@
 		43D5F5C72B7A7BA00030DBF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				437ABC802B80C57B00E7EAA0 /* SDWebImageSwiftUI.xcframework */,
 				43D5F5CD2B7A7BA50030DBF5 /* Alamofire.xcframework */,
 				43D5F5C92B7A7BA20030DBF5 /* Differentiator.xcframework */,
 				43D5F5CE2B7A7BA50030DBF5 /* RxBlocking.xcframework */,
@@ -333,8 +403,34 @@
 				43D5F5CA2B7A7BA30030DBF5 /* RxSwift.xcframework */,
 				43D5F5CF2B7A7BA60030DBF5 /* SDWebImage.xcframework */,
 				43D5F5CC2B7A7BA40030DBF5 /* SDWebImageMapKit.xcframework */,
+				43D5F5EC2B7A85750030DBF5 /* WidgetKit.framework */,
+				43D5F5EE2B7A85750030DBF5 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		43D5F5F02B7A85750030DBF5 /* Widget Money Extension */ = {
+			isa = PBXGroup;
+			children = (
+				43D5F5FF2B7A86820030DBF5 /* WidgetViews */,
+				43D5F5F12B7A85750030DBF5 /* Widget_Money_ExtensionBundle.swift */,
+				43D5F5F32B7A85750030DBF5 /* Widget_Money_Extension.swift */,
+				43D5F5F52B7A857D0030DBF5 /* Assets.xcassets */,
+				43D5F5F72B7A857D0030DBF5 /* Info.plist */,
+			);
+			path = "Widget Money Extension";
+			sourceTree = "<group>";
+		};
+		43D5F5FF2B7A86820030DBF5 /* WidgetViews */ = {
+			isa = PBXGroup;
+			children = (
+				43D5F6012B7A86820030DBF5 /* SmallWidgetView.swift */,
+				43D5F6062B7A869E0030DBF5 /* MediumWidgetView.swift */,
+				43D5F6002B7A86820030DBF5 /* SmallCell.swift */,
+				43D5F60C2B7A86F60030DBF5 /* BigCell.swift */,
+				43D5F6112B7A89280030DBF5 /* EmptyCell.swift */,
+			);
+			path = WidgetViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,15 +444,34 @@
 				43D5F5442B7A764D0030DBF5 /* Frameworks */,
 				43D5F5452B7A764D0030DBF5 /* Resources */,
 				43D5F5E62B7A7BAC0030DBF5 /* Embed Frameworks */,
+				43D5F5FB2B7A857D0030DBF5 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				43D5F5F92B7A857D0030DBF5 /* PBXTargetDependency */,
 			);
 			name = "Widget Money";
 			productName = "Widget Money";
 			productReference = 43D5F5472B7A764D0030DBF5 /* Widget Money.app */;
 			productType = "com.apple.product-type.application";
+		};
+		43D5F5EA2B7A85750030DBF5 /* Widget Money ExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43D5F5FE2B7A857D0030DBF5 /* Build configuration list for PBXNativeTarget "Widget Money ExtensionExtension" */;
+			buildPhases = (
+				43D5F5E72B7A85750030DBF5 /* Sources */,
+				43D5F5E82B7A85750030DBF5 /* Frameworks */,
+				43D5F5E92B7A85750030DBF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Widget Money ExtensionExtension";
+			productName = "Widget Money ExtensionExtension";
+			productReference = 43D5F5EB2B7A85750030DBF5 /* Widget Money ExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -369,6 +484,9 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					43D5F5462B7A764D0030DBF5 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					43D5F5EA2B7A85750030DBF5 = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
@@ -387,6 +505,7 @@
 			projectRoot = "";
 			targets = (
 				43D5F5462B7A764D0030DBF5 /* Widget Money */,
+				43D5F5EA2B7A85750030DBF5 /* Widget Money ExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -401,6 +520,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43D5F5E92B7A85750030DBF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43D5F5F62B7A857D0030DBF5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -408,7 +535,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43D5F60D2B7A86F60030DBF5 /* BigCell.swift in Sources */,
 				43D5F5822B7A79F80030DBF5 /* CurrencyFetcher.swift in Sources */,
+				43D5F6042B7A86830030DBF5 /* SmallWidgetView.swift in Sources */,
+				43D5F6022B7A86830030DBF5 /* SmallCell.swift in Sources */,
 				43D5F5C12B7A7A260030DBF5 /* CurrencyListTableViewController.swift in Sources */,
 				43D5F5C02B7A7A260030DBF5 /* SettingsViewController.swift in Sources */,
 				43D5F5812B7A79F80030DBF5 /* ColorsWorker.swift in Sources */,
@@ -423,7 +553,9 @@
 				43D5F5BF2B7A7A260030DBF5 /* SettingsTableViewCell.swift in Sources */,
 				43D5F5C42B7A7A260030DBF5 /* CurrencyListViewModelV2.swift in Sources */,
 				43D5F5802B7A79F80030DBF5 /* ColorWorker.swift in Sources */,
+				43D5F6072B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */,
 				43D5F5832B7A79F80030DBF5 /* CoinPairWorker.swift in Sources */,
+				43D5F60A2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */,
 				43D5F58B2B7A7A1C0030DBF5 /* CoinUniversal.swift in Sources */,
 				43D5F5BD2B7A7A260030DBF5 /* ExchangeViewModel.swift in Sources */,
 				43D5F5B32B7A7A260030DBF5 /* AddTileUIView.swift in Sources */,
@@ -433,6 +565,7 @@
 				43D5F5C52B7A7A260030DBF5 /* SecondViewController.swift in Sources */,
 				43D5F5BE2B7A7A260030DBF5 /* SettingsViewModel.swift in Sources */,
 				43D5F5B82B7A7A260030DBF5 /* HeaderView.swift in Sources */,
+				43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */,
 				43D5F5AF2B7A7A260030DBF5 /* DetailsViewModule.swift in Sources */,
 				43D5F5BB2B7A7A260030DBF5 /* EnterCurrencyView.swift in Sources */,
 				43D5F57E2B7A79F80030DBF5 /* ExchangeWorker.swift in Sources */,
@@ -448,7 +581,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43D5F5E72B7A85750030DBF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43D5F60E2B7A86F60030DBF5 /* BigCell.swift in Sources */,
+				43D5F6132B7A89280030DBF5 /* EmptyCell.swift in Sources */,
+				43D5F6052B7A86830030DBF5 /* SmallWidgetView.swift in Sources */,
+				43D5F6032B7A86830030DBF5 /* SmallCell.swift in Sources */,
+				43D5F6082B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */,
+				43D5F5F42B7A85750030DBF5 /* Widget_Money_Extension.swift in Sources */,
+				43D5F5F22B7A85750030DBF5 /* Widget_Money_ExtensionBundle.swift in Sources */,
+				43D5F60B2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		43D5F5F92B7A857D0030DBF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43D5F5EA2B7A85750030DBF5 /* Widget Money ExtensionExtension */;
+			targetProxy = 43D5F5F82B7A857D0030DBF5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		43D5F5552B7A76510030DBF5 /* LaunchScreen.storyboard */ = {
@@ -579,9 +735,11 @@
 		43D5F55C2B7A76510030DBF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Widget Money/Widget Money.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V4APKTMRAM;
@@ -613,9 +771,11 @@
 		43D5F55D2B7A76510030DBF5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Widget Money/Widget Money.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V4APKTMRAM;
@@ -644,6 +804,62 @@
 			};
 			name = Release;
 		};
+		43D5F5FC2B7A857D0030DBF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Widget Money ExtensionExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V4APKTMRAM;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Widget Money Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Widget Money Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sloniklm.Widget-Money.Widget-Money-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43D5F5FD2B7A857D0030DBF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Widget Money ExtensionExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V4APKTMRAM;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Widget Money Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Widget Money Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sloniklm.Widget-Money.Widget-Money-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -661,6 +877,15 @@
 			buildConfigurations = (
 				43D5F55C2B7A76510030DBF5 /* Debug */,
 				43D5F55D2B7A76510030DBF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43D5F5FE2B7A857D0030DBF5 /* Build configuration list for PBXNativeTarget "Widget Money ExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43D5F5FC2B7A857D0030DBF5 /* Debug */,
+				43D5F5FD2B7A857D0030DBF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

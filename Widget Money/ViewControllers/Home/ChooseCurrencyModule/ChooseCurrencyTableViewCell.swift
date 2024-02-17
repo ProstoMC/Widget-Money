@@ -47,17 +47,17 @@ class ChooseCurrencyTableViewCell: UITableViewCell {
     }
     
     func configureLogo(coin: CurrencyCellViewModel){
-        if coin.type == .fiat {
-            logoImageView.isHidden = true
-            logoLabel.text = coin.logo
-            if coin.colorIndex >= 0 && coin.colorIndex < coin.colorSet.currencyColors.count {
-                logoLabel.textColor = coin.colorSet.mainText
-                logoView.backgroundColor = coin.colorSet.currencyColors[coin.colorIndex].withAlphaComponent(0.3)
-            } else {
-                logoLabel.textColor = coin.colorSet.tabBarBackground
-                logoView.backgroundColor = coin.colorSet.tabBarBackground.withAlphaComponent(0.3)
-            }
-        } else {
+//        if coin.type == .fiat {
+//            logoImageView.isHidden = true
+//            logoLabel.text = coin.logo
+//            if coin.colorIndex >= 0 && coin.colorIndex < coin.colorSet.currencyColors.count {
+//                logoLabel.textColor = coin.colorSet.mainText
+//                logoView.backgroundColor = coin.colorSet.currencyColors[coin.colorIndex].withAlphaComponent(0.3)
+//            } else {
+//                logoLabel.textColor = coin.colorSet.tabBarBackground
+//                logoView.backgroundColor = coin.colorSet.tabBarBackground.withAlphaComponent(0.3)
+//            }
+//        } else {
             guard let url = URL(string: coin.imageUrl ?? "Error") else {
                 print ("\(coin.code) : \(coin.imageUrl ?? "No image for")")
                 logoImageView.isHidden = true
@@ -71,7 +71,7 @@ class ChooseCurrencyTableViewCell: UITableViewCell {
             
             logoImageView.sd_setImage(with: url, placeholderImage: placeHolder)
             logoImageView.tintColor = coin.colorSet.tabBarBackground
-        }
+        
     }
 
 }

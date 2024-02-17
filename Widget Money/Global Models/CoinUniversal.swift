@@ -24,6 +24,7 @@ struct CoinUniversal: Codable {
     var logo: String
     var imageUrl: String
     var colorIndex: Int
+    var imageData: Data? = nil
 }
 
 var fiatListGlobal: [CoinUniversal] = [

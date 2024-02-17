@@ -31,8 +31,11 @@ class CoreWorker {
     //Exchange
     let exchangeWorker: ExchangeWorkerProtocol = ExchangeWorker()
     
+    //Widget
+    let widgetWorker: WidgetWorkerProtocol
     
     init() {
+        widgetWorker = WidgetWorker(pairModule: favouritePairList, coinList: coinList) // doesn't work without modules
         updateExchangeFields()
     }
     

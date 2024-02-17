@@ -18,6 +18,7 @@ protocol CoinListProtocol {
     func updateRatesFromEth()
     func returnCoin(code: String) -> CoinUniversal?
     func setBaseCoin(newCode: String)
+    func addImageData(code: String, data: Data)
 }
 
 
@@ -56,7 +57,21 @@ class UniversalCoinWorker {
     func returnBaseCode() -> String {
         return baseCoin.code
     }
-
+    
+    func addImageData(code: String, data: Data) {
+        for i in fiatList.indices {
+            if fiatList[i].code == code {
+                fiatList[i].imageData = data
+                return
+            }
+        }
+        for i in cryptoList.indices {
+            if cryptoList[i].code == code {
+                cryptoList[i].imageData = data
+                return
+            }
+        }
+    }
 }
 
 extension UniversalCoinWorker: CoinListProtocol {
@@ -134,6 +149,8 @@ extension UniversalCoinWorker: CoinListProtocol {
         rxRateUpdated.onNext(true)
     }
     
+     
+    
 }
 
 //MARK: - ETHERNET
@@ -145,6 +162,7 @@ extension UniversalCoinWorker {
             if code == fiatList[i].code {
                 fiatList[i].rate = rate
                 fiatList[i].flow24Hours = flow
+                fiatList[i].imageUrl = "https://raw.githubusercontent.com/ProstoMC/CurrencyIcons/main/" + fiatList[i].code + ".png"
                 break
             }
         }
@@ -183,15 +201,11 @@ extension UniversalCoinWorker {
             
             guard let rate = properties["PRICE"] as? Double else { continue }
             guard let flow = properties["CHANGE24HOUR"] as? Double else { continue }
-            var imageUrl = properties["IMAGEURL"] as? String ?? "Error"
-            
-            if imageUrl == "/media/35309345/no-image.png" { //Prefere dont have image then this image
-                imageUrl = "Error"
-            }
             
             fiatList[i].rate = rate / baseRate
             fiatList[i].flow24Hours = flow / baseRate
-            fiatList[i].imageUrl = "https://www.cryptocompare.com" + imageUrl
+            //fiatList[i].imageUrl = "https://www.cryptocompare.com" + imageUrl
+            fiatList[i].imageUrl = "https://raw.githubusercontent.com/ProstoMC/CurrencyIcons/main/" + fiatList[i].code + ".png"
         }
         
         for i in cryptoList.indices {

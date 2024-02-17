@@ -6,9 +6,144 @@
 //
 
 import Foundation
+import SwiftUI
+import WidgetKit
+import RxSwift
 
-class WidgetWorker {
-    //@AppStorage("currencyWidget", store: UserDefaults(suiteName: "group.slm.Currency-Widget"))
+protocol WidgetWorkerProtocol {
     
-    var pairsForWidgetdata = Data()
 }
+
+class WidgetWorker: WidgetWorkerProtocol {
+    let bag = DisposeBag()
+    
+    @AppStorage("WidgetCellModels", store: UserDefaults(suiteName: "group.com.sloniklm.Widget-Money"))
+    var widgetData = Data()
+    let pairModule: CoinPairProtocol
+    let coinList: CoinListProtocol
+    
+    var widgetModels: [WidgetCellModel] = [] //New synchronised models
+    
+    init(pairModule: CoinPairProtocol, coinList: CoinListProtocol) {
+        self.pairModule = pairModule
+        self.coinList = coinList
+        
+        subscribing()
+    }
+    
+    func subscribing() {
+        pairModule.rxPairListCount.subscribe { _ in
+            self.createWidgetModelsFromFavoritePairs()
+        }.disposed(by: bag)
+        
+        coinList.rxRateUpdated.subscribe{ _ in
+            self.createWidgetModelsFromFavoritePairs()
+        }.disposed(by: bag)
+    }
+    
+    func createWidgetModelsFromFavoritePairs() {
+        widgetModels = []
+        for i in pairModule.pairList.indices {
+            addModelToNewList(pair: pairModule.pairList[i], index: i)
+        }
+    }
+    
+    
+    func addModelToNewList(pair: CoinPair, index: Int) {
+        let imageData: Data? = coinList.returnCoin(code: pair.valueCode)?.imageData
+        //Check data Image is exist in Coins
+        if imageData != nil {
+            
+            guard let model = createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: imageData) else { return }
+            widgetModels.append(model)
+            save()
+            return
+        }
+
+        //Create url or save pair without imagedata
+        guard let imageUrl = coinList.returnCoin(code: pair.valueCode)?.imageUrl else {
+            guard let model = createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: nil) else { return }
+            widgetModels.append(model)
+            save()
+            return
+        }
+        //Fetching image from url and save
+        fetchImage(stringUrl: imageUrl, completion: { imageData in
+            if imageData != nil {
+                self.coinList.addImageData(code: pair.valueCode, data: imageData!)
+            }
+            guard let model = self.createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: imageData) else { return }
+            self.widgetModels.append(model)
+            self.save()
+        })
+    }
+    
+    func createWidgetCellModel(index: Int, valueCode: String, baseCode: String, imageData: Data?) -> WidgetCellModel? {
+        print("Creating Cell model")
+        guard let valueCurrency = coinList.returnCoin(code: valueCode) else {
+            print("Value currency didnt find")
+            return nil
+            
+        }
+        guard let baseCurrency = coinList.returnCoin(code: baseCode) else {
+            print("Base currency didnt find")
+            return nil }
+        let rate = valueCurrency.rate/baseCurrency.rate
+        
+        let previosRate = valueCurrency.rate-valueCurrency.flow24Hours
+        let previosBase = baseCurrency.rate-baseCurrency.flow24Hours
+        
+        let flow = (valueCurrency.rate/baseCurrency.rate)-(previosRate/previosBase)
+        
+        return WidgetCellModel (
+            id: index,
+            valueCode: valueCurrency.code,
+            baseCode: baseCurrency.code,
+            value: rate,
+            flow: flow,
+            valueName: valueCurrency.name,
+            baseSymbol: baseCurrency.logo,
+            imageData: imageData
+        )
+    }
+    
+    func save() {
+        printList()
+        let sortedModels = widgetModels.sorted(by: { $0.id < $1.id } )
+        guard let data = try? JSONEncoder().encode(sortedModels) else { return }
+        widgetData = data
+        print("Data saved")
+        WidgetCenter.shared.reloadTimelines(ofKind: "Widget_Money_Extension")
+    }
+    
+    func printList() {
+        print("==WIDGET MODELS==")
+        for model in widgetModels {
+            var exist = "Image EXISTS"
+            if model.imageData == nil {
+                exist = "Image doesn't EXIST"
+            }
+            print("\(model.valueCode) - \(model.baseCode) - \(exist)")
+            
+        }
+    }
+
+    
+    func fetchImage(stringUrl: String, completion: @escaping (Data?) -> ()) {
+
+        guard let url = URL(string: "\(stringUrl)") else {
+            print ("URL is wrong")
+            return
+        }
+        //print(url)
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            DispatchQueue.main.async {
+                completion(data)
+            }
+        }.resume()
+    }
+    
+    
+}
+
+
