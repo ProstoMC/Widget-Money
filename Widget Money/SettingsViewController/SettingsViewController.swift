@@ -179,17 +179,17 @@ extension SettingsViewController {
             title: nil,
             message: nil,
             preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: "System", style: .default, handler: {_ in
+        alert.addAction(UIAlertAction(title: "System".localized(), style: .default, handler: {_ in
             self.viewModel.changeTheme(theme: .system)
         })
         )
-        alert.addAction(UIAlertAction(title: "Light", style: .default, handler: {_ in
+        alert.addAction(UIAlertAction(title: "Light".localized(), style: .default, handler: {_ in
             self.viewModel.changeTheme(theme: .light)
         })
         )
-        alert.addAction(UIAlertAction(title: "Dark", style: .default, handler: {_ in
+        alert.addAction(UIAlertAction(title: "Dark".localized(), style: .default, handler: {_ in
             self.viewModel.changeTheme(theme: .dark)
         })
         )

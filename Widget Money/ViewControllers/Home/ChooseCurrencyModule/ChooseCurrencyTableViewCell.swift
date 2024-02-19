@@ -42,35 +42,25 @@ class ChooseCurrencyTableViewCell: UITableViewCell {
         //Color logo View
         colorsUpdate(colorSet: coin.colorSet)
         
-        let name = "\(coin.code) - \(coin.name)"
+        let name = "\(coin.code) - \(coin.name.localized())"
         nameLabel.text = name
     }
     
     func configureLogo(coin: CurrencyCellViewModel){
-//        if coin.type == .fiat {
-//            logoImageView.isHidden = true
-//            logoLabel.text = coin.logo
-//            if coin.colorIndex >= 0 && coin.colorIndex < coin.colorSet.currencyColors.count {
-//                logoLabel.textColor = coin.colorSet.mainText
-//                logoView.backgroundColor = coin.colorSet.currencyColors[coin.colorIndex].withAlphaComponent(0.3)
-//            } else {
-//                logoLabel.textColor = coin.colorSet.tabBarBackground
-//                logoView.backgroundColor = coin.colorSet.tabBarBackground.withAlphaComponent(0.3)
-//            }
-//        } else {
-            guard let url = URL(string: coin.imageUrl ?? "Error") else {
-                print ("\(coin.code) : \(coin.imageUrl ?? "No image for")")
-                logoImageView.isHidden = true
-                logoLabel.text = coin.logo
-                return
-            }
-            logoLabel.text = ""
-            logoImageView.isHidden = false
-            logoView.backgroundColor = backgroundView?.backgroundColor
-            let placeHolder = UIImage(systemName: "gyroscope")
-            
-            logoImageView.sd_setImage(with: url, placeholderImage: placeHolder)
-            logoImageView.tintColor = coin.colorSet.tabBarBackground
+        
+        guard let url = URL(string: coin.imageUrl ?? "Error") else {
+            print ("\(coin.code) : \(coin.imageUrl ?? "No image for")")
+            logoImageView.isHidden = true
+            logoLabel.text = coin.logo
+            return
+        }
+        logoLabel.text = ""
+        logoImageView.isHidden = false
+        logoView.backgroundColor = backgroundView?.backgroundColor
+        let placeHolder = UIImage(systemName: "gyroscope")
+        
+        logoImageView.sd_setImage(with: url, placeholderImage: placeHolder)
+        logoImageView.tintColor = coin.colorSet.tabBarBackground
         
     }
 

@@ -29,7 +29,7 @@ class HeaderView: UIView {
     
     private func rxSubscribing() {
         CoreWorker.shared.coinList.rxRateUpdated.subscribe(onNext: { _ in
-            self.dateTextLabel.text = "Actual to " + CoreWorker.shared.coinList.lastUpdate
+            self.dateTextLabel.text = "Actual to ".localized() + CoreWorker.shared.coinList.lastUpdate
         }).disposed(by: bag)
         
         CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe{ _ in

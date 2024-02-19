@@ -1,0 +1,83 @@
+/* 
+  Localizable.strings
+  Widget Money
+
+  Created by  slm on 18.02.2024.
+  
+*/
+//Tab bar
+
+
+//HeadView
+"Actual to " = "Обновлено ";
+"Home" = "Главная";
+"List" = "Список";
+"Settings" = "Настройки";
+//Settings
+"Base currency" = "Основная валюта";
+"App theme" = "Цветовая схема";
+"Dark" = "Темная";
+"Light" = "Светлая";
+"System" = "Системная";
+"Cancel" = "Отмена";
+
+//Second Controller
+"Fiat" = "Фиат";
+"Crypto" = "Криптовалюта";
+"Search" = "Поиск";
+
+//Home Controller
+"Exchange" = "Калькулятор";
+"From" = "Из";
+"To" = "В";
+
+//Details Controller
+"Delete from favorite" = "Удаление из избранного";
+"Delete" = "Удалить";
+
+
+//Fiat
+"Russian Ruble" = "Российский Рубль";
+"Australian Dollar" = "Австралийский Доллар";
+"Azerbaijani Manat" = "Азербайджанский Манат";
+"British Pound Sterling" = "Фунт Стерлингов";
+"Armenian Dram" = "Армянский Драм";
+"Belarusian Ruble" = "Беларусский Рубль";
+"Bulgarian Lev" = "Болгарский Лев";
+"Brazilian Real" = "Бразильский Реал";
+"Hungarian Forint" = "Венгерский Форинт";
+"Vietnamese Dong" = "Вьетнамский Донг";
+"Hong Kong Dollar" = "Гонконгский Доллар";
+"Georgian Lari" = "Грузинский Лари";
+"Danish Krone" = "Датская Крона";
+"UAE Dirham" = "Дирхам ОАЭ";
+"United States Dollar" = "Доллар США";
+"Euro" = "Евро";
+"Egyptian Pound" = "Египетский Фунт";
+"Indian Rupee" = "Индийская Рупия";
+"Indonesian Rupiah" = "Индонезийская Рупия";
+"Kazakhstani Tenge" = "Казахстанский Тенге";
+"Canadian Dollar" = "Канадский Доллар";
+"Qatari Rial" = "Катарский Риал";
+"Kyrgystani Som" = "Киргизский Cом";
+"Chinese Yuan" = "Китайский Юань";
+"Moldovan leu" = "Молдавский Лей";
+"New Zealand Dollar" = "Новозеландский доллар";
+"Norwegian Krone" = "Норвежская Крона";
+"Polish Zloty" = "Польский Злотый";
+"Romanian Leu" = "Румынский Лей";
+"Special Drawing Rights" = "Специальные права заимствования";
+"Singapore dollar" = "Сингапурский доллар";
+"Tajikistani somoni" = "Таджикский сомони";
+"Thai baht" = "Тайский Бат";
+"Turkish Lira" = "Турецкая Лира";
+"Turkmenistani Manat" = "Туркменский Манат";
+"Uzbekistan Som" = "Узбекистанский Сом";
+"Ukranian Hryvnia" = "Украинская Гривна";
+"Czech Koruna" = "Чешская Крона";
+"Swedish Krona" = "Шведская Крона";
+"Swiss Franc" = "Швейцарский Франк";
+"Serbian Dinar" = "Сербский Динар";
+"South African Rand" = "Южноафриканский Ранд";
+"Korean Won" = "Корейский Вон";
+"Japanese Yen" = "Японская Йена";

@@ -24,7 +24,7 @@ class ChooseCurrencyViewController: UIViewController, UITableViewDelegate {
     let disposeBag = DisposeBag()
     
     var closingLine = UIView()
-    var segmentedControl = CornersWhiteSegmentedControl(items: ["Fiat", "Crypto"])
+    var segmentedControl = CornersWhiteSegmentedControl(items: ["Fiat".localized(), "Crypto".localized()])
     var searchBar = UITextField()
     let searchImage = UIImageView()
     
@@ -121,7 +121,7 @@ extension ChooseCurrencyViewController {
         searchBar.backgroundColor = viewModel.colorSet.background
         searchBar.textColor = viewModel.colorSet.secondText.withAlphaComponent(0.7)
         searchBar.attributedPlaceholder =
-        NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: viewModel.colorSet.secondText])
+        NSAttributedString(string: "Search".localized(), attributes: [NSAttributedString.Key.foregroundColor: viewModel.colorSet.secondText])
         searchBar.layer.borderColor = viewModel.colorSet.separator.cgColor
         searchImage.tintColor = viewModel.colorSet.secondText
         

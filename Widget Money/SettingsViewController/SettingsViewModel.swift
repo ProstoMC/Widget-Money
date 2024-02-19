@@ -56,9 +56,9 @@ class SettingsViewModel: SettingsViewModelProtocol {
             
             var valueName = ""
             switch CoreWorker.shared.colorsWorker.returnAppTheme() {
-            case .dark: valueName = "Dark"
-            case .light: valueName = "Light"
-            case .system: valueName = "System"
+            case .dark: valueName = "Dark".localized()
+            case .light: valueName = "Light".localized()
+            case .system: valueName = "System".localized()
             }
             
             self.settingsList[1].value.onNext(valueName)
@@ -91,7 +91,7 @@ extension SettingsViewModel {
     
     private func createBaseCurrencySettings() -> SettingsCellViewModel {
         return SettingsCellViewModel(
-            name: "Base currency",
+            name: "Base currency".localized(),
             value: BehaviorSubject(value: CoreWorker.shared.coinList.baseCoin.code),
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
@@ -102,13 +102,13 @@ extension SettingsViewModel {
         var valueName = ""
         
         switch CoreWorker.shared.colorsWorker.returnAppTheme() {
-        case .dark: valueName = "Dark"
-        case .light: valueName = "Light"
-        case .system: valueName = "System"
+        case .dark: valueName = "Dark".localized()
+        case .light: valueName = "Light".localized()
+        case .system: valueName = "System".localized()
         }
         
         return SettingsCellViewModel(
-            name: "App Theme",
+            name: "App theme".localized(),
             value: BehaviorSubject(value: valueName),
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),

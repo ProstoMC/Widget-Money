@@ -68,21 +68,21 @@ extension TabBarViewController {
     private func configureHomeVC() {
         let image = UIImage(systemName: "house")
         let selectedImage = UIImage(systemName: "house")
-        let item = UITabBarItem(title: "Home", image: image, selectedImage: selectedImage)
+        let item = UITabBarItem(title: "Home".localized(), image: image, selectedImage: selectedImage)
         homeVC.tabBarItem = item
     }
     
     private func configureListVC() {
         let image = UIImage(systemName: "list.bullet")
         let selectedImage = UIImage(systemName: "list.bullet")
-        let item = UITabBarItem(title: "List", image: image, selectedImage: selectedImage)
+        let item = UITabBarItem(title: "List".localized(), image: image, selectedImage: selectedImage)
         listVC.tabBarItem = item
     }
     
     private func configureSettingsVC() {
         let image = UIImage(systemName: "gear")
         let selectedImage = UIImage(systemName: "gear")
-        let item = UITabBarItem(title: "Settings", image: image, selectedImage: selectedImage)
+        let item = UITabBarItem(title: "Settings".localized(), image: image, selectedImage: selectedImage)
         settingsVC.tabBarItem = item
     }
     

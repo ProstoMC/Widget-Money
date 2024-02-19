@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		437ABC882B824CA200E7EAA0 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ABC872B824CA200E7EAA0 /* Extension+String.swift */; };
+		437ABC8B2B824E0100E7EAA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437ABC8D2B824E0100E7EAA0 /* Localizable.strings */; };
+		437ABC8F2B824FCF00E7EAA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437ABC8D2B824E0100E7EAA0 /* Localizable.strings */; };
 		43D5F54B2B7A764D0030DBF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F54A2B7A764D0030DBF5 /* AppDelegate.swift */; };
 		43D5F54D2B7A764D0030DBF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F54C2B7A764D0030DBF5 /* SceneDelegate.swift */; };
 		43D5F5542B7A76510030DBF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D5F5532B7A76510030DBF5 /* Assets.xcassets */; };
@@ -129,6 +132,9 @@
 
 /* Begin PBXFileReference section */
 		437ABC802B80C57B00E7EAA0 /* SDWebImageSwiftUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageSwiftUI.xcframework; path = Carthage/Build/SDWebImageSwiftUI.xcframework; sourceTree = "<group>"; };
+		437ABC872B824CA200E7EAA0 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		437ABC8C2B824E0100E7EAA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		437ABC902B82509800E7EAA0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43D5F5472B7A764D0030DBF5 /* Widget Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Widget Money.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D5F54A2B7A764D0030DBF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43D5F54C2B7A764D0030DBF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +231,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		437ABC862B824C7000E7EAA0 /* Localize */ = {
+			isa = PBXGroup;
+			children = (
+				437ABC872B824CA200E7EAA0 /* Extension+String.swift */,
+				437ABC8D2B824E0100E7EAA0 /* Localizable.strings */,
+			);
+			path = Localize;
+			sourceTree = "<group>";
+		};
 		43D5F53E2B7A764C0030DBF5 = {
 			isa = PBXGroup;
 			children = (
@@ -248,12 +263,14 @@
 		43D5F5492B7A764D0030DBF5 /* Widget Money */ = {
 			isa = PBXGroup;
 			children = (
+				437ABC862B824C7000E7EAA0 /* Localize */,
 				43D5F60F2B7A87540030DBF5 /* Widget Money.entitlements */,
 				43D5F54A2B7A764D0030DBF5 /* AppDelegate.swift */,
 				43D5F54C2B7A764D0030DBF5 /* SceneDelegate.swift */,
 				43D5F5732B7A79F80030DBF5 /* Workers */,
 				43D5F5862B7A7A1C0030DBF5 /* Global Models */,
 				43D5F58D2B7A7A260030DBF5 /* ViewControllers */,
+				43D5F5A32B7A7A260030DBF5 /* SettingsViewController */,
 				43D5F5532B7A76510030DBF5 /* Assets.xcassets */,
 				43D5F5552B7A76510030DBF5 /* LaunchScreen.storyboard */,
 				43D5F5582B7A76510030DBF5 /* Info.plist */,
@@ -293,7 +310,6 @@
 			children = (
 				43D5F5AE2B7A7A260030DBF5 /* TabBarViewController.swift */,
 				43D5F58E2B7A7A260030DBF5 /* Home */,
-				43D5F5A32B7A7A260030DBF5 /* SettingsViewController */,
 				43D5F5A72B7A7A260030DBF5 /* SecondController */,
 			);
 			path = ViewControllers;
@@ -498,6 +514,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 43D5F53E2B7A764C0030DBF5;
 			productRefGroup = 43D5F5482B7A764D0030DBF5 /* Products */;
@@ -516,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43D5F5572B7A76510030DBF5 /* LaunchScreen.storyboard in Resources */,
+				437ABC8B2B824E0100E7EAA0 /* Localizable.strings in Resources */,
 				43D5F5542B7A76510030DBF5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43D5F5F62B7A857D0030DBF5 /* Assets.xcassets in Resources */,
+				437ABC8F2B824FCF00E7EAA0 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +594,7 @@
 				43D5F5C22B7A7A260030DBF5 /* CornersWhiteSegmentedControl.swift in Sources */,
 				43D5F58C2B7A7A1C0030DBF5 /* Theme.swift in Sources */,
 				43D5F5B92B7A7A260030DBF5 /* ChooseCurrencyViewController.swift in Sources */,
+				437ABC882B824CA200E7EAA0 /* Extension+String.swift in Sources */,
 				43D5F5852B7A79F80030DBF5 /* CoreWorker.swift in Sources */,
 				43D5F5842B7A79F80030DBF5 /* UniversalCoinWorker.swift in Sources */,
 				43D5F5B62B7A7A260030DBF5 /* CurrencyPairCell.swift in Sources */,
@@ -607,6 +627,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		437ABC8D2B824E0100E7EAA0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				437ABC8C2B824E0100E7EAA0 /* en */,
+				437ABC902B82509800E7EAA0 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		43D5F5552B7A76510030DBF5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -622,6 +651,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -682,6 +712,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

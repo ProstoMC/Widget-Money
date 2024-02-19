@@ -178,7 +178,7 @@ extension ExchangeViewController: UITextFieldDelegate {
             exchangeLabel.centerYAnchor.constraint(equalTo: changeButton.centerYAnchor),
         ])
         
-        exchangeLabel.text = "Exchange"
+        exchangeLabel.text = "Exchange".localized()
         exchangeLabel.font = UIFont.systemFont(ofSize: 100, weight: .medium) //Just set max and resize after
         exchangeLabel.adjustsFontSizeToFitWidth = true
         exchangeLabel.textAlignment = .left
@@ -188,7 +188,7 @@ extension ExchangeViewController: UITextFieldDelegate {
     private func setupFromView() {
         view.addSubview(fromView)
         fromView.translatesAutoresizingMaskIntoConstraints = false
-        fromView.header.text = "From"
+        fromView.header.text = "From".localized()
         fromView.textField.text = "1"
         
         NSLayoutConstraint.activate([
@@ -201,7 +201,7 @@ extension ExchangeViewController: UITextFieldDelegate {
     private func setupToView() {
         view.addSubview(toView)
         toView.translatesAutoresizingMaskIntoConstraints = false
-        toView.header.text = "To"
+        toView.header.text = "To".localized()
         
         NSLayoutConstraint.activate([
             toView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),

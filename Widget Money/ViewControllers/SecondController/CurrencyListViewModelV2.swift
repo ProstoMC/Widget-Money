@@ -89,7 +89,8 @@ class CurrencyListViewModelV2: CurrencyListViewModelProtocol {
             //Delete each elements not contained
             for item in list {
                 if item.code.uppercased().contains(str.uppercased()) ||
-                    item.name.uppercased().contains(str.uppercased()) {
+                    item.name.uppercased().contains(str.uppercased()) ||
+                    item.name.localized().uppercased().contains(str.uppercased()) {
                     foundedList.append(item)
                 }
             }

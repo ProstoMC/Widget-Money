@@ -37,7 +37,7 @@ class CurrencyListTableViewController: UIViewController {
     var viewModel: CurrencyListViewModelProtocol = CurrencyListViewModelV2(type: .withoutBaseCoin)
     let disposeBag = DisposeBag()
     
-    var segmentedControl = CornersWhiteSegmentedControl(items: ["Fiat", "Crypto"])
+    var segmentedControl = CornersWhiteSegmentedControl(items: ["Fiat".localized(), "Crypto".localized()])
     var searchBar = UITextField()
     let searchImage = UIImageView()
     
@@ -143,7 +143,7 @@ extension CurrencyListTableViewController: UITableViewDelegate {
         searchBar.backgroundColor = viewModel.colorSet.background
         searchBar.textColor = viewModel.colorSet.secondText.withAlphaComponent(0.7)
         searchBar.attributedPlaceholder =
-        NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: viewModel.colorSet.secondText])
+        NSAttributedString(string: "Search".localized(), attributes: [NSAttributedString.Key.foregroundColor: viewModel.colorSet.secondText])
         searchImage.tintColor = viewModel.colorSet.secondText
     }
     

@@ -47,7 +47,7 @@ extension DetailsViewController {
         favouriteButton.rx.tap.asDriver().drive(onNext: {
             do {
                 if try self.viewModel.rxFavoriteStatus.value() {
-                    self.showAlert(title: "", message: "Delete from favorite?")
+                    self.showAlert(title: "", message: "Delete from favorite".localized())
                 } else {
                     self.viewModel.changeFavoriteStatus()
                 }
@@ -104,10 +104,10 @@ extension DetailsViewController {
             message: nil,
             preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
+        alert.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive, handler: {_ in
             self.viewModel.changeFavoriteStatus()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
     }

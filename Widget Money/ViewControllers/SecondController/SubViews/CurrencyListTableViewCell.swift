@@ -60,7 +60,7 @@ class CurrencyListTableViewCell: UITableViewCell {
         valueName = coin.code
         baseName = coin.baseCode
         
-        nameLabel.text = coin.code + " - " + coin.name
+        nameLabel.text = coin.code + " - " + coin.name.localized()
         
         let rate = String(format: "%.2f", coin.rate)
         //self.valueLabel.text = "\(baseLogo) \(rate)"
