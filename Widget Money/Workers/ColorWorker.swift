@@ -126,7 +126,7 @@ extension ColorsWorker {
             closingLine: UIColor(red: 51/255, green: 57/255, blue: 95/255, alpha: 1),
             
             accentColor: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
-            heartColor: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 1),
+            heartColor: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
             clearButton: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 1),
             
             green: UIColor.systemGreen,

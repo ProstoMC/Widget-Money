@@ -13,8 +13,12 @@ class DetailsViewController: UIViewController {
     let bag = DisposeBag()
     let viewModel: DetailsViewModuleProtocol = DetailsViewModule()
     
+    let headBlock = HeadBlockView()
+    let favoriteView = UIImageView()
     
-    let favouriteButton = UIButton()
+    let longBlock = DetailsLongSubBlock()
+    let squareBlock100 = DetailsSquareSubBlock()
+    let squareBlock1000 = DetailsSquareSubBlock()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,24 +41,19 @@ extension DetailsViewController {
         //Favorite status
         viewModel.rxFavoriteStatus.subscribe{ status in
             if status {
-                self.favouriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+                self.favoriteView.image = UIImage(systemName: "suit.heart.fill")
+                
             }
             else {
-                self.favouriteButton.setImage(UIImage(systemName: "suit.heart"), for: .normal)
+                self.favoriteView.image = UIImage(systemName: "suit.heart")
             }
         }.disposed(by: bag)
         
-        favouriteButton.rx.tap.asDriver().drive(onNext: {
-            do {
-                if try self.viewModel.rxFavoriteStatus.value() {
-                    self.showAlert(title: "", message: "Delete from favorite".localized())
-                } else {
-                    self.viewModel.changeFavoriteStatus()
-                }
-            } catch {
-                self.viewModel.changeFavoriteStatus()
-            }
-        }).disposed(by: bag)
+        // Behavior
+        let tap = UITapGestureRecognizer(target: self, action: #selector(favoriteButtonTapped))
+        favoriteView.isUserInteractionEnabled = true
+        favoriteView.addGestureRecognizer(tap)
+        
         
         viewModel.rxAppThemeUpdated.subscribe(onNext: { flag in
             if flag {
@@ -63,37 +62,116 @@ extension DetailsViewController {
         }).disposed(by: bag)
         
     }
+    
+    @objc private func favoriteButtonTapped() {
+        do {
+            if try self.viewModel.rxFavoriteStatus.value() {
+                showAlert(title: "", message: "Delete from favorite".localized())
+            } else {
+                viewModel.changeFavoriteStatus()
+            }
+        } catch {
+            viewModel.changeFavoriteStatus()
+        }
+    }
 }
 // MARK:  - SETUP UI
 extension DetailsViewController {
     private func setupUI() {
         view.isHidden = true
-        view.layer.cornerRadius = UIScreen.main.bounds.height/100
+        view.layer.cornerRadius = UIScreen.main.bounds.height/50
         
         setupFavoriteView()
+        setupHeadBlock()
+        setupLongBlock()
+        setupSquaresBlock()
         updateColors()
+        
     }
     
     private func updateColors() {
-        view.backgroundColor = viewModel.colorSet.backgroundForWidgets
-        favouriteButton.tintColor = viewModel.colorSet.heartColor
+        //view.backgroundColor = viewModel.colorSet.backgroundForWidgets
+        view.backgroundColor = UIColor(red: 72/255, green: 83/255, blue: 146/255, alpha: 1)
+        favoriteView.tintColor = viewModel.colorSet.heartColor
     }
     
     private func setupFavoriteView(){
-        view.addSubview(favouriteButton)
-        favouriteButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(favoriteView)
+        favoriteView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            favouriteButton.rightAnchor.constraint(equalTo: view.rightAnchor),
-            favouriteButton.topAnchor.constraint(equalTo: view.topAnchor),
-            favouriteButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15),
-            favouriteButton.widthAnchor.constraint(equalTo: favouriteButton.heightAnchor)
+            favoriteView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -UIScreen.main.bounds.width*0.04),
+            favoriteView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.width*0.04),
+            favoriteView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.12),
+            favoriteView.widthAnchor.constraint(equalTo: favoriteView.heightAnchor, multiplier: 1.1)
         ])
         
+        favoriteView.image = UIImage(systemName: "suit.heart")
+        favoriteView.contentMode = .scaleToFill
         
-        self.favouriteButton.setImage(UIImage(systemName: "suit.heart"), for: .normal)
-        favouriteButton.contentMode = .scaleAspectFit
+       
     }
+    
+    private func setupHeadBlock() {
+        headBlock.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(headBlock)
+        
+        NSLayoutConstraint.activate([
+            headBlock.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UIScreen.main.bounds.width*0.04),
+            headBlock.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.width*0.04),
+            headBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+            headBlock.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+        ])
+        
+  
+    }
+    
+    private func setupLongBlock() {
+        longBlock.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(longBlock)
+        
+        NSLayoutConstraint.activate([
+            longBlock.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UIScreen.main.bounds.width*0.04),
+            longBlock.topAnchor.constraint(equalTo: headBlock.bottomAnchor, constant: UIScreen.main.bounds.width*0.04),
+            longBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.22),
+            longBlock.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -UIScreen.main.bounds.width*0.04),
+        ])
+        
+        longBlock.layer.cornerRadius = UIScreen.main.bounds.height/50
+        
+  
+    }
+    
+    private func setupSquaresBlock() {
+        squareBlock100.translatesAutoresizingMaskIntoConstraints = false
+        squareBlock1000.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(squareBlock100)
+        view.addSubview(squareBlock1000)
+        
+        NSLayoutConstraint.activate([
+            squareBlock100.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UIScreen.main.bounds.width*0.04),
+            squareBlock100.topAnchor.constraint(equalTo: longBlock.bottomAnchor, constant: UIScreen.main.bounds.width*0.03),
+            squareBlock100.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.main.bounds.width*0.04),
+            squareBlock100.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width*0.015),
+            
+            squareBlock1000.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -UIScreen.main.bounds.width*0.04),
+            squareBlock1000.topAnchor.constraint(equalTo: longBlock.bottomAnchor, constant: UIScreen.main.bounds.width*0.03),
+            squareBlock1000.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.main.bounds.width*0.04),
+            squareBlock1000.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width*0.015),
+            
+        ])
+        
+        squareBlock100.layer.cornerRadius = UIScreen.main.bounds.height/50
+        squareBlock1000.layer.cornerRadius = UIScreen.main.bounds.height/50
+        
+  
+    }
+
+    
+    
+    
+    
+    
 }
 // MARK:  - ALERT
 extension DetailsViewController {

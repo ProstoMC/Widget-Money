@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAw_3FcGKZ8xbn49Vh0ORuR4jHL5T5MR8I</string>
+	<key>GCM_SENDER_ID</key>
+	<string>318960414547</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sloniklm.Widget-Money</string>
+	<key>PROJECT_ID</key>
+	<string>widget-money</string>
+	<key>STORAGE_BUCKET</key>
+	<string>widget-money.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<true/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:318960414547:ios:5e13658509aa77616ffba6</string>
+</dict>
+</plist>

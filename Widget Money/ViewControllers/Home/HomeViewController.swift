@@ -88,7 +88,7 @@ class HomeViewController: UIViewController {
             x: view.bounds.width*0.04,
             y: exchangeViewController.view.frame.maxY,
             width: scrollView.bounds.width*0.92,
-            height: view.bounds.height*0.35)
+            height: view.bounds.width*0.66)
 
 
         view.addSubview(headerView)

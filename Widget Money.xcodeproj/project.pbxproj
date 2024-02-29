@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4378B5602B90F915006CC18E /* DetailsSquareSubBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378B55F2B90F915006CC18E /* DetailsSquareSubBlock.swift */; };
 		437ABC882B824CA200E7EAA0 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ABC872B824CA200E7EAA0 /* Extension+String.swift */; };
 		437ABC8B2B824E0100E7EAA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437ABC8D2B824E0100E7EAA0 /* Localizable.strings */; };
 		437ABC8F2B824FCF00E7EAA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437ABC8D2B824E0100E7EAA0 /* Localizable.strings */; };
+		437F7C1C2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 437F7C1B2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion */; };
+		437F7C492B8A3E41006DB2F3 /* HeadBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437F7C482B8A3E41006DB2F3 /* HeadBlockView.swift */; };
+		43829DDB2B8E270900E99F42 /* ArrowScaledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43829DDA2B8E270900E99F42 /* ArrowScaledView.swift */; };
+		43829DDD2B8E30C900E99F42 /* NameAndCountryBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43829DDC2B8E30C900E99F42 /* NameAndCountryBlock.swift */; };
+		43829DDF2B90DC4000E99F42 /* DetailsLongSubBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43829DDE2B90DC4000E99F42 /* DetailsLongSubBlock.swift */; };
 		43D5F54B2B7A764D0030DBF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F54A2B7A764D0030DBF5 /* AppDelegate.swift */; };
 		43D5F54D2B7A764D0030DBF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F54C2B7A764D0030DBF5 /* SceneDelegate.swift */; };
 		43D5F5542B7A76510030DBF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D5F5532B7A76510030DBF5 /* Assets.xcassets */; };
@@ -18,7 +24,6 @@
 		43D5F57E2B7A79F80030DBF5 /* ExchangeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5752B7A79F80030DBF5 /* ExchangeWorker.swift */; };
 		43D5F57F2B7A79F80030DBF5 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5762B7A79F80030DBF5 /* SettingsWorker.swift */; };
 		43D5F5802B7A79F80030DBF5 /* ColorWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5772B7A79F80030DBF5 /* ColorWorker.swift */; };
-		43D5F5812B7A79F80030DBF5 /* ColorsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5782B7A79F80030DBF5 /* ColorsWorker.swift */; };
 		43D5F5822B7A79F80030DBF5 /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5792B7A79F80030DBF5 /* CurrencyFetcher.swift */; };
 		43D5F5832B7A79F80030DBF5 /* CoinPairWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F57A2B7A79F80030DBF5 /* CoinPairWorker.swift */; };
 		43D5F5842B7A79F80030DBF5 /* UniversalCoinWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F57B2B7A79F80030DBF5 /* UniversalCoinWorker.swift */; };
@@ -85,6 +90,11 @@
 		43D5F60E2B7A86F60030DBF5 /* BigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F60C2B7A86F60030DBF5 /* BigCell.swift */; };
 		43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 		43D5F6132B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
+		43EACEFB2B8663D60066F7B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43EACEFA2B8663D60066F7B8 /* GoogleService-Info.plist */; };
+		43EACF372B8670300066F7B8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 43EACF362B8670300066F7B8 /* FirebaseAnalytics */; };
+		43EACF392B8670310066F7B8 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 43EACF382B8670310066F7B8 /* FirebaseAnalyticsSwift */; };
+		43EACF3B2B8670310066F7B8 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 43EACF3A2B8670310066F7B8 /* FirebaseInAppMessaging-Beta */; };
+		43EACF3D2B8670320066F7B8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 43EACF3C2B8670320066F7B8 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,10 +141,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4378B55F2B90F915006CC18E /* DetailsSquareSubBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSquareSubBlock.swift; sourceTree = "<group>"; };
 		437ABC802B80C57B00E7EAA0 /* SDWebImageSwiftUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageSwiftUI.xcframework; path = Carthage/Build/SDWebImageSwiftUI.xcframework; sourceTree = "<group>"; };
 		437ABC872B824CA200E7EAA0 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		437ABC8C2B824E0100E7EAA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		437ABC902B82509800E7EAA0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		437F7C482B8A3E41006DB2F3 /* HeadBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadBlockView.swift; sourceTree = "<group>"; };
+		43829DDA2B8E270900E99F42 /* ArrowScaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowScaledView.swift; sourceTree = "<group>"; };
+		43829DDC2B8E30C900E99F42 /* NameAndCountryBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameAndCountryBlock.swift; sourceTree = "<group>"; };
+		43829DDE2B90DC4000E99F42 /* DetailsLongSubBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsLongSubBlock.swift; sourceTree = "<group>"; };
 		43D5F5472B7A764D0030DBF5 /* Widget Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Widget Money.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D5F54A2B7A764D0030DBF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43D5F54C2B7A764D0030DBF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,7 +160,6 @@
 		43D5F5752B7A79F80030DBF5 /* ExchangeWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeWorker.swift; sourceTree = "<group>"; };
 		43D5F5762B7A79F80030DBF5 /* SettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
 		43D5F5772B7A79F80030DBF5 /* ColorWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWorker.swift; sourceTree = "<group>"; };
-		43D5F5782B7A79F80030DBF5 /* ColorsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsWorker.swift; sourceTree = "<group>"; };
 		43D5F5792B7A79F80030DBF5 /* CurrencyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyFetcher.swift; sourceTree = "<group>"; };
 		43D5F57A2B7A79F80030DBF5 /* CoinPairWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinPairWorker.swift; sourceTree = "<group>"; };
 		43D5F57B2B7A79F80030DBF5 /* UniversalCoinWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalCoinWorker.swift; sourceTree = "<group>"; };
@@ -200,6 +214,7 @@
 		43D5F60F2B7A87540030DBF5 /* Widget Money.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget Money.entitlements"; sourceTree = "<group>"; };
 		43D5F6102B7A87750030DBF5 /* Widget Money ExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget Money ExtensionExtension.entitlements"; sourceTree = "<group>"; };
 		43D5F6112B7A89280030DBF5 /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
+		43EACEFA2B8663D60066F7B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,12 +225,17 @@
 				43D5F5DC2B7A7BAA0030DBF5 /* Alamofire.xcframework in Frameworks */,
 				43D5F5D62B7A7BA90030DBF5 /* RxSwift.xcframework in Frameworks */,
 				43D5F5D82B7A7BA90030DBF5 /* RxRelay.xcframework in Frameworks */,
+				437F7C1C2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				43EACF392B8670310066F7B8 /* FirebaseAnalyticsSwift in Frameworks */,
 				43D5F5DA2B7A7BA90030DBF5 /* SDWebImageMapKit.xcframework in Frameworks */,
 				43D5F5D22B7A7BA90030DBF5 /* RxCocoa.xcframework in Frameworks */,
 				43D5F5E02B7A7BAA0030DBF5 /* SDWebImage.xcframework in Frameworks */,
 				43D5F5DE2B7A7BAA0030DBF5 /* RxBlocking.xcframework in Frameworks */,
+				43EACF3D2B8670320066F7B8 /* FirebaseMessaging in Frameworks */,
 				43D5F5E42B7A7BAB0030DBF5 /* RxDataSources.xcframework in Frameworks */,
+				43EACF372B8670300066F7B8 /* FirebaseAnalytics in Frameworks */,
 				43D5F5D42B7A7BA90030DBF5 /* Differentiator.xcframework in Frameworks */,
+				43EACF3B2B8670310066F7B8 /* FirebaseInAppMessaging-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +258,18 @@
 				437ABC8D2B824E0100E7EAA0 /* Localizable.strings */,
 			);
 			path = Localize;
+			sourceTree = "<group>";
+		};
+		43829DD92B8E26D700E99F42 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				437F7C482B8A3E41006DB2F3 /* HeadBlockView.swift */,
+				43829DDA2B8E270900E99F42 /* ArrowScaledView.swift */,
+				43829DDC2B8E30C900E99F42 /* NameAndCountryBlock.swift */,
+				43829DDE2B90DC4000E99F42 /* DetailsLongSubBlock.swift */,
+				4378B55F2B90F915006CC18E /* DetailsSquareSubBlock.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		43D5F53E2B7A764C0030DBF5 = {
@@ -274,6 +306,7 @@
 				43D5F5532B7A76510030DBF5 /* Assets.xcassets */,
 				43D5F5552B7A76510030DBF5 /* LaunchScreen.storyboard */,
 				43D5F5582B7A76510030DBF5 /* Info.plist */,
+				43EACEFA2B8663D60066F7B8 /* GoogleService-Info.plist */,
 			);
 			path = "Widget Money";
 			sourceTree = "<group>";
@@ -286,7 +319,6 @@
 				43D5F5752B7A79F80030DBF5 /* ExchangeWorker.swift */,
 				43D5F5762B7A79F80030DBF5 /* SettingsWorker.swift */,
 				43D5F5772B7A79F80030DBF5 /* ColorWorker.swift */,
-				43D5F5782B7A79F80030DBF5 /* ColorsWorker.swift */,
 				43D5F5792B7A79F80030DBF5 /* CurrencyFetcher.swift */,
 				43D5F57A2B7A79F80030DBF5 /* CoinPairWorker.swift */,
 				43D5F57B2B7A79F80030DBF5 /* UniversalCoinWorker.swift */,
@@ -332,6 +364,7 @@
 		43D5F58F2B7A7A260030DBF5 /* DetailsModule */ = {
 			isa = PBXGroup;
 			children = (
+				43829DD92B8E26D700E99F42 /* Subviews */,
 				43D5F5902B7A7A260030DBF5 /* DetailsViewModule.swift */,
 				43D5F5912B7A7A260030DBF5 /* DetailsViewController.swift */,
 			);
@@ -468,6 +501,13 @@
 				43D5F5F92B7A857D0030DBF5 /* PBXTargetDependency */,
 			);
 			name = "Widget Money";
+			packageProductDependencies = (
+				43EACF362B8670300066F7B8 /* FirebaseAnalytics */,
+				43EACF382B8670310066F7B8 /* FirebaseAnalyticsSwift */,
+				43EACF3A2B8670310066F7B8 /* FirebaseInAppMessaging-Beta */,
+				43EACF3C2B8670320066F7B8 /* FirebaseMessaging */,
+				437F7C1B2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion */,
+			);
 			productName = "Widget Money";
 			productReference = 43D5F5472B7A764D0030DBF5 /* Widget Money.app */;
 			productType = "com.apple.product-type.application";
@@ -517,6 +557,9 @@
 				ru,
 			);
 			mainGroup = 43D5F53E2B7A764C0030DBF5;
+			packageReferences = (
+				43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 43D5F5482B7A764D0030DBF5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -533,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43D5F5572B7A76510030DBF5 /* LaunchScreen.storyboard in Resources */,
+				43EACEFB2B8663D60066F7B8 /* GoogleService-Info.plist in Resources */,
 				437ABC8B2B824E0100E7EAA0 /* Localizable.strings in Resources */,
 				43D5F5542B7A76510030DBF5 /* Assets.xcassets in Resources */,
 			);
@@ -560,7 +604,6 @@
 				43D5F6022B7A86830030DBF5 /* SmallCell.swift in Sources */,
 				43D5F5C12B7A7A260030DBF5 /* CurrencyListTableViewController.swift in Sources */,
 				43D5F5C02B7A7A260030DBF5 /* SettingsViewController.swift in Sources */,
-				43D5F5812B7A79F80030DBF5 /* ColorsWorker.swift in Sources */,
 				43D5F58A2B7A7A1C0030DBF5 /* AppColors.swift in Sources */,
 				43D5F5B42B7A7A260030DBF5 /* CurrencyPairsListViewModel.swift in Sources */,
 				43D5F5BA2B7A7A260030DBF5 /* ChooseCurrencyTableViewCell.swift in Sources */,
@@ -572,9 +615,11 @@
 				43D5F5BF2B7A7A260030DBF5 /* SettingsTableViewCell.swift in Sources */,
 				43D5F5C42B7A7A260030DBF5 /* CurrencyListViewModelV2.swift in Sources */,
 				43D5F5802B7A79F80030DBF5 /* ColorWorker.swift in Sources */,
+				43829DDF2B90DC4000E99F42 /* DetailsLongSubBlock.swift in Sources */,
 				43D5F6072B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */,
 				43D5F5832B7A79F80030DBF5 /* CoinPairWorker.swift in Sources */,
 				43D5F60A2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */,
+				437F7C492B8A3E41006DB2F3 /* HeadBlockView.swift in Sources */,
 				43D5F58B2B7A7A1C0030DBF5 /* CoinUniversal.swift in Sources */,
 				43D5F5BD2B7A7A260030DBF5 /* ExchangeViewModel.swift in Sources */,
 				43D5F5B32B7A7A260030DBF5 /* AddTileUIView.swift in Sources */,
@@ -587,15 +632,18 @@
 				43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */,
 				43D5F5AF2B7A7A260030DBF5 /* DetailsViewModule.swift in Sources */,
 				43D5F5BB2B7A7A260030DBF5 /* EnterCurrencyView.swift in Sources */,
+				4378B5602B90F915006CC18E /* DetailsSquareSubBlock.swift in Sources */,
 				43D5F57E2B7A79F80030DBF5 /* ExchangeWorker.swift in Sources */,
 				43D5F57F2B7A79F80030DBF5 /* SettingsWorker.swift in Sources */,
 				43D5F5C32B7A7A260030DBF5 /* CurrencyListTableViewCell.swift in Sources */,
 				43D5F57D2B7A79F80030DBF5 /* WidgetWorker.swift in Sources */,
+				43829DDB2B8E270900E99F42 /* ArrowScaledView.swift in Sources */,
 				43D5F5C22B7A7A260030DBF5 /* CornersWhiteSegmentedControl.swift in Sources */,
 				43D5F58C2B7A7A1C0030DBF5 /* Theme.swift in Sources */,
 				43D5F5B92B7A7A260030DBF5 /* ChooseCurrencyViewController.swift in Sources */,
 				437ABC882B824CA200E7EAA0 /* Extension+String.swift in Sources */,
 				43D5F5852B7A79F80030DBF5 /* CoreWorker.swift in Sources */,
+				43829DDD2B8E30C900E99F42 /* NameAndCountryBlock.swift in Sources */,
 				43D5F5842B7A79F80030DBF5 /* UniversalCoinWorker.swift in Sources */,
 				43D5F5B62B7A7A260030DBF5 /* CurrencyPairCell.swift in Sources */,
 			);
@@ -783,6 +831,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -819,6 +868,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -922,6 +972,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		437F7C1B2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		43EACF362B8670300066F7B8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		43EACF382B8670310066F7B8 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		43EACF3A2B8670310066F7B8 /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		43EACF3C2B8670320066F7B8 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 43D5F53F2B7A764C0030DBF5 /* Project object */;
 }

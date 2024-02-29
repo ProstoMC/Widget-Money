@@ -108,11 +108,11 @@ class WidgetWorker: WidgetWorkerProtocol {
     }
     
     func save() {
-        printList()
+        //printList()
         let sortedModels = widgetModels.sorted(by: { $0.id < $1.id } )
         guard let data = try? JSONEncoder().encode(sortedModels) else { return }
         widgetData = data
-        print("Data saved")
+        //print("Data saved")
         WidgetCenter.shared.reloadTimelines(ofKind: "Widget_Money_Extension")
     }
     
@@ -132,7 +132,7 @@ class WidgetWorker: WidgetWorkerProtocol {
     func fetchImage(stringUrl: String, completion: @escaping (Data?) -> ()) {
 
         guard let url = URL(string: "\(stringUrl)") else {
-            print ("URL is wrong")
+            //print ("URL is wrong")
             return
         }
         //print(url)
