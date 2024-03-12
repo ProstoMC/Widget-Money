@@ -32,13 +32,56 @@ class DetailsLongSubBlock: UIView {
         setupUI()
     }
     
-    func configure(fromText: String, toText: String, flow: String, flowPercent: String) {
-        fromLabel.text = fromText
-        toLabel.text = toText
+    func configure(pair: CurrencyPairCellModel, colorSet: AppColors) {
+        
+        let fromText = NSMutableAttributedString(
+            string: "1",
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
+        
+        fromText.append(NSAttributedString(
+            string: pair.valueCurrencyLogo,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
+        
+        fromLabel.attributedText = fromText
+        
+        let toText = NSMutableAttributedString(
+            string: String(format: "%.2f", pair.value),
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
+        
+        toText.append(NSAttributedString(
+            string: pair.baseLogo,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
+        
+        toLabel.attributedText = toText
+        
+        flowLabel.text = String(format: "%.2f", pair.flow) + " " + pair.baseLogo
+        let flowPercent = pair.flow/(pair.value-pair.flow)
+        flowPercentLabel.text = String(format: "%.3f", flowPercent) + " %"
+        
+        if pair.flow >= 0 {
+            upImageView.isHidden = false
+            downImageView.isHidden = true
+            
+            flowLabel.textColor = colorSet.green
+            flowPercentLabel.textColor = colorSet.green
+        } else {
+            upImageView.isHidden = true
+            downImageView.isHidden = false
+            
+            flowLabel.textColor = colorSet.red
+            flowPercentLabel.textColor = colorSet.red
+        }
         
     }
     
-
+    func updateColors(colorSet: AppColors){
+        backgroundColor = colorSet.detailsLongSubviewBackground
+        fromLabel.textColor = colorSet.detailsTextColor
+        toLabel.textColor = colorSet.detailsTextColor
+        
+        upImageView.tintColor = colorSet.green
+        downImageView.tintColor = colorSet.red
+    }
     
     
 }
@@ -46,7 +89,7 @@ class DetailsLongSubBlock: UIView {
 extension DetailsLongSubBlock {
     
     private func setupUI() {
-        backgroundColor = UIColor(red: 98/255, green: 108/255, blue: 172/255, alpha: 1)
+        
         setupImages()
         setupFromLabel()
         setupScaledArrow()
@@ -105,7 +148,7 @@ extension DetailsLongSubBlock {
             toLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
             ])
         
-        toLabel.textColor = .white
+        
         toLabel.font = .systemFont(ofSize: 100)
         toLabel.adjustsFontSizeToFitWidth = true
         
@@ -128,22 +171,19 @@ extension DetailsLongSubBlock {
         upImageView.translatesAutoresizingMaskIntoConstraints = false
         downImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            upImageView.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.2),
+            upImageView.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.23),
             upImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: UIScreen.main.bounds.width * 0.025),
-            upImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
+            upImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             upImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             
-            downImageView.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.2),
+            downImageView.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.23),
             downImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -UIScreen.main.bounds.width * 0.025),
-            downImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
+            downImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             downImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             
         ])
         upImageView.image = UIImage(systemName: "arrow.up")
         downImageView.image = UIImage(systemName: "arrow.down")
-        
-        upImageView.tintColor = .green
-        downImageView.tintColor = .red
         
         upImageView.contentMode = .scaleAspectFit
         downImageView.contentMode = .scaleAspectFit
@@ -157,25 +197,23 @@ extension DetailsLongSubBlock {
         NSLayoutConstraint.activate([
             flowLabel.leftAnchor.constraint(equalTo: upImageView.rightAnchor, constant: UIScreen.main.bounds.width * 0.01),
             flowLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: UIScreen.main.bounds.width * 0.025),
-            flowLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
-            flowLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: UIScreen.main.bounds.width * 0.03),
+            flowLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
+            flowLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.02),
             
             flowPercentLabel.leftAnchor.constraint(equalTo: flowLabel.leftAnchor),
             flowPercentLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -UIScreen.main.bounds.width * 0.025),
-            flowPercentLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
+            flowPercentLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             flowPercentLabel.rightAnchor.constraint(equalTo: flowLabel.rightAnchor),
         ])
         
+        
         flowLabel.text = "0.45 $"
-        flowPercentLabel.text = "2.35 %"
+        flowPercentLabel.text = "2.13 %"
         
-        flowLabel.textColor = .green
-        flowPercentLabel.textColor = .green
-        
-        flowLabel.font = .systemFont(ofSize: 100, weight: .light)
-        flowLabel.adjustsFontSizeToFitWidth = true
-        flowPercentLabel.font = .systemFont(ofSize: 100, weight: .light)
-        flowPercentLabel.adjustsFontSizeToFitWidth = true
+        flowLabel.font = .systemFont(ofSize: UIScreen.main.bounds.width * 0.03, weight: .light)
+        //flowLabel.adjustsFontSizeToFitWidth = true
+        flowPercentLabel.font = .systemFont(ofSize: UIScreen.main.bounds.width * 0.03, weight: .light)
+        //flowPercentLabel.adjustsFontSizeToFitWidth = true
         
     }
         

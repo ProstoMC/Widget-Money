@@ -31,7 +31,7 @@
 		43D5F58A2B7A7A1C0030DBF5 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5872B7A7A1C0030DBF5 /* AppColors.swift */; };
 		43D5F58B2B7A7A1C0030DBF5 /* CoinUniversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5882B7A7A1C0030DBF5 /* CoinUniversal.swift */; };
 		43D5F58C2B7A7A1C0030DBF5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5892B7A7A1C0030DBF5 /* Theme.swift */; };
-		43D5F5AF2B7A7A260030DBF5 /* DetailsViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5902B7A7A260030DBF5 /* DetailsViewModule.swift */; };
+		43D5F5AF2B7A7A260030DBF5 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5902B7A7A260030DBF5 /* DetailsViewModel.swift */; };
 		43D5F5B02B7A7A260030DBF5 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5912B7A7A260030DBF5 /* DetailsViewController.swift */; };
 		43D5F5B12B7A7A260030DBF5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5922B7A7A260030DBF5 /* HomeViewController.swift */; };
 		43D5F5B32B7A7A260030DBF5 /* AddTileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5952B7A7A260030DBF5 /* AddTileUIView.swift */; };
@@ -167,7 +167,7 @@
 		43D5F5872B7A7A1C0030DBF5 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		43D5F5882B7A7A1C0030DBF5 /* CoinUniversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinUniversal.swift; sourceTree = "<group>"; };
 		43D5F5892B7A7A1C0030DBF5 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		43D5F5902B7A7A260030DBF5 /* DetailsViewModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModule.swift; sourceTree = "<group>"; };
+		43D5F5902B7A7A260030DBF5 /* DetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		43D5F5912B7A7A260030DBF5 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		43D5F5922B7A7A260030DBF5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		43D5F5952B7A7A260030DBF5 /* AddTileUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTileUIView.swift; sourceTree = "<group>"; };
@@ -365,7 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				43829DD92B8E26D700E99F42 /* Subviews */,
-				43D5F5902B7A7A260030DBF5 /* DetailsViewModule.swift */,
+				43D5F5902B7A7A260030DBF5 /* DetailsViewModel.swift */,
 				43D5F5912B7A7A260030DBF5 /* DetailsViewController.swift */,
 			);
 			path = DetailsModule;
@@ -630,7 +630,7 @@
 				43D5F5BE2B7A7A260030DBF5 /* SettingsViewModel.swift in Sources */,
 				43D5F5B82B7A7A260030DBF5 /* HeaderView.swift in Sources */,
 				43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */,
-				43D5F5AF2B7A7A260030DBF5 /* DetailsViewModule.swift in Sources */,
+				43D5F5AF2B7A7A260030DBF5 /* DetailsViewModel.swift in Sources */,
 				43D5F5BB2B7A7A260030DBF5 /* EnterCurrencyView.swift in Sources */,
 				4378B5602B90F915006CC18E /* DetailsSquareSubBlock.swift in Sources */,
 				43D5F57E2B7A79F80030DBF5 /* ExchangeWorker.swift in Sources */,

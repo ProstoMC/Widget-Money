@@ -48,8 +48,8 @@ class CurrencyPairCell: UICollectionViewCell {
         
         configureLogo(pairModel: currecnyPair, colors: colors)
         
-        mainCurrencyNameLabel.text = currecnyPair.valueCurrencyShortName
-        baseCurrencyNameLabel.text = "to \(currecnyPair.baseCurrencyShortName)"
+        mainCurrencyNameLabel.text = currecnyPair.valueCurrencyCode
+        baseCurrencyNameLabel.text = "to \(currecnyPair.baseCurrencyCode)"
         
         //Setup Value Label
         let attributedText = NSMutableAttributedString(
@@ -79,7 +79,7 @@ class CurrencyPairCell: UICollectionViewCell {
     func configureLogo(pairModel: CurrencyPairCellModel, colors: AppColors){
         
         guard let url = URL(string: pairModel.imageUrl ?? "Error") else {
-            print ("\(pairModel.valueCurrencyShortName) : \(pairModel.imageUrl ?? "No image for")")
+            print ("\(pairModel.valueCurrencyCode) : \(pairModel.imageUrl ?? "No image for")")
             logoImageView.isHidden = true
             logoLabel.text = pairModel.valueCurrencyLogo
             return

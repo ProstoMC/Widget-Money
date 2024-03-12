@@ -11,7 +11,7 @@ import RxSwift
 class DetailsViewController: UIViewController {
     
     let bag = DisposeBag()
-    let viewModel: DetailsViewModuleProtocol = DetailsViewModule()
+    let viewModel: DetailsViewModelProtocol = DetailsViewModel()
     
     let headBlock = HeadBlockView()
     let favoriteView = UIImageView()
@@ -22,9 +22,19 @@ class DetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupUI()
+        view.isHidden = true
         setupRx()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        setupUI()
+    }
+    
+    func configure() {
+        headBlock.configure(coinPair: viewModel.pair)
+        longBlock.configure(pair: viewModel.pair, colorSet: viewModel.colorSet)
+        squareBlock100.configure(pair: viewModel.pair, multiplier: 100)
+        squareBlock1000.configure(pair: viewModel.pair, multiplier: 1000)
     }
 
 
@@ -36,13 +46,15 @@ extension DetailsViewController {
         //Appearing of view
         viewModel.rxIsAppearFlag.subscribe { flag in
             self.view.isHidden = !flag
+            self.configure()
+            print("DETAILS UPDATE")
+            print(flag)
         }.disposed(by: bag)
        
         //Favorite status
         viewModel.rxFavoriteStatus.subscribe{ status in
             if status {
                 self.favoriteView.image = UIImage(systemName: "suit.heart.fill")
-                
             }
             else {
                 self.favoriteView.image = UIImage(systemName: "suit.heart")
@@ -78,7 +90,7 @@ extension DetailsViewController {
 // MARK:  - SETUP UI
 extension DetailsViewController {
     private func setupUI() {
-        view.isHidden = true
+        
         view.layer.cornerRadius = UIScreen.main.bounds.height/50
         
         setupFavoriteView()
@@ -90,12 +102,14 @@ extension DetailsViewController {
     }
     
     private func updateColors() {
-        //view.backgroundColor = viewModel.colorSet.backgroundForWidgets
-        view.backgroundColor = UIColor(red: 72/255, green: 83/255, blue: 146/255, alpha: 1)
+        view.backgroundColor = viewModel.colorSet.detailsBackground
         favoriteView.tintColor = viewModel.colorSet.heartColor
+        longBlock.updateColors(colorSet: viewModel.colorSet)
+        squareBlock100.updateColors(colorSet: viewModel.colorSet)
+        squareBlock1000.updateColors(colorSet: viewModel.colorSet)
     }
     
-    private func setupFavoriteView(){
+    private func setupFavoriteView() {
         view.addSubview(favoriteView)
         favoriteView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -106,7 +120,7 @@ extension DetailsViewController {
             favoriteView.widthAnchor.constraint(equalTo: favoriteView.heightAnchor, multiplier: 1.1)
         ])
         
-        favoriteView.image = UIImage(systemName: "suit.heart")
+        //favoriteView.image = UIImage(systemName: "suit.heart")
         favoriteView.contentMode = .scaleToFill
         
        
@@ -120,7 +134,7 @@ extension DetailsViewController {
             headBlock.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UIScreen.main.bounds.width*0.04),
             headBlock.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.width*0.04),
             headBlock.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
-            headBlock.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+            headBlock.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
         ])
         
   

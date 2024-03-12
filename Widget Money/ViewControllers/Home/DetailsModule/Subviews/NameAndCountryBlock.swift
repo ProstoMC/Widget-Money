@@ -24,10 +24,23 @@ class NameAndCountryBlock: UIView {
         setupUI()
     }
     
-    func configure(name: String, country: String) {
-        nameLabel.text = name
+    func configure(name: String) {
+        let localizedName = name.localized()
+        
+        var wordsArray = localizedName.components(separatedBy: " ")
+
+        nameLabel.text = wordsArray.last
+        
+        wordsArray.removeLast()
+        
+        var country = ""
+        for word in wordsArray {
+            country = country + word + " "
+        }
+        
         countryLabel.text = country
-        lenghtOfText = countryLabel.intrinsicContentSize.width
+        
+        //lenghtOfText = countryLabel.intrinsicContentSize.width
     }
     
     func setupUI() {
@@ -59,6 +72,7 @@ class NameAndCountryBlock: UIView {
         
         countryLabel.text = "Georgian"
         countryLabel.font = .systemFont(ofSize: UIScreen.main.bounds.height*0.015, weight: .light)
+        countryLabel.textColor = .white.withAlphaComponent(0.8)
         //countryLabel.adjustsFontSizeToFitWidth = true
         countryLabel.numberOfLines = 2
         countryLabel.lineBreakMode = .byTruncatingTail

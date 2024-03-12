@@ -26,13 +26,45 @@ class DetailsSquareSubBlock: UIView {
         super.init(coder: aDecoder)
         setupUI()
     }
+    
+    func configure(pair: CurrencyPairCellModel, multiplier: Int) {
+        let upText = NSMutableAttributedString(
+            string: String(multiplier),
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
+        
+        upText.append(NSAttributedString(
+            string: " " + pair.valueCurrencyLogo,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
+        
+        upLabel.attributedText = upText
+        
+        let value = pair.value * Double(multiplier)
+        
+        let downText = NSMutableAttributedString(
+            string: String(format: "%.2f", value),
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
+        
+        downText.append(NSAttributedString(
+            string: " " + pair.baseLogo,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
+        
+        downLabel.attributedText = downText
+        
+    }
+    
+    func updateColors(colorSet: AppColors) {
+        lineView.backgroundColor = .white.withAlphaComponent(0.2)
+        backgroundColor = colorSet.detailsSquareSubviewBackground
+        downLabel.textColor = .white
+        upLabel.textColor = .white
+    }
 
 }
 
 extension DetailsSquareSubBlock {
     
     private func setupUI() {
-        backgroundColor = UIColor(red: 98/255, green: 108/255, blue: 172/255, alpha: 1)
+        
         setupSubBlock()
         setupLine()
         setupUpLabel()
@@ -62,20 +94,12 @@ extension DetailsSquareSubBlock {
         ])
         
         
-        upLabel.textColor = .white
+        
         upLabel.font = .systemFont(ofSize: 100)
         upLabel.adjustsFontSizeToFitWidth = true
         
         
-        let attributedText = NSMutableAttributedString(
-            string: "100",
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
-        
-        attributedText.append(NSAttributedString(
-            string: " ₾",
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
-        
-        upLabel.attributedText = attributedText
+
         
     }
     
@@ -90,20 +114,8 @@ extension DetailsSquareSubBlock {
         ])
         
         
-        downLabel.textColor = .white
         downLabel.font = .systemFont(ofSize: 100)
         downLabel.adjustsFontSizeToFitWidth = true
-        
-        
-        let attributedText = NSMutableAttributedString(
-            string: "3965.54",
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
-        
-        attributedText.append(NSAttributedString(
-            string: " $",
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
-        
-        downLabel.attributedText = attributedText
         
     }
     
@@ -117,7 +129,7 @@ extension DetailsSquareSubBlock {
             lineView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
             lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.01),
         ])
-        lineView.backgroundColor = .white.withAlphaComponent(0.2)
+        
     }
 }
 

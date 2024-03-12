@@ -8,19 +8,25 @@
 import Foundation
 import RxSwift
 
-protocol DetailsViewModuleProtocol {
+protocol DetailsViewModelProtocol {
     var rxIsAppearFlag: BehaviorSubject<Bool> { get }
     var rxFavoriteStatus: BehaviorSubject<Bool> { get set }
     
     var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
     var colorSet: AppColors { get }
+    var pair: CurrencyPairCellModel { get }
     
     func changeFavoriteStatus()
 }
 
-class DetailsViewModule: DetailsViewModuleProtocol {
+class DetailsViewModel: DetailsViewModelProtocol {
     
     let bag = DisposeBag()
+    var pair = CurrencyPairCellModel(
+        valueCurrency: CoreWorker.shared.coinList.baseCoin,
+        baseCurrency: CoreWorker.shared.coinList.baseCoin,
+        colorIndex: nil
+    )
     
     var rxIsAppearFlag = RxSwift.BehaviorSubject(value: false) //hidden as default
     var rxFavoriteStatus = RxSwift.BehaviorSubject(value: false)
@@ -55,12 +61,13 @@ class DetailsViewModule: DetailsViewModuleProtocol {
     
 }
 
-extension DetailsViewModule {
+extension DetailsViewModel {
     
     private func subscribeToCoreWorker() {
         CoreWorker.shared.exchangeWorker.rxExchangeFlag.subscribe { flag in
-            self.rxIsAppearFlag.onNext(flag)
+            self.updatePair()
             self.getFavouriteStatus()
+            self.rxIsAppearFlag.onNext(flag)
         }.disposed(by: bag)
         
         //Update colors
@@ -70,12 +77,24 @@ extension DetailsViewModule {
         }.disposed(by: bag)
     }
     
+    private func updatePair() {
+        let coinPair = CoinPair(
+            valueCode: CoreWorker.shared.exchangeWorker.fromCoin,
+            baseCode: CoreWorker.shared.exchangeWorker.toCoin
+        )
+        
+        pair = CurrencyPairCellModel(
+            valueCurrency: CoreWorker.shared.coinList.returnCoin(code: coinPair.valueCode) ?? CoreWorker.shared.coinList.baseCoin,
+            baseCurrency: CoreWorker.shared.coinList.returnCoin(code: coinPair.baseCode) ?? CoreWorker.shared.coinList.baseCoin,
+            colorIndex: nil)
+    }
+    
     private func getFavouriteStatus() {
         
         rxFavoriteStatus.onNext(
             CoreWorker.shared.favouritePairList.checkIsExist(
-            valueCode: CoreWorker.shared.exchangeWorker.fromCoin,
-            baseCode: CoreWorker.shared.exchangeWorker.toCoin)
+                valueCode: pair.valueCurrencyCode,
+                baseCode: pair.baseCurrencyCode)
         )
     }
 }

@@ -42,7 +42,13 @@ class HeaderView: UIView {
 
     }
     
+    @objc func logoTapped() {
+        CoreWorker.shared.rxViewControllersNumber.onNext(2)
+    }
+    
 }
+
+
 extension HeaderView {
     
     private func setup() {
@@ -85,6 +91,11 @@ extension HeaderView {
         logoImageView.layer.cornerRadius = logoImageView.bounds.height/2
         logoImageView.contentMode = .scaleAspectFill
         setupLogoImage()
+        
+        // Behavior
+        let tap = UITapGestureRecognizer(target: self, action: #selector(logoTapped))
+        logoImageView.isUserInteractionEnabled = true
+        logoImageView.addGestureRecognizer(tap)
         
     }
     

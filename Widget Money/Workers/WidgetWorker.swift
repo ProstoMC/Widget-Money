@@ -79,7 +79,7 @@ class WidgetWorker: WidgetWorkerProtocol {
     }
     
     func createWidgetCellModel(index: Int, valueCode: String, baseCode: String, imageData: Data?) -> WidgetCellModel? {
-        print("Creating Cell model")
+        //print("Creating Cell model")
         guard let valueCurrency = coinList.returnCoin(code: valueCode) else {
             print("Value currency didnt find")
             return nil

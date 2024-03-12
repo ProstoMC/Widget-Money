@@ -42,6 +42,10 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         CoreWorker.shared.exchangeWorker.rxExchangeFlag.subscribe{_ in
             self.selectedIndex = 0
         }.disposed(by: bag)
+        //Set active VC
+        CoreWorker.shared.rxViewControllersNumber.subscribe{index in
+            self.selectedIndex = index
+        }.disposed(by: bag)
         
         CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe{ _ in
             UIView.animate(withDuration: 0.5, delay: 0.0,

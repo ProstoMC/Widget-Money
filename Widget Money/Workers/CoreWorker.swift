@@ -34,6 +34,8 @@ class CoreWorker {
     //Widget
     let widgetWorker: WidgetWorkerProtocol
     
+    var rxViewControllersNumber: BehaviorSubject<Int> = BehaviorSubject.init(value: 0)
+    
     init() {
         widgetWorker = WidgetWorker(pairModule: favouritePairList, coinList: coinList) // doesn't work without modules
         updateExchangeFields()

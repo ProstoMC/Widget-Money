@@ -26,9 +26,11 @@ class HeadBlockView: UIView {
         setupUI()
     }
     
-    func configure(valueCoin: CoinUniversal, baseCoin: CoinUniversal) {
-         
+    func configure(coinPair: CurrencyPairCellModel) {
+        valueNameBlock.configure(name: coinPair.valueCurrencyName)
+        baseNameBlock.configure(name: coinPair.baseCurrencyName)
     }
+    
     
     
     
@@ -37,6 +39,7 @@ class HeadBlockView: UIView {
 
 extension HeadBlockView {
     private func setupUI() {
+        backgroundColor = .gray
         setupValueBlock()
         setupScaledArrow()
         setupBaseBlock()
