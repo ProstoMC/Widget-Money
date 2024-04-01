@@ -40,11 +40,16 @@ class NameAndCountryBlock: UIView {
         
         countryLabel.text = country
         
-        //lenghtOfText = countryLabel.intrinsicContentSize.width
+        lenghtOfText = countryLabel.intrinsicContentSize.width
+        if nameLabel.intrinsicContentSize.width > lenghtOfText {
+            lenghtOfText = nameLabel.intrinsicContentSize.width
+        }
+        
+        
     }
     
     func setupUI() {
-        
+        backgroundColor = .gray
         self.addSubview(nameLabel)
         self.addSubview(countryLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -67,8 +72,8 @@ class NameAndCountryBlock: UIView {
         nameLabel.text = "Lari"
         nameLabel.textColor = .white
         nameLabel.font = .systemFont(ofSize: UIScreen.main.bounds.height*0.035)
-        //nameLabel.adjustsFontSizeToFitWidth = true
-        lenghtOfText = countryLabel.intrinsicContentSize.width
+        nameLabel.adjustsFontSizeToFitWidth = true
+        
         
         countryLabel.text = "Georgian"
         countryLabel.font = .systemFont(ofSize: UIScreen.main.bounds.height*0.015, weight: .light)

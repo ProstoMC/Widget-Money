@@ -12,6 +12,12 @@ class HeadBlockView: UIView {
     let valueNameBlock = NameAndCountryBlock()
     let baseNameBlock = NameAndCountryBlock()
 
+    var valueBlockWidth = NSLayoutConstraint()
+    var arrowWidth = NSLayoutConstraint()
+    var baseBlockWidth = NSLayoutConstraint()
+    
+    var maxLenghtOfText = UIScreen.main.bounds.width*0.4
+ 
     
     let arrowScaledView = ArrowScaledView()
 
@@ -29,17 +35,36 @@ class HeadBlockView: UIView {
     func configure(coinPair: CurrencyPairCellModel) {
         valueNameBlock.configure(name: coinPair.valueCurrencyName)
         baseNameBlock.configure(name: coinPair.baseCurrencyName)
+        
+        let lenghtOfText = valueNameBlock.lenghtOfText + baseNameBlock.lenghtOfText
+        
+        valueBlockWidth.constant = valueNameBlock.lenghtOfText
+        baseBlockWidth.constant = baseNameBlock.lenghtOfText
+        
+        if lenghtOfText > maxLenghtOfText {
+            arrowWidth.constant = UIScreen.main.bounds.width*0.05
+            
+//            if lenghtOfText + arrowWidth.constant > maxLenghtOfText {
+//                if valueBlockWidth.constant > maxLenghtOfText*0.5 {
+//                    valueBlockWidth.constant = maxLenghtOfText*0.5
+//                }
+//                if baseBlockWidth.constant > maxLenghtOfText*0.5 {
+//                    baseBlockWidth.constant = maxLenghtOfText*0.5
+//                }
+//                
+//            }
+        }
+        
+        
+        
+        
     }
-    
-    
-    
-    
 
 }
 
 extension HeadBlockView {
     private func setupUI() {
-        backgroundColor = .gray
+        
         setupValueBlock()
         setupScaledArrow()
         setupBaseBlock()
@@ -51,9 +76,20 @@ extension HeadBlockView {
         NSLayoutConstraint.activate([
             valueNameBlock.leftAnchor.constraint(equalTo: self.leftAnchor),
             valueNameBlock.topAnchor.constraint(equalTo: self.topAnchor),
-            valueNameBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
+            //valueNameBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
             valueNameBlock.heightAnchor.constraint(equalTo: self.heightAnchor),
             ])
+        
+        
+        valueBlockWidth = NSLayoutConstraint(
+            item: valueNameBlock,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: .none,
+            attribute: .notAnAttribute,
+            multiplier: .nan,
+            constant: 10)
+        valueBlockWidth.isActive = true
     }
     
     private func setupScaledArrow() {
@@ -63,9 +99,20 @@ extension HeadBlockView {
         NSLayoutConstraint.activate([
             arrowScaledView.leftAnchor.constraint(equalTo: valueNameBlock.rightAnchor),
             arrowScaledView.bottomAnchor.constraint(equalTo: self.centerYAnchor),
-            arrowScaledView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.15),
+            //arrowScaledView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.15),
             arrowScaledView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
+        
             ])
+        
+        arrowWidth = NSLayoutConstraint(
+            item: arrowScaledView,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: .none,
+            attribute: .notAnAttribute,
+            multiplier: .nan,
+            constant: UIScreen.main.bounds.width*0.1)
+        arrowWidth.isActive = true
     }
     
     private func setupBaseBlock() {
@@ -74,9 +121,19 @@ extension HeadBlockView {
         NSLayoutConstraint.activate([
             baseNameBlock.leftAnchor.constraint(equalTo: arrowScaledView.rightAnchor, constant: UIScreen.main.bounds.width*0.08),
             baseNameBlock.topAnchor.constraint(equalTo: self.topAnchor),
-            baseNameBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
+            //baseNameBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
             baseNameBlock.heightAnchor.constraint(equalTo: self.heightAnchor),
             ])
+        
+        baseBlockWidth = NSLayoutConstraint(
+            item: baseNameBlock,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: .none,
+            attribute: .notAnAttribute,
+            multiplier: .nan,
+            constant: 10)
+        baseBlockWidth.isActive = true
     }
     
 }
