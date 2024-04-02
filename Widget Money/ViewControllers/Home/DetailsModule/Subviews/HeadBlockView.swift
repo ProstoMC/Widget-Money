@@ -16,7 +16,7 @@ class HeadBlockView: UIView {
     var arrowWidth = NSLayoutConstraint()
     var baseBlockWidth = NSLayoutConstraint()
     
-    var maxLenghtOfText = UIScreen.main.bounds.width*0.4
+    var maxLenghtOfText = UIScreen.main.bounds.width*0.5
  
     
     let arrowScaledView = ArrowScaledView()
@@ -36,28 +36,27 @@ class HeadBlockView: UIView {
         valueNameBlock.configure(name: coinPair.valueCurrencyName)
         baseNameBlock.configure(name: coinPair.baseCurrencyName)
         
-        let lenghtOfText = valueNameBlock.lenghtOfText + baseNameBlock.lenghtOfText
+        arrowWidth.constant = UIScreen.main.bounds.width*0.1
+        var lenghtOfText = valueNameBlock.lenghtOfText + baseNameBlock.lenghtOfText
         
         valueBlockWidth.constant = valueNameBlock.lenghtOfText
         baseBlockWidth.constant = baseNameBlock.lenghtOfText
         
+        //Deminish row
+        
         if lenghtOfText > maxLenghtOfText {
             arrowWidth.constant = UIScreen.main.bounds.width*0.05
-            
-//            if lenghtOfText + arrowWidth.constant > maxLenghtOfText {
-//                if valueBlockWidth.constant > maxLenghtOfText*0.5 {
-//                    valueBlockWidth.constant = maxLenghtOfText*0.5
-//                }
-//                if baseBlockWidth.constant > maxLenghtOfText*0.5 {
-//                    baseBlockWidth.constant = maxLenghtOfText*0.5
-//                }
-//                
-//            }
         }
         
-        
-        
-        
+        //Deminish blocks
+        if lenghtOfText > maxLenghtOfText*1.2 {
+            if valueBlockWidth.constant > maxLenghtOfText*0.5 {
+                valueBlockWidth.constant = maxLenghtOfText - baseBlockWidth.constant
+            }
+            if baseBlockWidth.constant > maxLenghtOfText*0.5 {
+                baseBlockWidth.constant = maxLenghtOfText - valueBlockWidth.constant
+            }
+        }
     }
 
 }
@@ -97,7 +96,7 @@ extension HeadBlockView {
         arrowScaledView.translatesAutoresizingMaskIntoConstraints = false
        
         NSLayoutConstraint.activate([
-            arrowScaledView.leftAnchor.constraint(equalTo: valueNameBlock.rightAnchor),
+            arrowScaledView.leftAnchor.constraint(equalTo: valueNameBlock.rightAnchor, constant: UIScreen.main.bounds.width*0.02),
             arrowScaledView.bottomAnchor.constraint(equalTo: self.centerYAnchor),
             //arrowScaledView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.15),
             arrowScaledView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
@@ -119,7 +118,7 @@ extension HeadBlockView {
         self.addSubview(baseNameBlock)
         baseNameBlock.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            baseNameBlock.leftAnchor.constraint(equalTo: arrowScaledView.rightAnchor, constant: UIScreen.main.bounds.width*0.08),
+            baseNameBlock.leftAnchor.constraint(equalTo: arrowScaledView.rightAnchor, constant: UIScreen.main.bounds.width*0.02),
             baseNameBlock.topAnchor.constraint(equalTo: self.topAnchor),
             //baseNameBlock.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
             baseNameBlock.heightAnchor.constraint(equalTo: self.heightAnchor),

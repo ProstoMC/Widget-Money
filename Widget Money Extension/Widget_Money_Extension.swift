@@ -59,23 +59,25 @@ struct Widget_Money_ExtensionEntryView : View {
     
     @ViewBuilder
     var body: some View {
-        
-        switch family {
-        case .systemSmall: SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-        case .systemMedium: MediumWidgetView(widgetCellModels: entry.widgetCellModels)
-        case .systemLarge:
-            MediumWidgetView(widgetCellModels: entry.widgetCellModels)
-        case .systemExtraLarge:
-            MediumWidgetView(widgetCellModels: entry.widgetCellModels)
-        case .accessoryCircular:
-            SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-        case .accessoryRectangular:
-            SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-        case .accessoryInline:
-            SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-        @unknown default:
-            SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-        }
+        ZStack {
+            switch family {
+            case .systemSmall: SmallWidgetView(widgetCellModels: entry.widgetCellModels)
+            case .systemMedium: MediumWidgetView(widgetCellModels: entry.widgetCellModels)
+            case .systemLarge:
+                MediumWidgetView(widgetCellModels: entry.widgetCellModels)
+            case .systemExtraLarge:
+                MediumWidgetView(widgetCellModels: entry.widgetCellModels)
+            case .accessoryCircular:
+                SmallWidgetView(widgetCellModels: entry.widgetCellModels)
+            case .accessoryRectangular:
+                SmallWidgetView(widgetCellModels: entry.widgetCellModels)
+            case .accessoryInline:
+                SmallWidgetView(widgetCellModels: entry.widgetCellModels)
+            @unknown default:
+                SmallWidgetView(widgetCellModels: entry.widgetCellModels)
+            }
+        }.widgetBackground(backgroundView: BackgroundViewForIOS17.init())
+
     }
 }
 
@@ -83,12 +85,14 @@ struct Widget_Money_Extension: Widget {
     let kind: String = "Widget_Money_Extension"
 
     var body: some WidgetConfiguration {
+        
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Widget_Money_ExtensionEntryView(entry: entry)
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
         .supportedFamilies([.systemSmall, .systemMedium])
+        .contentMarginsDisabledIfAvailable() // For iOS 17 and later
     }
 }
 
@@ -98,3 +102,6 @@ struct Widget_Money_Extension_Previews: PreviewProvider {
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
+
+
+

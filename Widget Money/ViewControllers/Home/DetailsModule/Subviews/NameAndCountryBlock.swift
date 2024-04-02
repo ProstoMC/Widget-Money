@@ -41,15 +41,15 @@ class NameAndCountryBlock: UIView {
         countryLabel.text = country
         
         lenghtOfText = countryLabel.intrinsicContentSize.width
-        if nameLabel.intrinsicContentSize.width > lenghtOfText {
-            lenghtOfText = nameLabel.intrinsicContentSize.width
+        if nameLabel.intrinsicContentSize.width*0.9 > lenghtOfText {
+            lenghtOfText = nameLabel.intrinsicContentSize.width*0.9
         }
         
         
     }
     
     func setupUI() {
-        backgroundColor = .gray
+        //backgroundColor = .gray
         self.addSubview(nameLabel)
         self.addSubview(countryLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false

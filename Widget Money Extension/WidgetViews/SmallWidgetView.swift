@@ -18,8 +18,6 @@ struct SmallWidgetView: View {
     
     var body: some View {
         ZStack  {
-//            Color.init(uiColor: UIColor(
-//                red: entry.storedColor.red, green: entry.storedColor.green, blue: entry.storedColor.blue, alpha: 1))
             Color.init(uiColor: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 1))
             VStack (spacing: 0) {
                 if widgetCellModels.count == 0 {

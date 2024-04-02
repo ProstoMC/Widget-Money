@@ -11,7 +11,6 @@
 		437ABC882B824CA200E7EAA0 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ABC872B824CA200E7EAA0 /* Extension+String.swift */; };
 		437ABC8B2B824E0100E7EAA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437ABC8D2B824E0100E7EAA0 /* Localizable.strings */; };
 		437ABC8F2B824FCF00E7EAA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437ABC8D2B824E0100E7EAA0 /* Localizable.strings */; };
-		437F7C1C2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 437F7C1B2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion */; };
 		437F7C492B8A3E41006DB2F3 /* HeadBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437F7C482B8A3E41006DB2F3 /* HeadBlockView.swift */; };
 		43829DDB2B8E270900E99F42 /* ArrowScaledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43829DDA2B8E270900E99F42 /* ArrowScaledView.swift */; };
 		43829DDD2B8E30C900E99F42 /* NameAndCountryBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43829DDC2B8E30C900E99F42 /* NameAndCountryBlock.swift */; };
@@ -73,10 +72,6 @@
 		43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 		43D5F6132B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 		43EACEFB2B8663D60066F7B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43EACEFA2B8663D60066F7B8 /* GoogleService-Info.plist */; };
-		43EACF372B8670300066F7B8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 43EACF362B8670300066F7B8 /* FirebaseAnalytics */; };
-		43EACF392B8670310066F7B8 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 43EACF382B8670310066F7B8 /* FirebaseAnalyticsSwift */; };
-		43EACF3B2B8670310066F7B8 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 43EACF3A2B8670310066F7B8 /* FirebaseInAppMessaging-Beta */; };
-		43EACF3D2B8670320066F7B8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 43EACF3C2B8670320066F7B8 /* FirebaseMessaging */; };
 		8460734D2BBB1A8B007AF93E /* Differentiator.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073432BBB1A8B007AF93E /* Differentiator.xcframework */; };
 		8460734E2BBB1A8B007AF93E /* Differentiator.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846073432BBB1A8B007AF93E /* Differentiator.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8460734F2BBB1A8B007AF93E /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073442BBB1A8B007AF93E /* RxSwift.xcframework */; };
@@ -95,6 +90,8 @@
 		8460735C2BBB1A8B007AF93E /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460734A2BBB1A8B007AF93E /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8460735D2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */; };
 		8460735E2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		846073642BBC9F6A007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
+		846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +139,6 @@
 
 /* Begin PBXFileReference section */
 		4378B55F2B90F915006CC18E /* DetailsSquareSubBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSquareSubBlock.swift; sourceTree = "<group>"; };
-		437ABC802B80C57B00E7EAA0 /* SDWebImageSwiftUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageSwiftUI.xcframework; path = Carthage/Build/SDWebImageSwiftUI.xcframework; sourceTree = "<group>"; };
 		437ABC872B824CA200E7EAA0 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		437ABC8C2B824E0100E7EAA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		437ABC902B82509800E7EAA0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -190,15 +186,6 @@
 		43D5F5AC2B7A7A260030DBF5 /* CurrencyListViewModelV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyListViewModelV2.swift; sourceTree = "<group>"; };
 		43D5F5AD2B7A7A260030DBF5 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		43D5F5AE2B7A7A260030DBF5 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		43D5F5C82B7A7BA10030DBF5 /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxCocoa.xcframework; path = Carthage/Build/RxCocoa.xcframework; sourceTree = "<group>"; };
-		43D5F5C92B7A7BA20030DBF5 /* Differentiator.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Differentiator.xcframework; path = Carthage/Build/Differentiator.xcframework; sourceTree = "<group>"; };
-		43D5F5CA2B7A7BA30030DBF5 /* RxSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxSwift.xcframework; path = Carthage/Build/RxSwift.xcframework; sourceTree = "<group>"; };
-		43D5F5CB2B7A7BA40030DBF5 /* RxRelay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxRelay.xcframework; path = Carthage/Build/RxRelay.xcframework; sourceTree = "<group>"; };
-		43D5F5CC2B7A7BA40030DBF5 /* SDWebImageMapKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageMapKit.xcframework; path = Carthage/Build/SDWebImageMapKit.xcframework; sourceTree = "<group>"; };
-		43D5F5CD2B7A7BA50030DBF5 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
-		43D5F5CE2B7A7BA50030DBF5 /* RxBlocking.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxBlocking.xcframework; path = Carthage/Build/RxBlocking.xcframework; sourceTree = "<group>"; };
-		43D5F5CF2B7A7BA60030DBF5 /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
-		43D5F5D12B7A7BA80030DBF5 /* RxDataSources.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxDataSources.xcframework; path = Carthage/Build/RxDataSources.xcframework; sourceTree = "<group>"; };
 		43D5F5EB2B7A85750030DBF5 /* Widget Money ExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Widget Money ExtensionExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D5F5EC2B7A85750030DBF5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		43D5F5EE2B7A85750030DBF5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -225,6 +212,7 @@
 		8460734A2BBB1A8B007AF93E /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxCocoa.xcframework; path = ../Projects/Extentions/Carthage/Build/RxCocoa.xcframework; sourceTree = "<group>"; };
 		8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageMapKit.xcframework; path = ../Projects/Extentions/Carthage/Build/SDWebImageMapKit.xcframework; sourceTree = "<group>"; };
 		8460734C2BBB1A8B007AF93E /* RxTest.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxTest.xcframework; path = ../Projects/Extentions/Carthage/Build/RxTest.xcframework; sourceTree = "<group>"; };
+		846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsForIOS17.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,19 +220,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				437F7C1C2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				8460734D2BBB1A8B007AF93E /* Differentiator.xcframework in Frameworks */,
 				8460735B2BBB1A8B007AF93E /* RxCocoa.xcframework in Frameworks */,
-				43EACF392B8670310066F7B8 /* FirebaseAnalyticsSwift in Frameworks */,
 				846073532BBB1A8B007AF93E /* RxRelay.xcframework in Frameworks */,
 				846073592BBB1A8B007AF93E /* RxBlocking.xcframework in Frameworks */,
 				846073572BBB1A8B007AF93E /* RxDataSources.xcframework in Frameworks */,
-				43EACF3D2B8670320066F7B8 /* FirebaseMessaging in Frameworks */,
 				846073512BBB1A8B007AF93E /* Alamofire.xcframework in Frameworks */,
 				8460734F2BBB1A8B007AF93E /* RxSwift.xcframework in Frameworks */,
 				846073552BBB1A8B007AF93E /* SDWebImage.xcframework in Frameworks */,
-				43EACF372B8670300066F7B8 /* FirebaseAnalytics in Frameworks */,
-				43EACF3B2B8670310066F7B8 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				8460735D2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,16 +445,6 @@
 				8460734C2BBB1A8B007AF93E /* RxTest.xcframework */,
 				846073472BBB1A8B007AF93E /* SDWebImage.xcframework */,
 				8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */,
-				437ABC802B80C57B00E7EAA0 /* SDWebImageSwiftUI.xcframework */,
-				43D5F5CD2B7A7BA50030DBF5 /* Alamofire.xcframework */,
-				43D5F5C92B7A7BA20030DBF5 /* Differentiator.xcframework */,
-				43D5F5CE2B7A7BA50030DBF5 /* RxBlocking.xcframework */,
-				43D5F5C82B7A7BA10030DBF5 /* RxCocoa.xcframework */,
-				43D5F5D12B7A7BA80030DBF5 /* RxDataSources.xcframework */,
-				43D5F5CB2B7A7BA40030DBF5 /* RxRelay.xcframework */,
-				43D5F5CA2B7A7BA30030DBF5 /* RxSwift.xcframework */,
-				43D5F5CF2B7A7BA60030DBF5 /* SDWebImage.xcframework */,
-				43D5F5CC2B7A7BA40030DBF5 /* SDWebImageMapKit.xcframework */,
 				43D5F5EC2B7A85750030DBF5 /* WidgetKit.framework */,
 				43D5F5EE2B7A85750030DBF5 /* SwiftUI.framework */,
 			);
@@ -483,6 +456,7 @@
 			children = (
 				43D5F5FF2B7A86820030DBF5 /* WidgetViews */,
 				43D5F5F12B7A85750030DBF5 /* Widget_Money_ExtensionBundle.swift */,
+				846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */,
 				43D5F5F32B7A85750030DBF5 /* Widget_Money_Extension.swift */,
 				43D5F5F52B7A857D0030DBF5 /* Assets.xcassets */,
 				43D5F5F72B7A857D0030DBF5 /* Info.plist */,
@@ -522,11 +496,6 @@
 			);
 			name = "Widget Money";
 			packageProductDependencies = (
-				43EACF362B8670300066F7B8 /* FirebaseAnalytics */,
-				43EACF382B8670310066F7B8 /* FirebaseAnalyticsSwift */,
-				43EACF3A2B8670310066F7B8 /* FirebaseInAppMessaging-Beta */,
-				43EACF3C2B8670320066F7B8 /* FirebaseMessaging */,
-				437F7C1B2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion */,
 			);
 			productName = "Widget Money";
 			productReference = 43D5F5472B7A764D0030DBF5 /* Widget Money.app */;
@@ -557,7 +526,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					43D5F5462B7A764D0030DBF5 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -660,6 +629,7 @@
 				43829DDB2B8E270900E99F42 /* ArrowScaledView.swift in Sources */,
 				43D5F5C22B7A7A260030DBF5 /* CornersWhiteSegmentedControl.swift in Sources */,
 				43D5F58C2B7A7A1C0030DBF5 /* Theme.swift in Sources */,
+				846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */,
 				43D5F5B92B7A7A260030DBF5 /* ChooseCurrencyViewController.swift in Sources */,
 				437ABC882B824CA200E7EAA0 /* Extension+String.swift in Sources */,
 				43D5F5852B7A79F80030DBF5 /* CoreWorker.swift in Sources */,
@@ -676,6 +646,7 @@
 				43D5F60E2B7A86F60030DBF5 /* BigCell.swift in Sources */,
 				43D5F6132B7A89280030DBF5 /* EmptyCell.swift in Sources */,
 				43D5F6052B7A86830030DBF5 /* SmallWidgetView.swift in Sources */,
+				846073642BBC9F6A007AF93E /* ExtensionsForIOS17.swift in Sources */,
 				43D5F6032B7A86830030DBF5 /* SmallCell.swift in Sources */,
 				43D5F6082B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */,
 				43D5F5F42B7A85750030DBF5 /* Widget_Money_Extension.swift in Sources */,
@@ -752,6 +723,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -813,6 +785,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1003,34 +976,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		437F7C1B2B878CA1006DB2F3 /* FirebaseAnalyticsOnDeviceConversion */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsOnDeviceConversion;
-		};
-		43EACF362B8670300066F7B8 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		43EACF382B8670310066F7B8 /* FirebaseAnalyticsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsSwift;
-		};
-		43EACF3A2B8670310066F7B8 /* FirebaseInAppMessaging-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseInAppMessaging-Beta";
-		};
-		43EACF3C2B8670320066F7B8 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 43D5F53F2B7A764C0030DBF5 /* Project object */;
 }

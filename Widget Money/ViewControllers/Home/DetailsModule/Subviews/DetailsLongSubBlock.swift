@@ -20,11 +20,12 @@ class DetailsLongSubBlock: UIView {
     let downImageView = UIImageView()
     
     var lenghtOfText: CGFloat = 0.0
+    var arrowWidth = NSLayoutConstraint()
+    var fromLabelWidth = NSLayoutConstraint()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,12 +35,31 @@ class DetailsLongSubBlock: UIView {
     
     func configure(pair: CurrencyPairCellModel, colorSet: AppColors) {
         
+        //Setup Fromlabel - depend on type coin type
+        if pair.valueCurrencyLogo.count > 2 {
+            fromLabelWidth.constant = UIScreen.main.bounds.width*0.15
+        } else {
+            fromLabelWidth.constant = UIScreen.main.bounds.width*0.1
+        }
+        
+        //Setup ARROW
+        arrowWidth.constant = UIScreen.main.bounds.width*0.2
+        if pair.value > 1000 {
+            arrowWidth.constant = UIScreen.main.bounds.width*0.14
+        }
+        if pair.value > 10000 {
+            arrowWidth.constant = UIScreen.main.bounds.width*0.1
+        }
+        if pair.value > 1000000 {
+            arrowWidth.constant = UIScreen.main.bounds.width*0.07
+        }
+        
         let fromText = NSMutableAttributedString(
             string: "1",
             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
         
         fromText.append(NSAttributedString(
-            string: pair.valueCurrencyLogo,
+            string: " " + pair.valueCurrencyLogo,
             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
         
         fromLabel.attributedText = fromText
@@ -54,9 +74,17 @@ class DetailsLongSubBlock: UIView {
         
         toLabel.attributedText = toText
         
-        flowLabel.text = String(format: "%.2f", pair.flow) + " " + pair.baseLogo
-        let flowPercent = pair.flow/(pair.value-pair.flow)
-        flowPercentLabel.text = String(format: "%.3f", flowPercent) + " %"
+        var flow = pair.flow
+        var flowPercent = pair.flow/(pair.value-pair.flow)
+        //Delete minuses
+        if flow < 0 {
+            flow = flow * -1
+            flowPercent = flowPercent * -1
+        }
+        
+        flowLabel.text = String(format: "%.2f", flow) + " " + pair.baseLogo
+        
+        flowPercentLabel.text = String(format: "%.2f", flowPercent) + " %"
         
         if pair.flow >= 0 {
             upImageView.isHidden = false
@@ -104,7 +132,7 @@ extension DetailsLongSubBlock {
         NSLayoutConstraint.activate([
             fromLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: UIScreen.main.bounds.width * 0.03),
             fromLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            fromLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.14),
+            //fromLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.14),
             fromLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
             ])
         
@@ -113,16 +141,15 @@ extension DetailsLongSubBlock {
         fromLabel.font = .systemFont(ofSize: 100)
         fromLabel.adjustsFontSizeToFitWidth = true
         
-        
-        let attributedText = NSMutableAttributedString(
-            string: "1",
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
-        
-        attributedText.append(NSAttributedString(
-            string: " ₾",
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
-        
-        fromLabel.attributedText = attributedText
+        fromLabelWidth = NSLayoutConstraint(
+            item: fromLabel,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: .none,
+            attribute: .notAnAttribute,
+            multiplier: .nan,
+            constant: UIScreen.main.bounds.width*0.1)
+        fromLabelWidth.isActive = true
         
     }
     
@@ -133,9 +160,20 @@ extension DetailsLongSubBlock {
         NSLayoutConstraint.activate([
             arrowScaledView.leftAnchor.constraint(equalTo: fromLabel.rightAnchor),
             arrowScaledView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            arrowScaledView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.22),
+            //arrowScaledView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.22),
             arrowScaledView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             ])
+        
+        arrowWidth = NSLayoutConstraint(
+            item: arrowScaledView,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: .none,
+            attribute: .notAnAttribute,
+            multiplier: .nan,
+            constant: UIScreen.main.bounds.width*0.2)
+        arrowWidth.isActive = true
+        
     }
     
     private func setupToLabel() {
@@ -144,24 +182,13 @@ extension DetailsLongSubBlock {
         NSLayoutConstraint.activate([
             toLabel.leftAnchor.constraint(equalTo: arrowScaledView.rightAnchor, constant: UIScreen.main.bounds.width * 0.03),
             toLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            toLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.22),
+            toLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.24),
             toLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
             ])
         
         
         toLabel.font = .systemFont(ofSize: 100)
         toLabel.adjustsFontSizeToFitWidth = true
-        
-        
-        let attributedText = NSMutableAttributedString(
-            string: "682.75",
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100, weight: .medium)])
-        
-        attributedText.append(NSAttributedString(
-            string: " $",
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 70, weight: .light)]))
-        
-        toLabel.attributedText = attributedText
         
     }
     
