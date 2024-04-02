@@ -28,6 +28,7 @@ class DetailsViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         setupUI()
+        //lololo
     }
     
     func configure() {
