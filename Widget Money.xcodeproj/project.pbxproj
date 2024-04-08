@@ -92,6 +92,7 @@
 		8460735E2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		846073642BBC9F6A007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
+		846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073662BBDF752007AF93E /* SettingsHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +214,7 @@
 		8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageMapKit.xcframework; path = ../Projects/Extentions/Carthage/Build/SDWebImageMapKit.xcframework; sourceTree = "<group>"; };
 		8460734C2BBB1A8B007AF93E /* RxTest.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxTest.xcframework; path = ../Projects/Extentions/Carthage/Build/RxTest.xcframework; sourceTree = "<group>"; };
 		846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsForIOS17.swift; sourceTree = "<group>"; };
+		846073662BBDF752007AF93E /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +410,7 @@
 				43D5F5A42B7A7A260030DBF5 /* SettingsViewModel.swift */,
 				43D5F5A52B7A7A260030DBF5 /* SettingsTableViewCell.swift */,
 				43D5F5A62B7A7A260030DBF5 /* SettingsViewController.swift */,
+				846073662BBDF752007AF93E /* SettingsHeaderView.swift */,
 			);
 			path = SettingsViewController;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 			files = (
 				43D5F60D2B7A86F60030DBF5 /* BigCell.swift in Sources */,
 				43D5F5822B7A79F80030DBF5 /* CurrencyFetcher.swift in Sources */,
+				846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */,
 				43D5F6042B7A86830030DBF5 /* SmallWidgetView.swift in Sources */,
 				43D5F6022B7A86830030DBF5 /* SmallCell.swift in Sources */,
 				43D5F5C12B7A7A260030DBF5 /* CurrencyListTableViewController.swift in Sources */,

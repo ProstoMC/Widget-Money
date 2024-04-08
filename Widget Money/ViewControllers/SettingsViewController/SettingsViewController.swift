@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController {
     var viewModel: SettingsViewModelProtocol = SettingsViewModel()
     let disposeBag = DisposeBag()
     
-    var headerView: HeaderView!
+    var headerView: SettingsHeaderView!
     var topline: UIView!
     var tableView: UITableView!
     
@@ -64,14 +64,15 @@ extension SettingsViewController {
     
     private func setupHeaderView() {
         
-        headerView = HeaderView(frame: CGRect(
+        headerView = SettingsHeaderView(frame: CGRect(
             x: 0,
             y: view.safeAreaInsets.top,
             width: view.bounds.width,
-            height: view.bounds.height*0.08)
+            height: view.bounds.height*0.5)
         )
         
         view.addSubview(headerView)
+        
     }
     
     private func setupTopLine() {
@@ -89,10 +90,10 @@ extension SettingsViewController {
     
     private func setupTableView(){
         tableView = UITableView(frame: CGRect(
-            x: 0,
+            x: view.bounds.width*0.04,
             y: topline.frame.maxY + view.bounds.height*0.01,
-            width: view.bounds.width,
-            height: view.bounds.height*0.87)
+            width: view.bounds.width * 0.92,
+            height: baseHeightOfElements*3) // 1 row = 1.5 BaseHeigh. We have 2 rows
         )
         view.addSubview(tableView)
         
@@ -100,16 +101,19 @@ extension SettingsViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableView.layer.cornerRadius = UIScreen.main.bounds.height/80
+        
         
         tableView.tableFooterView = UIView() // Dont show unused rows
-        //tableView.separatorStyle = .none // Dont show borders between rows
+        tableView.separatorStyle = .none // Dont show borders between rows
         tableView.keyboardDismissMode = .interactiveWithAccessory // Close the keyboard with scrolling
         
     }
     private func colorsUpdate() {
         view.backgroundColor = viewModel.colorSet.background
-        topline.backgroundColor = viewModel.colorSet.border
-        tableView.backgroundColor = viewModel.colorSet.background
+        topline.backgroundColor = viewModel.colorSet.background
+        tableView.backgroundColor = viewModel.colorSet.backgroundForWidgets
+        headerView.updateColors(colorSet: viewModel.colorSet)
     }
     
 }

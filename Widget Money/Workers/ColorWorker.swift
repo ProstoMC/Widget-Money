@@ -141,7 +141,10 @@ extension ColorsWorker {
             detailsLongSubviewBackground: UIColor(red: 98/255, green: 108/255, blue: 172/255, alpha: 1),
             detailsSquareSubviewBackground: UIColor(red: 83/255, green: 93/255, blue: 158/255, alpha: 1),
             detailsLinesColor: .white.withAlphaComponent(0.2),
-            detailsTextColor: .white
+            detailsTextColor: .white,
+            detailsRedColor: UIColor.systemRed,
+            
+            settingsText: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 0.7)
             
         )
     }
@@ -183,7 +186,11 @@ extension ColorsWorker {
             detailsLongSubviewBackground: UIColor(red: 62/255, green: 70/255, blue: 116/255, alpha: 1),
             detailsSquareSubviewBackground: UIColor(red: 48/255, green: 55/255, blue: 102/255, alpha: 1),
             detailsLinesColor: .white.withAlphaComponent(0.2),
-            detailsTextColor: .white
+            detailsTextColor: .white,
+            detailsRedColor: UIColor(red: 1, green: 87/255, blue: 103/255, alpha: 1),
+            
+            settingsText: UIColor(red: 228/255, green: 214/255, blue: 213/255, alpha: 0.7)
+            
         )
     }
 }

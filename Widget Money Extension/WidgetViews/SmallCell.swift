@@ -20,7 +20,7 @@ struct SmallCell: View {
         self.cellModel = cellModel
             
         colorFlow = Color.red
-        flowText = String(format: "%.2f",  cellModel.flow)
+        flowText = String(format: "%.2f",  cellModel.flow) + cellModel.baseSymbol
         if cellModel.flow >= 0 {
             colorFlow = .green
             flowText = "+" + flowText

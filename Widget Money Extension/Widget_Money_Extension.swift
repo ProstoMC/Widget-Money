@@ -30,9 +30,9 @@ struct Provider: TimelineProvider {
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
+//        let currentDate = Date()
         for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+//            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             
             guard let widgetModels = try? JSONDecoder().decode([WidgetCellModel].self, from: widgetData) else { return }
             print("Widget got data")

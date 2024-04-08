@@ -46,4 +46,7 @@ struct AppColors {
     var detailsSquareSubviewBackground: UIColor
     var detailsLinesColor: UIColor
     var detailsTextColor: UIColor
+    var detailsRedColor: UIColor
+    
+    var settingsText: UIColor
 }

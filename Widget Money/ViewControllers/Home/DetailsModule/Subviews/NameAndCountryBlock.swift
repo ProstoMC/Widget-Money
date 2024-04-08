@@ -25,6 +25,8 @@ class NameAndCountryBlock: UIView {
     }
     
     func configure(name: String) {
+        lenghtOfText = 0
+        
         let localizedName = name.localized()
         
         var wordsArray = localizedName.components(separatedBy: " ")
@@ -38,12 +40,15 @@ class NameAndCountryBlock: UIView {
             country = country + word + " "
         }
         
+        
         countryLabel.text = country
         
         lenghtOfText = countryLabel.intrinsicContentSize.width
-        if nameLabel.intrinsicContentSize.width*0.9 > lenghtOfText {
-            lenghtOfText = nameLabel.intrinsicContentSize.width*0.9
+        if nameLabel.intrinsicContentSize.width > lenghtOfText {
+            lenghtOfText = nameLabel.intrinsicContentSize.width
+            print(country)
         }
+        
         
         
     }
@@ -69,14 +74,17 @@ class NameAndCountryBlock: UIView {
             countryLabel.topAnchor.constraint(equalTo: self.centerYAnchor, constant: self.bounds.height*0.5),
         ])
         
-        nameLabel.text = "Lari"
+        
         nameLabel.textColor = .white
-        nameLabel.font = .systemFont(ofSize: UIScreen.main.bounds.height*0.035)
-        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.font = .systemFont(ofSize: CGFloat(Int(UIScreen.main.bounds.height*0.03)))
+        //nameLabel.adjustsFontSizeToFitWidth = true
+        //nameLabel.backgroundColor = .gray
         
         
-        countryLabel.text = "Georgian"
-        countryLabel.font = .systemFont(ofSize: UIScreen.main.bounds.height*0.015, weight: .light)
+        
+        countryLabel.font = .systemFont(
+            ofSize: CGFloat(Int(UIScreen.main.bounds.height*0.015)),
+            weight: .light)
         countryLabel.textColor = .white.withAlphaComponent(0.8)
         //countryLabel.adjustsFontSizeToFitWidth = true
         countryLabel.numberOfLines = 2

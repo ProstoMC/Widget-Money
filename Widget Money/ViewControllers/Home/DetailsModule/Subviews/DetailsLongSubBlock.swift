@@ -74,13 +74,8 @@ class DetailsLongSubBlock: UIView {
         
         toLabel.attributedText = toText
         
-        var flow = pair.flow
-        var flowPercent = pair.flow/(pair.value-pair.flow)
-        //Delete minuses
-        if flow < 0 {
-            flow = flow * -1
-            flowPercent = flowPercent * -1
-        }
+        let flow = pair.flow
+        let flowPercent = pair.flow/(pair.value-pair.flow)
         
         flowLabel.text = String(format: "%.2f", flow) + " " + pair.baseLogo
         
@@ -96,8 +91,8 @@ class DetailsLongSubBlock: UIView {
             upImageView.isHidden = true
             downImageView.isHidden = false
             
-            flowLabel.textColor = colorSet.red
-            flowPercentLabel.textColor = colorSet.red
+            flowLabel.textColor = colorSet.detailsRedColor
+            flowPercentLabel.textColor = colorSet.detailsRedColor
         }
         
     }
@@ -108,11 +103,13 @@ class DetailsLongSubBlock: UIView {
         toLabel.textColor = colorSet.detailsTextColor
         
         upImageView.tintColor = colorSet.green
-        downImageView.tintColor = colorSet.red
+        downImageView.tintColor = colorSet.detailsRedColor
     }
     
     
 }
+
+//MARK: - SETUP UI
 
 extension DetailsLongSubBlock {
     
@@ -199,18 +196,18 @@ extension DetailsLongSubBlock {
         downImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             upImageView.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.23),
-            upImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: UIScreen.main.bounds.width * 0.025),
+            upImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: UIScreen.main.bounds.width * 0.03),
             upImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             upImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             
             downImageView.leftAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.23),
-            downImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -UIScreen.main.bounds.width * 0.025),
+            downImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -UIScreen.main.bounds.width * 0.03),
             downImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             downImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             
         ])
-        upImageView.image = UIImage(systemName: "arrow.up")
-        downImageView.image = UIImage(systemName: "arrow.down")
+        upImageView.image = UIImage(systemName: "arrow.up.right")
+        downImageView.image = UIImage(systemName: "arrow.down.right")
         
         upImageView.contentMode = .scaleAspectFit
         downImageView.contentMode = .scaleAspectFit
@@ -224,12 +221,12 @@ extension DetailsLongSubBlock {
         NSLayoutConstraint.activate([
             flowLabel.leftAnchor.constraint(equalTo: upImageView.rightAnchor, constant: UIScreen.main.bounds.width * 0.01),
             flowLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: UIScreen.main.bounds.width * 0.025),
-            flowLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
+            flowLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
             flowLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -UIScreen.main.bounds.width * 0.02),
             
             flowPercentLabel.leftAnchor.constraint(equalTo: flowLabel.leftAnchor),
             flowPercentLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -UIScreen.main.bounds.width * 0.025),
-            flowPercentLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
+            flowPercentLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
             flowPercentLabel.rightAnchor.constraint(equalTo: flowLabel.rightAnchor),
         ])
         
@@ -237,9 +234,9 @@ extension DetailsLongSubBlock {
         flowLabel.text = "0.45 $"
         flowPercentLabel.text = "2.13 %"
         
-        flowLabel.font = .systemFont(ofSize: UIScreen.main.bounds.width * 0.03, weight: .light)
+        flowLabel.font = .systemFont(ofSize: UIScreen.main.bounds.width * 0.03, weight: .medium)
         //flowLabel.adjustsFontSizeToFitWidth = true
-        flowPercentLabel.font = .systemFont(ofSize: UIScreen.main.bounds.width * 0.03, weight: .light)
+        flowPercentLabel.font = .systemFont(ofSize: UIScreen.main.bounds.width * 0.03, weight: .medium)
         //flowPercentLabel.adjustsFontSizeToFitWidth = true
         
     }

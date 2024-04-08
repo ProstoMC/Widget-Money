@@ -33,11 +33,16 @@ class HeadBlockView: UIView {
     }
     
     func configure(coinPair: CurrencyPairCellModel) {
+        valueBlockWidth.constant = 100
+        baseBlockWidth.constant = 100
+        layoutIfNeeded()
+        
+        
         valueNameBlock.configure(name: coinPair.valueCurrencyName)
         baseNameBlock.configure(name: coinPair.baseCurrencyName)
         
         arrowWidth.constant = UIScreen.main.bounds.width*0.1
-        var lenghtOfText = valueNameBlock.lenghtOfText + baseNameBlock.lenghtOfText
+        let lenghtOfText = valueNameBlock.lenghtOfText + baseNameBlock.lenghtOfText
         
         valueBlockWidth.constant = valueNameBlock.lenghtOfText
         baseBlockWidth.constant = baseNameBlock.lenghtOfText
