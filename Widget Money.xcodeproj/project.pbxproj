@@ -95,6 +95,13 @@
 		846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073662BBDF752007AF93E /* SettingsHeaderView.swift */; };
 		846073692BC3FFDB007AF93E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 846073682BC3FFDB007AF93E /* FirebaseAnalytics */; };
 		8460736B2BC40002007AF93E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8460736A2BC40002007AF93E /* FirebaseAnalyticsSwift */; };
+		846073FF2BC6F787007AF93E /* Light 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 846073FE2BC6F787007AF93E /* Light 2.png */; };
+		846074012BC6F78E007AF93E /* Light 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074002BC6F78E007AF93E /* Light 1.png */; };
+		846074032BC6F796007AF93E /* Light 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074022BC6F796007AF93E /* Light 3.png */; };
+		846074052BC6F7A0007AF93E /* Dark 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074042BC6F7A0007AF93E /* Dark 1.png */; };
+		846074072BC6F7A8007AF93E /* Dark 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074062BC6F7A8007AF93E /* Dark 2.png */; };
+		846074092BC6F7B0007AF93E /* Dark 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074082BC6F7B0007AF93E /* Dark 3.png */; };
+		8460740B2BC6F7B9007AF93E /* Widgets.png in Resources */ = {isa = PBXBuildFile; fileRef = 8460740A2BC6F7B9007AF93E /* Widgets.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,6 +224,14 @@
 		8460734C2BBB1A8B007AF93E /* RxTest.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxTest.xcframework; path = ../Projects/Extentions/Carthage/Build/RxTest.xcframework; sourceTree = "<group>"; };
 		846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsForIOS17.swift; sourceTree = "<group>"; };
 		846073662BBDF752007AF93E /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
+		846073FB2BC6F5B3007AF93E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		846073FE2BC6F787007AF93E /* Light 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Light 2.png"; sourceTree = "<group>"; };
+		846074002BC6F78E007AF93E /* Light 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Light 1.png"; sourceTree = "<group>"; };
+		846074022BC6F796007AF93E /* Light 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Light 3.png"; sourceTree = "<group>"; };
+		846074042BC6F7A0007AF93E /* Dark 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark 1.png"; sourceTree = "<group>"; };
+		846074062BC6F7A8007AF93E /* Dark 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark 2.png"; sourceTree = "<group>"; };
+		846074082BC6F7B0007AF93E /* Dark 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark 3.png"; sourceTree = "<group>"; };
+		8460740A2BC6F7B9007AF93E /* Widgets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Widgets.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +290,8 @@
 			isa = PBXGroup;
 			children = (
 				43D5F6102B7A87750030DBF5 /* Widget Money ExtensionExtension.entitlements */,
+				846073FB2BC6F5B3007AF93E /* README.md */,
+				846073FA2BC6F541007AF93E /* Screens */,
 				43D5F5492B7A764D0030DBF5 /* Widget Money */,
 				43D5F5F02B7A85750030DBF5 /* Widget Money Extension */,
 				43D5F5482B7A764D0030DBF5 /* Products */,
@@ -483,6 +500,20 @@
 			path = WidgetViews;
 			sourceTree = "<group>";
 		};
+		846073FA2BC6F541007AF93E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				846074002BC6F78E007AF93E /* Light 1.png */,
+				846073FE2BC6F787007AF93E /* Light 2.png */,
+				846074022BC6F796007AF93E /* Light 3.png */,
+				846074042BC6F7A0007AF93E /* Dark 1.png */,
+				846074062BC6F7A8007AF93E /* Dark 2.png */,
+				846074082BC6F7B0007AF93E /* Dark 3.png */,
+				8460740A2BC6F7B9007AF93E /* Widgets.png */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -573,9 +604,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846074052BC6F7A0007AF93E /* Dark 1.png in Resources */,
 				43D5F5572B7A76510030DBF5 /* LaunchScreen.storyboard in Resources */,
+				846074072BC6F7A8007AF93E /* Dark 2.png in Resources */,
 				43EACEFB2B8663D60066F7B8 /* GoogleService-Info.plist in Resources */,
+				846073FF2BC6F787007AF93E /* Light 2.png in Resources */,
+				846074012BC6F78E007AF93E /* Light 1.png in Resources */,
+				846074092BC6F7B0007AF93E /* Dark 3.png in Resources */,
 				437ABC8B2B824E0100E7EAA0 /* Localizable.strings in Resources */,
+				8460740B2BC6F7B9007AF93E /* Widgets.png in Resources */,
+				846074032BC6F796007AF93E /* Light 3.png in Resources */,
 				43D5F5542B7A76510030DBF5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
