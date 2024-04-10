@@ -93,6 +93,8 @@
 		846073642BBC9F6A007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073662BBDF752007AF93E /* SettingsHeaderView.swift */; };
+		846073692BC3FFDB007AF93E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 846073682BC3FFDB007AF93E /* FirebaseAnalytics */; };
+		8460736B2BC40002007AF93E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8460736A2BC40002007AF93E /* FirebaseAnalyticsSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,11 +227,13 @@
 				8460734D2BBB1A8B007AF93E /* Differentiator.xcframework in Frameworks */,
 				8460735B2BBB1A8B007AF93E /* RxCocoa.xcframework in Frameworks */,
 				846073532BBB1A8B007AF93E /* RxRelay.xcframework in Frameworks */,
+				8460736B2BC40002007AF93E /* FirebaseAnalyticsSwift in Frameworks */,
 				846073592BBB1A8B007AF93E /* RxBlocking.xcframework in Frameworks */,
 				846073572BBB1A8B007AF93E /* RxDataSources.xcframework in Frameworks */,
 				846073512BBB1A8B007AF93E /* Alamofire.xcframework in Frameworks */,
 				8460734F2BBB1A8B007AF93E /* RxSwift.xcframework in Frameworks */,
 				846073552BBB1A8B007AF93E /* SDWebImage.xcframework in Frameworks */,
+				846073692BC3FFDB007AF93E /* FirebaseAnalytics in Frameworks */,
 				8460735D2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +503,8 @@
 			);
 			name = "Widget Money";
 			packageProductDependencies = (
+				846073682BC3FFDB007AF93E /* FirebaseAnalytics */,
+				8460736A2BC40002007AF93E /* FirebaseAnalyticsSwift */,
 			);
 			productName = "Widget Money";
 			productReference = 43D5F5472B7A764D0030DBF5 /* Widget Money.app */;
@@ -980,6 +986,19 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		846073682BC3FFDB007AF93E /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8460736A2BC40002007AF93E /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 43D5F53F2B7A764C0030DBF5 /* Project object */;
 }

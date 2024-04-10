@@ -13,6 +13,7 @@ struct BigCell: View {
     var cellModel: WidgetCellModel
     var colorFlow: Color
     var image: UIImage!
+    var flowText: String
     
     init(cellModel: WidgetCellModel) {
         self.cellModel = cellModel
@@ -21,9 +22,13 @@ struct BigCell: View {
         if cellModel.flow < 0 {
             colorFlow = .red
         }
+        flowText = String(format: "%.2f",  cellModel.flow) + cellModel.baseSymbol
+        if cellModel.flow >= 0 {
+            colorFlow = .green
+            flowText = "+" + flowText
+        }
         
         image = createImage(data: cellModel.imageData)
-  
     }
                           
     private func createImage(data: Data?) -> UIImage {
@@ -74,7 +79,7 @@ struct BigCell: View {
                             .minimumScaleFactor(0.01)
                             .lineLimit(1)
                             .foregroundColor(Color.white.opacity(0.7))
-                        Text("\(cellModel.flow, specifier: "%.2f")")
+                        Text(flowText)
                             .font(.caption)
                             .fontWeight(.light)
                             .lineLimit(1)

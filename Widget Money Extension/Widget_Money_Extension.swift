@@ -31,7 +31,7 @@ struct Provider: TimelineProvider {
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
 //        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
+        for _ in 0 ..< 5 {
 //            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             
             guard let widgetModels = try? JSONDecoder().decode([WidgetCellModel].self, from: widgetData) else { return }
