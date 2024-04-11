@@ -102,6 +102,8 @@
 		846074072BC6F7A8007AF93E /* Dark 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074062BC6F7A8007AF93E /* Dark 2.png */; };
 		846074092BC6F7B0007AF93E /* Dark 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074082BC6F7B0007AF93E /* Dark 3.png */; };
 		8460740B2BC6F7B9007AF93E /* Widgets.png in Resources */ = {isa = PBXBuildFile; fileRef = 8460740A2BC6F7B9007AF93E /* Widgets.png */; };
+		846074292BC7E402007AF93E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 846074282BC7E402007AF93E /* .gitignore */; };
+		8460742A2BC7E402007AF93E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 846074282BC7E402007AF93E /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,6 +234,7 @@
 		846074062BC6F7A8007AF93E /* Dark 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark 2.png"; sourceTree = "<group>"; };
 		846074082BC6F7B0007AF93E /* Dark 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark 3.png"; sourceTree = "<group>"; };
 		8460740A2BC6F7B9007AF93E /* Widgets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Widgets.png; sourceTree = "<group>"; };
+		846074282BC7E402007AF93E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +292,7 @@
 		43D5F53E2B7A764C0030DBF5 = {
 			isa = PBXGroup;
 			children = (
+				846074282BC7E402007AF93E /* .gitignore */,
 				43D5F6102B7A87750030DBF5 /* Widget Money ExtensionExtension.entitlements */,
 				846073FB2BC6F5B3007AF93E /* README.md */,
 				846073FA2BC6F541007AF93E /* Screens */,
@@ -608,6 +612,7 @@
 				43D5F5572B7A76510030DBF5 /* LaunchScreen.storyboard in Resources */,
 				846074072BC6F7A8007AF93E /* Dark 2.png in Resources */,
 				43EACEFB2B8663D60066F7B8 /* GoogleService-Info.plist in Resources */,
+				846074292BC7E402007AF93E /* .gitignore in Resources */,
 				846073FF2BC6F787007AF93E /* Light 2.png in Resources */,
 				846074012BC6F78E007AF93E /* Light 1.png in Resources */,
 				846074092BC6F7B0007AF93E /* Dark 3.png in Resources */,
@@ -623,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43D5F5F62B7A857D0030DBF5 /* Assets.xcassets in Resources */,
+				8460742A2BC7E402007AF93E /* .gitignore in Resources */,
 				437ABC8F2B824FCF00E7EAA0 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
