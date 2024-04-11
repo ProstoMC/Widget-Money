@@ -88,7 +88,7 @@ class HomeViewController: UIViewController {
             x: view.bounds.width*0.04,
             y: exchangeViewController.view.frame.maxY,
             width: scrollView.bounds.width*0.92,
-            height: view.bounds.height*0.35)
+            height: view.bounds.width*0.66)
 
 
         view.addSubview(headerView)
@@ -103,10 +103,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupScrollView() {
-//        let currencyPairModuleHeight = currencyPairsListViewController.view.bounds.height
-//        let exchangeModuleHeight = exchangeViewController.view.bounds.height
-//        let detailsModuleHeight = detailsViewController.view.bounds.height
-        //scrollView.contentSize.height = currencyPairModuleHeight + exchangeModuleHeight + detailsModuleHeight
+
         scrollView.contentSize.height = UIScreen.main.bounds.height
         
         scrollView.refreshControl = refreshControl

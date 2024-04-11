@@ -95,8 +95,8 @@ class CurrencyPairsListViewModel {
 extension CurrencyPairsListViewModel: CurrencyPairsListViewModelProtocol {
 
     func selectTail(pair: CurrencyPairCellModel) {
-        CoreWorker.shared.exchangeWorker.setFromCoin(code: pair.valueCurrencyShortName)
-        CoreWorker.shared.exchangeWorker.setToCoin(code: pair.baseCurrencyShortName)
+        CoreWorker.shared.exchangeWorker.setFromCoin(code: pair.valueCurrencyCode)
+        CoreWorker.shared.exchangeWorker.setToCoin(code: pair.baseCurrencyCode)
     }
     func selectTail(indexPath: IndexPath){
         let pair = CoreWorker.shared.favouritePairList.pairList[indexPath.row]

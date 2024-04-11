@@ -40,4 +40,13 @@ struct AppColors {
     var tabBarText: UIColor
     var tabBarLine: UIColor
     var currencyColors: [UIColor]
+    
+    var detailsBackground: UIColor
+    var detailsLongSubviewBackground: UIColor
+    var detailsSquareSubviewBackground: UIColor
+    var detailsLinesColor: UIColor
+    var detailsTextColor: UIColor
+    var detailsRedColor: UIColor
+    
+    var settingsText: UIColor
 }

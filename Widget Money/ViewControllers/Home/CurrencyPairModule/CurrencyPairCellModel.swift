@@ -9,10 +9,12 @@ import Foundation
 import RxSwift
 
 struct CurrencyPairCellModel {
-    var valueCurrencyShortName: String
+    var valueCurrencyCode: String
     var valueCurrencyLogo: String
-    var baseCurrencyShortName: String
+    var valueCurrencyName: String
+    var baseCurrencyCode: String
     var baseLogo: String
+    var baseCurrencyName: String
     var colorIndex: Int
     var typeOfLogo: TypeOfCoin
     var imageUrl: String?
@@ -25,10 +27,12 @@ struct CurrencyPairCellModel {
 
     init(valueCurrency: CoinUniversal, baseCurrency: CoinUniversal, colorIndex: Int?) {
         
-        self.valueCurrencyShortName = valueCurrency.code
+        self.valueCurrencyCode = valueCurrency.code
         self.valueCurrencyLogo = valueCurrency.logo
-        self.baseCurrencyShortName = baseCurrency.code
+        self.valueCurrencyName = valueCurrency.name
+        self.baseCurrencyCode = baseCurrency.code
         self.baseLogo = baseCurrency.logo
+        self.baseCurrencyName = baseCurrency.name
         self.typeOfLogo = valueCurrency.type
         self.imageUrl = valueCurrency.imageUrl
         

@@ -126,7 +126,7 @@ extension ColorsWorker {
             closingLine: UIColor(red: 51/255, green: 57/255, blue: 95/255, alpha: 1),
             
             accentColor: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
-            heartColor: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 1),
+            heartColor: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
             clearButton: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 1),
             
             green: UIColor.systemGreen,
@@ -135,7 +135,17 @@ extension ColorsWorker {
             tabBarBackground: UIColor(red: 51/255, green: 57/255, blue: 95/255, alpha: 1),
             tabBarText: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1),
             tabBarLine: UIColor(red: 51/255, green: 57/255, blue: 95/255, alpha: 1),
-            currencyColors: [ #colorLiteral(red: 0.9025027752, green: 0.3524039388, blue: 0.9095708728, alpha: 1), #colorLiteral(red: 0.08765161783, green: 0.244926393, blue: 0.8508421779, alpha: 1), #colorLiteral(red: 0.9009088874, green: 0.2419643998, blue: 0.1973203123, alpha: 1), #colorLiteral(red: 0.9128024578, green: 0.2714713812, blue: 0.4699001908, alpha: 1), #colorLiteral(red: 0.4715684056, green: 0.9117004275, blue: 0.4237037301, alpha: 1) ]
+            currencyColors: [ #colorLiteral(red: 0.9025027752, green: 0.3524039388, blue: 0.9095708728, alpha: 1), #colorLiteral(red: 0.08765161783, green: 0.244926393, blue: 0.8508421779, alpha: 1), #colorLiteral(red: 0.9009088874, green: 0.2419643998, blue: 0.1973203123, alpha: 1), #colorLiteral(red: 0.9128024578, green: 0.2714713812, blue: 0.4699001908, alpha: 1), #colorLiteral(red: 0.4715684056, green: 0.9117004275, blue: 0.4237037301, alpha: 1) ],
+           
+            detailsBackground: UIColor(red: 72/255, green: 83/255, blue: 146/255, alpha: 1),
+            detailsLongSubviewBackground: UIColor(red: 98/255, green: 108/255, blue: 172/255, alpha: 1),
+            detailsSquareSubviewBackground: UIColor(red: 83/255, green: 93/255, blue: 158/255, alpha: 1),
+            detailsLinesColor: .white.withAlphaComponent(0.2),
+            detailsTextColor: .white,
+            detailsRedColor: UIColor.systemRed,
+            
+            settingsText: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 0.7)
+            
         )
     }
     
@@ -170,7 +180,17 @@ extension ColorsWorker {
             tabBarBackground: #colorLiteral(red: 0.08627282828, green: 0.1164394692, blue: 0.1934950352, alpha: 1),
             tabBarText: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1),
             tabBarLine: #colorLiteral(red: 0.2479126155, green: 0.2621334791, blue: 0.3463309109, alpha: 1),
-            currencyColors: [ #colorLiteral(red: 0.9025027752, green: 0.3524039388, blue: 0.9095708728, alpha: 1), #colorLiteral(red: 0.08765161783, green: 0.244926393, blue: 0.8508421779, alpha: 1), #colorLiteral(red: 0.9009088874, green: 0.2419643998, blue: 0.1973203123, alpha: 1), #colorLiteral(red: 0.9128024578, green: 0.2714713812, blue: 0.4699001908, alpha: 1), #colorLiteral(red: 0.4715684056, green: 0.9117004275, blue: 0.4237037301, alpha: 1) ]
+            currencyColors: [ #colorLiteral(red: 0.9025027752, green: 0.3524039388, blue: 0.9095708728, alpha: 1), #colorLiteral(red: 0.08765161783, green: 0.244926393, blue: 0.8508421779, alpha: 1), #colorLiteral(red: 0.9009088874, green: 0.2419643998, blue: 0.1973203123, alpha: 1), #colorLiteral(red: 0.9128024578, green: 0.2714713812, blue: 0.4699001908, alpha: 1), #colorLiteral(red: 0.4715684056, green: 0.9117004275, blue: 0.4237037301, alpha: 1) ],
+            
+            detailsBackground: UIColor(red: 43/255, green: 49/255, blue: 86/255, alpha: 1),
+            detailsLongSubviewBackground: UIColor(red: 62/255, green: 70/255, blue: 116/255, alpha: 1),
+            detailsSquareSubviewBackground: UIColor(red: 48/255, green: 55/255, blue: 102/255, alpha: 1),
+            detailsLinesColor: .white.withAlphaComponent(0.2),
+            detailsTextColor: .white,
+            detailsRedColor: UIColor(red: 1, green: 87/255, blue: 103/255, alpha: 1),
+            
+            settingsText: UIColor(red: 228/255, green: 214/255, blue: 213/255, alpha: 0.7)
+            
         )
     }
 }

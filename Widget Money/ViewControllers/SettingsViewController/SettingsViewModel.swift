@@ -123,8 +123,8 @@ extension SettingsViewModel {
         
         for i in settingsList.indices {
             settingsList[i].nameLabelColor.onNext(colorSet.mainText)
-            settingsList[i].valueLabelColor.onNext(colorSet.secondText)
-            settingsList[i].backgroundColor.onNext(colorSet.background)
+            settingsList[i].valueLabelColor.onNext(colorSet.settingsText)
+            settingsList[i].backgroundColor.onNext(colorSet.backgroundForWidgets)
         }
         
     }
