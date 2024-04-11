@@ -72,29 +72,9 @@
 		43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 		43D5F6132B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 		43EACEFB2B8663D60066F7B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43EACEFA2B8663D60066F7B8 /* GoogleService-Info.plist */; };
-		8460734D2BBB1A8B007AF93E /* Differentiator.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073432BBB1A8B007AF93E /* Differentiator.xcframework */; };
-		8460734E2BBB1A8B007AF93E /* Differentiator.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846073432BBB1A8B007AF93E /* Differentiator.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8460734F2BBB1A8B007AF93E /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073442BBB1A8B007AF93E /* RxSwift.xcframework */; };
-		846073502BBB1A8B007AF93E /* RxSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846073442BBB1A8B007AF93E /* RxSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		846073512BBB1A8B007AF93E /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073452BBB1A8B007AF93E /* Alamofire.xcframework */; };
-		846073522BBB1A8B007AF93E /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846073452BBB1A8B007AF93E /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		846073532BBB1A8B007AF93E /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073462BBB1A8B007AF93E /* RxRelay.xcframework */; };
-		846073542BBB1A8B007AF93E /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846073462BBB1A8B007AF93E /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		846073552BBB1A8B007AF93E /* SDWebImage.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073472BBB1A8B007AF93E /* SDWebImage.xcframework */; };
-		846073562BBB1A8B007AF93E /* SDWebImage.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846073472BBB1A8B007AF93E /* SDWebImage.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		846073572BBB1A8B007AF93E /* RxDataSources.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073482BBB1A8B007AF93E /* RxDataSources.xcframework */; };
-		846073582BBB1A8B007AF93E /* RxDataSources.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846073482BBB1A8B007AF93E /* RxDataSources.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		846073592BBB1A8B007AF93E /* RxBlocking.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846073492BBB1A8B007AF93E /* RxBlocking.xcframework */; };
-		8460735A2BBB1A8B007AF93E /* RxBlocking.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846073492BBB1A8B007AF93E /* RxBlocking.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8460735B2BBB1A8B007AF93E /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8460734A2BBB1A8B007AF93E /* RxCocoa.xcframework */; };
-		8460735C2BBB1A8B007AF93E /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460734A2BBB1A8B007AF93E /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8460735D2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */; };
-		8460735E2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		846073642BBC9F6A007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073662BBDF752007AF93E /* SettingsHeaderView.swift */; };
-		846073692BC3FFDB007AF93E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 846073682BC3FFDB007AF93E /* FirebaseAnalytics */; };
-		8460736B2BC40002007AF93E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8460736A2BC40002007AF93E /* FirebaseAnalyticsSwift */; };
 		846073FF2BC6F787007AF93E /* Light 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 846073FE2BC6F787007AF93E /* Light 2.png */; };
 		846074012BC6F78E007AF93E /* Light 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074002BC6F78E007AF93E /* Light 1.png */; };
 		846074032BC6F796007AF93E /* Light 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 846074022BC6F796007AF93E /* Light 3.png */; };
@@ -104,6 +84,24 @@
 		8460740B2BC6F7B9007AF93E /* Widgets.png in Resources */ = {isa = PBXBuildFile; fileRef = 8460740A2BC6F7B9007AF93E /* Widgets.png */; };
 		846074292BC7E402007AF93E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 846074282BC7E402007AF93E /* .gitignore */; };
 		8460742A2BC7E402007AF93E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 846074282BC7E402007AF93E /* .gitignore */; };
+		846074342BC7EAB7007AF93E /* RxBlocking.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742B2BC7EAB7007AF93E /* RxBlocking.xcframework */; };
+		846074352BC7EAB7007AF93E /* RxBlocking.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742B2BC7EAB7007AF93E /* RxBlocking.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		846074362BC7EAB7007AF93E /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742C2BC7EAB7007AF93E /* RxCocoa.xcframework */; };
+		846074372BC7EAB7007AF93E /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742C2BC7EAB7007AF93E /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		846074382BC7EAB7007AF93E /* RxDataSources.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742D2BC7EAB7007AF93E /* RxDataSources.xcframework */; };
+		846074392BC7EAB7007AF93E /* RxDataSources.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742D2BC7EAB7007AF93E /* RxDataSources.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8460743A2BC7EAB7007AF93E /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742E2BC7EAB7007AF93E /* RxSwift.xcframework */; };
+		8460743B2BC7EAB7007AF93E /* RxSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742E2BC7EAB7007AF93E /* RxSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8460743C2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742F2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework */; };
+		8460743D2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8460742F2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8460743E2BC7EAB7007AF93E /* Differentiator.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846074302BC7EAB7007AF93E /* Differentiator.xcframework */; };
+		8460743F2BC7EAB7007AF93E /* Differentiator.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846074302BC7EAB7007AF93E /* Differentiator.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		846074402BC7EAB7007AF93E /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846074312BC7EAB7007AF93E /* Alamofire.xcframework */; };
+		846074412BC7EAB7007AF93E /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846074312BC7EAB7007AF93E /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		846074422BC7EAB7007AF93E /* SDWebImage.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846074322BC7EAB7007AF93E /* SDWebImage.xcframework */; };
+		846074432BC7EAB7007AF93E /* SDWebImage.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846074322BC7EAB7007AF93E /* SDWebImage.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		846074442BC7EAB7007AF93E /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846074332BC7EAB7007AF93E /* RxRelay.xcframework */; };
+		846074452BC7EAB7007AF93E /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846074332BC7EAB7007AF93E /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,21 +126,21 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		846073612BBB1A8B007AF93E /* Embed Frameworks */ = {
+		846074462BC7EAB7007AF93E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				846073522BBB1A8B007AF93E /* Alamofire.xcframework in Embed Frameworks */,
-				8460735C2BBB1A8B007AF93E /* RxCocoa.xcframework in Embed Frameworks */,
-				846073542BBB1A8B007AF93E /* RxRelay.xcframework in Embed Frameworks */,
-				846073582BBB1A8B007AF93E /* RxDataSources.xcframework in Embed Frameworks */,
-				8460735E2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Embed Frameworks */,
-				846073562BBB1A8B007AF93E /* SDWebImage.xcframework in Embed Frameworks */,
-				8460734E2BBB1A8B007AF93E /* Differentiator.xcframework in Embed Frameworks */,
-				8460735A2BBB1A8B007AF93E /* RxBlocking.xcframework in Embed Frameworks */,
-				846073502BBB1A8B007AF93E /* RxSwift.xcframework in Embed Frameworks */,
+				846074352BC7EAB7007AF93E /* RxBlocking.xcframework in Embed Frameworks */,
+				8460743F2BC7EAB7007AF93E /* Differentiator.xcframework in Embed Frameworks */,
+				8460743B2BC7EAB7007AF93E /* RxSwift.xcframework in Embed Frameworks */,
+				846074452BC7EAB7007AF93E /* RxRelay.xcframework in Embed Frameworks */,
+				8460743D2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework in Embed Frameworks */,
+				846074372BC7EAB7007AF93E /* RxCocoa.xcframework in Embed Frameworks */,
+				846074432BC7EAB7007AF93E /* SDWebImage.xcframework in Embed Frameworks */,
+				846074392BC7EAB7007AF93E /* RxDataSources.xcframework in Embed Frameworks */,
+				846074412BC7EAB7007AF93E /* Alamofire.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,6 +233,15 @@
 		846074082BC6F7B0007AF93E /* Dark 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark 3.png"; sourceTree = "<group>"; };
 		8460740A2BC6F7B9007AF93E /* Widgets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Widgets.png; sourceTree = "<group>"; };
 		846074282BC7E402007AF93E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8460742B2BC7EAB7007AF93E /* RxBlocking.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxBlocking.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/RxBlocking.xcframework; sourceTree = "<group>"; };
+		8460742C2BC7EAB7007AF93E /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxCocoa.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/RxCocoa.xcframework; sourceTree = "<group>"; };
+		8460742D2BC7EAB7007AF93E /* RxDataSources.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxDataSources.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/RxDataSources.xcframework; sourceTree = "<group>"; };
+		8460742E2BC7EAB7007AF93E /* RxSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxSwift.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/RxSwift.xcframework; sourceTree = "<group>"; };
+		8460742F2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageMapKit.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/SDWebImageMapKit.xcframework; sourceTree = "<group>"; };
+		846074302BC7EAB7007AF93E /* Differentiator.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Differentiator.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/Differentiator.xcframework; sourceTree = "<group>"; };
+		846074312BC7EAB7007AF93E /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
+		846074322BC7EAB7007AF93E /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
+		846074332BC7EAB7007AF93E /* RxRelay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxRelay.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/RxRelay.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,17 +249,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8460734D2BBB1A8B007AF93E /* Differentiator.xcframework in Frameworks */,
-				8460735B2BBB1A8B007AF93E /* RxCocoa.xcframework in Frameworks */,
-				846073532BBB1A8B007AF93E /* RxRelay.xcframework in Frameworks */,
-				8460736B2BC40002007AF93E /* FirebaseAnalyticsSwift in Frameworks */,
-				846073592BBB1A8B007AF93E /* RxBlocking.xcframework in Frameworks */,
-				846073572BBB1A8B007AF93E /* RxDataSources.xcframework in Frameworks */,
-				846073512BBB1A8B007AF93E /* Alamofire.xcframework in Frameworks */,
-				8460734F2BBB1A8B007AF93E /* RxSwift.xcframework in Frameworks */,
-				846073552BBB1A8B007AF93E /* SDWebImage.xcframework in Frameworks */,
-				846073692BC3FFDB007AF93E /* FirebaseAnalytics in Frameworks */,
-				8460735D2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework in Frameworks */,
+				846074342BC7EAB7007AF93E /* RxBlocking.xcframework in Frameworks */,
+				8460743E2BC7EAB7007AF93E /* Differentiator.xcframework in Frameworks */,
+				8460743A2BC7EAB7007AF93E /* RxSwift.xcframework in Frameworks */,
+				846074442BC7EAB7007AF93E /* RxRelay.xcframework in Frameworks */,
+				8460743C2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework in Frameworks */,
+				846074362BC7EAB7007AF93E /* RxCocoa.xcframework in Frameworks */,
+				846074422BC7EAB7007AF93E /* SDWebImage.xcframework in Frameworks */,
+				846074382BC7EAB7007AF93E /* RxDataSources.xcframework in Frameworks */,
+				846074402BC7EAB7007AF93E /* Alamofire.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,12 +469,21 @@
 			isa = PBXGroup;
 			children = (
 				846073452BBB1A8B007AF93E /* Alamofire.xcframework */,
+				846074312BC7EAB7007AF93E /* Alamofire.xcframework */,
 				846073432BBB1A8B007AF93E /* Differentiator.xcframework */,
+				846074302BC7EAB7007AF93E /* Differentiator.xcframework */,
 				846073492BBB1A8B007AF93E /* RxBlocking.xcframework */,
 				8460734A2BBB1A8B007AF93E /* RxCocoa.xcframework */,
 				846073482BBB1A8B007AF93E /* RxDataSources.xcframework */,
 				846073462BBB1A8B007AF93E /* RxRelay.xcframework */,
+				846074332BC7EAB7007AF93E /* RxRelay.xcframework */,
 				846073442BBB1A8B007AF93E /* RxSwift.xcframework */,
+				8460742B2BC7EAB7007AF93E /* RxBlocking.xcframework */,
+				8460742C2BC7EAB7007AF93E /* RxCocoa.xcframework */,
+				8460742D2BC7EAB7007AF93E /* RxDataSources.xcframework */,
+				8460742E2BC7EAB7007AF93E /* RxSwift.xcframework */,
+				846074322BC7EAB7007AF93E /* SDWebImage.xcframework */,
+				8460742F2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework */,
 				8460734C2BBB1A8B007AF93E /* RxTest.xcframework */,
 				846073472BBB1A8B007AF93E /* SDWebImage.xcframework */,
 				8460734B2BBB1A8B007AF93E /* SDWebImageMapKit.xcframework */,
@@ -529,7 +543,7 @@
 				43D5F5442B7A764D0030DBF5 /* Frameworks */,
 				43D5F5452B7A764D0030DBF5 /* Resources */,
 				43D5F5FB2B7A857D0030DBF5 /* Embed Foundation Extensions */,
-				846073612BBB1A8B007AF93E /* Embed Frameworks */,
+				846074462BC7EAB7007AF93E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -538,8 +552,6 @@
 			);
 			name = "Widget Money";
 			packageProductDependencies = (
-				846073682BC3FFDB007AF93E /* FirebaseAnalytics */,
-				8460736A2BC40002007AF93E /* FirebaseAnalyticsSwift */,
 			);
 			productName = "Widget Money";
 			productReference = 43D5F5472B7A764D0030DBF5 /* Widget Money.app */;
@@ -1030,19 +1042,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		846073682BC3FFDB007AF93E /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		8460736A2BC40002007AF93E /* FirebaseAnalyticsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 43D5F53F2B7A764C0030DBF5 /* Project object */;
 }
