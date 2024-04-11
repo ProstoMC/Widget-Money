@@ -8,7 +8,7 @@
 ---------------------------------------
 UIKit + RxSwift + RxDataSource 
 ---------------------------------------
-<img src="https://github.com/ProstoMC/Widget-Money/blob/main/Screens/Widgets.png?raw=true" width="150" >
+<img src="https://github.com/ProstoMC/Widget-Money/blob/main/Screens/Widgets.png?raw=true" width="200" >
 
 
 
