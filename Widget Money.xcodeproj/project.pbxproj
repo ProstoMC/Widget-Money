@@ -72,6 +72,9 @@
 		43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 		43D5F6132B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 		43EACEFB2B8663D60066F7B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43EACEFA2B8663D60066F7B8 /* GoogleService-Info.plist */; };
+		8439278B2BC9354200FED905 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8439278A2BC9354200FED905 /* FirebaseAnalytics */; };
+		8439278D2BC9354200FED905 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8439278C2BC9354200FED905 /* FirebaseAnalyticsSwift */; };
+		8439278F2BC9354200FED905 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 8439278E2BC9354200FED905 /* FirebaseFunctions */; };
 		846073642BBC9F6A007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073662BBDF752007AF93E /* SettingsHeaderView.swift */; };
@@ -252,11 +255,14 @@
 				846074342BC7EAB7007AF93E /* RxBlocking.xcframework in Frameworks */,
 				8460743E2BC7EAB7007AF93E /* Differentiator.xcframework in Frameworks */,
 				8460743A2BC7EAB7007AF93E /* RxSwift.xcframework in Frameworks */,
+				8439278F2BC9354200FED905 /* FirebaseFunctions in Frameworks */,
+				8439278D2BC9354200FED905 /* FirebaseAnalyticsSwift in Frameworks */,
 				846074442BC7EAB7007AF93E /* RxRelay.xcframework in Frameworks */,
 				8460743C2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework in Frameworks */,
 				846074362BC7EAB7007AF93E /* RxCocoa.xcframework in Frameworks */,
 				846074422BC7EAB7007AF93E /* SDWebImage.xcframework in Frameworks */,
 				846074382BC7EAB7007AF93E /* RxDataSources.xcframework in Frameworks */,
+				8439278B2BC9354200FED905 /* FirebaseAnalytics in Frameworks */,
 				846074402BC7EAB7007AF93E /* Alamofire.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,6 +558,9 @@
 			);
 			name = "Widget Money";
 			packageProductDependencies = (
+				8439278A2BC9354200FED905 /* FirebaseAnalytics */,
+				8439278C2BC9354200FED905 /* FirebaseAnalyticsSwift */,
+				8439278E2BC9354200FED905 /* FirebaseFunctions */,
 			);
 			productName = "Widget Money";
 			productReference = 43D5F5472B7A764D0030DBF5 /* Widget Money.app */;
@@ -1042,6 +1051,24 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8439278A2BC9354200FED905 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8439278C2BC9354200FED905 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		8439278E2BC9354200FED905 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 43D5F53F2B7A764C0030DBF5 /* Project object */;
 }
