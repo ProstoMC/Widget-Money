@@ -17,12 +17,14 @@ protocol WidgetWorkerProtocol {
 class WidgetWorker: WidgetWorkerProtocol {
     let bag = DisposeBag()
     
-    @AppStorage("WidgetCellModels", store: UserDefaults(suiteName: "group.com.sloniklm.Widget-Money"))
+    @AppStorage("WidgetModel", store: UserDefaults(suiteName: "group.com.sloniklm.WidgetMoney"))
     var widgetData = Data()
+    
     let pairModule: CoinPairProtocol
     let coinList: CoinListProtocol
     
-    var widgetModels: [WidgetCellModel] = [] //New synchronised models
+    //var widgetModels: [WidgetCellModel] = [] //New synchronised models
+    var widgetModel = WidgetModel(cellModels: [], date: "nil")
     
     init(pairModule: CoinPairProtocol, coinList: CoinListProtocol) {
         self.pairModule = pairModule
@@ -42,7 +44,8 @@ class WidgetWorker: WidgetWorkerProtocol {
     }
     
     func createWidgetModelsFromFavoritePairs() {
-        widgetModels = []
+        widgetModel.cellModels = []
+        widgetModel.date = coinList.lastUpdate
         for i in pairModule.pairList.indices {
             addModelToNewList(pair: pairModule.pairList[i], index: i)
         }
@@ -55,7 +58,7 @@ class WidgetWorker: WidgetWorkerProtocol {
         if imageData != nil {
             
             guard let model = createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: imageData) else { return }
-            widgetModels.append(model)
+            widgetModel.cellModels.append(model)
             save()
             return
         }
@@ -63,7 +66,7 @@ class WidgetWorker: WidgetWorkerProtocol {
         //Create url or save pair without imagedata
         guard let imageUrl = coinList.returnCoin(code: pair.valueCode)?.imageUrl else {
             guard let model = createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: nil) else { return }
-            widgetModels.append(model)
+            widgetModel.cellModels.append(model)
             save()
             return
         }
@@ -73,7 +76,7 @@ class WidgetWorker: WidgetWorkerProtocol {
                 self.coinList.addImageData(code: pair.valueCode, data: imageData!)
             }
             guard let model = self.createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: imageData) else { return }
-            self.widgetModels.append(model)
+            self.widgetModel.cellModels.append(model)
             self.save()
         })
     }
@@ -109,8 +112,9 @@ class WidgetWorker: WidgetWorkerProtocol {
     
     func save() {
         //printList()
-        let sortedModels = widgetModels.sorted(by: { $0.id < $1.id } )
-        guard let data = try? JSONEncoder().encode(sortedModels) else { return }
+        let sortedModels = widgetModel.cellModels.sorted(by: { $0.id < $1.id } )
+        widgetModel.cellModels = sortedModels
+        guard let data = try? JSONEncoder().encode(widgetModel) else { return }
         widgetData = data
         //print("Data saved")
         WidgetCenter.shared.reloadTimelines(ofKind: "Widget_Money_Extension")
@@ -118,7 +122,7 @@ class WidgetWorker: WidgetWorkerProtocol {
     
     func printList() {
         print("==WIDGET MODELS==")
-        for model in widgetModels {
+        for model in widgetModel.cellModels {
             var exist = "Image EXISTS"
             if model.imageData == nil {
                 exist = "Image doesn't EXIST"

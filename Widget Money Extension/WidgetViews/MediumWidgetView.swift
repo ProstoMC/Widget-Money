@@ -64,11 +64,11 @@ struct MediumWidgetView: View {
                                 SmallCell(cellModel: widgetCellModels[0])
                                 Divider()
                                 SmallCell(cellModel: widgetCellModels[1])
+                                Divider()
+                                SmallCell(cellModel: widgetCellModels[2])
                             }
                             Divider()
                             VStack (spacing: 0) {
-                                SmallCell(cellModel: widgetCellModels[2])
-                                Divider()
                                 SmallCell(cellModel: widgetCellModels[3])
                                 Divider()
                                 SmallCell(cellModel: widgetCellModels[4])

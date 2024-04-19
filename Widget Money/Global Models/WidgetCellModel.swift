@@ -18,3 +18,8 @@ public struct WidgetCellModel: Codable {
     var imageData: Data?
 }
 
+
+public struct WidgetModel: Codable {
+    var cellModels: [WidgetCellModel]
+    var date: String
+}

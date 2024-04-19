@@ -64,7 +64,7 @@ struct BigCell: View {
                                 .lineLimit(1)
                                 .scaledToFill()
                                 .foregroundColor(Color.white.opacity(0.85))
-                            Text(cellModel.baseCode)
+                            Text("to \(cellModel.baseCode)")
                                 .font(.caption)
                                 .fontWeight(.light)
                                 .lineLimit(1)

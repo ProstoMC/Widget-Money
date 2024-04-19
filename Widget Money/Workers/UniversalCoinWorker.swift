@@ -187,7 +187,7 @@ extension UniversalCoinWorker {
                     let nsDate = Date(timeIntervalSince1970: timeInterval)
    
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd.MM.YYYY HH:mm"
+                    dateFormatter.dateFormat = "dd.MM HH:mm"
                     
                     lastUpdate = dateFormatter.string(from: nsDate)
                 }

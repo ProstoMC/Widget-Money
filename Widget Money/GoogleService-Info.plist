@@ -3,28 +3,28 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAw_3FcGKZ8xbn49Vh0ORuR4jHL5T5MR8I</string>
+	<string>AIzaSyBWFWjyEoGhcmJZKsYXyIFyf67iLDKeyEM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>318960414547</string>
+	<string>61553212104</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.sloniklm.Widget-Money</string>
+	<string>com.sloniklm.WidgetMoney</string>
 	<key>PROJECT_ID</key>
-	<string>widget-money</string>
+	<string>widgetmoney-d74a5</string>
 	<key>STORAGE_BUCKET</key>
-	<string>widget-money.appspot.com</string>
+	<string>widgetmoney-d74a5.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<true/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:318960414547:ios:5e13658509aa77616ffba6</string>
+	<string>1:61553212104:ios:6699922406d07f2441c3fd</string>
 </dict>
 </plist>

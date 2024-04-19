@@ -10,19 +10,19 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     
-    @AppStorage("WidgetCellModels", store: UserDefaults(suiteName: "group.com.sloniklm.Widget-Money"))
+    @AppStorage("WidgetModel", store: UserDefaults(suiteName: "group.com.sloniklm.WidgetMoney"))
     var widgetData = Data()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), widgetCellModels: [])
+        SimpleEntry(date: Date(), widgetModel: WidgetModel(cellModels: [], date: "no date"))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
        
-        guard let widgetModels = try? JSONDecoder().decode([WidgetCellModel].self, from: widgetData) else { return }
+        guard let widgetModel = try? JSONDecoder().decode(WidgetModel.self, from: widgetData) else { return }
         print("Widget got data")
         
-        let entry = SimpleEntry(date: Date(), widgetCellModels: widgetModels)
+        let entry = SimpleEntry(date: Date(), widgetModel: widgetModel)
         completion(entry)
     }
 
@@ -34,10 +34,10 @@ struct Provider: TimelineProvider {
         for _ in 0 ..< 5 {
 //            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             
-            guard let widgetModels = try? JSONDecoder().decode([WidgetCellModel].self, from: widgetData) else { return }
+            guard let widgetModel = try? JSONDecoder().decode(WidgetModel.self, from: widgetData) else { return }
             print("Widget got data")
             
-            let entry = SimpleEntry(date: Date(), widgetCellModels: widgetModels)
+            let entry = SimpleEntry(date: Date(), widgetModel: widgetModel)
             entries.append(entry)
         }
 
@@ -48,7 +48,8 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let widgetCellModels: [WidgetCellModel]
+    //let widgetCellModels: [WidgetCellModel]
+    let widgetModel: WidgetModel
 }
 
 struct Widget_Money_ExtensionEntryView : View {
@@ -59,25 +60,37 @@ struct Widget_Money_ExtensionEntryView : View {
     
     @ViewBuilder
     var body: some View {
-        ZStack {
-            switch family {
-            case .systemSmall: SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-            case .systemMedium: MediumWidgetView(widgetCellModels: entry.widgetCellModels)
-            case .systemLarge:
-                MediumWidgetView(widgetCellModels: entry.widgetCellModels)
-            case .systemExtraLarge:
-                MediumWidgetView(widgetCellModels: entry.widgetCellModels)
-            case .accessoryCircular:
-                SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-            case .accessoryRectangular:
-                SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-            case .accessoryInline:
-                SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-            @unknown default:
-                SmallWidgetView(widgetCellModels: entry.widgetCellModels)
-            }
-        }.widgetBackground(backgroundView: BackgroundViewForIOS17.init())
-
+        GeometryReader { reader in //For Image size
+            ZStack {
+                VStack(spacing: 0){
+                    Text("Actual to \(entry.widgetModel.date)")
+                        .font(.caption)
+                        .fontWeight(.light)
+                        .foregroundColor(Color.white.opacity(0.5))
+                        .frame(width: reader.size.width-16, height: reader.size.height/15, alignment: .trailing)
+                        .padding(.top, reader.size.height/20)
+                        //.background(.yellow)
+                    switch family {
+                    case .systemSmall: SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    case .systemMedium: MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    case .systemLarge:
+                        MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    case .systemExtraLarge:
+                        MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    case .accessoryCircular:
+                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    case .accessoryRectangular:
+                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    case .accessoryInline:
+                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    @unknown default:
+                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    }
+                }
+                
+                
+            }.widgetBackground(backgroundView: BackgroundViewForIOS17.init())
+        }
     }
 }
 
@@ -89,8 +102,8 @@ struct Widget_Money_Extension: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Widget_Money_ExtensionEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("WidgetMoney")
+        .description("Widget for showing last course of currency")
         .supportedFamilies([.systemSmall, .systemMedium])
         .contentMarginsDisabledIfAvailable() // For iOS 17 and later
     }
@@ -98,7 +111,7 @@ struct Widget_Money_Extension: Widget {
 
 struct Widget_Money_Extension_Previews: PreviewProvider {
     static var previews: some View {
-        Widget_Money_ExtensionEntryView(entry: SimpleEntry(date: Date(), widgetCellModels: []))
+        Widget_Money_ExtensionEntryView(entry: SimpleEntry(date: Date(), widgetModel: WidgetModel(cellModels: [], date: "no data")))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
