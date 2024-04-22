@@ -16,39 +16,54 @@ struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), widgetModel: WidgetModel(cellModels: [], date: "no date"))
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-       
+        
         guard let widgetModel = try? JSONDecoder().decode(WidgetModel.self, from: widgetData) else { return }
         print("Widget got data")
         
         let entry = SimpleEntry(date: Date(), widgetModel: widgetModel)
         completion(entry)
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-//        let currentDate = Date()
-        for _ in 0 ..< 5 {
-//            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+        
+        Task {
             
             guard let widgetModel = try? JSONDecoder().decode(WidgetModel.self, from: widgetData) else { return }
-            print("Widget got data")
             
-            let entry = SimpleEntry(date: Date(), widgetModel: widgetModel)
-            entries.append(entry)
+            let fetcher = LiteFetcherForWidget()
+            
+            fetcher.updateRatesFromEth(widgetModel: widgetModel, completion: { newWidgetModel in
+                
+                let entry = SimpleEntry(date: Date(), widgetModel: newWidgetModel)
+                
+                // Next fetch happens 15 minutes later
+                let nextUpdate = Calendar.current.date(
+                    byAdding: DateComponents(minute: 30),
+                    to: Date()
+                )!
+                
+                let timeline = Timeline(
+                    entries: [entry],
+                    policy: .after(nextUpdate)
+                )
+                
+                completion(timeline)
+                
+            })
+            
+            
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
+    
+    
+    
+    
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    //let widgetCellModels: [WidgetCellModel]
     let widgetModel: WidgetModel
 }
 
@@ -57,38 +72,34 @@ struct Widget_Money_ExtensionEntryView : View {
     
     @Environment(\.widgetFamily) var family
     
-    
     @ViewBuilder
     var body: some View {
         GeometryReader { reader in //For Image size
             ZStack {
                 VStack(spacing: 0){
-                    Text("Actual to \(entry.widgetModel.date)")
+                    Text(entry.widgetModel.date)
                         .font(.caption)
                         .fontWeight(.light)
+                        .scaledToFill()
                         .foregroundColor(Color.white.opacity(0.5))
                         .frame(width: reader.size.width-16, height: reader.size.height/15, alignment: .trailing)
                         .padding(.top, reader.size.height/20)
-                        //.background(.yellow)
-                    switch family {
-                    case .systemSmall: SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                    case .systemMedium: MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                    case .systemLarge:
+                        .padding(.bottom, reader.size.height/40)
+                    //.background(.yellow)
+                    
+                    if family == .systemSmall {
+                        CustomDivider(percent: 0.55)
+                            .frame(width: reader.size.width-16, height: 0.5)
+                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                            .background(ContainerRelativeShape())
+                    } else 
+                    if family == .systemMedium {
+                       CustomDivider(percent: 0.25)
+                           .frame(width: reader.size.width-16, height: 0.5)
                         MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                    case .systemExtraLarge:
-                        MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                    case .accessoryCircular:
-                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                    case .accessoryRectangular:
-                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                    case .accessoryInline:
-                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                    @unknown default:
-                        SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                            .background(ContainerRelativeShape())
                     }
                 }
-                
-                
             }.widgetBackground(backgroundView: BackgroundViewForIOS17.init())
         }
     }
@@ -96,7 +107,7 @@ struct Widget_Money_ExtensionEntryView : View {
 
 struct Widget_Money_Extension: Widget {
     let kind: String = "Widget_Money_Extension"
-
+    
     var body: some WidgetConfiguration {
         
         StaticConfiguration(kind: kind, provider: Provider()) { entry in

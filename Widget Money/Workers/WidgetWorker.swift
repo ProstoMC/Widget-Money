@@ -45,7 +45,7 @@ class WidgetWorker: WidgetWorkerProtocol {
     
     func createWidgetModelsFromFavoritePairs() {
         widgetModel.cellModels = []
-        widgetModel.date = coinList.lastUpdate
+        
         for i in pairModule.pairList.indices {
             addModelToNewList(pair: pairModule.pairList[i], index: i)
         }
@@ -112,6 +112,8 @@ class WidgetWorker: WidgetWorkerProtocol {
     
     func save() {
         //printList()
+        widgetModel.date = coinList.lastUpdate
+        
         let sortedModels = widgetModel.cellModels.sorted(by: { $0.id < $1.id } )
         widgetModel.cellModels = sortedModels
         guard let data = try? JSONEncoder().encode(widgetModel) else { return }
