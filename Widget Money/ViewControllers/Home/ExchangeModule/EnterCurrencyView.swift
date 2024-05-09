@@ -47,8 +47,8 @@ extension EnterCurrencyView {
         setupTextField()
         setupHeader()
         setupSeparator()
-        setupCurrencyButton()
         setupChevron()
+        setupCurrencyButton()
     }
     
     private func setupTextField() {

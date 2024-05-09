@@ -7,9 +7,16 @@
 
 import UIKit
 import RxSwift
+import GoogleMobileAds
 
 class SettingsViewController: UIViewController {
-
+    
+    //AdMob block ID
+    //Tests:
+    let adsBlockID = "ca-app-pub-3940256099942544/2435281174"
+    //Prodaction
+    //let adBlockID = "ca-app-pub-7946769692194601/4341308255"
+    
     var viewModel: SettingsViewModelProtocol = SettingsViewModel()
     let disposeBag = DisposeBag()
     
@@ -17,17 +24,20 @@ class SettingsViewController: UIViewController {
     var topline: UIView!
     var tableView: UITableView!
     
+    var adsBlock = GADBannerView()
+    
     var baseHeightOfElements: Double!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         baseHeightOfElements = getBaseHeight()
+        setupUI()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setupUI()
+        
         rxSubscribing()
     }
     
@@ -59,6 +69,8 @@ extension SettingsViewController {
         setupHeaderView()
         setupTopLine()
         setupTableView()
+        setupAdsBlock()
+        
         colorsUpdate()
     }
     
@@ -109,6 +121,28 @@ extension SettingsViewController {
         tableView.keyboardDismissMode = .interactiveWithAccessory // Close the keyboard with scrolling
         
     }
+    
+    private func setupAdsBlock() {
+        
+        let adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width*0.92)
+        adsBlock = GADBannerView(adSize: adSize)
+
+        adsBlock.rootViewController = self
+        
+        adsBlock.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(adsBlock)
+        
+        NSLayoutConstraint.activate([
+            adsBlock.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            adsBlock.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 50)
+        ])
+        
+        adsBlock.adUnitID = adsBlockID
+        adsBlock.load(GADRequest())
+        
+    }
+
+    
     private func colorsUpdate() {
         view.backgroundColor = viewModel.colorSet.background
         topline.backgroundColor = viewModel.colorSet.background
@@ -197,6 +231,11 @@ extension SettingsViewController {
             self.viewModel.changeTheme(theme: .dark)
         })
         )
+        //For IPADS
+        if let popoverPresentationController = alert.popoverPresentationController {
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+        }
         
         self.present(alert, animated: true, completion: nil)
     }

@@ -74,9 +74,11 @@
 		8439278B2BC9354200FED905 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8439278A2BC9354200FED905 /* FirebaseAnalytics */; };
 		8439278D2BC9354200FED905 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8439278C2BC9354200FED905 /* FirebaseAnalyticsSwift */; };
 		8439278F2BC9354200FED905 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 8439278E2BC9354200FED905 /* FirebaseFunctions */; };
-		843927932BC93C5800FED905 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 843927922BC93C5800FED905 /* GoogleService-Info.plist */; };
 		8450C9DA2BD6CAB000E1C255 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C9D92BD6CAB000E1C255 /* CustomDivider.swift */; };
 		8450C9DB2BD6CAB000E1C255 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C9D92BD6CAB000E1C255 /* CustomDivider.swift */; };
+		8450C9DD2BD7D08E00E1C255 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8450C9DC2BD7D08E00E1C255 /* GoogleService-Info.plist */; };
+		8450C9E02BD80D3A00E1C255 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 8450C9DF2BD80D3A00E1C255 /* GoogleMobileAds */; };
+		8450C9E32BDAC18200E1C255 /* BottomBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C9E22BDAC18200E1C255 /* BottomBlockView.swift */; };
 		846073642BBC9F6A007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073662BBDF752007AF93E /* SettingsHeaderView.swift */; };
@@ -221,8 +223,9 @@
 		43D5F60F2B7A87540030DBF5 /* Widget Money.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget Money.entitlements"; sourceTree = "<group>"; };
 		43D5F6102B7A87750030DBF5 /* Widget Money ExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget Money ExtensionExtension.entitlements"; sourceTree = "<group>"; };
 		43D5F6112B7A89280030DBF5 /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
-		843927922BC93C5800FED905 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8450C9D92BD6CAB000E1C255 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
+		8450C9DC2BD7D08E00E1C255 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8450C9E22BDAC18200E1C255 /* BottomBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBlockView.swift; sourceTree = "<group>"; };
 		846073432BBB1A8B007AF93E /* Differentiator.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Differentiator.xcframework; path = ../Projects/Extentions/Carthage/Build/Differentiator.xcframework; sourceTree = "<group>"; };
 		846073442BBB1A8B007AF93E /* RxSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxSwift.xcframework; path = ../Projects/Extentions/Carthage/Build/RxSwift.xcframework; sourceTree = "<group>"; };
 		846073452BBB1A8B007AF93E /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = ../Projects/Extentions/Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
@@ -266,6 +269,7 @@
 				8460743A2BC7EAB7007AF93E /* RxSwift.xcframework in Frameworks */,
 				8439278F2BC9354200FED905 /* FirebaseFunctions in Frameworks */,
 				8439278D2BC9354200FED905 /* FirebaseAnalyticsSwift in Frameworks */,
+				8450C9E02BD80D3A00E1C255 /* GoogleMobileAds in Frameworks */,
 				846074442BC7EAB7007AF93E /* RxRelay.xcframework in Frameworks */,
 				8460743C2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework in Frameworks */,
 				846074362BC7EAB7007AF93E /* RxCocoa.xcframework in Frameworks */,
@@ -344,7 +348,7 @@
 				43D5F58D2B7A7A260030DBF5 /* ViewControllers */,
 				43D5F5532B7A76510030DBF5 /* Assets.xcassets */,
 				43D5F5552B7A76510030DBF5 /* LaunchScreen.storyboard */,
-				843927922BC93C5800FED905 /* GoogleService-Info.plist */,
+				8450C9DC2BD7D08E00E1C255 /* GoogleService-Info.plist */,
 				43D5F5582B7A76510030DBF5 /* Info.plist */,
 			);
 			path = "Widget Money";
@@ -394,8 +398,8 @@
 				43D5F59B2B7A7A260030DBF5 /* HeaderView.swift */,
 				43D5F5962B7A7A260030DBF5 /* CurrencyPairModule */,
 				43D5F59F2B7A7A260030DBF5 /* ExchangeModule */,
-				43D5F58F2B7A7A260030DBF5 /* DetailsModule */,
 				43D5F59C2B7A7A260030DBF5 /* ChooseCurrencyModule */,
+				8450C9E12BDAC11700E1C255 /* BottomBlock */,
 				43D5F5932B7A7A260030DBF5 /* SubViews */,
 			);
 			path = Home;
@@ -535,6 +539,15 @@
 			path = WidgetViews;
 			sourceTree = "<group>";
 		};
+		8450C9E12BDAC11700E1C255 /* BottomBlock */ = {
+			isa = PBXGroup;
+			children = (
+				8450C9E22BDAC18200E1C255 /* BottomBlockView.swift */,
+				43D5F58F2B7A7A260030DBF5 /* DetailsModule */,
+			);
+			path = BottomBlock;
+			sourceTree = "<group>";
+		};
 		846073FA2BC6F541007AF93E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +585,7 @@
 				8439278A2BC9354200FED905 /* FirebaseAnalytics */,
 				8439278C2BC9354200FED905 /* FirebaseAnalyticsSwift */,
 				8439278E2BC9354200FED905 /* FirebaseFunctions */,
+				8450C9DF2BD80D3A00E1C255 /* GoogleMobileAds */,
 			);
 			productName = "Widget Money";
 			productReference = 43D5F5472B7A764D0030DBF5 /* Widget Money.app */;
@@ -624,6 +638,7 @@
 			mainGroup = 43D5F53E2B7A764C0030DBF5;
 			packageReferences = (
 				43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8450C9DE2BD80D3A00E1C255 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 43D5F5482B7A764D0030DBF5 /* Products */;
 			projectDirPath = "";
@@ -645,9 +660,9 @@
 				846074072BC6F7A8007AF93E /* Dark 2.png in Resources */,
 				846074292BC7E402007AF93E /* .gitignore in Resources */,
 				846073FF2BC6F787007AF93E /* Light 2.png in Resources */,
-				843927932BC93C5800FED905 /* GoogleService-Info.plist in Resources */,
 				846074012BC6F78E007AF93E /* Light 1.png in Resources */,
 				846074092BC6F7B0007AF93E /* Dark 3.png in Resources */,
+				8450C9DD2BD7D08E00E1C255 /* GoogleService-Info.plist in Resources */,
 				437ABC8B2B824E0100E7EAA0 /* Localizable.strings in Resources */,
 				8460740B2BC6F7B9007AF93E /* Widgets.png in Resources */,
 				846074032BC6F796007AF93E /* Light 3.png in Resources */,
@@ -681,6 +696,7 @@
 				43D5F5C02B7A7A260030DBF5 /* SettingsViewController.swift in Sources */,
 				43D5F58A2B7A7A1C0030DBF5 /* AppColors.swift in Sources */,
 				43D5F5B42B7A7A260030DBF5 /* CurrencyPairsListViewModel.swift in Sources */,
+				8450C9E32BDAC18200E1C255 /* BottomBlockView.swift in Sources */,
 				43D5F5BA2B7A7A260030DBF5 /* ChooseCurrencyTableViewCell.swift in Sources */,
 				43D5F54B2B7A764D0030DBF5 /* AppDelegate.swift in Sources */,
 				43D5F5B12B7A7A260030DBF5 /* HomeViewController.swift in Sources */,
@@ -928,6 +944,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -965,6 +982,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1068,6 +1086,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		8450C9DE2BD80D3A00E1C255 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1085,6 +1111,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 43EACF352B8670300066F7B8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
+		};
+		8450C9DF2BD80D3A00E1C255 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8450C9DE2BD80D3A00E1C255 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

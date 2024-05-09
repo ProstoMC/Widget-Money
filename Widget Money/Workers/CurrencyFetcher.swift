@@ -49,7 +49,6 @@ class CurrencyFetcher {
         
         let base = "&tsyms=" + base
         let url = responseHeader + coinCodes + base + apiKey //Creating Resquest
-        
         URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
             
             guard let data = data else { return }

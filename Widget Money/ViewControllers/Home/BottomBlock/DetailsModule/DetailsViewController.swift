@@ -22,7 +22,7 @@ class DetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.isHidden = true
+        //view.isHidden = true
         setupRx()
     }
     
@@ -44,13 +44,13 @@ class DetailsViewController: UIViewController {
 extension DetailsViewController {
     private func setupRx() {
         
-        //Appearing of view
-        viewModel.rxIsAppearFlag.subscribe { flag in
-            self.view.isHidden = !flag
-            self.configure()
-            print("DETAILS UPDATE")
-            print(flag)
-        }.disposed(by: bag)
+//        //Appearing of view
+//        viewModel.rxIsAppearFlag.subscribe { flag in
+//            self.view.isHidden = !flag
+//            self.configure()
+//            print("DETAILS UPDATE")
+//            print(flag)
+//        }.disposed(by: bag)
        
         //Favorite status
         viewModel.rxFavoriteStatus.subscribe{ status in
@@ -201,7 +201,25 @@ extension DetailsViewController {
             self.viewModel.changeFavoriteStatus()
         }))
         alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .default, handler: nil))
+        
+        //For IPADS
+        if let popoverPresentationController = alert.popoverPresentationController {
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+        }
+        
         self.present(alert, animated: true, completion: nil)
         
+    }
+}
+
+// MARK:  - SETUP KEYBOARD
+extension DetailsViewController: UITextFieldDelegate {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let _ = touches.first {
+            view.endEditing(true)
+        }
+        super.touchesBegan(touches, with: event)
     }
 }

@@ -9,10 +9,11 @@ import UIKit
 import RxCocoa
 import RxSwift
 import RxDataSources
+import GoogleMobileAds
 
 class HomeViewController: UIViewController {
     let bag = DisposeBag()
-    
+
     var headerView = HeaderView()
     
     var scrollView = UIScrollView()
@@ -20,7 +21,9 @@ class HomeViewController: UIViewController {
     
     var currencyPairsListViewController = CurrencyPairsListViewController()
     var exchangeViewController = ExchangeViewController()
-    var detailsViewController = DetailsViewController()
+
+    
+    var bottomBlock = BottomBlockView()
     
     var isUpdating = false
     
@@ -51,9 +54,11 @@ class HomeViewController: UIViewController {
         CoreWorker.shared.coinList.rxRateUpdated.subscribe{ _ in
             
             self.refreshControl.endRefreshing()
-            self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            //self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            self.scrollView.setContentOffset(CGPointMake(0.0, 0.0), animated: false)
             self.isUpdating = false
         }.disposed(by: bag)
+
     }
 
     private func buildInterface() {
@@ -65,11 +70,13 @@ class HomeViewController: UIViewController {
             height: view.bounds.height*0.08)
         )
         
+
+        
         scrollView.frame = CGRect(
             x: 0,
             y: headerView.frame.maxY + view.bounds.height*0.01,
             width: view.bounds.width,
-            height: view.bounds.height*0.9)
+            height: view.frame.height*0.8)
         
 
         currencyPairsListViewController.view.frame = CGRect(
@@ -84,35 +91,45 @@ class HomeViewController: UIViewController {
             width: scrollView.bounds.width*0.92,
             height: view.bounds.height*0.25)
         
-        detailsViewController.view.frame = CGRect(
+        bottomBlock.frame = CGRect(
             x: view.bounds.width*0.04,
             y: exchangeViewController.view.frame.maxY,
             width: scrollView.bounds.width*0.92,
-            height: view.bounds.width*0.66)
-
+            height: view.bounds.width
+        )
+        bottomBlock.bigAdsBlock.rootViewController = self
+        bottomBlock.littleAdsBlock.rootViewController = self
 
         view.addSubview(headerView)
         view.addSubview(scrollView)
         
         scrollView.addSubview(currencyPairsListViewController.view)
         scrollView.addSubview(exchangeViewController.view)
-        scrollView.addSubview(detailsViewController.view)
+        scrollView.addSubview(bottomBlock)
         
+        //setupAdsBlocks()
+        
+        let contentRect: CGRect = scrollView.subviews.reduce(into: .zero) { rect, view in
+            rect = rect.union(view.frame)
+        }
+        scrollView.contentSize = contentRect.size
         
 
     }
     
     private func setupScrollView() {
-
-        scrollView.contentSize.height = UIScreen.main.bounds.height
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
         
         scrollView.refreshControl = refreshControl
         scrollView.alwaysBounceVertical = true
-        
+        scrollView.keyboardDismissMode = .onDrag
         
         refreshControl.addTarget(self, action: #selector(onRefresh(send:)), for: .valueChanged)
         refreshControl.transform = CGAffineTransformMakeScale(0.75, 0.75)
     }
+    
+
     
     @objc func onRefresh(send: UIRefreshControl) {
         print(isUpdating)

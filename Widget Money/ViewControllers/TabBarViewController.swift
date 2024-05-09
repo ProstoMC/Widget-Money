@@ -33,6 +33,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         setupRx()
     }
     
+    
+    
     override func viewWillLayoutSubviews() {
 
     }
@@ -74,6 +76,7 @@ extension TabBarViewController {
         let selectedImage = UIImage(systemName: "house")
         let item = UITabBarItem(title: "Home".localized(), image: image, selectedImage: selectedImage)
         homeVC.tabBarItem = item
+        //homeVC.tabBarSize = self.tabBarController?.tabBar.frame.height ?? 49.0
     }
     
     private func configureListVC() {

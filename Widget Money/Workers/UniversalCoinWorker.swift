@@ -194,7 +194,7 @@ extension UniversalCoinWorker {
             }
             
         }
-        
+       // print ("FIAT={")
         for i in fiatList.indices {
             guard let coinsProperty = json[fiatList[i].code] as? [String: Any] else { continue }
             guard let properties = coinsProperty["USD"] as? [String: Any] else { continue }
@@ -202,11 +202,13 @@ extension UniversalCoinWorker {
             guard let rate = properties["PRICE"] as? Double else { continue }
             guard let flow = properties["CHANGE24HOUR"] as? Double else { continue }
             
+            //print ("\"\(fiatList[i].code)\":\"\(fiatList[i].name)\",")
             fiatList[i].rate = rate / baseRate
             fiatList[i].flow24Hours = flow / baseRate
             //fiatList[i].imageUrl = "https://www.cryptocompare.com" + imageUrl
             fiatList[i].imageUrl = "https://raw.githubusercontent.com/ProstoMC/CurrencyIcons/main/" + fiatList[i].code + ".png"
         }
+       // print ("}")
         
         for i in cryptoList.indices {
             guard let coinsProperty = json[cryptoList[i].code] as? [String: Any] else { continue }

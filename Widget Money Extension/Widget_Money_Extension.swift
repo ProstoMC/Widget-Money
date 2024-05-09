@@ -77,7 +77,7 @@ struct Widget_Money_ExtensionEntryView : View {
         GeometryReader { reader in //For Image size
             ZStack {
                 VStack(spacing: 0){
-                    Text(entry.widgetModel.date)
+                    Text("🕗 \(entry.widgetModel.date)")
                         .font(.caption)
                         .fontWeight(.light)
                         .scaledToFill()
@@ -88,14 +88,14 @@ struct Widget_Money_ExtensionEntryView : View {
                     //.background(.yellow)
                     
                     if family == .systemSmall {
-                        CustomDivider(percent: 0.55)
-                            .frame(width: reader.size.width-16, height: 0.5)
+//                        CustomDivider(percent: 0.55)
+//                            .frame(width: reader.size.width-16, height: 0.5)
                         SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
                             .background(ContainerRelativeShape())
                     } else 
                     if family == .systemMedium {
-                       CustomDivider(percent: 0.25)
-                           .frame(width: reader.size.width-16, height: 0.5)
+//                       CustomDivider(percent: 0.25)
+//                           .frame(width: reader.size.width-16, height: 0.5)
                         MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
                             .background(ContainerRelativeShape())
                     }

@@ -51,7 +51,7 @@ class HeaderView: UIView {
 
 extension HeaderView {
     
-    private func setup() {
+    func setup() {
         
         colorsUpdate()
         setupLogo()
@@ -59,7 +59,9 @@ extension HeaderView {
     }
     
     private func colorsUpdate() {
+        
         self.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().background
+        
         logoImageView.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().mainColorPale
         dateTextLabel.textColor = CoreWorker.shared.colorsWorker.returnColors().secondText.withAlphaComponent(0.4)
         setupLogoImage()
