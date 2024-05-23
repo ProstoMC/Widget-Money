@@ -12,6 +12,7 @@ import UIKit
 struct SettingsCellViewModel {
     let name: String
     var value: BehaviorSubject<String>
+    var imageName: String
     
     var nameLabelColor: BehaviorSubject<UIColor>
     var valueLabelColor: BehaviorSubject<UIColor>
@@ -21,17 +22,23 @@ struct SettingsCellViewModel {
 protocol SettingsViewModelProtocol {
     var colorSet: AppColors { get }
     var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
+    var rxAdsIsHidden: BehaviorSubject<Bool> { get }
     
     var settingsList: [SettingsCellViewModel] { get }
+    
+    var bannerID: String { get }
     
     func changeBaseCurrency(name: String)
     func changeTheme(theme: AppTheme)
 }
 
 class SettingsViewModel: SettingsViewModelProtocol {
+    
+    var rxAdsIsHidden = BehaviorSubject(value: false)
+    
     var colorSet: AppColors = CoreWorker.shared.colorsWorker.returnColors()
     var rxAppThemeUpdated = BehaviorSubject(value: true)
-    
+    var bannerID: String = CoreWorker.shared.adsWorker.returnBannerID(bannerType: .settingsBannerID)
     let bag = DisposeBag()
 
     var settingsList: [SettingsCellViewModel] = []
@@ -64,6 +71,10 @@ class SettingsViewModel: SettingsViewModelProtocol {
             self.settingsList[1].value.onNext(valueName)
             
         }.disposed(by: bag)
+        //Subscribe to adsWorker
+        CoreWorker.shared.adsWorker.adsIsHidden.subscribe(onNext: { isHidden in
+            self.rxAdsIsHidden.onNext(isHidden)
+        }).disposed(by: bag)
 
     }
 
@@ -85,7 +96,8 @@ extension SettingsViewModel {
         //Add base coin form CoinList
         list.append(createBaseCurrencySettings())
         list.append(createThemeSettigs())
-
+        list.append(createPurchaseSettings())
+        
         return list
     }
     
@@ -93,6 +105,7 @@ extension SettingsViewModel {
         return SettingsCellViewModel(
             name: "Base currency".localized(),
             value: BehaviorSubject(value: CoreWorker.shared.coinList.baseCoin.code),
+            imageName: "SettingsCurrency",
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
             backgroundColor: BehaviorSubject(value: colorSet.background)
@@ -110,11 +123,23 @@ extension SettingsViewModel {
         return SettingsCellViewModel(
             name: "App theme".localized(),
             value: BehaviorSubject(value: valueName),
+            imageName: "SettingsTheme",
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
             backgroundColor: BehaviorSubject(value: colorSet.background)
         )
     }
+    private func createPurchaseSettings() -> SettingsCellViewModel {
+        return SettingsCellViewModel(
+            name: "Remove ads".localized(),
+            value: BehaviorSubject(value: "1.49$"),
+            imageName: "SettingsPurchase",
+            nameLabelColor: BehaviorSubject(value: colorSet.mainText),
+            valueLabelColor: BehaviorSubject(value: colorSet.secondText),
+            backgroundColor: BehaviorSubject(value: colorSet.background)
+        )
+    }
+    
 }
 
 extension SettingsViewModel {

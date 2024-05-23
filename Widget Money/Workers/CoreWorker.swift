@@ -19,6 +19,8 @@ class CoreWorker {
     
     let bag = DisposeBag()
     
+    let adsWorker: AdsWorkerProtocol = AdsWorker()
+    
     //Colors
     let colorsWorker: ColorsWorkerProtocol = ColorsWorker()
     

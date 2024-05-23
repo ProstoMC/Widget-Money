@@ -98,7 +98,7 @@ class HomeViewController: UIViewController {
             height: view.bounds.width
         )
         bottomBlock.bigAdsBlock.rootViewController = self
-        bottomBlock.littleAdsBlock.rootViewController = self
+        bottomBlock.smallAdsBlock.rootViewController = self
 
         view.addSubview(headerView)
         view.addSubview(scrollView)

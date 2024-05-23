@@ -19,6 +19,12 @@
 "Dark" = "Темная";
 "Light" = "Светлая";
 "System" = "Системная";
+"Back" = "Назад";
+"Remove ads" = "Удаление рекламы";
+"Remove banner ads" = "Удалить баннерную рекламу";
+"Save" = "Сохранить";
+"Restore purchase" = "Восстановить покупку";
+"Advertisement banners have been removed" = "Рекламные баннеры удалены";
 "Cancel" = "Отмена";
 
 //Second Controller
@@ -27,7 +33,7 @@
 "Search" = "Поиск";
 
 //Home Controller
-"Exchange" = "Калькулятор";
+"Exchange" = "Конвертер";
 "From" = "Из";
 "To" = "В";
 

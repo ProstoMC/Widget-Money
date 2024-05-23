@@ -1,23 +1,32 @@
 //
-//  SettingsTableViewCell.swift
-//  Currency Widget
+//  ChangeThemeCell.swift
+//  Widget Money
 //
-//  Created by macSlm on 28.12.2023.
+//  Created by admin on 12.05.24.
 //
 
 import UIKit
 import RxSwift
 
-class SettingsTableViewCell: UITableViewCell {
+struct ChangeThemeCellViewModel {
+    let name: String
+    var imageName: BehaviorSubject<String>
+    
+    var elementsColor: BehaviorSubject<UIColor>
+    var separatorColor: BehaviorSubject<UIColor>
+    var backgroundColor: BehaviorSubject<UIColor>
+}
+
+class ChangeThemeCell: UITableViewCell {
+    
+    
     let bag = DisposeBag()
     
     let iconView = UIImageView()
     let nameLabel = UILabel()
-    let valueLabel = UILabel()
-    let chevronView = UIImageView()
     
     let separatorLine = UIView()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -27,24 +36,23 @@ class SettingsTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
         setupUI()
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         //setupUI()
     }
     
-    func dataConfigure(viewModel: SettingsCellViewModel) {
+    func dataConfigure(viewModel: ChangeThemeCellViewModel) {
         nameLabel.text = viewModel.name
-        iconView.image = UIImage(named: viewModel.imageName)
         subscribing(viewModel: viewModel)
-        
     }
     
-    func subscribing(viewModel: SettingsCellViewModel){
-        viewModel.value.subscribe(onNext: { value in
-            self.valueLabel.text = value
+    func subscribing(viewModel: ChangeThemeCellViewModel){
+        // Image
+        viewModel.imageName.subscribe(onNext: { name in
+            self.iconView.image = UIImage(systemName: name)
+            
         }).disposed(by: bag)
-        
         // Colors
         viewModel.backgroundColor.subscribe(onNext: { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
@@ -53,7 +61,7 @@ class SettingsTableViewCell: UITableViewCell {
             })
         }).disposed(by: bag)
         
-        viewModel.nameLabelColor.subscribe(onNext: { color in
+        viewModel.elementsColor.subscribe(onNext: { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.nameLabel.textColor = color
@@ -61,25 +69,22 @@ class SettingsTableViewCell: UITableViewCell {
             })
         }).disposed(by: bag)
         
-        viewModel.valueLabelColor.subscribe(onNext: { color in
+        viewModel.separatorColor.subscribe(onNext: { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
-                self.valueLabel.textColor = color
                 self.separatorLine.backgroundColor = color
-                self.chevronView.tintColor = color
             })
         }).disposed(by: bag)
     }
 }
 
 // MARK:  - SETUP UI
-extension SettingsTableViewCell {
+extension ChangeThemeCell {
     private func setupUI() {
         
         self.selectionStyle = .none
         
         setupIconView()
-        setupChevronView()
         setupLabels()
         setupSeparatorLine()
         
@@ -100,25 +105,9 @@ extension SettingsTableViewCell {
         iconView.contentMode = .scaleAspectFit
     }
     
-    private func setupChevronView() {
-        chevronView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(chevronView)
-        
-        NSLayoutConstraint.activate([
-            chevronView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            chevronView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -contentView.bounds.width / 25),
-            chevronView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.35),
-            chevronView.widthAnchor.constraint(equalTo: chevronView.heightAnchor)
-        ])
-        chevronView.image = UIImage(systemName: "chevron.right")
-        chevronView.contentMode = .scaleAspectFit
-    }
-    
     private func setupLabels() {
         contentView.addSubview(nameLabel)
-        contentView.addSubview(valueLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             nameLabel.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: contentView.bounds.width / 25),
@@ -126,13 +115,7 @@ extension SettingsTableViewCell {
             nameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7),
             nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.6),
             
-            valueLabel.rightAnchor.constraint(equalTo: chevronView.leftAnchor, constant: -contentView.bounds.width / 50),
-            valueLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            valueLabel.heightAnchor.constraint(equalTo: nameLabel.heightAnchor),
-            valueLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)
         ])
-        
-        valueLabel.textAlignment = .right
     }
     
     private func setupSeparatorLine() {

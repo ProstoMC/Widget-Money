@@ -11,12 +11,6 @@ import GoogleMobileAds
 
 class SettingsViewController: UIViewController {
     
-    //AdMob block ID
-    //Tests:
-    let adsBlockID = "ca-app-pub-3940256099942544/2435281174"
-    //Prodaction
-    //let adBlockID = "ca-app-pub-7946769692194601/4341308255"
-    
     var viewModel: SettingsViewModelProtocol = SettingsViewModel()
     let disposeBag = DisposeBag()
     
@@ -50,12 +44,18 @@ class SettingsViewController: UIViewController {
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.colorsUpdate()
             })
-
         }.disposed(by: disposeBag)
+        
+        viewModel.rxAdsIsHidden.subscribe(onNext: { isHidden in
+            self.adsBlock.isHidden = isHidden
+        }).disposed(by: disposeBag)
+        
     }
+    
 
 }
 extension SettingsViewController: ReturnDataFromChooseViewControllerProtocol {
+    
     func passCurrencyShortName(name: String?) {
         if name != nil {
             viewModel.changeBaseCurrency(name: name!)
@@ -96,8 +96,6 @@ extension SettingsViewController {
         )
         
         view.addSubview(topline)
-        
-        
     }
     
     private func setupTableView(){
@@ -105,13 +103,14 @@ extension SettingsViewController {
             x: view.bounds.width*0.04,
             y: topline.frame.maxY + view.bounds.height*0.01,
             width: view.bounds.width * 0.92,
-            height: baseHeightOfElements*3) // 1 row = 1.5 BaseHeigh. We have 2 rows
+            height: baseHeightOfElements*4.5) // 1 row = 1.5 BaseHeigh. We have 3 rows
         )
         view.addSubview(tableView)
         
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isScrollEnabled = false
         
         tableView.layer.cornerRadius = UIScreen.main.bounds.height/80
         
@@ -137,7 +136,7 @@ extension SettingsViewController {
             adsBlock.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 50)
         ])
         
-        adsBlock.adUnitID = adsBlockID
+        adsBlock.adUnitID = viewModel.bannerID
         adsBlock.load(GADRequest())
         
     }
@@ -165,6 +164,13 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingsTableViewCell
         cell.dataConfigure(viewModel: viewModel.settingsList[indexPath.row])
+        
+        //Delete separator in last cell
+        
+        if indexPath.row == viewModel.settingsList.count - 1 {
+            cell.separatorLine.isHidden = true
+        }
+        
         return cell
     }
 }
@@ -192,12 +198,10 @@ extension SettingsViewController: UITableViewDelegate {
         //Base currency
         if indexPath.row == 0 { changeBaseCurrency() }
         //App theme
-        if indexPath.row == 1 { changeThemeAlert() }
+        if indexPath.row == 1 { changeTheme() }
+        
+        if indexPath.row == 2 { goToPurchase() }
     }
-    
-
-    
-    
 }
 
 
@@ -211,34 +215,21 @@ extension SettingsViewController {
         present(vc, animated: true)
     }
     
-    func changeThemeAlert() {
-
-        let alert = UIAlertController(
-            title: nil,
-            message: nil,
-            preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: "System".localized(), style: .default, handler: {_ in
-            self.viewModel.changeTheme(theme: .system)
-        })
-        )
-        alert.addAction(UIAlertAction(title: "Light".localized(), style: .default, handler: {_ in
-            self.viewModel.changeTheme(theme: .light)
-        })
-        )
-        alert.addAction(UIAlertAction(title: "Dark".localized(), style: .default, handler: {_ in
-            self.viewModel.changeTheme(theme: .dark)
-        })
-        )
-        //For IPADS
-        if let popoverPresentationController = alert.popoverPresentationController {
-            popoverPresentationController.sourceView = self.view
-            popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
-        }
-        
-        self.present(alert, animated: true, completion: nil)
+    func changeTheme() {
+        let vc = ChangeThemeViewController()
+        vc.colorSet = viewModel.colorSet
+        vc.modalPresentationStyle = .automatic
+        present(vc, animated: true)
     }
+    
+    func goToPurchase() {
+        let vc = PurchaseViewController()
+        vc.colorSet = viewModel.colorSet
+        vc.modalPresentationStyle = .automatic
+        present(vc, animated: true)
+    }
+    
+    
 }
 
 // MARK:  - SETUP KEYBOARD

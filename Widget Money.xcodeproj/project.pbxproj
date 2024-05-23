@@ -79,6 +79,8 @@
 		8450C9DD2BD7D08E00E1C255 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8450C9DC2BD7D08E00E1C255 /* GoogleService-Info.plist */; };
 		8450C9E02BD80D3A00E1C255 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 8450C9DF2BD80D3A00E1C255 /* GoogleMobileAds */; };
 		8450C9E32BDAC18200E1C255 /* BottomBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C9E22BDAC18200E1C255 /* BottomBlockView.swift */; };
+		8450C9E52BED098C00E1C255 /* AdsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C9E42BED098C00E1C255 /* AdsWorker.swift */; };
+		8450C9E72BED363900E1C255 /* ChangeThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C9E62BED363900E1C255 /* ChangeThemeViewController.swift */; };
 		846073642BBC9F6A007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */; };
 		846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073662BBDF752007AF93E /* SettingsHeaderView.swift */; };
@@ -109,6 +111,8 @@
 		846074432BC7EAB7007AF93E /* SDWebImage.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846074322BC7EAB7007AF93E /* SDWebImage.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		846074442BC7EAB7007AF93E /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846074332BC7EAB7007AF93E /* RxRelay.xcframework */; };
 		846074452BC7EAB7007AF93E /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846074332BC7EAB7007AF93E /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84659DF52BF106A300C3BABB /* ChangeThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84659DF42BF106A300C3BABB /* ChangeThemeCell.swift */; };
+		84659DF82BF26A0300C3BABB /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84659DF72BF26A0300C3BABB /* PurchaseViewController.swift */; };
 		84B95E3F2BD527ED00EE9CEC /* LiteFetcherForWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */; };
 		84B95E402BD527F000EE9CEC /* LiteFetcherForWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */; };
 		84B95E412BD5317F00EE9CEC /* CoinUniversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5882B7A7A1C0030DBF5 /* CoinUniversal.swift */; };
@@ -226,6 +230,8 @@
 		8450C9D92BD6CAB000E1C255 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		8450C9DC2BD7D08E00E1C255 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8450C9E22BDAC18200E1C255 /* BottomBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBlockView.swift; sourceTree = "<group>"; };
+		8450C9E42BED098C00E1C255 /* AdsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsWorker.swift; sourceTree = "<group>"; };
+		8450C9E62BED363900E1C255 /* ChangeThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeThemeViewController.swift; sourceTree = "<group>"; };
 		846073432BBB1A8B007AF93E /* Differentiator.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Differentiator.xcframework; path = ../Projects/Extentions/Carthage/Build/Differentiator.xcframework; sourceTree = "<group>"; };
 		846073442BBB1A8B007AF93E /* RxSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxSwift.xcframework; path = ../Projects/Extentions/Carthage/Build/RxSwift.xcframework; sourceTree = "<group>"; };
 		846073452BBB1A8B007AF93E /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = ../Projects/Extentions/Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
@@ -256,6 +262,8 @@
 		846074312BC7EAB7007AF93E /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
 		846074322BC7EAB7007AF93E /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
 		846074332BC7EAB7007AF93E /* RxRelay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxRelay.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/RxRelay.xcframework; sourceTree = "<group>"; };
+		84659DF42BF106A300C3BABB /* ChangeThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeThemeCell.swift; sourceTree = "<group>"; };
+		84659DF72BF26A0300C3BABB /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteFetcherForWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -365,6 +373,7 @@
 				43D5F5792B7A79F80030DBF5 /* CurrencyFetcher.swift */,
 				43D5F57A2B7A79F80030DBF5 /* CoinPairWorker.swift */,
 				43D5F57B2B7A79F80030DBF5 /* UniversalCoinWorker.swift */,
+				8450C9E42BED098C00E1C255 /* AdsWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -456,6 +465,8 @@
 		43D5F5A32B7A7A260030DBF5 /* SettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				84659DF62BF269BA00C3BABB /* PurchaseViewController */,
+				84659DF32BF1065400C3BABB /* ChangeThemeViewController */,
 				43D5F5A42B7A7A260030DBF5 /* SettingsViewModel.swift */,
 				43D5F5A52B7A7A260030DBF5 /* SettingsTableViewCell.swift */,
 				43D5F5A62B7A7A260030DBF5 /* SettingsViewController.swift */,
@@ -560,6 +571,23 @@
 				8460740A2BC6F7B9007AF93E /* Widgets.png */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		84659DF32BF1065400C3BABB /* ChangeThemeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8450C9E62BED363900E1C255 /* ChangeThemeViewController.swift */,
+				84659DF42BF106A300C3BABB /* ChangeThemeCell.swift */,
+			);
+			path = ChangeThemeViewController;
+			sourceTree = "<group>";
+		};
+		84659DF62BF269BA00C3BABB /* PurchaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84659DF72BF26A0300C3BABB /* PurchaseViewController.swift */,
+			);
+			path = PurchaseViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -700,6 +728,7 @@
 				43D5F5BA2B7A7A260030DBF5 /* ChooseCurrencyTableViewCell.swift in Sources */,
 				43D5F54B2B7A764D0030DBF5 /* AppDelegate.swift in Sources */,
 				43D5F5B12B7A7A260030DBF5 /* HomeViewController.swift in Sources */,
+				8450C9E72BED363900E1C255 /* ChangeThemeViewController.swift in Sources */,
 				43D5F5C62B7A7A270030DBF5 /* TabBarViewController.swift in Sources */,
 				43D5F5BC2B7A7A260030DBF5 /* ExchangeViewController.swift in Sources */,
 				43D5F54D2B7A764D0030DBF5 /* SceneDelegate.swift in Sources */,
@@ -715,6 +744,7 @@
 				43D5F5BD2B7A7A260030DBF5 /* ExchangeViewModel.swift in Sources */,
 				43D5F5B32B7A7A260030DBF5 /* AddTileUIView.swift in Sources */,
 				43D5F5B02B7A7A260030DBF5 /* DetailsViewController.swift in Sources */,
+				8450C9E52BED098C00E1C255 /* AdsWorker.swift in Sources */,
 				43D5F5B52B7A7A260030DBF5 /* CurrencyPairsListViewController.swift in Sources */,
 				43D5F5B72B7A7A260030DBF5 /* CurrencyPairCellModel.swift in Sources */,
 				43D5F5C52B7A7A260030DBF5 /* SecondViewController.swift in Sources */,
@@ -734,12 +764,14 @@
 				846073652BBCA000007AF93E /* ExtensionsForIOS17.swift in Sources */,
 				8450C9DA2BD6CAB000E1C255 /* CustomDivider.swift in Sources */,
 				43D5F5B92B7A7A260030DBF5 /* ChooseCurrencyViewController.swift in Sources */,
+				84659DF52BF106A300C3BABB /* ChangeThemeCell.swift in Sources */,
 				437ABC882B824CA200E7EAA0 /* Extension+String.swift in Sources */,
 				43D5F5852B7A79F80030DBF5 /* CoreWorker.swift in Sources */,
 				43829DDD2B8E30C900E99F42 /* NameAndCountryBlock.swift in Sources */,
 				84B95E3F2BD527ED00EE9CEC /* LiteFetcherForWidget.swift in Sources */,
 				43D5F5842B7A79F80030DBF5 /* UniversalCoinWorker.swift in Sources */,
 				43D5F5B62B7A7A260030DBF5 /* CurrencyPairCell.swift in Sources */,
+				84659DF82BF26A0300C3BABB /* PurchaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
