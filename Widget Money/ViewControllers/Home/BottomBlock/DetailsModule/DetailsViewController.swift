@@ -205,7 +205,9 @@ extension DetailsViewController {
         //For IPADS
         if let popoverPresentationController = alert.popoverPresentationController {
             popoverPresentationController.sourceView = self.view
-            popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+            popoverPresentationController.sourceRect = CGRectMake(
+                favoriteView.frame.midX ,
+                favoriteView.frame.midY, 1.0, 1.0)
         }
         
         self.present(alert, animated: true, completion: nil)

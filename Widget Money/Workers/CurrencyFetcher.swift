@@ -11,6 +11,22 @@ import Alamofire
 
 class CurrencyFetcher {
     
+    struct KuznecovCoin: Codable {
+        var name: String
+        var code: String
+        var url_image: String?
+        var type: String
+        
+        var echangerate: Echangerate
+    }
+    
+    struct Echangerate: Codable {
+        var rate: Double
+        var flowrate24: Double
+        var last_update: String
+    }
+    
+    
     struct Valute: Decodable {
         let ID: String
         let NumCode: String
@@ -67,4 +83,44 @@ class CurrencyFetcher {
         
     }
 
+}
+
+//MARK: - Personal backend
+
+extension CurrencyFetcher {
+    
+    func fetchCoinsFromBackend(completion: @escaping ([CoinUniversal]) -> ()) {
+        var universalCoins: [CoinUniversal] = []
+        
+        let url = URL(string: "http://192.168.31.8:8000/api/currencies/?format=json")!
+        
+        
+        AF.request(url).validate().responseDecodable(of: [KuznecovCoin].self) { (response) in
+            
+            guard let kuzCoins = response.value else { return }
+
+                kuzCoins.forEach({ kuzCoin in
+                    
+                    let type: TypeOfCoin = {
+                        if kuzCoin.type == TypeOfCoin.fiat.rawValue { return TypeOfCoin.fiat }
+                        else { return TypeOfCoin.crypto }
+                    }()
+                    
+                    universalCoins.append(CoinUniversal(
+                        type: type,
+                        code: kuzCoin.code,
+                        name: kuzCoin.name,
+                        base: "USD",
+                        rate: kuzCoin.echangerate.rate,
+                        flow24Hours: kuzCoin.echangerate.flowrate24,
+                        logo: "$",
+                        imageUrl: kuzCoin.url_image ?? "Error",
+                        colorIndex: 0))
+                })
+
+            DispatchQueue.main.async {
+                completion(universalCoins)
+            }
+        }.resume()
+    }
 }

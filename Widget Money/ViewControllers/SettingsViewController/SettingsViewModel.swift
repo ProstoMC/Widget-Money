@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import UIKit
+import StoreKit
 
 struct SettingsCellViewModel {
     let name: String
@@ -25,6 +26,7 @@ protocol SettingsViewModelProtocol {
     var rxAdsIsHidden: BehaviorSubject<Bool> { get }
     
     var settingsList: [SettingsCellViewModel] { get }
+    var rxSettingsListUpdated: BehaviorSubject<Bool> { get }
     
     var bannerID: String { get }
     
@@ -42,6 +44,7 @@ class SettingsViewModel: SettingsViewModelProtocol {
     let bag = DisposeBag()
 
     var settingsList: [SettingsCellViewModel] = []
+    var rxSettingsListUpdated = BehaviorSubject(value: false)
     
     init() {
         settingsList = createSettingsList()
@@ -67,13 +70,27 @@ class SettingsViewModel: SettingsViewModelProtocol {
             case .light: valueName = "Light".localized()
             case .system: valueName = "System".localized()
             }
-            
+            //Change name of theme
             self.settingsList[1].value.onNext(valueName)
-            
         }.disposed(by: bag)
+        
+        
         //Subscribe to adsWorker
         CoreWorker.shared.adsWorker.adsIsHidden.subscribe(onNext: { isHidden in
             self.rxAdsIsHidden.onNext(isHidden)
+        }).disposed(by: bag)
+        
+        
+        //Subscribe to Purchase worker
+            //After getting purchaces - add it to Settings list and update view
+        CoreWorker.shared.purchaseWorker.rxProductsFetchedFlag.subscribe(onNext: { flag in
+            if flag {
+                let products = CoreWorker.shared.purchaseWorker.returnProducts()
+                products.forEach({ product in
+                    self.settingsList.append(self.createPurchaseSettings(product: product))
+                })
+                self.rxSettingsListUpdated.onNext(true)
+            }
         }).disposed(by: bag)
 
     }
@@ -96,7 +113,6 @@ extension SettingsViewModel {
         //Add base coin form CoinList
         list.append(createBaseCurrencySettings())
         list.append(createThemeSettigs())
-        list.append(createPurchaseSettings())
         
         return list
     }
@@ -108,7 +124,7 @@ extension SettingsViewModel {
             imageName: "SettingsCurrency",
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.background)
+            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
         )
     }
     private func createThemeSettigs() -> SettingsCellViewModel {
@@ -126,18 +142,26 @@ extension SettingsViewModel {
             imageName: "SettingsTheme",
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.background)
+            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
         )
     }
-    private func createPurchaseSettings() -> SettingsCellViewModel {
+    private func createPurchaseSettings(product: SKProduct) -> SettingsCellViewModel {
         return SettingsCellViewModel(
-            name: "Remove ads".localized(),
-            value: BehaviorSubject(value: "1.49$"),
-            imageName: "SettingsPurchase",
+            name: product.localizedDescription,
+            value: BehaviorSubject(value: formatPrice(product: product)),
+            imageName: product.productIdentifier,
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.background)
+            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
         )
+    }
+    
+    private func formatPrice(product: SKProduct) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = product.priceLocale
+        
+        return formatter.string(from: product.price) ?? "No data"
     }
     
 }

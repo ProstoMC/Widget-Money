@@ -38,6 +38,8 @@ class SettingsTableViewCell: UITableViewCell {
         iconView.image = UIImage(named: viewModel.imageName)
         subscribing(viewModel: viewModel)
         
+        //print(viewModel.name)
+        
     }
     
     func subscribing(viewModel: SettingsCellViewModel){
@@ -75,7 +77,6 @@ class SettingsTableViewCell: UITableViewCell {
 // MARK:  - SETUP UI
 extension SettingsTableViewCell {
     private func setupUI() {
-        
         self.selectionStyle = .none
         
         setupIconView()

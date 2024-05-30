@@ -113,6 +113,7 @@
 		846074452BC7EAB7007AF93E /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 846074332BC7EAB7007AF93E /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84659DF52BF106A300C3BABB /* ChangeThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84659DF42BF106A300C3BABB /* ChangeThemeCell.swift */; };
 		84659DF82BF26A0300C3BABB /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84659DF72BF26A0300C3BABB /* PurchaseViewController.swift */; };
+		84659DFA2C04C9EB00C3BABB /* PurchaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84659DF92C04C9EB00C3BABB /* PurchaseWorker.swift */; };
 		84B95E3F2BD527ED00EE9CEC /* LiteFetcherForWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */; };
 		84B95E402BD527F000EE9CEC /* LiteFetcherForWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */; };
 		84B95E412BD5317F00EE9CEC /* CoinUniversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5882B7A7A1C0030DBF5 /* CoinUniversal.swift */; };
@@ -264,6 +265,8 @@
 		846074332BC7EAB7007AF93E /* RxRelay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxRelay.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/RxRelay.xcframework; sourceTree = "<group>"; };
 		84659DF42BF106A300C3BABB /* ChangeThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeThemeCell.swift; sourceTree = "<group>"; };
 		84659DF72BF26A0300C3BABB /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
+		84659DF92C04C9EB00C3BABB /* PurchaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseWorker.swift; sourceTree = "<group>"; };
+		84659DFB2C06229400C3BABB /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteFetcherForWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -358,6 +361,7 @@
 				43D5F5552B7A76510030DBF5 /* LaunchScreen.storyboard */,
 				8450C9DC2BD7D08E00E1C255 /* GoogleService-Info.plist */,
 				43D5F5582B7A76510030DBF5 /* Info.plist */,
+				84659DFB2C06229400C3BABB /* Products.storekit */,
 			);
 			path = "Widget Money";
 			sourceTree = "<group>";
@@ -374,6 +378,7 @@
 				43D5F57A2B7A79F80030DBF5 /* CoinPairWorker.swift */,
 				43D5F57B2B7A79F80030DBF5 /* UniversalCoinWorker.swift */,
 				8450C9E42BED098C00E1C255 /* AdsWorker.swift */,
+				84659DF92C04C9EB00C3BABB /* PurchaseWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -747,6 +752,7 @@
 				8450C9E52BED098C00E1C255 /* AdsWorker.swift in Sources */,
 				43D5F5B52B7A7A260030DBF5 /* CurrencyPairsListViewController.swift in Sources */,
 				43D5F5B72B7A7A260030DBF5 /* CurrencyPairCellModel.swift in Sources */,
+				84659DFA2C04C9EB00C3BABB /* PurchaseWorker.swift in Sources */,
 				43D5F5C52B7A7A260030DBF5 /* SecondViewController.swift in Sources */,
 				43D5F5BE2B7A7A260030DBF5 /* SettingsViewModel.swift in Sources */,
 				43D5F5B82B7A7A260030DBF5 /* HeaderView.swift in Sources */,

@@ -18,7 +18,7 @@ enum bannerIDs: String {
 protocol AdsWorkerProtocol {
     var testmode: Bool { get }
     var adsIsHidden: BehaviorSubject<Bool> { get }
-    var price: BehaviorSubject<String> { get }
+   
     
     func returnBannerID(bannerType: bannerIDs) -> String
 }
@@ -26,17 +26,15 @@ protocol AdsWorkerProtocol {
 
 
 class AdsWorker: AdsWorkerProtocol {
-    
+
     let testmode = true
     
     var adsIsHidden = BehaviorSubject(value: false)
-    var price = BehaviorSubject(value: "No data")
+    
     
     let defaults = UserDefaults.standard
     
-
-    
-    init() {
+     init() {
         adsIsHidden.onNext(getAdsStatusFromDefaults())
         //adsIsHidden.onNext(true) //For tests
     }

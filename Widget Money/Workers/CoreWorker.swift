@@ -21,6 +21,8 @@ class CoreWorker {
     
     let adsWorker: AdsWorkerProtocol = AdsWorker()
     
+    let purchaseWorker: PurchaseWorkerProtocol = PurchaseWorker()
+    
     //Colors
     let colorsWorker: ColorsWorkerProtocol = ColorsWorker()
     

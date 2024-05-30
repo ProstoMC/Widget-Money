@@ -43,10 +43,10 @@ class PurchaseViewController: UIViewController {
     
     // MARK:  - RX Subscribing
     private func rxSubscribing() {
-        CoreWorker.shared.adsWorker.price.subscribe(onNext: { price in
-            let title = "Remove ads for".localized() + " " + price
-            self.buyButton.setTitle(title, for: .normal)
-        }).disposed(by: disposeBag)
+//        CoreWorker.shared.adsWorker.price.subscribe(onNext: { price in
+//            let title = "Remove ads for".localized() + " " + price
+//            self.buyButton.setTitle(title, for: .normal)
+//        }).disposed(by: disposeBag)
         
         CoreWorker.shared.adsWorker.adsIsHidden.subscribe(onNext: { isHidden in
             self.buyButton.isHidden = isHidden

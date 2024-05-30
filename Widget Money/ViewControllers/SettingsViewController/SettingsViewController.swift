@@ -50,6 +50,13 @@ class SettingsViewController: UIViewController {
             self.adsBlock.isHidden = isHidden
         }).disposed(by: disposeBag)
         
+        viewModel.rxSettingsListUpdated.subscribe(onNext: { flag in
+            if flag {
+                self.setupTableView()
+                self.tableView.reloadData()
+            }
+        }).disposed(by: disposeBag)
+        
     }
     
 
@@ -62,7 +69,7 @@ extension SettingsViewController: ReturnDataFromChooseViewControllerProtocol {
         }
     }
 }
-// MARK:  - SEUP UI
+// MARK:  - SETUP UI
 extension SettingsViewController {
     private func setupUI() {
         
@@ -80,7 +87,7 @@ extension SettingsViewController {
             x: 0,
             y: view.safeAreaInsets.top,
             width: view.bounds.width,
-            height: view.bounds.height*0.5)
+            height: view.bounds.height*0.45)
         )
         
         view.addSubview(headerView)
@@ -103,8 +110,9 @@ extension SettingsViewController {
             x: view.bounds.width*0.04,
             y: topline.frame.maxY + view.bounds.height*0.01,
             width: view.bounds.width * 0.92,
-            height: baseHeightOfElements*4.5) // 1 row = 1.5 BaseHeigh. We have 3 rows
+            height: baseHeightOfElements*Double(viewModel.settingsList.count)*1.5) // 1 row = 1.5 BaseHeigh.
         )
+        
         view.addSubview(tableView)
         
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -157,7 +165,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(viewModel.settingsList.count)
+        //print(viewModel.settingsList.count)
         return viewModel.settingsList.count
     }
     
@@ -186,7 +194,7 @@ extension SettingsViewController: UITableViewDelegate {
         } else {
             height = Double(Int(height)) // Deleting fraction
         }
-        print (height)
+        //print (height)
         return height
     }
     

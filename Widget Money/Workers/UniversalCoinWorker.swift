@@ -230,6 +230,30 @@ extension UniversalCoinWorker {
     }
     
 }
+//MARK: - PERSONAL BACKEND
+extension UniversalCoinWorker {
+    func getFromBackend() {
+        
+        var fiats: [CoinUniversal] = []
+        var cryptos: [CoinUniversal] = []
+        
+        fetcher.fetchCoinsFromBackend(completion: { coins in
+            coins.forEach({ coin in
+                if coin.type == .fiat {
+                    fiats.append(coin)
+                } else {
+                    cryptos.append(coin)
+                }
+            })
+            
+            self.fiatList = fiats
+            self.cryptoList = cryptos
+            
+            self.rxRateUpdated.onNext(true)
+        })
+        
+    }
+}
 
     
 // MARK: - USER DEFAULTS
