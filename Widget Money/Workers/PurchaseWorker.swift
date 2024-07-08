@@ -11,91 +11,170 @@ import RxSwift
 
 protocol PurchaseWorkerProtocol {
     var rxProductsFetchedFlag: BehaviorSubject<Bool> { get }
+    var rxProductPurchased: BehaviorSubject<Bool> { get }
+    var rxAdsIsHidden: BehaviorSubject<Bool> { get }
     
+    func makePurchase(_ product: Product) async throws
+    func returnProducts() -> [Product]
+    func returnProduct(productID: String) -> Product?
+    func updatePurchasedProducts() async
+    func restorePurchases()
     
-    
-    func returnProducts() -> [SKProduct]
+    func isProductPurchased(_ id: String) -> Bool
     
 }
 
-class PurchaseWorker: NSObject, PurchaseWorkerProtocol {
+class PurchaseWorker {
+    
+    let productIDs: Set<String> = [
+        "com.sloniklm.WidgetMoney.RemoveAd",
+       // "com.sloniklm.WidgetMoney.Test"
+    ]
+    
+    var purchasedProductIDs: Set<String> = []
     
     var rxProductsFetchedFlag = BehaviorSubject(value: false)
+    var rxProductPurchased = BehaviorSubject(value: false)
+    var rxAdsIsHidden = BehaviorSubject(value: false)
+    private var updates: Task<Void, Never>? = nil
     
-    let productsID: Set = ["com.sloniklm.WidgetMoney.RemoveAd", 
-                           //"com.sloniklm.WidgetMoney.Test"
-                            ]
+    let bag = DisposeBag()
     
-    var products: [SKProduct] = []
-    
-    override init() {
-        super.init()
+    var products: [Product] = []
+
+    init() {
+        subscribing()
+        rxProductsFetchedFlag.onNext(true)
+        //Fetching products
+        Task {
+            do {
+                try await fetchProducts()
+                rxProductsFetchedFlag.onNext(true)
+            } catch { return }
+        }
         
-        setupPurchases(callback: { success in
-            if success {
-                print("-----WE CAN MAKE PAYMENTS")
-                self.fetchProducts()
-            }
-            else {
-                print("-----ERROR PAYMENTS")
-            }
-        })
+        //Checking purchased products
+        Task {
+            await updatePurchasedProducts()
+            rxProductsFetchedFlag.onNext(true)
+        }
+        updates = observeTransactionUpdates()
+    }
+    deinit {
+           updates?.cancel()
+       }
+    
+    private func fetchProducts() async throws {
+        products = try await Product.products(for: productIDs)
     }
     
-    func returnProducts() -> [SKProduct] {
+    func updatePurchasedProducts() async {
+        for await result in Transaction.currentEntitlements {
+            guard case .verified(let transaction) = result else {
+                continue
+            }
+            
+            if transaction.revocationDate == nil {
+                self.purchasedProductIDs.insert(transaction.productID)
+            } else {
+                self.purchasedProductIDs.remove(transaction.productID)
+            }
+        }
+    }
+    //For transactions from anywhere
+    private func observeTransactionUpdates() -> Task<Void, Never> {
+        Task(priority: .background) { [unowned self] in
+            for await _ in Transaction.updates {
+                // Using verificationResult directly would be better
+                // but this way works for this tutorial
+                await self.updatePurchasedProducts()
+            }
+        }
+    }
+    
+    func subscribing() {
+        rxProductPurchased.subscribe(onNext: { _ in
+            if self.isProductPurchased("com.sloniklm.WidgetMoney.RemoveAd") {
+                DispatchQueue.main.async {
+                    self.rxAdsIsHidden.onNext(true)
+                }
+            }
+        }).disposed(by: bag)
+        
+        rxProductsFetchedFlag.subscribe(onNext: { _ in
+            if self.isProductPurchased("com.sloniklm.WidgetMoney.RemoveAd") {
+                DispatchQueue.main.async {
+                    self.rxAdsIsHidden.onNext(true)
+                }
+            }
+        }).disposed(by: bag)
+    }
+    
+}
+
+extension PurchaseWorker: PurchaseWorkerProtocol {
+    func isProductPurchased(_ id: String) -> Bool {
+        print("===PURCHASED PRODUCT IDs===")
+        print("ID Checked: \(id)")
+        let result = purchasedProductIDs.contains(id)
+        print (result)
+        return result
+    }
+    
+   //Restore purchase
+    func restorePurchases() {
+        Task {
+            do {
+                try await AppStore.sync()
+                await MainActor.run {
+                    self.rxProductPurchased.onNext(true)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func makePurchase(_ product: Product) async throws {
+        let result = try await product.purchase()
+        
+        switch result {
+        case let .success(.verified(transaction)):
+            // Successful purhcase
+            await transaction.finish()
+            await self.updatePurchasedProducts()
+            await MainActor.run {
+                self.rxProductPurchased.onNext(true)
+            }
+           
+        case let .success(.unverified(_, error)):
+            // Successful purchase but transaction/receipt can't be verified
+            print(error.localizedDescription)
+            // Could be a jailbroken phone
+            break
+        case .pending:
+            // Transaction waiting on SCA (Strong Customer Authentication) or
+            // approval from Ask to Buy
+            break
+        case .userCancelled:
+            // ^^^
+            break
+        @unknown default:
+            break
+        }
+    }
+    
+    func returnProducts() -> [Product] {
         return products
     }
     
-}
-
-extension PurchaseWorker {
-
-    
-    public func setupPurchases(callback: @escaping (Bool) -> ()) {
-        if SKPaymentQueue.canMakePayments() {
-            //SKPaymentQueue.default().addObserver(self)
-            
-            callback(true)
-        }
-        else {
-            callback(false)
-        }
-    }
-    
-    func fetchProducts() {
-        let request = SKProductsRequest(productIdentifiers: productsID)
-        request.delegate = self
-        request.start()
-    }
-    
-    func getPriceOf(product: SKProduct) -> String {
-        
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = product.priceLocale
-        
-        return formatter.string(from: product.price) ?? "No data"
-    }
-    
-    
-    
-}
-
-extension PurchaseWorker: SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        
-    }
-    
-}
-
-extension PurchaseWorker: SKProductsRequestDelegate {
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        #if DEBUG
-        print("------WE HAVE \(products.count) PRODUCTS")
-        response.products.forEach({ print("\($0.localizedDescription) - \(self.getPriceOf(product: $0)) - \($0.priceLocale)")})
-        #endif
-        
-        products = response.products
-        rxProductsFetchedFlag.onNext(true)
+    func returnProduct(productID: String) -> Product? {
+        var product: Product? = nil
+        products.forEach({
+            if $0.id == productID {
+                product = $0
+            }
+        })
+        return product
     }
 }

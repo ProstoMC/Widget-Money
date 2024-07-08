@@ -20,12 +20,15 @@
 "Light" = "Светлая";
 "System" = "Системная";
 "Back" = "Назад";
-"Remove ads" = "Удаление рекламы";
+"Remove Ads" = "Удалить рекламу";
 "Remove banner ads" = "Удалить баннерную рекламу";
 "Save" = "Сохранить";
 "Restore purchase" = "Восстановить покупку";
 "Advertisement banners have been removed" = "Рекламные баннеры удалены";
 "Cancel" = "Отмена";
+"Hide all advertisement banners" = "Скрыть все рекламные баннеры";
+"Test" = "Тест";
+"for" = "за";
 
 //Second Controller
 "Fiat" = "Фиат";

@@ -32,6 +32,7 @@ protocol SettingsViewModelProtocol {
     
     func changeBaseCurrency(name: String)
     func changeTheme(theme: AppTheme)
+    func returnProduct(id: String) -> Product?
 }
 
 class SettingsViewModel: SettingsViewModelProtocol {
@@ -76,7 +77,7 @@ class SettingsViewModel: SettingsViewModelProtocol {
         
         
         //Subscribe to adsWorker
-        CoreWorker.shared.adsWorker.adsIsHidden.subscribe(onNext: { isHidden in
+        CoreWorker.shared.purchaseWorker.rxAdsIsHidden.subscribe(onNext: { isHidden in
             self.rxAdsIsHidden.onNext(isHidden)
         }).disposed(by: bag)
         
@@ -103,6 +104,10 @@ class SettingsViewModel: SettingsViewModelProtocol {
         if theme != CoreWorker.shared.colorsWorker.returnAppTheme() {
             CoreWorker.shared.colorsWorker.newAppTheme(newTheme: theme)
         }
+    }
+    
+    func returnProduct(id: String) -> Product? {
+       return CoreWorker.shared.purchaseWorker.returnProduct(productID: id)
     }
 
 }
@@ -147,7 +152,7 @@ extension SettingsViewModel {
     }
     private func createPurchaseSettings(product: SKProduct) -> SettingsCellViewModel {
         return SettingsCellViewModel(
-            name: product.localizedDescription,
+            name: product.localizedTitle.localized(),
             value: BehaviorSubject(value: formatPrice(product: product)),
             imageName: product.productIdentifier,
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
@@ -155,6 +160,17 @@ extension SettingsViewModel {
             backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
         )
     }
+    private func createPurchaseSettings(product: Product) -> SettingsCellViewModel {
+        return SettingsCellViewModel(
+            name: product.displayName.localized(),
+            value: BehaviorSubject(value: product.displayPrice),
+            imageName: product.id,
+            nameLabelColor: BehaviorSubject(value: colorSet.mainText),
+            valueLabelColor: BehaviorSubject(value: colorSet.secondText),
+            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
+        )
+    }
+    
     
     private func formatPrice(product: SKProduct) -> String {
         let formatter = NumberFormatter()

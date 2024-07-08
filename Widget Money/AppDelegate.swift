@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     -> Bool {
         // Override point for customization after application launch.
+//        PurchaseWorker.shared.setupPurchases(callback: { success in
+//            if success {
+//                PurchaseWorker.shared.fetchProducts()
+//            }
+//        })
+        
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true

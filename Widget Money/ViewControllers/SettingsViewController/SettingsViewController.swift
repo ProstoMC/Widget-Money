@@ -8,6 +8,8 @@
 import UIKit
 import RxSwift
 import GoogleMobileAds
+import SwiftUI
+import StoreKit
 
 class SettingsViewController: UIViewController {
     
@@ -207,8 +209,8 @@ extension SettingsViewController: UITableViewDelegate {
         if indexPath.row == 0 { changeBaseCurrency() }
         //App theme
         if indexPath.row == 1 { changeTheme() }
-        
-        if indexPath.row == 2 { goToPurchase() }
+        //Purchases
+        if indexPath.row > 1 { goToPurchase(index: indexPath.row) }
     }
 }
 
@@ -230,9 +232,11 @@ extension SettingsViewController {
         present(vc, animated: true)
     }
     
-    func goToPurchase() {
-        let vc = PurchaseViewController()
-        vc.colorSet = viewModel.colorSet
+    func goToPurchase(index: Int) {
+        guard let product: Product = viewModel.returnProduct(id: viewModel.settingsList[index].imageName) else {return}
+        let vc = UIHostingController(rootView: PurchaseUI(product: product, colorSet: viewModel.colorSet))
+        //vc.configure(productID: viewModel.settingsList[index].imageName) //image name is Product ID
+        //vc.colorSet = viewModel.colorSet
         vc.modalPresentationStyle = .automatic
         present(vc, animated: true)
     }

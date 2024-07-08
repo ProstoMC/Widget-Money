@@ -41,7 +41,7 @@ class BottomBlockView: UIView {
             print(flag)
         }.disposed(by: bag)
         
-        CoreWorker.shared.adsWorker.adsIsHidden.subscribe(onNext: { isHidden in
+        CoreWorker.shared.purchaseWorker.rxAdsIsHidden.subscribe(onNext: { isHidden in
             self.bigAdsBlock.isHidden = isHidden
             self.smallAdsBlock.isHidden = isHidden
             self.detailsViewController.view.isHidden = !isHidden

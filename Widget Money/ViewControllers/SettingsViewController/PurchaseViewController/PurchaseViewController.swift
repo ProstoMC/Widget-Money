@@ -7,10 +7,11 @@
 
 import UIKit
 import RxSwift
+import StoreKit
 
 class PurchaseViewController: UIViewController {
 
-    var price = 0
+    var product: SKProduct? = nil
     var adsIsHidden = false
     
     var colorSet: AppColors!
@@ -19,9 +20,9 @@ class PurchaseViewController: UIViewController {
     
     var closingLine = UIView()
     
-    var headLabel = UILabel()
+    var titleLabel = UILabel()
     
-    var infoTextView = UITextView()
+    var descriptionTextView = UITextView()
     var buyButton = UIButton()
     var restoreButton = UIButton()
     var backButton = UIButton()
@@ -41,12 +42,28 @@ class PurchaseViewController: UIViewController {
         rxSubscribing()
     }
     
+//    func configure(productID: String) {
+//        
+//        product = PurchaseWorker.shared.returnProduct(productID: productID)
+//        
+//        if product != nil {
+//            let price = formatPrice(product: product!)
+//            let buyButtonTitle = product!.localizedTitle.localized() + " " + "for".localized() + " " + price
+//            
+//            titleLabel.text = product!.localizedTitle.localized()
+//            print(product!.localizedTitle)
+//            descriptionTextView.text = product!.localizedDescription.localized()
+//            buyButton.setTitle(buyButtonTitle, for: .normal)
+//            
+//            buyButton.addAction(UIAction { _ in
+//                PurchaseWorker.shared.makePurchase(product: self.product!)
+//            }, for: .touchUpInside)
+//            
+//        }
+//    }
+    
     // MARK:  - RX Subscribing
     private func rxSubscribing() {
-//        CoreWorker.shared.adsWorker.price.subscribe(onNext: { price in
-//            let title = "Remove ads for".localized() + " " + price
-//            self.buyButton.setTitle(title, for: .normal)
-//        }).disposed(by: disposeBag)
         
         CoreWorker.shared.adsWorker.adsIsHidden.subscribe(onNext: { isHidden in
             self.buyButton.isHidden = isHidden
@@ -55,14 +72,23 @@ class PurchaseViewController: UIViewController {
             self.okImage.isHidden = !isHidden
             
             if isHidden {
-                self.infoTextView.text = "Advertisement banners have been removed".localized()
+                self.descriptionTextView.text = "Advertisement banners have been removed".localized()
             }
             
         }).disposed(by: disposeBag)
         
     }
     
+    private func formatPrice(product: SKProduct) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = product.priceLocale
+        
+        return formatter.string(from: product.price) ?? "No data"
+    }
+    
 }
+
 
 
 
@@ -72,9 +98,9 @@ extension PurchaseViewController {
         
         baseHeightOfElements = getBaseHeight()
         setupClosingLine()
-        setupHeadLabel()
-        setupTextView()
-        setupSaveButton()
+        setupTitleLabel()
+        setupDescriptionView()
+        setupBuyButton()
         setupRestoreButton()
         setupBackButton()
         setupOkImage()
@@ -87,15 +113,15 @@ extension PurchaseViewController {
         
         closingLine.backgroundColor = colorSet.closingLine
         
-        headLabel.textColor = colorSet.settingsText
+        titleLabel.textColor = colorSet.settingsText
         
         buyButton.backgroundColor = colorSet.detailsBackground
         buyButton.setTitleColor(colorSet.detailsTextColor, for: .normal)
         restoreButton.setTitleColor(colorSet.closingLine, for: .normal)
         backButton.setTitleColor(colorSet.secondText, for: .normal)
         
-        infoTextView.textColor = colorSet.mainText.withAlphaComponent(0.8)
-        infoTextView.backgroundColor = colorSet.background
+        descriptionTextView.textColor = colorSet.mainText.withAlphaComponent(0.8)
+        descriptionTextView.backgroundColor = colorSet.background
         okImage.tintColor = colorSet.green
         
     }
@@ -114,49 +140,49 @@ extension PurchaseViewController {
         closingLine.layer.cornerRadius = baseHeightOfElements/16
     }
     
-    private func setupHeadLabel() {
-        view.addSubview(headLabel)
-        headLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func setupTitleLabel() {
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            headLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.bounds.width*0.04),
-            headLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -view.bounds.width*0.04),
-            headLabel.topAnchor.constraint(equalTo: closingLine.bottomAnchor, constant: baseHeightOfElements/3),
-            headLabel.heightAnchor.constraint(equalToConstant: baseHeightOfElements)
+            titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.bounds.width*0.04),
+            titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -view.bounds.width*0.04),
+            titleLabel.topAnchor.constraint(equalTo: closingLine.bottomAnchor, constant: baseHeightOfElements/3),
+            titleLabel.heightAnchor.constraint(equalToConstant: baseHeightOfElements)
         ])
-        headLabel.text = "Remove ads".localized()
-        headLabel.textAlignment = .center
-        headLabel.font = headLabel.font.withSize(baseHeightOfElements*0.5)
-        headLabel.adjustsFontSizeToFitWidth = true
+        //titleLabel.text = "Remove ads".localized()
+        titleLabel.textAlignment = .center
+        titleLabel.font = titleLabel.font.withSize(baseHeightOfElements*0.5)
+        titleLabel.adjustsFontSizeToFitWidth = true
         
     }
     
-    private func setupTextView() {
-        view.addSubview(infoTextView)
-        infoTextView.translatesAutoresizingMaskIntoConstraints = false
+    private func setupDescriptionView() {
+        view.addSubview(descriptionTextView)
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            infoTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            infoTextView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.7),
-            infoTextView.topAnchor.constraint(equalTo: headLabel.bottomAnchor, constant: baseHeightOfElements),
-            infoTextView.heightAnchor.constraint(equalToConstant: baseHeightOfElements*1.8)
+            descriptionTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            descriptionTextView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.7),
+            descriptionTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: baseHeightOfElements),
+            descriptionTextView.heightAnchor.constraint(equalToConstant: baseHeightOfElements*1.8)
         ])
         
-        infoTextView.text = "Hide all advertisement banners with in-app purchase".localized()
-        infoTextView.font = UIFont.systemFont(ofSize: baseHeightOfElements*0.5)
-        infoTextView.textAlignment = .center
+       // descriptionTextView.text = "Hide all advertisement banners".localized()
+        descriptionTextView.font = UIFont.systemFont(ofSize: baseHeightOfElements*0.5)
+        descriptionTextView.textAlignment = .center
         
     }
     
     
-    private func setupSaveButton() {
+    private func setupBuyButton() {
         view.addSubview(buyButton)
         buyButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             buyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buyButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.8),
-            buyButton.topAnchor.constraint(equalTo: infoTextView.bottomAnchor, constant: baseHeightOfElements),
+            buyButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: baseHeightOfElements),
             buyButton.heightAnchor.constraint(equalToConstant: baseHeightOfElements*1.2)
         ])
         buyButton.layer.cornerRadius = baseHeightOfElements*0.4
@@ -164,13 +190,8 @@ extension PurchaseViewController {
         
         //buyButton.setTitle("Remove ads for 1.49$".localized(), for: .normal)
         //saveButton.titleLabel?.font = headLabel.font.withSize(baseHeightOfElements*0.5)
-        
 
-        
-        buyButton.addAction(UIAction { _ in
-            
-            self.dismiss(animated: true)
-        }, for: .touchUpInside)
+
     }
     
     private func setupRestoreButton() {
@@ -223,7 +244,7 @@ extension PurchaseViewController {
         NSLayoutConstraint.activate([
             okImage.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: baseHeightOfElements*0.1),
             okImage.widthAnchor.constraint(equalToConstant: baseHeightOfElements*2),
-            okImage.topAnchor.constraint(equalTo: infoTextView.bottomAnchor, constant: baseHeightOfElements*0.9),
+            okImage.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: baseHeightOfElements*0.9),
             okImage.heightAnchor.constraint(equalToConstant: baseHeightOfElements*2)
         ])
         //backButton.layer.cornerRadius = baseHeightOfElements*0.375

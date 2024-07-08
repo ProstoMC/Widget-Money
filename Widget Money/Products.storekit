@@ -10,13 +10,13 @@
       "internalID" : "6503257941",
       "localizations" : [
         {
-          "description" : "Hide banner-ads",
-          "displayName" : "Remove ads",
+          "description" : "Hide all advertisement banners",
+          "displayName" : "Remove Ads",
           "locale" : "en_US"
         },
         {
-          "description" : "Скрыть рекламные баннеры",
-          "displayName" : "Удаление рекламы",
+          "description" : "Скрыть все рекламные баннеры",
+          "displayName" : "Удалить рекламу",
           "locale" : "ru"
         }
       ],
@@ -44,12 +44,15 @@
     "_applicationInternalID" : "6502195762",
     "_developerTeamID" : "DV2KL8GXVB",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 738794868.74887097,
+    "_lastSynchronizedDate" : 738941463.48081601,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
       {
-        "current" : null,
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
         "enabled" : false,
         "name" : "Load Products"
       },
@@ -98,6 +101,10 @@
   "subscriptionGroups" : [
 
   ],
+  "subscriptionOffersKeyPair" : {
+    "id" : "F61AA50A",
+    "privateKey" : "MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgq+PQIpxioe5FHWY5Dp6Phwt9/pucm1+Gr4pb4TNWo/6gCgYIKoZIzj0DAQehRANCAARbDd6aDbK2cAqrs/6+m6pXDl72+lQfAMXqkhwiuCs9KhEGjWQu0lLlI2pUulqQIbnWJfzk6iDgZiNNli/l+5+A"
+  },
   "version" : {
     "major" : 3,
     "minor" : 0
