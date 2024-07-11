@@ -162,7 +162,7 @@ extension UniversalCoinWorker {
             if code == fiatList[i].code {
                 fiatList[i].rate = rate
                 fiatList[i].flow24Hours = flow
-                fiatList[i].imageUrl = "https://raw.githubusercontent.com/ProstoMC/CurrencyIcons/main/" + fiatList[i].code + ".png"
+                fiatList[i].imageUrl = "https://raw.githubusercontent.com/ProstoMC/CurrencyIcons/main/SmallSize/" + fiatList[i].code + ".png"
                 break
             }
         }
@@ -194,7 +194,7 @@ extension UniversalCoinWorker {
             }
             
         }
-       // print ("FIAT={")
+       //print ("FIAT={")
         for i in fiatList.indices {
             guard let coinsProperty = json[fiatList[i].code] as? [String: Any] else { continue }
             guard let properties = coinsProperty["USD"] as? [String: Any] else { continue }
@@ -202,14 +202,14 @@ extension UniversalCoinWorker {
             guard let rate = properties["PRICE"] as? Double else { continue }
             guard let flow = properties["CHANGE24HOUR"] as? Double else { continue }
             
-            //print ("\"\(fiatList[i].code)\":\"\(fiatList[i].name)\",")
+            //print ("\"\(fiatList[i].code)\":\"\(fiatList[i].logo)\",")
             fiatList[i].rate = rate / baseRate
             fiatList[i].flow24Hours = flow / baseRate
             //fiatList[i].imageUrl = "https://www.cryptocompare.com" + imageUrl
             fiatList[i].imageUrl = "https://raw.githubusercontent.com/ProstoMC/CurrencyIcons/main/" + fiatList[i].code + ".png"
         }
-       // print ("}")
-        
+//       print ("}")
+//        print ("CRYPTO={")
         for i in cryptoList.indices {
             guard let coinsProperty = json[cryptoList[i].code] as? [String: Any] else { continue }
             guard let properties = coinsProperty["USD"] as? [String: Any] else { continue }
@@ -221,12 +221,13 @@ extension UniversalCoinWorker {
             if imageUrl == "/media/35309345/no-image.png" { //Prefere dont have image then this image
                 imageUrl = "Error"
             }
-            
+            //print ("\"\(cryptoList[i].code)\":\"\(cryptoList[i].logo)\",")
             cryptoList[i].rate = rate / baseRate
             cryptoList[i].flow24Hours = flow / baseRate
             cryptoList[i].imageUrl = "https://www.cryptocompare.com" + imageUrl
             cryptoList[i].logo = cryptoList[i].code
         }
+        //print ("}")
     }
     
 }

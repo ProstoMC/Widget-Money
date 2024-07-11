@@ -233,7 +233,7 @@ extension SettingsViewController {
     }
     
     func goToPurchase(index: Int) {
-        guard let product: Product = viewModel.returnProduct(id: viewModel.settingsList[index].imageName) else {return}
+        guard let product: Product = viewModel.returnProduct(id: viewModel.settingsList[index].productID ?? "") else {return}
         let vc = UIHostingController(rootView: PurchaseUI(product: product, colorSet: viewModel.colorSet))
         //vc.configure(productID: viewModel.settingsList[index].imageName) //image name is Product ID
         //vc.colorSet = viewModel.colorSet

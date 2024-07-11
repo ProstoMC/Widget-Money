@@ -14,10 +14,12 @@ struct SettingsCellViewModel {
     let name: String
     var value: BehaviorSubject<String>
     var imageName: String
+    var productID: String? = nil
     
     var nameLabelColor: BehaviorSubject<UIColor>
     var valueLabelColor: BehaviorSubject<UIColor>
     var backgroundColor: BehaviorSubject<UIColor>
+    var imageColor: BehaviorSubject<UIColor>
 }
 
 protocol SettingsViewModelProtocol {
@@ -126,10 +128,11 @@ extension SettingsViewModel {
         return SettingsCellViewModel(
             name: "Base currency".localized(),
             value: BehaviorSubject(value: CoreWorker.shared.coinList.baseCoin.code),
-            imageName: "SettingsCurrency",
+            imageName: "dollarsign.circle.fill",
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
+            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets),
+            imageColor: BehaviorSubject(value: colorSet.closingLine)
         )
     }
     private func createThemeSettigs() -> SettingsCellViewModel {
@@ -144,30 +147,39 @@ extension SettingsViewModel {
         return SettingsCellViewModel(
             name: "App theme".localized(),
             value: BehaviorSubject(value: valueName),
-            imageName: "SettingsTheme",
+            imageName: "circle.lefthalf.filled.inverse",
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
+            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets),
+            imageColor: BehaviorSubject(value: colorSet.closingLine)
         )
     }
-    private func createPurchaseSettings(product: SKProduct) -> SettingsCellViewModel {
-        return SettingsCellViewModel(
-            name: product.localizedTitle.localized(),
-            value: BehaviorSubject(value: formatPrice(product: product)),
-            imageName: product.productIdentifier,
-            nameLabelColor: BehaviorSubject(value: colorSet.mainText),
-            valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
-        )
-    }
+    
     private func createPurchaseSettings(product: Product) -> SettingsCellViewModel {
-        return SettingsCellViewModel(
+        
+        //Check has product already purchased. If it is -> change name for "Purchased"
+        let value = BehaviorSubject(value: product.displayPrice)
+        if CoreWorker.shared.purchaseWorker.isProductPurchased(product.id) {
+            value.onNext("Purchased".localized())
+        }
+        //Subscribe for purchasing for changeing name
+        CoreWorker.shared.purchaseWorker.rxProductPurchased.subscribe(onNext: { _ in
+            if CoreWorker.shared.purchaseWorker.isProductPurchased(product.id) {
+                value.onNext("Purchased".localized())
+            }
+        }).disposed(by: bag)
+        
+        
+        
+        return SettingsCellViewModel (
             name: product.displayName.localized(),
-            value: BehaviorSubject(value: product.displayPrice),
-            imageName: product.id,
+            value: value,
+            imageName: "xmark.circle.fill",
+            productID: product.id,
             nameLabelColor: BehaviorSubject(value: colorSet.mainText),
             valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)
+            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets),
+            imageColor: BehaviorSubject(value: colorSet.closingLine)
         )
     }
     
@@ -190,6 +202,7 @@ extension SettingsViewModel {
             settingsList[i].nameLabelColor.onNext(colorSet.mainText)
             settingsList[i].valueLabelColor.onNext(colorSet.settingsText)
             settingsList[i].backgroundColor.onNext(colorSet.backgroundForWidgets)
+            settingsList[i].imageColor.onNext(colorSet.closingLine)
         }
         
     }

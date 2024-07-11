@@ -17,6 +17,7 @@ class BottomBlockView: UIView {
     
     let bigBannerID = CoreWorker.shared.adsWorker.returnBannerID(bannerType: .mainBigBannerID)
     let smallBannerID = CoreWorker.shared.adsWorker.returnBannerID(bannerType: .mainSmallBannerID)
+    var adsShouldBeHidden = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,21 +33,35 @@ class BottomBlockView: UIView {
     
     func rxSubscribing() {
         //Appearing of view
-        CoreWorker.shared.exchangeWorker.rxExchangeFlag.subscribe { flag in
-            self.detailsViewController.view.isHidden = !flag
-            self.smallAdsBlock.isHidden = !flag
-            self.bigAdsBlock.isHidden = flag
-            self.detailsViewController.configure()
+        CoreWorker.shared.exchangeWorker.rxExchangeFlag.subscribe(onNext: { flag in
+            print("ADS SHOULD BE HIDDEN: \(self.adsShouldBeHidden)")
+            // Check should we hide ads or not (In-app purchse)
+            self.updateStatus(flag: flag)
             print("DETAILS UPDATE")
             print(flag)
-        }.disposed(by: bag)
-        
-        CoreWorker.shared.purchaseWorker.rxAdsIsHidden.subscribe(onNext: { isHidden in
-            self.bigAdsBlock.isHidden = isHidden
-            self.smallAdsBlock.isHidden = isHidden
-            self.detailsViewController.view.isHidden = !isHidden
         }).disposed(by: bag)
         
+        CoreWorker.shared.purchaseWorker.rxAdsIsHidden.subscribe(onNext: { isHidden in
+            self.adsShouldBeHidden = isHidden
+            //Hide banners because we have purchase
+            if isHidden {
+                self.updateStatus(flag: true)
+            }
+        }).disposed(by: bag)
+        
+    }
+    
+    func updateStatus(flag: Bool){
+        if adsShouldBeHidden {
+            detailsViewController.view.isHidden = !self.adsShouldBeHidden
+            smallAdsBlock.isHidden = self.adsShouldBeHidden
+            bigAdsBlock.isHidden = self.adsShouldBeHidden
+        } else {
+            detailsViewController.view.isHidden = !flag
+            smallAdsBlock.isHidden = !flag
+            bigAdsBlock.isHidden = flag
+        }
+        detailsViewController.configure()
     }
     
 }
@@ -90,6 +105,7 @@ extension BottomBlockView {
         
         bigAdsBlock.adUnitID = bigBannerID
         bigAdsBlock.load(GADRequest())
+        bigAdsBlock.isHidden = true
         
     }
     

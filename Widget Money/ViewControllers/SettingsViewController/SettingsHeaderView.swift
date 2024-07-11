@@ -26,7 +26,7 @@ class SettingsHeaderView: UIView {
     
     func updateColors(colorSet: AppColors) {
         
-        nameLabel.textColor = colorSet.settingsText
+        nameLabel.textColor = colorSet.mainText.withAlphaComponent(0.8)
         versionLabel.textColor = colorSet.settingsText
         
         if colorSet.theme == .dark {

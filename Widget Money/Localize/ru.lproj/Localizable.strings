@@ -29,6 +29,9 @@
 "Hide all advertisement banners" = "Скрыть все рекламные баннеры";
 "Test" = "Тест";
 "for" = "за";
+"✅ Already purchased" = "✅ Уже у вас";
+"Buy now for " = "Приобрести за ";
+"Purchased" = "Уже у вас";
 
 //Second Controller
 "Fiat" = "Фиат";

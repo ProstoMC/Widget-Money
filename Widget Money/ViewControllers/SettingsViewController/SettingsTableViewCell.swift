@@ -35,7 +35,8 @@ class SettingsTableViewCell: UITableViewCell {
     
     func dataConfigure(viewModel: SettingsCellViewModel) {
         nameLabel.text = viewModel.name
-        iconView.image = UIImage(named: viewModel.imageName)
+        //iconView.image = UIImage(named: viewModel.imageName)
+        iconView.image = UIImage(systemName: viewModel.imageName)
         subscribing(viewModel: viewModel)
         
         //print(viewModel.name)
@@ -59,7 +60,14 @@ class SettingsTableViewCell: UITableViewCell {
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.nameLabel.textColor = color
-                self.iconView.tintColor = color
+                //self.iconView.tintColor = color
+            })
+        }).disposed(by: bag)
+        viewModel.imageColor.subscribe(onNext: { color in
+            UIView.animate(withDuration: 0.5, delay: 0.0,
+                           options: [.allowUserInteraction], animations: { () -> Void in
+                self.iconView.tintColor = color.withAlphaComponent(0.9)
+                //self.iconView.tintColor = color
             })
         }).disposed(by: bag)
         
@@ -97,7 +105,7 @@ extension SettingsTableViewCell {
             iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor)
         ])
         iconView.image = UIImage(systemName: "nosign")
-        iconView.tintColor = .red
+        //iconView.tintColor = .red
         iconView.contentMode = .scaleAspectFit
     }
     

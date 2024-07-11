@@ -27,7 +27,6 @@ class HomeViewController: UIViewController {
     
     var isUpdating = false
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().background

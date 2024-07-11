@@ -125,6 +125,7 @@ extension ColorsWorker {
             mainColorPale: UIColor(red: 103/255, green: 111/255, blue: 157/255, alpha: 1),
             closingLine: UIColor(red: 51/255, green: 57/255, blue: 95/255, alpha: 1),
             
+            
             accentColor: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
             heartColor: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
             clearButton: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 1),
@@ -169,6 +170,7 @@ extension ColorsWorker {
             mainColor: #colorLiteral(red: 0.08627282828, green: 0.1164394692, blue: 0.1934950352, alpha: 1),
             mainColorPale: #colorLiteral(red: 0.08627282828, green: 0.1164394692, blue: 0.1934950352, alpha: 0.5),
             closingLine: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
+            
             
             accentColor: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
             heartColor: UIColor(red: 252/255, green: 174/255, blue: 113/255, alpha: 1),
