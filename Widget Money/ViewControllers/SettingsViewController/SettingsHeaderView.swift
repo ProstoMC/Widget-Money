@@ -13,6 +13,8 @@ class SettingsHeaderView: UIView {
     let nameLabel = UILabel()
     let versionLabel = UILabel()
     
+    var appVersion = "0.0"
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -43,6 +45,8 @@ class SettingsHeaderView: UIView {
 
 extension SettingsHeaderView {
     private func setupUI() {
+        appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
+        print("VERSION: \(appVersion)")
         //backgroundColor = .brown
         setuplogoView()
         setupLabels()
@@ -95,7 +99,7 @@ extension SettingsHeaderView {
         versionLabel.textAlignment = .center
         
         nameLabel.text = "Widget Money"
-        versionLabel.text = "Version: 1.0"
+        versionLabel.text = "Version: " + appVersion
         
 //        nameLabel.backgroundColor = .blue
 //        versionLabel.backgroundColor = .brown
