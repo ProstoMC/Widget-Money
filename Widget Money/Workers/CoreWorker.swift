@@ -43,6 +43,7 @@ class CoreWorker {
     init() {
         widgetWorker = WidgetWorker(pairModule: favouritePairList, coinList: coinList) // doesn't work without modules
         updateExchangeFields()
+        
     }
     
     private func updateExchangeFields(){

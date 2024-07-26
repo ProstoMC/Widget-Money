@@ -16,7 +16,7 @@ class CurrencyFetcher {
         var code: String
         var url_image: String?
         var type: String
-        
+        var image: String?
         var echangerate: Echangerate
     }
     
@@ -89,37 +89,49 @@ class CurrencyFetcher {
 
 extension CurrencyFetcher {
     
-    func fetchCoinsFromBackend(completion: @escaping ([CoinUniversal]) -> ()) {
+    func fetchCoinsFromBackend(completion: @escaping ([CoinUniversal], String) -> ()) {
         var universalCoins: [CoinUniversal] = []
         
-        let url = URL(string: "http://192.168.31.8:8000/api/currencies/?format=json")!
+        let url = URL(string: "http://192.168.0.107:8000/api/currencies/?format=json")!
         
         
         AF.request(url).validate().responseDecodable(of: [KuznecovCoin].self) { (response) in
             
             guard let kuzCoins = response.value else { return }
-
-                kuzCoins.forEach({ kuzCoin in
-                    
-                    let type: TypeOfCoin = {
-                        if kuzCoin.type == TypeOfCoin.fiat.rawValue { return TypeOfCoin.fiat }
-                        else { return TypeOfCoin.crypto }
-                    }()
-                    
-                    universalCoins.append(CoinUniversal(
-                        type: type,
-                        code: kuzCoin.code,
-                        name: kuzCoin.name,
-                        base: "USD",
-                        rate: kuzCoin.echangerate.rate,
-                        flow24Hours: kuzCoin.echangerate.flowrate24,
-                        logo: "$",
-                        imageUrl: kuzCoin.url_image ?? "Error",
-                        colorIndex: 0))
-                })
-
+            
+            //Update date
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            let date = formatter.date(from: kuzCoins[0].echangerate.last_update)
+            formatter.dateFormat = "dd.mm hh:ss"
+            let lastUpdate = formatter.string(from: date!)
+            
+            //Preparing coins list
+            
+            kuzCoins.forEach({ kuzCoin in
+                
+                let type: TypeOfCoin = {
+                    if kuzCoin.type.uppercased() == TypeOfCoin.fiat.rawValue.uppercased() { return TypeOfCoin.fiat }
+                    else { return TypeOfCoin.crypto }
+                }()
+                
+                print("\(kuzCoin.code) - \(kuzCoin.echangerate.rate)")
+                
+                universalCoins.append(CoinUniversal(
+                    type: type,
+                    code: kuzCoin.code,
+                    name: kuzCoin.name,
+                    base: "USD",
+                    rate: kuzCoin.echangerate.rate,
+                    flow24Hours: kuzCoin.echangerate.flowrate24,
+                    logo: "$",
+                    imageUrl: kuzCoin.image ?? "Error",
+                    colorIndex: 0))
+            })
+            
             DispatchQueue.main.async {
-                completion(universalCoins)
+                completion(universalCoins, lastUpdate)
             }
         }.resume()
     }
