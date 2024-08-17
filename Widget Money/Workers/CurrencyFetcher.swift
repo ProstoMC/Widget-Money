@@ -18,6 +18,7 @@ class CurrencyFetcher {
         var type: String
         var image: String?
         var echangerate: Echangerate
+        var sign: String?
     }
     
     struct Echangerate: Codable {
@@ -92,21 +93,35 @@ extension CurrencyFetcher {
     func fetchCoinsFromBackend(completion: @escaping ([CoinUniversal], String) -> ()) {
         var universalCoins: [CoinUniversal] = []
         
-        let url = URL(string: "http://192.168.0.107:8000/api/currencies/?format=json")!
+        let url = URL(string: "http://194.87.110.113:8000/api/currencies/?format=json")!
         
         
         AF.request(url).validate().responseDecodable(of: [KuznecovCoin].self) { (response) in
             
-            guard let kuzCoins = response.value else { return }
+            //If we din't get Data, return null and Error
+            guard let kuzCoins = response.value else {
+                completion([], "Error")
+                return
+            }
             
             //Update date
-            
+            //We have date with 0 UTC. We have to make Date as 0 UTC and convert it as current locale
+
             let formatter = DateFormatter()
+            //Set 0 UTC Time Zone
+            formatter.timeZone = TimeZone(identifier: "UTC")
+            //Read it with pattern
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
             let date = formatter.date(from: kuzCoins[0].echangerate.last_update)
-            formatter.dateFormat = "dd.mm hh:ss"
+            
+            //Set right format of date to show
+            formatter.dateFormat = "dd.MM HH:mm"
+            //Set local time zone
+            formatter.timeZone = .current
+            //Create string form date
             let lastUpdate = formatter.string(from: date!)
             
+            print("=====LAST UPDATE:  \(lastUpdate)")
             //Preparing coins list
             
             kuzCoins.forEach({ kuzCoin in
@@ -116,7 +131,13 @@ extension CurrencyFetcher {
                     else { return TypeOfCoin.crypto }
                 }()
                 
-                print("\(kuzCoin.code) - \(kuzCoin.echangerate.rate)")
+                //print("\(kuzCoin.code) - \(kuzCoin.echangerate.rate)")
+                
+                var imageURL = kuzCoin.url_image ?? "Error"
+                
+                if type == .crypto {
+                    imageURL = imageURL.lowercased()
+                }
                 
                 universalCoins.append(CoinUniversal(
                     type: type,
@@ -125,8 +146,8 @@ extension CurrencyFetcher {
                     base: "USD",
                     rate: kuzCoin.echangerate.rate,
                     flow24Hours: kuzCoin.echangerate.flowrate24,
-                    logo: "$",
-                    imageUrl: kuzCoin.image ?? "Error",
+                    logo: kuzCoin.sign ?? kuzCoin.code, //If sign is exist - use it. If not - use a code
+                    imageUrl: imageURL,
                     colorIndex: 0))
             })
             

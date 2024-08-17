@@ -20,7 +20,7 @@ struct Provider: TimelineProvider {
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         
         guard let widgetModel = try? JSONDecoder().decode(WidgetModel.self, from: widgetData) else { return }
-        print("Widget got data")
+        print("Widget got Snapshot")
         
         let entry = SimpleEntry(date: Date(), widgetModel: widgetModel)
         completion(entry)
@@ -30,36 +30,34 @@ struct Provider: TimelineProvider {
         
         Task {
             
+            //GET actual model
+            
             guard let widgetModel = try? JSONDecoder().decode(WidgetModel.self, from: widgetData) else { return }
+            print("Widget got data by Timeline")
             
+            //Create Entry with info from App
+            var entry = SimpleEntry(date: Date(), widgetModel: widgetModel)
+            
+            //Update rates from eth
             let fetcher = LiteFetcherForWidget()
-            
-            fetcher.updateRatesFromEth(widgetModel: widgetModel, completion: { newWidgetModel in
+            //Get model with new rates and update entry
+            fetcher.updateFromBackend(widgetModel: widgetModel, completion: { newWidgetModel in
+                entry = SimpleEntry(date: Date(), widgetModel: newWidgetModel)
                 
-                let entry = SimpleEntry(date: Date(), widgetModel: newWidgetModel)
-                
-                // Next fetch happens 15 minutes later
+                // Next fetch happens 30 minutes later
                 let nextUpdate = Calendar.current.date(
                     byAdding: DateComponents(minute: 30),
                     to: Date()
                 )!
-                
+    
                 let timeline = Timeline(
                     entries: [entry],
                     policy: .after(nextUpdate)
                 )
-                
                 completion(timeline)
-                
             })
-            
-            
         }
     }
-    
-    
-    
-    
 }
 
 struct SimpleEntry: TimelineEntry {

@@ -248,18 +248,34 @@ extension UniversalCoinWorker {
             if coins.count < 1 { return } //Check what we have a new coins
             self.lastUpdate = date //Update date
             
+            //find base coin rate in USD
+            var baseCoinRate = self.baseCoin.rate
+            for coin in coins {
+                if coin.code == self.baseCoin.code {
+                    baseCoinRate = coin.rate
+                    break
+                }
+            }
+            
             var newFiat: [CoinUniversal] = []
             var newCrypto: [CoinUniversal] = []
             
             coins.forEach({ coin in
                 
+                //Update rate with baseCoin Rate in USD
+                var newCoin = coin
+                newCoin.rate = coin.rate/baseCoinRate
+                newCoin.flow24Hours = coin.flow24Hours/baseCoinRate
+                
                 if coin.type == .fiat {
-                    newFiat.append(coin)
+                    newFiat.append(newCoin)
                    // print("FIAT -- \(coin.name)")
                 } else {
-                    newCrypto.append(coin)
+                    newCrypto.append(newCoin)
                     //print("CRYPTO -- \(coin.name)")
                 }
+                
+                //print("\(newCoin.code) : \(newCoin.flow24Hours)")
             })
             
             self.fiatList = newFiat

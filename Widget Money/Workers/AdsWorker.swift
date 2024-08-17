@@ -27,7 +27,7 @@ protocol AdsWorkerProtocol {
 
 class AdsWorker: AdsWorkerProtocol {
 
-    let testmode = true
+    let testmode = false
     
     var adsIsHidden = BehaviorSubject(value: false)
     

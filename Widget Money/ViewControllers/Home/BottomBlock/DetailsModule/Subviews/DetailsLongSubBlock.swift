@@ -77,9 +77,9 @@ class DetailsLongSubBlock: UIView {
         let flow = pair.flow
         let flowPercent = pair.flow/(pair.value-pair.flow)
         
-        flowLabel.text = String(format: "%.2f", flow) + " " + pair.baseLogo
+        flowLabel.text = String(format: "%.3f", flow) + " " + pair.baseLogo
         
-        flowPercentLabel.text = String(format: "%.2f", flowPercent) + " %"
+        flowPercentLabel.text = String(format: "%.3f", flowPercent) + " %"
         
         if pair.flow >= 0 {
             upImageView.isHidden = false
