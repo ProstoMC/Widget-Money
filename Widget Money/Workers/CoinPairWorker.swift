@@ -42,7 +42,7 @@ class CoinPairWorker {
         //Get pairs
         pairList = getPairsFromDefaults()
         if pairList.isEmpty {
-            pairList = [CoinPair(valueCode: "USD", baseCode: "RUB", colorIndex: 0)]
+            pairList = [CoinPair(valueCode: "CNY", baseCode: "USD", colorIndex: 0)]
         }
         rxPairListCount.onNext(pairList.count)
     }

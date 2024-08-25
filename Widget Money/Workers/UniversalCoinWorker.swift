@@ -161,84 +161,6 @@ extension UniversalCoinWorker: CoinListProtocol {
     
 }
 
-//MARK: - ETHERNET
-
-//extension UniversalCoinWorker {
-//    func updateRatesFromCB(code: String, rate: Double, flow: Double) {
-//        
-//        for i in fiatList.indices {
-//            if code == fiatList[i].code {
-//                fiatList[i].rate = rate
-//                fiatList[i].flow24Hours = flow
-//                fiatList[i].imageUrl = "https://raw.githubusercontent.com/ProstoMC/CurrencyIcons/main/SmallSize/" + fiatList[i].code + ".png"
-//                break
-//            }
-//        }
-//    }
-//    
-//    func updateRates(json: [String : Any]) {
-//        //Set previous rate in USD
-//        var baseRate = returnCoin(code: "USD")!.rate
-//        
-//        //Find Last Update and Base Currency for convert from USD
-//        if let coinsProperty = json[baseCoin.code] as? [String: Any] {
-//            if let properties = coinsProperty["USD"] as? [String: Any] {
-//                //Set rate
-//                if let rate = properties["PRICE"] as? Double {
-//                    baseRate = rate
-//                }
-//                //Set date
-//                if let date = properties["LASTUPDATE"] as? Int {
-//                    // convert Int to TimeInterval (typealias for Double)
-//                    let timeInterval = TimeInterval(date)
-//                    // create NSDate from Double (NSTimeInterval)
-//                    let nsDate = Date(timeIntervalSince1970: timeInterval)
-//   
-//                    let dateFormatter = DateFormatter()
-//                    dateFormatter.dateFormat = "dd.MM HH:mm"
-//                    
-//                    lastUpdate = dateFormatter.string(from: nsDate)
-//                }
-//            }
-//            
-//        }
-//       //print ("FIAT={")
-//        for i in fiatList.indices {
-//            guard let coinsProperty = json[fiatList[i].code] as? [String: Any] else { continue }
-//            guard let properties = coinsProperty["USD"] as? [String: Any] else { continue }
-//            
-//            guard let rate = properties["PRICE"] as? Double else { continue }
-//            guard let flow = properties["CHANGE24HOUR"] as? Double else { continue }
-//            
-//            //print ("\"\(fiatList[i].code)\":\"\(fiatList[i].logo)\",")
-//            fiatList[i].rate = rate / baseRate
-//            fiatList[i].flow24Hours = flow / baseRate
-//            //fiatList[i].imageUrl = "https://www.cryptocompare.com" + imageUrl
-//            fiatList[i].imageUrl = "https://raw.githubusercontent.com/ProstoMC/CurrencyIcons/main/" + fiatList[i].code + ".png"
-//        }
-////       print ("}")
-////        print ("CRYPTO={")
-//        for i in cryptoList.indices {
-//            guard let coinsProperty = json[cryptoList[i].code] as? [String: Any] else { continue }
-//            guard let properties = coinsProperty["USD"] as? [String: Any] else { continue }
-//            
-//            guard let rate = properties["PRICE"] as? Double else { continue }
-//            guard let flow = properties["CHANGE24HOUR"] as? Double else { continue }
-//            var imageUrl = properties["IMAGEURL"] as? String ?? "Error"
-//            
-//            if imageUrl == "/media/35309345/no-image.png" { //Prefere dont have image then this image
-//                imageUrl = "Error"
-//            }
-//            //print ("\"\(cryptoList[i].code)\":\"\(cryptoList[i].logo)\",")
-//            cryptoList[i].rate = rate / baseRate
-//            cryptoList[i].flow24Hours = flow / baseRate
-//            cryptoList[i].imageUrl = "https://www.cryptocompare.com" + imageUrl
-//            cryptoList[i].logo = cryptoList[i].code
-//        }
-//        //print ("}")
-//    }
-//    
-//}
 
 
 //MARK: - PERSONAL BACKEND
@@ -269,7 +191,7 @@ extension UniversalCoinWorker {
                 
                 if coin.type == .fiat {
                     newFiat.append(newCoin)
-                   // print("FIAT -- \(coin.name)")
+                    // print("FIAT -- \(coin.name)")
                 } else {
                     newCrypto.append(newCoin)
                     //print("CRYPTO -- \(coin.name)")
@@ -280,16 +202,53 @@ extension UniversalCoinWorker {
             
             self.fiatList = newFiat
             self.cryptoList = newCrypto
-            
+            self.sortCoins()
             self.rxRateUpdated.onNext(true)
             
         })
     }
+    
+    func sortCoins() {
+        fiatList.sort(by: {$0.code < $1.code})
+        cryptoList.sort(by: {$0.code < $1.code})
+        
+        //Place btc, eth, usd, cny, eur to top of lists
+        
+        placeToFirst(code: "CNY", typeOfCoin: .fiat)
+        placeToFirst(code: "EUR", typeOfCoin: .fiat)
+        placeToFirst(code: "USD", typeOfCoin: .fiat)
+        
+        placeToFirst(code: "ETH", typeOfCoin: .crypto)
+        placeToFirst(code: "BTC", typeOfCoin: .crypto)
+        
+        
+    }
+    
+    private func placeToFirst(code: String, typeOfCoin: TypeOfCoin) {
+        
+        if typeOfCoin == .fiat {
+            for (index, coin) in fiatList.enumerated() {
+                if coin.code == code {
+                    let tmpCoin = coin
+                    fiatList.remove(at: index)
+                    fiatList.insert(tmpCoin, at: 0)
+                    return
+                }
+            }
+        } else {
+            for (index, coin) in cryptoList.enumerated() {
+                if coin.code == code {
+                    let tmpCoin = coin
+                    cryptoList.remove(at: index)
+                    cryptoList.insert(tmpCoin, at: 0)
+                    return
+                }
+            }
+        }
+        
+    }
 }
 
-
-
-    
 // MARK: - USER DEFAULTS
 extension UniversalCoinWorker {
 
