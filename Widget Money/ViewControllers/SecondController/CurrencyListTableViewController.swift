@@ -8,9 +8,7 @@
 import UIKit
 import Foundation
 import RxSwift
-import RxDataSources
 import RxCocoa
-import Differentiator
 
 
 protocol CurrencyListViewModelProtocol {
@@ -20,16 +18,13 @@ protocol CurrencyListViewModelProtocol {
     func findCurrency(str: String)
    
     var rxUpdateRatesFlag: BehaviorSubject<Bool> { get }
-    var rxCoinList: BehaviorRelay<[TableSectionOfCoinUniversal]> { get }
+    var rxCoinListUpdated: BehaviorSubject<Bool> { get }
+    var showedCoinList: [CurrencyCellViewModel] { get }
     var typeOfCoin: TypeOfCoin { get set }
     
     func selectTail(coin: CurrencyCellViewModel)
     func resetModel()
 }
-
-// MARK:  - Setup sections for RxDataSource
-
-
 
 
 class CurrencyListTableViewController: UIViewController {
@@ -69,18 +64,8 @@ extension CurrencyListTableViewController {
     }
     
     private func usageTableView(){
-        let dataSource = RxTableViewSectionedReloadDataSource<TableSectionOfCoinUniversal>(
-            configureCell: { dataSource, tableView, indexPath, item in
-                let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CurrencyListTableViewCell
-                
-                cell.configureWithUniversalCoin(coin: item)
-                return cell
-            })
-        
-        viewModel.rxCoinList.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
-        
-        tableView.rx.modelSelected(CurrencyCellViewModel.self).subscribe(onNext: { item in
-            self.viewModel.selectTail(coin: item)
+        viewModel.rxCoinListUpdated.subscribe(onNext: { _ in
+            self.tableView.reloadData()
         }).disposed(by: disposeBag)
     }
     
@@ -117,7 +102,7 @@ extension CurrencyListTableViewController {
     }
 }
 
-extension CurrencyListTableViewController: UITableViewDelegate {
+extension CurrencyListTableViewController {
     private func setupUI(){
         
         setupSegmentedControl()
@@ -151,6 +136,7 @@ extension CurrencyListTableViewController: UITableViewDelegate {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(CurrencyListTableViewCell.self, forCellReuseIdentifier: "cell")
         
         NSLayoutConstraint.activate([
@@ -228,6 +214,24 @@ extension CurrencyListTableViewController: UITableViewDelegate {
             searchImage.heightAnchor.constraint(equalToConstant: baseHeightOfElements*0.5),
             searchImage.widthAnchor.constraint(equalToConstant: baseHeightOfElements*0.5),
         ])
+    }
+}
+
+extension CurrencyListTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectTail(coin: viewModel.showedCoinList[indexPath.row])
+    }
+}
+
+extension CurrencyListTableViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.showedCoinList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CurrencyListTableViewCell
+        cell.configureWithUniversalCoin(coin: viewModel.showedCoinList[indexPath.row])
+        return cell
     }
 }
 

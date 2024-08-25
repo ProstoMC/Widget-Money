@@ -7,9 +7,6 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
-import RxDataSources
-import Differentiator
 
 struct CurrencyCellViewModel {
     let type: TypeOfCoin
@@ -31,44 +28,32 @@ struct CurrencyCellViewModel {
     
 }
 
-struct TableSectionOfCoinUniversal {
-    var header: String
-    var items: [Item]
-}
-
-extension TableSectionOfCoinUniversal: SectionModelType {
-    typealias Item = CurrencyCellViewModel
-    
-    init(original: TableSectionOfCoinUniversal, items: [Item]) {
-        self = original
-        self.items = items
-    }
-}
-
 enum TypeOfCurrencyListViewModel {
     case fullList
     case withoutBaseCoin
 }
 
 class CurrencyListViewModelV2: CurrencyListViewModelProtocol {
-    
+
     var typeOfViewModel: TypeOfCurrencyListViewModel
 
     let bag = DisposeBag()
+    
+    var showedCoinList: [CurrencyCellViewModel] = []
+    var rxCoinListUpdated = BehaviorSubject(value: false)
     
     var rxAppThemeUpdated = BehaviorSubject(value: false)
     var colorSet = CoreWorker.shared.colorsWorker.returnColors()
 
     var rxUpdateRatesFlag = BehaviorSubject(value: false)
-    var rxCoinList = BehaviorRelay(value: [TableSectionOfCoinUniversal(header: "", items: [])])
+    
     var typeOfCoin: TypeOfCoin = .fiat
     
     init(type: TypeOfCurrencyListViewModel) {
-        typeOfViewModel = type
         
-        let list = createCoinList(type: typeOfCoin) //Always start with fiat
-        let section = TableSectionOfCoinUniversal(header: "Header", items: list)
-        rxCoinList.accept([section])
+        typeOfViewModel = type
+        showedCoinList = createCoinList(type: typeOfCoin) //Always start with fiat
+        rxCoinListUpdated.onNext(true)
         
         subscribing()
     }
@@ -96,14 +81,13 @@ class CurrencyListViewModelV2: CurrencyListViewModelProtocol {
             }
         }
         //Make new table
-        let section = TableSectionOfCoinUniversal(header: "Header", items: foundedList)
-        rxCoinList.accept([section])
+        showedCoinList = foundedList
+        rxCoinListUpdated.onNext(true)
     }
     
     func resetModel() {
-        let list = createCoinList(type: typeOfCoin)
-        let section = TableSectionOfCoinUniversal(header: "Header", items: list)
-        rxCoinList.accept([section])
+        showedCoinList = createCoinList(type: typeOfCoin)
+        rxCoinListUpdated.onNext(true)
     }
     
 }
@@ -112,9 +96,8 @@ extension CurrencyListViewModelV2 {
 
     private func subscribing(){
         CoreWorker.shared.coinList.rxRateUpdated.subscribe{ status in
-            let list = self.createCoinList(type: self.typeOfCoin)
-            let section = TableSectionOfCoinUniversal(header: "Header", items: list)
-            self.rxCoinList.accept([section])
+            self.showedCoinList = self.createCoinList(type: self.typeOfCoin)
+            self.rxCoinListUpdated.onNext(true)
         }.disposed(by: bag)
         
         //Update colors
@@ -123,9 +106,8 @@ extension CurrencyListViewModelV2 {
                 self.colorSet = CoreWorker.shared.colorsWorker.returnColors()
                 self.rxAppThemeUpdated.onNext(true)
                 //Reload full cells
-                let list = self.createCoinList(type: self.typeOfCoin)
-                let section = TableSectionOfCoinUniversal(header: "Header", items: list)
-                self.rxCoinList.accept([section])
+                self.showedCoinList = self.createCoinList(type: self.typeOfCoin)
+                self.rxCoinListUpdated.onNext(true)
             }
         }).disposed(by: bag)
     }

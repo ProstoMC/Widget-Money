@@ -8,9 +8,9 @@
 //  It is also Builder of project
 
 import UIKit
-import RxCocoa
+
 import RxSwift
-import RxDataSources
+
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     

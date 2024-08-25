@@ -7,41 +7,19 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
-import RxDataSources
 
 
 // MARK:  - Setup sections for RxDataSource
-
-struct SectionOfCustomData {
-  var header: String
-  var items: [Item]
-}
-extension SectionOfCustomData: SectionModelType {
-  typealias Item = CurrencyPairCellModel
-
-   init(original: SectionOfCustomData, items: [Item]) {
-    self = original
-    self.items = items
-  }
-}
 
 // MARK:  ViewController
 
 class CurrencyPairsListViewController: UIViewController {
     
     var collectionView: UICollectionView!
-    lazy var flowLayout: UICollectionViewFlowLayout = {
-        let f = UICollectionViewFlowLayout()
-        f.scrollDirection = UICollectionView.ScrollDirection.horizontal
-        return f
-    }()
     
     var viewModel: CurrencyPairsListViewModelProtocol!
     let bag = DisposeBag()
     
-    var movingIndexFrom = 0
-    var movingIndexTo = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,52 +31,27 @@ class CurrencyPairsListViewController: UIViewController {
     
     //For reordering cells
     @objc private func handleLongPressGR(gesture: UILongPressGestureRecognizer){
-        
         switch gesture.state {
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
-                break
+                return
             }
-            movingIndexFrom = selectedIndexPath.row
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
-            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: collectionView))
         case .ended:
-            if let endedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)){
-                movingIndexTo = endedIndexPath.row
-            } else {
-                movingIndexTo = movingIndexFrom
-            }
             collectionView.endInteractiveMovement()
-            print ("\(movingIndexFrom) -> \(movingIndexTo)")
-            viewModel.reorderPair(fromIndex: movingIndexFrom, toIndex: movingIndexTo)
         default:
             collectionView.cancelInteractiveMovement()
         }
     }
     
     private func subscribing() {
-        let dataSource = RxCollectionViewSectionedReloadDataSource<SectionOfCustomData>(
-          configureCell: { dataSource, tableView, indexPath, item in
-              let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CurrencyPairCell
-              cell.rxConfigure(currecnyPair: item, colors: self.viewModel.colorSet)
-              
-     
-            return cell
-        })
         
-        viewModel.rxPairList.bind(to: collectionView.rx.items(dataSource: dataSource)).disposed(by: bag)
-        
-        collectionView.rx.modelSelected(CurrencyPairCellModel.self).subscribe(onNext: { item in
-            self.viewModel.selectTail(pair: item)
-            
+        viewModel.rxPairsUpdated.subscribe(onNext: { _ in
+            self.collectionView.reloadData()
         }).disposed(by: bag)
-        
-        dataSource.canMoveItemAtIndexPath = { dataSource, indexPath in
-            //For reordering cells
-            return true
-        }
-        
+
         viewModel.rxAppThemeUpdated.subscribe(onNext: { flag in
             if flag {
                 self.updateColors()
@@ -110,7 +63,6 @@ class CurrencyPairsListViewController: UIViewController {
     
     // MARK: - Collection View Appearing
     private func setupUI() {
-        
         setupCollectionView()
         updateColors()
     }
@@ -125,17 +77,24 @@ class CurrencyPairsListViewController: UIViewController {
 
     private func setupCollectionView(){
         
+        //Set horisontal scrolling
+        lazy var flowLayout: UICollectionViewFlowLayout = {
+            let f = UICollectionViewFlowLayout()
+            f.scrollDirection = UICollectionView.ScrollDirection.horizontal
+            return f
+        }()
+        
         collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: flowLayout)
+        
         //Setup space before first element (x2 then between elements)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: view.bounds.width / 25, bottom: 0, right: 0)
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         
-        
-        
         collectionView.delegate = self
-        
+        collectionView.dataSource = self
+
         collectionView.register(CurrencyPairCell.self, forCellWithReuseIdentifier: "cell")
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -147,6 +106,7 @@ class CurrencyPairsListViewController: UIViewController {
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
+        
         //For reordering cells
         let longPressGR = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGR(gesture:)))
         collectionView.addGestureRecognizer(longPressGR)
@@ -155,21 +115,25 @@ class CurrencyPairsListViewController: UIViewController {
 
 // MARK:  - CollectionView Appearing
 
-extension CurrencyPairsListViewController: UICollectionViewDelegateFlowLayout {
+extension CurrencyPairsListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
+    //Size of elements
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.height*0.92, height: collectionView.bounds.height) //Size of Tale
+        return CGSize(width: collectionView.bounds.size.height*0.92, height: collectionView.bounds.height)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return view.bounds.width / 50
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
+    //Select action
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? CurrencyPairCell {
-           
+            viewModel.selectTail(indexPath: indexPath)
             cell.contentView.backgroundColor = viewModel.colorSet.mainColorPale
             UIView.animate(withDuration: 1.0, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
@@ -177,6 +141,29 @@ extension CurrencyPairsListViewController: UICollectionViewDelegateFlowLayout {
             })
         }
     }
+    
+    //MARK: - REORDERING
+    
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        viewModel.reorderPair(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
+    }
+}
+    //MARK: - DATA SOURCE
+extension CurrencyPairsListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.pairList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CurrencyPairCell
+        cell.rxConfigure(currecnyPair: viewModel.pairList[indexPath.row], colors: self.viewModel.colorSet)
+        return cell
+    }
+    
     
 }
 

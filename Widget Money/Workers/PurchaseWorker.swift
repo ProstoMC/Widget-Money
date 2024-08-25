@@ -114,10 +114,10 @@ class PurchaseWorker {
 
 extension PurchaseWorker: PurchaseWorkerProtocol {
     func isProductPurchased(_ id: String) -> Bool {
-        print("===PURCHASED PRODUCT IDs===")
-        print("ID Checked: \(id)")
+//        print("===PURCHASED PRODUCT IDs===")
+//        print("ID Checked: \(id)")
         let result = purchasedProductIDs.contains(id)
-        print (result)
+       // print (result)
         return result
     }
     

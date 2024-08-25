@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxDataSources
 import SDWebImage
 
 class CurrencyListTableViewCell: UITableViewCell {

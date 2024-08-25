@@ -1,0 +1,287 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target arm64-apple-ios9.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RxDataSources
+@_exported import Differentiator
+import Foundation
+import RxCocoa
+import RxSwift
+import Swift
+import UIKit
+import _Concurrency
+public struct AnimationConfiguration {
+  public let insertAnimation: UIKit.UITableView.RowAnimation
+  public let reloadAnimation: UIKit.UITableView.RowAnimation
+  public let deleteAnimation: UIKit.UITableView.RowAnimation
+  public init(insertAnimation: UIKit.UITableView.RowAnimation = .automatic, reloadAnimation: UIKit.UITableView.RowAnimation = .automatic, deleteAnimation: UIKit.UITableView.RowAnimation = .automatic)
+}
+@_Concurrency.MainActor(unsafe) open class CollectionViewSectionedDataSource<Section> : ObjectiveC.NSObject, UIKit.UICollectionViewDataSource, RxCocoa.SectionedViewDataSourceType where Section : Differentiator.SectionModelType {
+  public typealias Item = Section.Item
+  public typealias Section = Section
+  public typealias ConfigureCell = (RxDataSources.CollectionViewSectionedDataSource<Section>, UIKit.UICollectionView, Foundation.IndexPath, RxDataSources.CollectionViewSectionedDataSource<Section>.Item) -> UIKit.UICollectionViewCell
+  public typealias ConfigureSupplementaryView = (RxDataSources.CollectionViewSectionedDataSource<Section>, UIKit.UICollectionView, Swift.String, Foundation.IndexPath) -> UIKit.UICollectionReusableView
+  public typealias MoveItem = (RxDataSources.CollectionViewSectionedDataSource<Section>, _ sourceIndexPath: Foundation.IndexPath, _ destinationIndexPath: Foundation.IndexPath) -> Swift.Void
+  public typealias CanMoveItemAtIndexPath = (RxDataSources.CollectionViewSectionedDataSource<Section>, Foundation.IndexPath) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) public init(configureCell: @escaping RxDataSources.CollectionViewSectionedDataSource<Section>.ConfigureCell, configureSupplementaryView: RxDataSources.CollectionViewSectionedDataSource<Section>.ConfigureSupplementaryView? = nil, moveItem: @escaping RxDataSources.CollectionViewSectionedDataSource<Section>.MoveItem = { _, _, _ in () }, canMoveItemAtIndexPath: @escaping RxDataSources.CollectionViewSectionedDataSource<Section>.CanMoveItemAtIndexPath = { _, _ in false })
+  public typealias SectionModelSnapshot = Differentiator.SectionModel<Section, RxDataSources.CollectionViewSectionedDataSource<Section>.Item>
+  @_Concurrency.MainActor(unsafe) open var sectionModels: [Section] {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) open subscript(section: Swift.Int) -> Section {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) open subscript(indexPath: Foundation.IndexPath) -> RxDataSources.CollectionViewSectionedDataSource<Section>.Item {
+    get
+    set(item)
+  }
+  @_Concurrency.MainActor(unsafe) open func model(at indexPath: Foundation.IndexPath) throws -> Any
+  @_Concurrency.MainActor(unsafe) open func setSections(_ sections: [Section])
+  @_Concurrency.MainActor(unsafe) open var configureCell: RxDataSources.CollectionViewSectionedDataSource<Section>.ConfigureCell {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var configureSupplementaryView: RxDataSources.CollectionViewSectionedDataSource<Section>.ConfigureSupplementaryView? {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var moveItem: RxDataSources.CollectionViewSectionedDataSource<Section>.MoveItem {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var canMoveItemAtIndexPath: ((RxDataSources.CollectionViewSectionedDataSource<Section>, Foundation.IndexPath) -> Swift.Bool)? {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) @objc open func numberOfSections(in collectionView: UIKit.UICollectionView) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc open func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor(unsafe) @objc open func collectionView(_ collectionView: UIKit.UICollectionView, viewForSupplementaryElementOfKind kind: Swift.String, at indexPath: Foundation.IndexPath) -> UIKit.UICollectionReusableView
+  @_Concurrency.MainActor(unsafe) @objc open func collectionView(_ collectionView: UIKit.UICollectionView, canMoveItemAt indexPath: Foundation.IndexPath) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc open func collectionView(_ collectionView: UIKit.UICollectionView, moveItemAt sourceIndexPath: Foundation.IndexPath, to destinationIndexPath: Foundation.IndexPath)
+  @objc override dynamic open func responds(to aSelector: ObjectiveC.Selector!) -> Swift.Bool
+  @objc deinit
+}
+extension RxDataSources.CollectionViewSectionedDataSource {
+  @available(*, deprecated, renamed: "configureSupplementaryView")
+  @_Concurrency.MainActor(unsafe) public var supplementaryViewFactory: RxDataSources.CollectionViewSectionedDataSource<Section>.ConfigureSupplementaryView? {
+    get
+    set
+  }
+}
+extension Swift.FloatingPoint {
+  public var identity: Self {
+    get
+  }
+}
+extension Swift.Float : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.Float
+}
+extension Swift.Double : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.Double
+}
+extension Swift.BinaryInteger {
+  public var identity: Self {
+    get
+  }
+}
+extension Swift.Int : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.Int
+}
+extension Swift.Int8 : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.Int8
+}
+extension Swift.Int16 : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.Int16
+}
+extension Swift.Int32 : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.Int32
+}
+extension Swift.Int64 : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.Int64
+}
+extension Swift.UInt : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.UInt
+}
+extension Swift.UInt8 : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.UInt8
+}
+extension Swift.UInt16 : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.UInt16
+}
+extension Swift.UInt32 : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.UInt32
+}
+extension Swift.UInt64 : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.UInt64
+}
+@_Concurrency.MainActor(unsafe) open class RxCollectionViewSectionedAnimatedDataSource<Section> : RxDataSources.CollectionViewSectionedDataSource<Section>, RxCocoa.RxCollectionViewDataSourceType where Section : Differentiator.AnimatableSectionModelType {
+  public typealias Element = [Section]
+  public typealias DecideViewTransition = (RxDataSources.CollectionViewSectionedDataSource<Section>, UIKit.UICollectionView, [Differentiator.Changeset<Section>]) -> RxDataSources.ViewTransition
+  @_Concurrency.MainActor(unsafe) public var animationConfiguration: RxDataSources.AnimationConfiguration
+  @_Concurrency.MainActor(unsafe) public var decideViewTransition: RxDataSources.RxCollectionViewSectionedAnimatedDataSource<Section>.DecideViewTransition
+  @_Concurrency.MainActor(unsafe) public init(animationConfiguration: RxDataSources.AnimationConfiguration = AnimationConfiguration(), decideViewTransition: @escaping RxDataSources.RxCollectionViewSectionedAnimatedDataSource<Section>.DecideViewTransition = { _, _, _ in .animated }, configureCell: @escaping RxDataSources.RxCollectionViewSectionedAnimatedDataSource<Section>.ConfigureCell, configureSupplementaryView: RxDataSources.RxCollectionViewSectionedAnimatedDataSource<Section>.ConfigureSupplementaryView? = nil, moveItem: @escaping RxDataSources.RxCollectionViewSectionedAnimatedDataSource<Section>.MoveItem = { _, _, _ in () }, canMoveItemAtIndexPath: @escaping RxDataSources.RxCollectionViewSectionedAnimatedDataSource<Section>.CanMoveItemAtIndexPath = { _, _ in false })
+  @_Concurrency.MainActor(unsafe) open func collectionView(_ collectionView: UIKit.UICollectionView, observedEvent: RxSwift.Event<RxDataSources.RxCollectionViewSectionedAnimatedDataSource<Section>.Element>)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class RxCollectionViewSectionedReloadDataSource<Section> : RxDataSources.CollectionViewSectionedDataSource<Section>, RxCocoa.RxCollectionViewDataSourceType where Section : Differentiator.SectionModelType {
+  public typealias Element = [Section]
+  @_Concurrency.MainActor(unsafe) open func collectionView(_ collectionView: UIKit.UICollectionView, observedEvent: RxSwift.Event<RxDataSources.RxCollectionViewSectionedReloadDataSource<Section>.Element>)
+  @_Concurrency.MainActor(unsafe) override public init(configureCell: @escaping RxDataSources.CollectionViewSectionedDataSource<Section>.ConfigureCell, configureSupplementaryView: RxDataSources.CollectionViewSectionedDataSource<Section>.ConfigureSupplementaryView? = nil, moveItem: @escaping RxDataSources.CollectionViewSectionedDataSource<Section>.MoveItem = super, canMoveItemAtIndexPath: @escaping RxDataSources.CollectionViewSectionedDataSource<Section>.CanMoveItemAtIndexPath = super)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) open class RxPickerViewStringAdapter<Components> : RxDataSources.RxPickerViewDataSource<Components>, UIKit.UIPickerViewDelegate {
+  public typealias TitleForRow = (_ dataSource: RxDataSources.RxPickerViewStringAdapter<Components>, _ pickerView: UIKit.UIPickerView, _ components: Components, _ row: Swift.Int, _ component: Swift.Int) -> Swift.String?
+  @_Concurrency.MainActor(unsafe) public init(components: Components, numberOfComponents: @escaping RxDataSources.RxPickerViewStringAdapter<Components>.NumberOfComponents, numberOfRowsInComponent: @escaping RxDataSources.RxPickerViewStringAdapter<Components>.NumberOfRowsInComponent, titleForRow: @escaping RxDataSources.RxPickerViewStringAdapter<Components>.TitleForRow)
+  @_Concurrency.MainActor(unsafe) @objc open func pickerView(_ pickerView: UIKit.UIPickerView, titleForRow row: Swift.Int, forComponent component: Swift.Int) -> Swift.String?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) open class RxPickerViewAttributedStringAdapter<Components> : RxDataSources.RxPickerViewDataSource<Components>, UIKit.UIPickerViewDelegate {
+  public typealias AttributedTitleForRow = (_ dataSource: RxDataSources.RxPickerViewAttributedStringAdapter<Components>, _ pickerView: UIKit.UIPickerView, _ components: Components, _ row: Swift.Int, _ component: Swift.Int) -> Foundation.NSAttributedString?
+  @_Concurrency.MainActor(unsafe) public init(components: Components, numberOfComponents: @escaping RxDataSources.RxPickerViewAttributedStringAdapter<Components>.NumberOfComponents, numberOfRowsInComponent: @escaping RxDataSources.RxPickerViewAttributedStringAdapter<Components>.NumberOfRowsInComponent, attributedTitleForRow: @escaping RxDataSources.RxPickerViewAttributedStringAdapter<Components>.AttributedTitleForRow)
+  @_Concurrency.MainActor(unsafe) @objc open func pickerView(_ pickerView: UIKit.UIPickerView, attributedTitleForRow row: Swift.Int, forComponent component: Swift.Int) -> Foundation.NSAttributedString?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) open class RxPickerViewViewAdapter<Components> : RxDataSources.RxPickerViewDataSource<Components>, UIKit.UIPickerViewDelegate {
+  public typealias ViewForRow = (_ dataSource: RxDataSources.RxPickerViewViewAdapter<Components>, _ pickerView: UIKit.UIPickerView, _ components: Components, _ row: Swift.Int, _ component: Swift.Int, _ view: UIKit.UIView?) -> UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public init(components: Components, numberOfComponents: @escaping RxDataSources.RxPickerViewViewAdapter<Components>.NumberOfComponents, numberOfRowsInComponent: @escaping RxDataSources.RxPickerViewViewAdapter<Components>.NumberOfRowsInComponent, viewForRow: @escaping RxDataSources.RxPickerViewViewAdapter<Components>.ViewForRow)
+  @_Concurrency.MainActor(unsafe) @objc open func pickerView(_ pickerView: UIKit.UIPickerView, viewForRow row: Swift.Int, forComponent component: Swift.Int, reusing view: UIKit.UIView?) -> UIKit.UIView
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) open class RxPickerViewDataSource<Components> : ObjectiveC.NSObject, UIKit.UIPickerViewDataSource {
+  public typealias NumberOfComponents = (_ dataSource: RxDataSources.RxPickerViewDataSource<Components>, _ pickerView: UIKit.UIPickerView, _ components: Components) -> Swift.Int
+  public typealias NumberOfRowsInComponent = (_ dataSource: RxDataSources.RxPickerViewDataSource<Components>, _ pickerView: UIKit.UIPickerView, _ components: Components, _ component: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc public func numberOfComponents(in pickerView: UIKit.UIPickerView) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc public func pickerView(_ pickerView: UIKit.UIPickerView, numberOfRowsInComponent component: Swift.Int) -> Swift.Int
+  @objc deinit
+}
+extension RxDataSources.RxPickerViewDataSource : RxCocoa.RxPickerViewDataSourceType {
+  @_Concurrency.MainActor(unsafe) public func pickerView(_ pickerView: UIKit.UIPickerView, observedEvent: RxSwift.Event<Components>)
+  public typealias Element = Components
+}
+@_Concurrency.MainActor(unsafe) open class RxTableViewSectionedAnimatedDataSource<Section> : RxDataSources.TableViewSectionedDataSource<Section>, RxCocoa.RxTableViewDataSourceType where Section : Differentiator.AnimatableSectionModelType {
+  public typealias Element = [Section]
+  public typealias DecideViewTransition = (RxDataSources.TableViewSectionedDataSource<Section>, UIKit.UITableView, [Differentiator.Changeset<Section>]) -> RxDataSources.ViewTransition
+  @_Concurrency.MainActor(unsafe) public var animationConfiguration: RxDataSources.AnimationConfiguration
+  @_Concurrency.MainActor(unsafe) public var decideViewTransition: RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.DecideViewTransition
+  @_Concurrency.MainActor(unsafe) public init(animationConfiguration: RxDataSources.AnimationConfiguration = AnimationConfiguration(), decideViewTransition: @escaping RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.DecideViewTransition = { _, _, _ in .animated }, configureCell: @escaping RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.ConfigureCell, titleForHeaderInSection: @escaping RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.TitleForHeaderInSection = { _, _ in nil }, titleForFooterInSection: @escaping RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.TitleForFooterInSection = { _, _ in nil }, canEditRowAtIndexPath: @escaping RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.CanEditRowAtIndexPath = { _, _ in false }, canMoveRowAtIndexPath: @escaping RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.CanMoveRowAtIndexPath = { _, _ in false }, sectionIndexTitles: @escaping RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.SectionIndexTitles = { _ in nil }, sectionForSectionIndexTitle: @escaping RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.SectionForSectionIndexTitle = { _, _, index in index })
+  @_Concurrency.MainActor(unsafe) open func tableView(_ tableView: UIKit.UITableView, observedEvent: RxSwift.Event<RxDataSources.RxTableViewSectionedAnimatedDataSource<Section>.Element>)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class RxTableViewSectionedReloadDataSource<Section> : RxDataSources.TableViewSectionedDataSource<Section>, RxCocoa.RxTableViewDataSourceType where Section : Differentiator.SectionModelType {
+  public typealias Element = [Section]
+  @_Concurrency.MainActor(unsafe) open func tableView(_ tableView: UIKit.UITableView, observedEvent: RxSwift.Event<RxDataSources.RxTableViewSectionedReloadDataSource<Section>.Element>)
+  @_Concurrency.MainActor(unsafe) override public init(configureCell: @escaping RxDataSources.TableViewSectionedDataSource<Section>.ConfigureCell, titleForHeaderInSection: @escaping RxDataSources.TableViewSectionedDataSource<Section>.TitleForHeaderInSection = super, titleForFooterInSection: @escaping RxDataSources.TableViewSectionedDataSource<Section>.TitleForFooterInSection = super, canEditRowAtIndexPath: @escaping RxDataSources.TableViewSectionedDataSource<Section>.CanEditRowAtIndexPath = super, canMoveRowAtIndexPath: @escaping RxDataSources.TableViewSectionedDataSource<Section>.CanMoveRowAtIndexPath = super, sectionIndexTitles: @escaping RxDataSources.TableViewSectionedDataSource<Section>.SectionIndexTitles = super, sectionForSectionIndexTitle: @escaping RxDataSources.TableViewSectionedDataSource<Section>.SectionForSectionIndexTitle = super)
+  @objc deinit
+}
+extension Swift.String : Differentiator.IdentifiableType {
+  public typealias Identity = Swift.String
+  public var identity: Swift.String {
+    get
+  }
+}
+@_Concurrency.MainActor(unsafe) open class TableViewSectionedDataSource<Section> : ObjectiveC.NSObject, UIKit.UITableViewDataSource, RxCocoa.SectionedViewDataSourceType where Section : Differentiator.SectionModelType {
+  public typealias Item = Section.Item
+  public typealias ConfigureCell = (RxDataSources.TableViewSectionedDataSource<Section>, UIKit.UITableView, Foundation.IndexPath, RxDataSources.TableViewSectionedDataSource<Section>.Item) -> UIKit.UITableViewCell
+  public typealias TitleForHeaderInSection = (RxDataSources.TableViewSectionedDataSource<Section>, Swift.Int) -> Swift.String?
+  public typealias TitleForFooterInSection = (RxDataSources.TableViewSectionedDataSource<Section>, Swift.Int) -> Swift.String?
+  public typealias CanEditRowAtIndexPath = (RxDataSources.TableViewSectionedDataSource<Section>, Foundation.IndexPath) -> Swift.Bool
+  public typealias CanMoveRowAtIndexPath = (RxDataSources.TableViewSectionedDataSource<Section>, Foundation.IndexPath) -> Swift.Bool
+  public typealias SectionIndexTitles = (RxDataSources.TableViewSectionedDataSource<Section>) -> [Swift.String]?
+  public typealias SectionForSectionIndexTitle = (RxDataSources.TableViewSectionedDataSource<Section>, _ title: Swift.String, _ index: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) public init(configureCell: @escaping RxDataSources.TableViewSectionedDataSource<Section>.ConfigureCell, titleForHeaderInSection: @escaping RxDataSources.TableViewSectionedDataSource<Section>.TitleForHeaderInSection = { _, _ in nil }, titleForFooterInSection: @escaping RxDataSources.TableViewSectionedDataSource<Section>.TitleForFooterInSection = { _, _ in nil }, canEditRowAtIndexPath: @escaping RxDataSources.TableViewSectionedDataSource<Section>.CanEditRowAtIndexPath = { _, _ in true }, canMoveRowAtIndexPath: @escaping RxDataSources.TableViewSectionedDataSource<Section>.CanMoveRowAtIndexPath = { _, _ in true }, sectionIndexTitles: @escaping RxDataSources.TableViewSectionedDataSource<Section>.SectionIndexTitles = { _ in nil }, sectionForSectionIndexTitle: @escaping RxDataSources.TableViewSectionedDataSource<Section>.SectionForSectionIndexTitle = { _, _, index in index })
+  public typealias SectionModelSnapshot = Differentiator.SectionModel<Section, RxDataSources.TableViewSectionedDataSource<Section>.Item>
+  @_Concurrency.MainActor(unsafe) open var sectionModels: [Section] {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) open subscript(section: Swift.Int) -> Section {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) open subscript(indexPath: Foundation.IndexPath) -> RxDataSources.TableViewSectionedDataSource<Section>.Item {
+    get
+    set(item)
+  }
+  @_Concurrency.MainActor(unsafe) open func model(at indexPath: Foundation.IndexPath) throws -> Any
+  @_Concurrency.MainActor(unsafe) open func setSections(_ sections: [Section])
+  @_Concurrency.MainActor(unsafe) open var configureCell: RxDataSources.TableViewSectionedDataSource<Section>.ConfigureCell {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var titleForHeaderInSection: RxDataSources.TableViewSectionedDataSource<Section>.TitleForHeaderInSection {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var titleForFooterInSection: RxDataSources.TableViewSectionedDataSource<Section>.TitleForFooterInSection {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var canEditRowAtIndexPath: RxDataSources.TableViewSectionedDataSource<Section>.CanEditRowAtIndexPath {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var canMoveRowAtIndexPath: RxDataSources.TableViewSectionedDataSource<Section>.CanMoveRowAtIndexPath {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var sectionIndexTitles: RxDataSources.TableViewSectionedDataSource<Section>.SectionIndexTitles {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) open var sectionForSectionIndexTitle: RxDataSources.TableViewSectionedDataSource<Section>.SectionForSectionIndexTitle {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) @objc open func numberOfSections(in tableView: UIKit.UITableView) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor(unsafe) @objc open func tableView(_ tableView: UIKit.UITableView, titleForHeaderInSection section: Swift.Int) -> Swift.String?
+  @_Concurrency.MainActor(unsafe) @objc open func tableView(_ tableView: UIKit.UITableView, titleForFooterInSection section: Swift.Int) -> Swift.String?
+  @_Concurrency.MainActor(unsafe) @objc open func tableView(_ tableView: UIKit.UITableView, canEditRowAt indexPath: Foundation.IndexPath) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc open func tableView(_ tableView: UIKit.UITableView, canMoveRowAt indexPath: Foundation.IndexPath) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc open func tableView(_ tableView: UIKit.UITableView, moveRowAt sourceIndexPath: Foundation.IndexPath, to destinationIndexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) @objc open func sectionIndexTitles(for tableView: UIKit.UITableView) -> [Swift.String]?
+  @_Concurrency.MainActor(unsafe) @objc open func tableView(_ tableView: UIKit.UITableView, sectionForSectionIndexTitle title: Swift.String, at index: Swift.Int) -> Swift.Int
+  @objc deinit
+}
+extension UIKit.UITableView : RxDataSources.SectionedViewType {
+  @_Concurrency.MainActor(unsafe) public func insertItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func deleteItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func moveItemAtIndexPath(_ from: Foundation.IndexPath, to: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) public func reloadItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func insertSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func deleteSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func moveSection(_ from: Swift.Int, to: Swift.Int)
+  @_Concurrency.MainActor(unsafe) public func reloadSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+}
+extension UIKit.UICollectionView : RxDataSources.SectionedViewType {
+  @_Concurrency.MainActor(unsafe) public func insertItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func deleteItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func moveItemAtIndexPath(_ from: Foundation.IndexPath, to: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) public func reloadItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func insertSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func deleteSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+  @_Concurrency.MainActor(unsafe) public func moveSection(_ from: Swift.Int, to: Swift.Int)
+  @_Concurrency.MainActor(unsafe) public func reloadSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+}
+public protocol SectionedViewType {
+  func insertItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  func deleteItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  func moveItemAtIndexPath(_ from: Foundation.IndexPath, to: Foundation.IndexPath)
+  func reloadItemsAtIndexPaths(_ paths: [Foundation.IndexPath], animationStyle: UIKit.UITableView.RowAnimation)
+  func insertSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+  func deleteSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+  func moveSection(_ from: Swift.Int, to: Swift.Int)
+  func reloadSections(_ sections: [Swift.Int], animationStyle: UIKit.UITableView.RowAnimation)
+}
+extension RxDataSources.SectionedViewType {
+  public func batchUpdates<Section>(_ changes: Differentiator.Changeset<Section>, animationConfiguration: RxDataSources.AnimationConfiguration) where Section : Differentiator.SectionModelType
+}
+public enum ViewTransition {
+  case animated
+  case reload
+  public static func == (a: RxDataSources.ViewTransition, b: RxDataSources.ViewTransition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension RxDataSources.ViewTransition : Swift.Equatable {}
+extension RxDataSources.ViewTransition : Swift.Hashable {}

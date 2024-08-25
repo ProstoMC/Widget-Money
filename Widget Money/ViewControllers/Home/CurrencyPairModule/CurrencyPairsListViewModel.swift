@@ -7,12 +7,10 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
-import RxDataSources
-import Differentiator
 
 protocol CurrencyPairsListViewModelProtocol {
-    var rxPairList: BehaviorRelay<[SectionOfCustomData]> { get }
+    var pairList: [CurrencyPairCellModel] { get }
+    var rxPairsUpdated: BehaviorSubject<Bool> { get }
     
     var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
     var colorSet: AppColors { get }
@@ -24,21 +22,17 @@ protocol CurrencyPairsListViewModelProtocol {
     
 }
 
-class CurrencyPairsListViewModel {
+class CurrencyPairsListViewModel: CurrencyPairsListViewModelProtocol {
+    var pairList: [CurrencyPairCellModel] = []
+    var rxPairsUpdated = BehaviorSubject(value: false)
     
     var rxAppThemeUpdated = BehaviorSubject(value: false)
     var colorSet = CoreWorker.shared.colorsWorker.returnColors()
-    
-    var rxPairList: BehaviorRelay<[SectionOfCustomData]>
-    
-    var section: SectionOfCustomData!
+
     let bag = DisposeBag()
     
     init() {
         //Start with nulls
-        section = SectionOfCustomData(header: "Header", items: [])
-        rxPairList = BehaviorRelay(value: [self.section])
-        
         subscribeToCoreWorker()
     }
     
@@ -46,14 +40,14 @@ class CurrencyPairsListViewModel {
         
         //Update view after pairsList was updated
         CoreWorker.shared.favouritePairList.rxPairListCount.subscribe{ _ in  //I dont need count
-            self.section = SectionOfCustomData(header: "Header", items: self.createList())
-            self.rxPairList.accept([self.section])
+            self.pairList = self.createList()
+            self.rxPairsUpdated.onNext(true)
         }.disposed(by: bag)
         
         //Update after updating of rates
         CoreWorker.shared.coinList.rxRateUpdated.subscribe { _ in
-            self.section = SectionOfCustomData(header: "Header", items: self.createList())
-            self.rxPairList.accept([self.section])
+            self.pairList = self.createList()
+            self.rxPairsUpdated.onNext(true)
         }
         .disposed(by: bag)
         
@@ -62,8 +56,8 @@ class CurrencyPairsListViewModel {
             self.changeColorSet()
             self.rxAppThemeUpdated.onNext(true)
             //Just reload table - it is hidden 
-            self.section = SectionOfCustomData(header: "Header", items: self.createList())
-            self.rxPairList.accept([self.section])
+            self.pairList = self.createList()
+            self.rxPairsUpdated.onNext(true)
         }.disposed(by: bag)
         
     }
@@ -92,7 +86,7 @@ class CurrencyPairsListViewModel {
 
 
 // MARK: - Protocol Funcions
-extension CurrencyPairsListViewModel: CurrencyPairsListViewModelProtocol {
+extension CurrencyPairsListViewModel {
 
     func selectTail(pair: CurrencyPairCellModel) {
         CoreWorker.shared.exchangeWorker.setFromCoin(code: pair.valueCurrencyCode)

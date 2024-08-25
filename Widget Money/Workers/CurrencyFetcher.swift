@@ -93,7 +93,7 @@ extension CurrencyFetcher {
     func fetchCoinsFromBackend(completion: @escaping ([CoinUniversal], String) -> ()) {
         var universalCoins: [CoinUniversal] = []
         
-        let url = URL(string: "http://194.87.110.113:8000/api/currencies/?format=json")!
+        let url = URL(string: "http://178.130.41.72:8000/api/currencies/?format=json")!
         
         
         AF.request(url).validate().responseDecodable(of: [KuznecovCoin].self) { (response) in
@@ -121,7 +121,8 @@ extension CurrencyFetcher {
             //Create string form date
             let lastUpdate = formatter.string(from: date!)
             
-            print("=====LAST UPDATE:  \(lastUpdate)")
+            //print("=====LAST UPDATE:  \(lastUpdate)")
+            
             //Preparing coins list
             
             kuzCoins.forEach({ kuzCoin in
@@ -132,13 +133,7 @@ extension CurrencyFetcher {
                 }()
                 
                 //print("\(kuzCoin.code) - \(kuzCoin.echangerate.rate)")
-                
-                var imageURL = kuzCoin.url_image ?? "Error"
-                
-                if type == .crypto {
-                    imageURL = imageURL.lowercased()
-                }
-                
+
                 universalCoins.append(CoinUniversal(
                     type: type,
                     code: kuzCoin.code,
@@ -147,7 +142,7 @@ extension CurrencyFetcher {
                     rate: kuzCoin.echangerate.rate,
                     flow24Hours: kuzCoin.echangerate.flowrate24,
                     logo: kuzCoin.sign ?? kuzCoin.code, //If sign is exist - use it. If not - use a code
-                    imageUrl: imageURL,
+                    imageUrl: kuzCoin.url_image ?? "Error",
                     colorIndex: 0))
             })
             

@@ -6,9 +6,7 @@
 //
 
 import UIKit
-import RxCocoa
 import RxSwift
-import RxDataSources
 import GoogleMobileAds
 
 class HomeViewController: UIViewController {

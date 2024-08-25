@@ -7,15 +7,13 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
-import RxDataSources
 
 protocol ReturnDataFromChooseViewControllerProtocol {
     func passCurrencyShortName(name: String?)
 }
 
 
-class ChooseCurrencyViewController: UIViewController, UITableViewDelegate {
+class ChooseCurrencyViewController: UIViewController {
     
     var delegate: ReturnDataFromChooseViewControllerProtocol!
     
@@ -51,22 +49,8 @@ class ChooseCurrencyViewController: UIViewController, UITableViewDelegate {
     }
     
     private func subscribing() {
-        let dataSource = RxTableViewSectionedReloadDataSource<TableSectionOfCoinUniversal>(
-            configureCell: { dataSource, tableView, indexPath, item in
-                let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChooseCurrencyTableViewCell
-                
-                cell.configure(coin: item)
-                
-                return cell
-            })
-        
-        viewModel.rxCoinList.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
-        
-        tableView.rx.modelSelected(CurrencyCellViewModel.self).subscribe(onNext: { item in
-            //print ("SELECTED")
-            //self.viewModel.setCurrency(shortName: item.shortName)
-            self.choosenCurrencyName = item.code
-            self.dismiss(animated: true)
+        viewModel.rxCoinListUpdated.subscribe(onNext: { _ in
+            self.tableView.reloadData()
         }).disposed(by: disposeBag)
         
         viewModel.rxAppThemeUpdated.subscribe(onNext: { flag in
@@ -219,6 +203,7 @@ extension ChooseCurrencyViewController {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(ChooseCurrencyTableViewCell.self, forCellReuseIdentifier: "cell")
         
         NSLayoutConstraint.activate([
@@ -251,6 +236,25 @@ extension ChooseCurrencyViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Int(baseHeightOfElements*1.2))
+    }
+}
+
+extension ChooseCurrencyViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        choosenCurrencyName = viewModel.showedCoinList[indexPath.row].code
+        self.dismiss(animated: true)
+    }
+}
+
+extension ChooseCurrencyViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.showedCoinList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChooseCurrencyTableViewCell
+        cell.configure(coin: viewModel.showedCoinList[indexPath.row])
+        return cell
     }
 }
 
