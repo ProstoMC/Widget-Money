@@ -10,6 +10,8 @@ import RxSwift
 import GoogleMobileAds
 import SwiftUI
 import StoreKit
+import YandexMobileAds
+import YandexMobileAdsInstream
 
 class SettingsViewController: UIViewController {
     
@@ -20,7 +22,19 @@ class SettingsViewController: UIViewController {
     var topline: UIView!
     var tableView: UITableView!
     
-    var adsBlock = GADBannerView()
+    //var adsBlock = GADBannerView()
+    
+    //YANDEX AD BANNER
+    
+    private lazy var yaAdsBlock: AdView = {
+        let width = view.safeAreaLayoutGuide.layoutFrame.width*0.92
+        let adSize = BannerAdSize.stickySize(withContainerWidth: width)
+        
+        let adView = AdView(adUnitID: viewModel.bannerID, adSize: adSize)
+        //adView.accessibilityIdentifier = CommonAccessibility.bannerView
+        adView.delegate = self
+        return adView
+    }()
     
     var baseHeightOfElements: Double!
     
@@ -49,7 +63,7 @@ class SettingsViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         viewModel.rxAdsIsHidden.subscribe(onNext: { isHidden in
-            self.adsBlock.isHidden = isHidden
+            self.yaAdsBlock.isHidden = isHidden
         }).disposed(by: disposeBag)
         
         viewModel.rxSettingsListUpdated.subscribe(onNext: { flag in
@@ -79,6 +93,7 @@ extension SettingsViewController {
         setupTopLine()
         setupTableView()
         setupAdsBlock()
+        
         
         colorsUpdate()
     }
@@ -133,22 +148,10 @@ extension SettingsViewController {
     
     private func setupAdsBlock() {
         
-        let adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width*0.92)
-        adsBlock = GADBannerView(adSize: adSize)
+        //YANDEX
+        yaAdsBlock.translatesAutoresizingMaskIntoConstraints = false
+        yaAdsBlock.loadAd()
 
-        adsBlock.rootViewController = self
-        
-        adsBlock.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(adsBlock)
-        
-        NSLayoutConstraint.activate([
-            adsBlock.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            adsBlock.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 50)
-        ])
-        
-        adsBlock.adUnitID = viewModel.bannerID
-        adsBlock.load(GADRequest())
-        
     }
 
     
@@ -254,4 +257,21 @@ extension SettingsViewController: UITextFieldDelegate {
         super.touchesBegan(touches, with: event)
     }
 }
+
+// MARK: - YANDEX ADS
+
+extension SettingsViewController: AdViewDelegate {
+    func showAd() {
+        view.addSubview(yaAdsBlock)
+        NSLayoutConstraint.activate([
+            yaAdsBlock.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 30),
+            yaAdsBlock.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    func adViewDidLoad(_ adView: AdView) {
+        showAd()
+    }
+}
+
 

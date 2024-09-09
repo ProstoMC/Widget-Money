@@ -106,12 +106,16 @@
 		84A0BD632C791DF100B948E0 /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD102C73F56B00B948E0 /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84A0BD642C791DF100B948E0 /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD132C73F56C00B948E0 /* RxSwift.xcframework */; };
 		84A0BD652C791DF100B948E0 /* RxSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD132C73F56C00B948E0 /* RxSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84A0BD6B2C7E26FC00B948E0 /* YandexMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 84A0BD6A2C7E26FC00B948E0 /* YandexMobileAds */; };
+		84A0BD6D2C7E26FC00B948E0 /* YandexMobileAdsInstream in Frameworks */ = {isa = PBXBuildFile; productRef = 84A0BD6C2C7E26FC00B948E0 /* YandexMobileAdsInstream */; };
 		84AD6E922C3190BA00AC0D18 /* PurchaseUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AD6E912C3190BA00AC0D18 /* PurchaseUI.swift */; };
 		84B95E3F2BD527ED00EE9CEC /* LiteFetcherForWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */; };
 		84B95E402BD527F000EE9CEC /* LiteFetcherForWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */; };
 		84B95E412BD5317F00EE9CEC /* CoinUniversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5882B7A7A1C0030DBF5 /* CoinUniversal.swift */; };
 		84B95E422BD533B100EE9CEC /* UniversalCoinWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F57B2B7A79F80030DBF5 /* UniversalCoinWorker.swift */; };
 		84B95E442BD5430800EE9CEC /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5792B7A79F80030DBF5 /* CurrencyFetcher.swift */; };
+		84DC5C912C826304005E1D0C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 84DC5C902C826304005E1D0C /* PrivacyInfo.xcprivacy */; };
+		84DC5C922C826304005E1D0C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 84DC5C902C826304005E1D0C /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +248,7 @@
 		84A0BD132C73F56C00B948E0 /* RxSwift.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:BD802E794C8ABDDA4C3F5D92B3E4C4FBFAE4734410B9AD73442EF1CEB0276140"; lastKnownFileType = wrapper.xcframework; name = RxSwift.xcframework; path = ../../Desktop/Production/v2/Carthage/Build/RxSwift.xcframework; sourceTree = "<group>"; };
 		84AD6E912C3190BA00AC0D18 /* PurchaseUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseUI.swift; sourceTree = "<group>"; };
 		84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteFetcherForWidget.swift; sourceTree = "<group>"; };
+		84DC5C902C826304005E1D0C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,7 +259,9 @@
 				84A0BCB42C73E94000B948E0 /* FirebaseFunctions in Frameworks */,
 				84A0BCB02C73E92900B948E0 /* FirebaseAnalytics in Frameworks */,
 				84A0BD622C791DF100B948E0 /* RxRelay.xcframework in Frameworks */,
+				84A0BD6D2C7E26FC00B948E0 /* YandexMobileAdsInstream in Frameworks */,
 				84A0BC6F2C70F9D400B948E0 /* SDWebImageMapKit in Frameworks */,
+				84A0BD6B2C7E26FC00B948E0 /* YandexMobileAds in Frameworks */,
 				8450C9E02BD80D3A00E1C255 /* GoogleMobileAds in Frameworks */,
 				84A0BD602C791DF100B948E0 /* RxCocoa.xcframework in Frameworks */,
 				84A0BCB22C73E92900B948E0 /* FirebaseAnalyticsSwift in Frameworks */,
@@ -336,6 +343,7 @@
 				8450C9DC2BD7D08E00E1C255 /* GoogleService-Info.plist */,
 				43D5F5582B7A76510030DBF5 /* Info.plist */,
 				84659DFB2C06229400C3BABB /* Products.storekit */,
+				84DC5C902C826304005E1D0C /* PrivacyInfo.xcprivacy */,
 			);
 			path = "Widget Money";
 			sourceTree = "<group>";
@@ -585,6 +593,8 @@
 				84A0BCB12C73E92900B948E0 /* FirebaseAnalyticsSwift */,
 				84A0BCB32C73E94000B948E0 /* FirebaseFunctions */,
 				84A0BD272C74A5C500B948E0 /* Alamofire */,
+				84A0BD6A2C7E26FC00B948E0 /* YandexMobileAds */,
+				84A0BD6C2C7E26FC00B948E0 /* YandexMobileAdsInstream */,
 			);
 			productName = "Widget Money";
 			productReference = 43D5F5472B7A764D0030DBF5 /* Widget Money.app */;
@@ -618,7 +628,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					43D5F5462B7A764D0030DBF5 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -643,6 +653,7 @@
 				8450C9DE2BD80D3A00E1C255 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				84A0BC6B2C70F9D400B948E0 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				84A0BD262C74A5C500B948E0 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				84A0BD692C7E26FC00B948E0 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */,
 			);
 			productRefGroup = 43D5F5482B7A764D0030DBF5 /* Products */;
 			projectDirPath = "";
@@ -662,6 +673,7 @@
 				846074052BC6F7A0007AF93E /* Dark 1.png in Resources */,
 				43D5F5572B7A76510030DBF5 /* LaunchScreen.storyboard in Resources */,
 				846074072BC6F7A8007AF93E /* Dark 2.png in Resources */,
+				84DC5C912C826304005E1D0C /* PrivacyInfo.xcprivacy in Resources */,
 				846074292BC7E402007AF93E /* .gitignore in Resources */,
 				846073FF2BC6F787007AF93E /* Light 2.png in Resources */,
 				846074012BC6F78E007AF93E /* Light 1.png in Resources */,
@@ -680,6 +692,7 @@
 			files = (
 				43D5F5F62B7A857D0030DBF5 /* Assets.xcassets in Resources */,
 				8460742A2BC7E402007AF93E /* .gitignore in Resources */,
+				84DC5C922C826304005E1D0C /* PrivacyInfo.xcprivacy in Resources */,
 				437ABC8F2B824FCF00E7EAA0 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,6 +822,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -871,6 +885,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -932,7 +947,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Widget Money/Widget Money.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.01;
+				CURRENT_PROJECT_VERSION = 1.02;
 				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Widget Money/Info.plist";
@@ -948,7 +963,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.02;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sloniklm.WidgetMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -970,7 +986,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Widget Money/Widget Money.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.01;
+				CURRENT_PROJECT_VERSION = 1.02;
 				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Widget Money/Info.plist";
@@ -986,7 +1002,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.02;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sloniklm.WidgetMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1006,7 +1023,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Widget Money ExtensionExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.01;
+				CURRENT_PROJECT_VERSION = 1.02;
 				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Widget Money Extension/Info.plist";
@@ -1017,7 +1034,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sloniklm.WidgetMoney.Widget-Money-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1038,7 +1055,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Widget Money ExtensionExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.01;
+				CURRENT_PROJECT_VERSION = 1.02;
 				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Widget Money Extension/Info.plist";
@@ -1049,7 +1066,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sloniklm.WidgetMoney.Widget-Money-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1128,6 +1145,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		84A0BD692C7E26FC00B948E0 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yandexmobile/yandex-ads-sdk-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1170,6 +1195,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84A0BD262C74A5C500B948E0 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		84A0BD6A2C7E26FC00B948E0 /* YandexMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84A0BD692C7E26FC00B948E0 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */;
+			productName = YandexMobileAds;
+		};
+		84A0BD6C2C7E26FC00B948E0 /* YandexMobileAdsInstream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84A0BD692C7E26FC00B948E0 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */;
+			productName = YandexMobileAdsInstream;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

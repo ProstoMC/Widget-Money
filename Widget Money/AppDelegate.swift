@@ -9,6 +9,7 @@ import UIKit
 
 import FirebaseCore
 import GoogleMobileAds
+import YandexMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        MobileAds.initializeSDK()
         return true
     }
     

@@ -31,6 +31,7 @@ protocol SettingsViewModelProtocol {
     var rxSettingsListUpdated: BehaviorSubject<Bool> { get }
     
     var bannerID: String { get }
+    var bottomAnchor: NSLayoutYAxisAnchor? { get }
     
     func changeBaseCurrency(name: String)
     func changeTheme(theme: AppTheme)
@@ -43,7 +44,9 @@ class SettingsViewModel: SettingsViewModelProtocol {
     
     var colorSet: AppColors = CoreWorker.shared.colorsWorker.returnColors()
     var rxAppThemeUpdated = BehaviorSubject(value: true)
-    var bannerID: String = CoreWorker.shared.adsWorker.returnBannerID(bannerType: .settingsBannerID)
+    var bannerID: String = CoreWorker.shared.adsWorker.returnYABannerID(bannerType: .yaSettingsBannerID)
+    var bottomAnchor = CoreWorker.shared.adsWorker.returnBottomAnchor()
+    
     let bag = DisposeBag()
 
     var settingsList: [SettingsCellViewModel] = []

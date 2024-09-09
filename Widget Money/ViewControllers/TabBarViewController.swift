@@ -113,7 +113,7 @@ extension TabBarViewController {
 
         topLineView.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().tabBarLine
         
- 
+        CoreWorker.shared.adsWorker.setBottomAnchor(anchor: tabBar.topAnchor)
 
     }
 }

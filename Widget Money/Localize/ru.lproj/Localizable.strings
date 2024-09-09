@@ -10,6 +10,7 @@
 
 //HeadView
 "Actual to " = "Обновлено ";
+"Connection error" = "Ошибка подключения";
 "Home" = "Главная";
 "List" = "Список";
 "Settings" = "Настройки";

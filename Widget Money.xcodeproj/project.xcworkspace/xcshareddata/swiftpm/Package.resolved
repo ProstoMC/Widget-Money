@@ -1,5 +1,5 @@
 {
-  "originHash" : "b5c14415498a34552113e536709c7251ebd9d484c0a175f998dc71d826312483",
+  "originHash" : "53111152ebe660665a7e06de5debfe12256d41fa14aa54de63bdd43e771d9e7e",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,6 +26,24 @@
       "state" : {
         "revision" : "3e464dad87dad2d29bb29a97836789bf0f8f67d2",
         "version" : "10.18.1"
+      }
+    },
+    {
+      "identity" : "appmetrica-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/appmetrica/appmetrica-sdk-ios",
+      "state" : {
+        "revision" : "a303a87183464d0143e3cc2eaf09cf98a3b7d8e0",
+        "version" : "5.7.0"
+      }
+    },
+    {
+      "identity" : "divkit-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divkit/divkit-ios",
+      "state" : {
+        "revision" : "b0e5f9e74a093547c9205e33aaead4b25fa8f683",
+        "version" : "30.12.0"
       }
     },
     {
@@ -92,6 +110,15 @@
       }
     },
     {
+      "identity" : "kscrash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kstenerud/KSCrash",
+      "state" : {
+        "revision" : "a6504bb7d9b76731accc141aa9ed1c8dd5063b1b",
+        "version" : "1.17.5"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
@@ -152,6 +179,24 @@
       "state" : {
         "revision" : "9f0c76544701845ad98716f3f6a774a892152bcb",
         "version" : "1.26.0"
+      }
+    },
+    {
+      "identity" : "vgsl",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yandex/vgsl.git",
+      "state" : {
+        "revision" : "e63c66eca9562f8a89fa030899cd3059677450a5",
+        "version" : "6.4.0"
+      }
+    },
+    {
+      "identity" : "yandex-ads-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yandexmobile/yandex-ads-sdk-ios",
+      "state" : {
+        "revision" : "932733a83003ed371a7e64c071d63bd32fa94466",
+        "version" : "7.4.0"
       }
     }
   ],

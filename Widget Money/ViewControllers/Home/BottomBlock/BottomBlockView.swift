@@ -8,15 +8,38 @@
 import UIKit
 import GoogleMobileAds
 import RxSwift
+import YandexMobileAds
 
 class BottomBlockView: UIView {
     let bag = DisposeBag()
     var detailsViewController = DetailsViewController()
-    var bigAdsBlock = GADBannerView()
-    var smallAdsBlock = GADBannerView()
+
     
-    let bigBannerID = CoreWorker.shared.adsWorker.returnBannerID(bannerType: .mainBigBannerID)
-    let smallBannerID = CoreWorker.shared.adsWorker.returnBannerID(bannerType: .mainSmallBannerID)
+    //YANDEX AD BANNERS
+    var yaBigAdsBlock: AdView = {
+        let adSize = BannerAdSize.inlineSize(
+            withWidth: CGFloat(Int(UIScreen.main.bounds.width * 0.92)),
+            maxHeight: CGFloat(Int(UIScreen.main.bounds.width*0.6))
+        )
+        
+        let bannerID = CoreWorker.shared.adsWorker.returnYABannerID(bannerType: .yaMainBigBannerID)
+        let adView = AdView(adUnitID: bannerID, adSize: adSize)
+        adView.translatesAutoresizingMaskIntoConstraints = false
+        return adView
+    }()
+    
+    var yaSmallAdsBlock: AdView = {
+        let adSize = BannerAdSize.inlineSize(
+            withWidth: UIScreen.main.bounds.width * 0.92,
+            maxHeight: CGFloat(Int(UIScreen.main.bounds.width*0.3))
+        )
+        
+        let bannerID = CoreWorker.shared.adsWorker.returnYABannerID(bannerType: .yaMainSmallBannerID)
+        let adView = AdView(adUnitID: bannerID, adSize: adSize)
+        adView.translatesAutoresizingMaskIntoConstraints = false
+        return adView
+    }()
+
     var adsShouldBeHidden = false
     
     override init(frame: CGRect) {
@@ -52,14 +75,15 @@ class BottomBlockView: UIView {
     }
     
     func updateStatus(flag: Bool){
+        
         if adsShouldBeHidden {
             detailsViewController.view.isHidden = !self.adsShouldBeHidden
-            smallAdsBlock.isHidden = self.adsShouldBeHidden
-            bigAdsBlock.isHidden = self.adsShouldBeHidden
+            yaBigAdsBlock.isHidden = self.adsShouldBeHidden
+            yaSmallAdsBlock.isHidden = self.adsShouldBeHidden
         } else {
             detailsViewController.view.isHidden = !flag
-            smallAdsBlock.isHidden = !flag
-            bigAdsBlock.isHidden = flag
+            yaSmallAdsBlock.isHidden = !flag
+            yaBigAdsBlock.isHidden = flag
         }
         detailsViewController.configure()
     }
@@ -71,8 +95,8 @@ class BottomBlockView: UIView {
 extension BottomBlockView {
     private func setupUI() {
         setupDetailsVC()
-        setupBigAdsBlock()
-        setupLittleAdsBlock()
+        setupAdsBlocks()
+        
     }
     
     private func setupDetailsVC() {
@@ -83,52 +107,31 @@ extension BottomBlockView {
             detailsView.topAnchor.constraint(equalTo: self.topAnchor),
             detailsView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             detailsView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            detailsView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.66)
+            detailsView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.63)
         ])
     }
     
     
-    private func setupBigAdsBlock() {
-        
-        //let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width*0.92)
-        let adSize = GADCurrentOrientationInlineAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width*0.92)
-        
-        bigAdsBlock = GADBannerView(adSize: adSize)
-        
-        bigAdsBlock.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(bigAdsBlock)
-        
-        NSLayoutConstraint.activate([
-            bigAdsBlock.topAnchor.constraint(equalTo: self.topAnchor),
-            bigAdsBlock.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        ])
-        
-        bigAdsBlock.adUnitID = bigBannerID
-        bigAdsBlock.load(GADRequest())
-        bigAdsBlock.isHidden = true
-        
+    private func setupAdsBlocks() {
+        yaBigAdsBlock.loadAd()
+        yaSmallAdsBlock.loadAd()
+
+        yaBigAdsBlock.isHidden = true
+        yaSmallAdsBlock.isHidden = true
     }
     
-    private func setupLittleAdsBlock() {
-        
-        let adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width*0.92)
-       // let adSize = GADCurrentOrientationInlineAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width*0.92)
-        
-        smallAdsBlock = GADBannerView(adSize: adSize)
-        
-        smallAdsBlock.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(smallAdsBlock)
-        smallAdsBlock.isHidden = true
+    func showAd() {
+        self.addSubview(yaBigAdsBlock)
+        self.addSubview(yaSmallAdsBlock)
         
         NSLayoutConstraint.activate([
-            smallAdsBlock.topAnchor.constraint(
+            yaBigAdsBlock.topAnchor.constraint(equalTo: self.topAnchor),
+            yaBigAdsBlock.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            
+            yaSmallAdsBlock.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            yaSmallAdsBlock.topAnchor.constraint(
                 equalTo: detailsViewController.view.bottomAnchor,
-                constant: UIScreen.main.bounds.height*0.05),
-            smallAdsBlock.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                constant: UIScreen.main.bounds.height*0.05)
         ])
-        
-        smallAdsBlock.adUnitID = smallBannerID
-        smallAdsBlock.load(GADRequest())
-        
     }
 }

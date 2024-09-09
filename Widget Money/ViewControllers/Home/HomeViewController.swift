@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import GoogleMobileAds
+import YandexMobileAds
 
 class HomeViewController: UIViewController {
     let bag = DisposeBag()
@@ -19,7 +20,6 @@ class HomeViewController: UIViewController {
     
     var currencyPairsListViewController = CurrencyPairsListViewController()
     var exchangeViewController = ExchangeViewController()
-
     
     var bottomBlock = BottomBlockView()
     
@@ -92,10 +92,12 @@ class HomeViewController: UIViewController {
             x: view.bounds.width*0.04,
             y: exchangeViewController.view.frame.maxY,
             width: scrollView.bounds.width*0.92,
-            height: view.bounds.width
+            height: view.bounds.width*1.2
         )
-        bottomBlock.bigAdsBlock.rootViewController = self
-        bottomBlock.smallAdsBlock.rootViewController = self
+//        bottomBlock.bigAdsBlock.rootViewController = self
+//        bottomBlock.smallAdsBlock.rootViewController = self
+        bottomBlock.yaBigAdsBlock.delegate = self
+        bottomBlock.yaSmallAdsBlock.delegate = self
 
         view.addSubview(headerView)
         view.addSubview(scrollView)
@@ -149,5 +151,12 @@ extension HomeViewController: UITextFieldDelegate {
             view.endEditing(true)
         }
         super.touchesBegan(touches, with: event)
+    }
+}
+
+extension HomeViewController: AdViewDelegate {    
+    
+    func adViewDidLoad(_ adView: AdView) {
+        bottomBlock.showAd()
     }
 }
