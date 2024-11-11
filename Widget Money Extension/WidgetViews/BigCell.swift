@@ -15,6 +15,9 @@ struct BigCell: View {
     var image: UIImage!
     var flowText: String
     
+    var mainImageData: Data?
+    var baseImageData: Data?
+    
     init(cellModel: WidgetCellModel) {
         self.cellModel = cellModel
             
@@ -52,12 +55,10 @@ struct BigCell: View {
                 Color.init(uiColor: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 1))
                 HStack {
                     HStack(spacing: 5) {
-                        //image.resizable()
-                        Image(uiImage: image)
-                            .resizable()
+                        
+                        TwoIconsView(mainImageData: cellModel.imageData, baseImageData: cellModel.baseImageData)
                             .frame(width: reader.size.width/12, height: reader.size.width/12)
-                            .scaledToFill()
-                            .clipShape(Circle())
+                        
                         VStack(alignment: .leading, spacing: 0) {
                             Text("\(cellModel.valueCode) - \(cellModel.valueName)")
                                 .font(.subheadline)

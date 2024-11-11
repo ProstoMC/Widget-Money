@@ -27,7 +27,7 @@ protocol PurchaseWorkerProtocol {
 class PurchaseWorker {
     
     let productIDs: Set<String> = [
-        "com.sloniklm.WidgetMoney.RemoveAd",
+        "com.sloniklm.WidgetMoney.HideAds",
        // "com.sloniklm.WidgetMoney.Test"
     ]
     

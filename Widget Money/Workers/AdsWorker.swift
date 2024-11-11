@@ -25,8 +25,8 @@ protocol AdsWorkerProtocol {
     var testmode: Bool { get }
     var adsIsHidden: BehaviorSubject<Bool> { get }
     
-    func setBottomAnchor(anchor: NSLayoutYAxisAnchor)
-    func returnBottomAnchor() -> NSLayoutYAxisAnchor?
+//    func setBottomAnchor(anchor: NSLayoutYAxisAnchor)
+//    func returnBottomAnchor() -> NSLayoutYAxisAnchor?
     
     func returnBannerID(bannerType: bannerIDs) -> String
     func returnYABannerID(bannerType: bannerIDs) -> String
@@ -35,7 +35,7 @@ protocol AdsWorkerProtocol {
 
 class AdsWorker: AdsWorkerProtocol {
 
-    let testmode = false
+    var testmode = true
     
     var adsIsHidden = BehaviorSubject(value: false)
     var bottomAnchor: NSLayoutYAxisAnchor? = nil
@@ -57,6 +57,7 @@ class AdsWorker: AdsWorkerProtocol {
     }
     
     func returnBannerID(bannerType: bannerIDs) -> String {
+        
         if testmode {
             return bannerIDs.testID.rawValue
         }

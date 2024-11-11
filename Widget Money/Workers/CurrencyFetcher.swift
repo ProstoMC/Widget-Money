@@ -93,7 +93,7 @@ extension CurrencyFetcher {
     func fetchCoinsFromBackend(completion: @escaping ([CoinUniversal], String) -> ()) {
         var universalCoins: [CoinUniversal] = []
         
-        let url = URL(string: "http://178.130.41.72:8000/api/currencies/?format=json")!
+        let url = URL(string: "http://widgetmoneyserver.sloniklm.com:8000/api/currencies/?format=json")!
         
         
         AF.request(url).validate().responseDecodable(of: [KuznecovCoin].self) { (response) in

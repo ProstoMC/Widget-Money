@@ -66,8 +66,14 @@ class CurrencyPairsListViewModel: CurrencyPairsListViewModelProtocol {
         var list: [CurrencyPairCellModel] = []
         
         for pair in CoreWorker.shared.favouritePairList.pairList {
-            guard let valueCurrency = CoreWorker.shared.coinList.returnCoin(code: pair.valueCode) else { continue }
-            guard let baseCurrency = CoreWorker.shared.coinList.returnCoin(code: pair.baseCode) else { continue }
+            guard let valueCurrency = CoreWorker.shared.coinList.returnCoin(code: pair.valueCode) else {
+                CoreWorker.shared.favouritePairList.deletePair(valueCode: pair.valueCode, baseCode: pair.baseCode)
+                continue
+            }
+            guard let baseCurrency = CoreWorker.shared.coinList.returnCoin(code: pair.baseCode) else {
+                CoreWorker.shared.favouritePairList.deletePair(valueCode: pair.valueCode, baseCode: pair.baseCode)
+                continue
+            }
             
             list.append(CurrencyPairCellModel(
                 valueCurrency: valueCurrency,

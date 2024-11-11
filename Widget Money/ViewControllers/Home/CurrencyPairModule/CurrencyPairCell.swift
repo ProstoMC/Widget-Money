@@ -11,9 +11,9 @@ class CurrencyPairCell: UICollectionViewCell {
     
     var standartLayoutSpace: CGFloat!
     
-    let logoView = UIView()
-    let logoLabel = UILabel()
-    let logoImageView = UIImageView()
+    //let logoView = UIView()
+   // let logoLabel = UILabel()
+    let iconsBlock = TwoIconsLogoBlock()
 
     //let gradientLayer = CAGradientLayer()
     
@@ -41,7 +41,7 @@ class CurrencyPairCell: UICollectionViewCell {
     func rxConfigure(currecnyPair: CurrencyPairCellModel, colors: AppColors) { //Configure with model
         
         contentView.backgroundColor = colors.backgroundForWidgets
-        logoLabel.textColor = colors.invertedText
+        //logoLabel.textColor = colors.invertedText
         mainCurrencyNameLabel.textColor = colors.mainText
         baseCurrencyNameLabel.textColor = colors.secondText
         valueLabel.textColor = colors.mainText
@@ -78,19 +78,21 @@ class CurrencyPairCell: UICollectionViewCell {
     
     func configureLogo(pairModel: CurrencyPairCellModel, colors: AppColors){
         
-        guard let url = URL(string: pairModel.imageUrl ?? "Error") else {
-            print ("\(pairModel.valueCurrencyCode) : \(pairModel.imageUrl ?? "No image for")")
-            logoImageView.isHidden = true
-            logoLabel.text = pairModel.valueCurrencyLogo
-            return
-        }
-        logoLabel.text = ""
-        logoImageView.isHidden = false
-        logoView.backgroundColor = backgroundView?.backgroundColor
-        let placeHolder = UIImage(systemName: "gyroscope")
+        iconsBlock.configure(mainImageURL: pairModel.imageUrl, baseImageURL: pairModel.baseImageUrl)
         
-        logoImageView.sd_setImage(with: url, placeholderImage: placeHolder)
-        logoImageView.tintColor = colors.tabBarBackground
+//        guard let url = URL(string: pairModel.imageUrl ?? "Error") else {
+//            print ("\(pairModel.valueCurrencyCode) : \(pairModel.imageUrl ?? "No image for")")
+//            logoImageView.isHidden = true
+//            logoLabel.text = pairModel.valueCurrencyLogo
+//            return
+//        }
+//        logoLabel.text = ""
+//        logoImageView.isHidden = false
+//        logoView.backgroundColor = backgroundView?.backgroundColor
+//        let placeHolder = UIImage(systemName: "gyroscope")
+//        
+//        logoImageView.sd_setImage(with: url, placeholderImage: placeHolder)
+//        logoImageView.tintColor = colors.tabBarBackground
         
     }
     
@@ -112,38 +114,38 @@ extension CurrencyPairCell {
     
     // MARK:  - SETUP LOGO
     private func setupLogo() {
-        contentView.addSubview(logoView)
-        logoView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(iconsBlock)
+        iconsBlock.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            logoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: standartLayoutSpace*1.5),
-            logoView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: standartLayoutSpace*1.5),
-            logoView.heightAnchor.constraint(equalToConstant: self.bounds.height*0.25),
-            logoView.widthAnchor.constraint(equalToConstant: self.bounds.height*0.25)
+            iconsBlock.topAnchor.constraint(equalTo: contentView.topAnchor, constant: standartLayoutSpace*1.5),
+            iconsBlock.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: standartLayoutSpace*1.5),
+            iconsBlock.heightAnchor.constraint(equalToConstant: self.bounds.height*0.25),
+            iconsBlock.widthAnchor.constraint(equalToConstant: self.bounds.height*0.25)
         ])
     
-        logoView.addSubview(logoLabel)
-        logoLabel.text = "\u{00A4}"
-        logoLabel.textAlignment = .center
-        logoLabel.translatesAutoresizingMaskIntoConstraints = false
-        logoLabel.font = logoLabel.font.withSize(100) //Just set max and resize after
-        logoLabel.adjustsFontSizeToFitWidth = true
+//        logoView.addSubview(logoLabel)
+//        logoLabel.text = "\u{00A4}"
+//        logoLabel.textAlignment = .center
+//        logoLabel.translatesAutoresizingMaskIntoConstraints = false
+//        logoLabel.font = logoLabel.font.withSize(100) //Just set max and resize after
+//        logoLabel.adjustsFontSizeToFitWidth = true
+//        
+//        
+//        NSLayoutConstraint.activate([
+//            logoLabel.centerYAnchor.constraint(equalTo: logoView.centerYAnchor),
+//            logoLabel.centerXAnchor.constraint(equalTo: logoView.centerXAnchor),
+//            logoLabel.heightAnchor.constraint(equalTo: logoView.heightAnchor, multiplier: 0.8),
+//            logoLabel.widthAnchor.constraint(equalTo: logoView.heightAnchor, multiplier: 0.8)
+//        ])
         
+        //self.layoutIfNeeded()  // For making corner radius
         
-        NSLayoutConstraint.activate([
-            logoLabel.centerYAnchor.constraint(equalTo: logoView.centerYAnchor),
-            logoLabel.centerXAnchor.constraint(equalTo: logoView.centerXAnchor),
-            logoLabel.heightAnchor.constraint(equalTo: logoView.heightAnchor, multiplier: 0.8),
-            logoLabel.widthAnchor.constraint(equalTo: logoView.heightAnchor, multiplier: 0.8)
-        ])
+//        self.logoView.layer.masksToBounds = true
+//        self.logoView.layer.cornerRadius = logoView.bounds.height/2
         
-        self.layoutIfNeeded()  // For making corner radius
-        
-        self.logoView.layer.masksToBounds = true
-        self.logoView.layer.cornerRadius = logoView.bounds.height/2
-        
-        logoView.addSubview(logoImageView)
-        logoImageView.frame = logoView.bounds
+//        logoView.addSubview(iconsBlock)
+//        iconsBlock.frame = logoView.bounds
         
         //No gradient
         
@@ -168,8 +170,8 @@ extension CurrencyPairCell {
         baseCurrencyNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.leftAnchor.constraint(equalTo: logoView.rightAnchor, constant: standartLayoutSpace),
-            stackView.centerYAnchor.constraint(equalTo: logoView.centerYAnchor),
+            stackView.leftAnchor.constraint(equalTo: iconsBlock.rightAnchor, constant: standartLayoutSpace),
+            stackView.centerYAnchor.constraint(equalTo: iconsBlock.centerYAnchor),
             //shortNameLabel.bottomAnchor.constraint(equalTo: logoView.centerYAnchor),
             //shortNameLabel.leftAnchor.constraint(equalTo: logoView.rightAnchor, constant: standartLayoutSpace),
             mainCurrencyNameLabel.heightAnchor.constraint(equalToConstant: self.bounds.height*0.17),
@@ -200,7 +202,7 @@ extension CurrencyPairCell {
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            valueLabel.leftAnchor.constraint(equalTo: logoView.leftAnchor),
+            valueLabel.leftAnchor.constraint(equalTo: iconsBlock.leftAnchor),
             valueLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
             //valueLabel.bottomAnchor.constraint(equalTo: changesLabel.topAnchor, constant: -standartLayoutSpace),
             valueLabel.widthAnchor.constraint(equalToConstant: contentView.bounds.width*0.8),

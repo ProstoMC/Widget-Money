@@ -53,35 +53,58 @@ class WidgetWorker: WidgetWorkerProtocol {
     
     
     func addModelToNewList(pair: CoinPair, index: Int) {
-        let imageData: Data? = coinList.returnCoin(code: pair.valueCode)?.imageData
-        //Check data Image is exist in Coins
-        if imageData != nil {
+        
+        var valueImageData: Data? = coinList.returnCoin(code: pair.valueCode)?.imageData
+        var baseImageData: Data? = coinList.returnCoin(code: pair.baseCode)?.imageData
+        
+        if valueImageData == nil || baseImageData == nil {
             
-            guard let model = createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: imageData) else { return }
-            widgetModel.cellModels.append(model)
-            save()
-            return
-        }
-
-        //Create url or save pair without imagedata
-        guard let imageUrl = coinList.returnCoin(code: pair.valueCode)?.imageUrl else {
-            guard let model = createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: nil) else { return }
-            widgetModel.cellModels.append(model)
-            save()
-            return
-        }
-        //Fetching image from url and save
-        fetchImage(stringUrl: imageUrl, completion: { imageData in
-            if imageData != nil {
-                self.coinList.addImageData(code: pair.valueCode, data: imageData!)
+            let group = DispatchGroup()
+            
+            group.enter()
+            
+            fetchImage(stringUrl: coinList.returnCoin(code: pair.valueCode)?.imageUrl ?? "", completion: { fetchedImageData in
+                DispatchQueue.main.async {
+                    valueImageData = fetchedImageData
+                    self.coinList.addImageData(code: pair.valueCode, data: fetchedImageData!)
+                    group.leave()
+                }
+                
+            })
+            group.enter()
+            
+            fetchImage(stringUrl: coinList.returnCoin(code: pair.baseCode)?.imageUrl ?? "", completion: { fetchedImageData in
+                DispatchQueue.main.async {
+                    baseImageData = fetchedImageData
+                    self.coinList.addImageData(code: pair.baseCode, data: fetchedImageData!)
+                    group.leave()
+                }
+            })
+            
+            group.notify(queue: .main) {
+                
+                guard let model = self.createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: valueImageData, baseImageData: baseImageData) else { return }
+                self.widgetModel.cellModels.append(model)
+                self.save()
             }
-            guard let model = self.createWidgetCellModel(index: index, valueCode: pair.valueCode, baseCode: pair.baseCode, imageData: imageData) else { return }
+        }
+        
+        else {
+            guard let model = self.createWidgetCellModel(
+                index: index,
+                valueCode: pair.valueCode,
+                baseCode: pair.baseCode,
+                imageData: valueImageData,
+                baseImageData: baseImageData
+            ) else { return }
             self.widgetModel.cellModels.append(model)
             self.save()
-        })
+        }
+        
+        
     }
     
-    func createWidgetCellModel(index: Int, valueCode: String, baseCode: String, imageData: Data?) -> WidgetCellModel? {
+    func createWidgetCellModel(index: Int, valueCode: String, baseCode: String, imageData: Data?, baseImageData: Data?) -> WidgetCellModel? {
         //print("Creating Cell model")
         guard let valueCurrency = coinList.returnCoin(code: valueCode) else {
             print("Value currency \(valueCode) didnt find")
@@ -106,7 +129,9 @@ class WidgetWorker: WidgetWorkerProtocol {
             flow: flow,
             valueName: valueCurrency.name,
             baseSymbol: baseCurrency.logo,
-            imageData: imageData
+            imageData: imageData,
+            baseImageData: baseImageData
+            
         )
     }
     
@@ -133,10 +158,10 @@ class WidgetWorker: WidgetWorkerProtocol {
             
         }
     }
-
+    
     
     func fetchImage(stringUrl: String, completion: @escaping (Data?) -> ()) {
-
+        
         guard let url = URL(string: "\(stringUrl)") else {
             //print ("URL is wrong")
             return

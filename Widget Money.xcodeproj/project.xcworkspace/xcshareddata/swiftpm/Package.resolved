@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/appmetrica/appmetrica-sdk-ios",
       "state" : {
-        "revision" : "a303a87183464d0143e3cc2eaf09cf98a3b7d8e0",
-        "version" : "5.7.0"
+        "revision" : "14cf3e47be3b4d04a2ee450b12537ff7905cf7e1",
+        "version" : "5.8.2"
       }
     },
     {
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "b0e5f9e74a093547c9205e33aaead4b25fa8f683",
         "version" : "30.12.0"
+      }
+    },
+    {
+      "identity" : "divkit-ios-facade",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divkit/divkit-ios-facade",
+      "state" : {
+        "revision" : "1c0f0503f609b45666e8845211f65f5cfc1af611",
+        "version" : "4.5.0"
       }
     },
     {
@@ -114,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kstenerud/KSCrash",
       "state" : {
-        "revision" : "a6504bb7d9b76731accc141aa9ed1c8dd5063b1b",
-        "version" : "1.17.5"
+        "revision" : "4b108d1b3bbd87e71353990e0af944d0a001803a",
+        "version" : "2.0.0-rc.6"
       }
     },
     {
@@ -195,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yandexmobile/yandex-ads-sdk-ios",
       "state" : {
-        "revision" : "932733a83003ed371a7e64c071d63bd32fa94466",
-        "version" : "7.4.0"
+        "revision" : "4181735ed124ad2b40c27b3a6a6a650dbee78da4",
+        "version" : "7.6.1"
       }
     }
   ],

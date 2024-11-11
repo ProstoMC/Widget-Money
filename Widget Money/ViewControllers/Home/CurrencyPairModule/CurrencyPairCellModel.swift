@@ -18,6 +18,7 @@ struct CurrencyPairCellModel {
     var colorIndex: Int
     var typeOfLogo: TypeOfCoin
     var imageUrl: String?
+    var baseImageUrl: String?
     
     var value: Double
     var flow: Double
@@ -35,6 +36,7 @@ struct CurrencyPairCellModel {
         self.baseCurrencyName = baseCurrency.name
         self.typeOfLogo = valueCurrency.type
         self.imageUrl = valueCurrency.imageUrl
+        self.baseImageUrl = baseCurrency.imageUrl
         
         self.value = valueCurrency.rate/baseCurrency.rate
         

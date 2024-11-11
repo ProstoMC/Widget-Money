@@ -26,7 +26,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-
         
         setupTabBarUI()
         setupViewControllers()
@@ -36,7 +35,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     
     override func viewWillLayoutSubviews() {
-
+        
     }
     
     private func setupRx() {
@@ -63,7 +62,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 // MARK:  - SETUP UI
 extension TabBarViewController {
     
-   
+    
     func setupViewControllers() {
         configureHomeVC()
         configureListVC()
@@ -97,23 +96,29 @@ extension TabBarViewController {
     private func setupTabBarUI() {
         tabBar.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().tabBarBackground
         tabBar.itemPositioning = .centered
-
+        
         tabBar.tintColor = CoreWorker.shared.colorsWorker.returnColors().tabBarText.withAlphaComponent(1)
         tabBar.unselectedItemTintColor = CoreWorker.shared.colorsWorker.returnColors().tabBarText.withAlphaComponent(0.5)
         
+        if #available(iOS 18.0, *) {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                print("IPAD")
+                return
+            }
+        }
+        print("IPHONE")
         self.view.addSubview(topLineView)
         topLineView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             topLineView.topAnchor.constraint(equalTo: tabBar.topAnchor),
             topLineView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             topLineView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             topLineView.heightAnchor.constraint(equalToConstant: 0.5),
         ])
-
+        
         topLineView.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().tabBarLine
         
-        CoreWorker.shared.adsWorker.setBottomAnchor(anchor: tabBar.topAnchor)
-
+        
     }
 }

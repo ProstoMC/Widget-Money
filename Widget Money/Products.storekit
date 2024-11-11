@@ -7,11 +7,11 @@
     {
       "displayPrice" : "1.49",
       "familyShareable" : false,
-      "internalID" : "6503257941",
+      "internalID" : "6686406169",
       "localizations" : [
         {
           "description" : "Hide all advertisement banners",
-          "displayName" : "Remove Ads",
+          "displayName" : "Remove ads",
           "locale" : "en_US"
         },
         {
@@ -20,23 +20,8 @@
           "locale" : "ru"
         }
       ],
-      "productID" : "com.sloniklm.WidgetMoney.RemoveAd",
+      "productID" : "com.sloniklm.WidgetMoney.HideAds",
       "referenceName" : "Remove Ads",
-      "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "0.99",
-      "familyShareable" : false,
-      "internalID" : "6503482141",
-      "localizations" : [
-        {
-          "description" : "Test Purchase",
-          "displayName" : "Test",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "com.sloniklm.WidgetMoney.Test",
-      "referenceName" : "Test",
       "type" : "NonConsumable"
     }
   ],
@@ -44,7 +29,7 @@
     "_applicationInternalID" : "6502195762",
     "_developerTeamID" : "DV2KL8GXVB",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 738941463.48081601,
+    "_lastSynchronizedDate" : 748095487.28983903,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [

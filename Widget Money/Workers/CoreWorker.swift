@@ -41,10 +41,13 @@ class CoreWorker {
     
     var rxViewControllersNumber: BehaviorSubject<Int> = BehaviorSubject.init(value: 0)
     
+    
     init() {
         
         widgetWorker = WidgetWorker(pairModule: favouritePairList, coinList: coinList) // doesn't work without modules
         updateExchangeFields()
+        //Request of review
+        AppReviewWorker.requestIf(launches: 3, days: 3)
         
     }
     

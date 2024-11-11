@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
     //YANDEX AD BANNER
     
     private lazy var yaAdsBlock: AdView = {
-        let width = view.safeAreaLayoutGuide.layoutFrame.width*0.92
+        let width = view.safeAreaLayoutGuide.layoutFrame.width
         let adSize = BannerAdSize.stickySize(withContainerWidth: width)
         
         let adView = AdView(adUnitID: viewModel.bannerID, adSize: adSize)
@@ -104,7 +104,7 @@ extension SettingsViewController {
             x: 0,
             y: view.safeAreaInsets.top,
             width: view.bounds.width,
-            height: view.bounds.height*0.45)
+            height: view.bounds.height*0.4)
         )
         
         view.addSubview(headerView)

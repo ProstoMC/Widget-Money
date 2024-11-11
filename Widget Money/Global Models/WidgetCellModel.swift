@@ -16,6 +16,7 @@ public struct WidgetCellModel: Codable {
     var valueName: String
     var baseSymbol: String
     var imageData: Data?
+    var baseImageData: Data?
 }
 
 

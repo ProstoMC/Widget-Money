@@ -14,7 +14,6 @@ struct SmallCell: View {
     var cellModel: WidgetCellModel
     var colorFlow: Color
     var flowText: String
-    var image: UIImage!
     
     init(cellModel: WidgetCellModel) {
         self.cellModel = cellModel
@@ -25,25 +24,10 @@ struct SmallCell: View {
             colorFlow = .green
             flowText = "+" + flowText
         }
-        
-        image = createImage(data: cellModel.imageData)
   
     }
                           
-    private func createImage(data: Data?) -> UIImage {
-        let defaultImage = UIImage(systemName: "dollarsign.circle")!.withRenderingMode(.alwaysTemplate)
-        defaultImage.withTintColor(
-            UIColor(red: 244/255, green: 177/255, blue: 121/255, alpha: 0.85),
-            renderingMode: .alwaysTemplate)
-        guard let imageData = data else {
-            return defaultImage
-        }
-        guard let newImage = UIImage(data: imageData) else {
-            return defaultImage
-        }
-        
-        return newImage
-    }
+
     
     var body: some View {
         GeometryReader { reader in //For Image size
@@ -52,11 +36,8 @@ struct SmallCell: View {
                 HStack {
                     HStack(spacing: 5) {
         
-                        Image(uiImage: image)
-                            .resizable()
+                        TwoIconsView(mainImageData: cellModel.imageData, baseImageData: cellModel.baseImageData)
                             .frame(width: reader.size.width/6, height: reader.size.width/6)
-                            .scaledToFill()
-                            .clipShape(Circle())
                         VStack(alignment: .leading, spacing: 0) {
                             Text(cellModel.valueCode)
                                 .font(.subheadline)

@@ -29,10 +29,8 @@ class BottomBlockView: UIView {
     }()
     
     var yaSmallAdsBlock: AdView = {
-        let adSize = BannerAdSize.inlineSize(
-            withWidth: UIScreen.main.bounds.width * 0.92,
-            maxHeight: CGFloat(Int(UIScreen.main.bounds.width*0.3))
-        )
+        let width = UIScreen.main.bounds.width
+        let adSize = BannerAdSize.stickySize(withContainerWidth: width)
         
         let bannerID = CoreWorker.shared.adsWorker.returnYABannerID(bannerType: .yaMainSmallBannerID)
         let adView = AdView(adUnitID: bannerID, adSize: adSize)
