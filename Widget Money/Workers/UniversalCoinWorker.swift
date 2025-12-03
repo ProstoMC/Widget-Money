@@ -6,14 +6,14 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 protocol CoinListProtocol {
     var baseCoin: CoinUniversal { get }
     var lastUpdate: String { get }
     var fiatList: [CoinUniversal] { get }
     var cryptoList: [CoinUniversal] { get }
-    var rxRateUpdated: BehaviorSubject<Bool> { get }
+    var rxRateUpdated: Published<Bool>.Publisher { get }
     
     func updateRatesFromEth()
     func returnCoin(code: String) -> CoinUniversal?
@@ -24,7 +24,8 @@ protocol CoinListProtocol {
 
 
 class UniversalCoinWorker {
-    var rxRateUpdated = BehaviorSubject(value: false)
+    @Published var rateUpdated: Bool = false
+    var rxRateUpdated: Published<Bool>.Publisher { $rateUpdated }
 
     var baseCoin = CoinUniversal(type: .fiat, code: "USD", name: "United States Dollar", base: "USD", rate: 1, flow24Hours: 0, logo: "$", imageUrl: "", colorIndex: 2)
     var lastUpdate = "Error"
@@ -33,7 +34,7 @@ class UniversalCoinWorker {
     
     let fetcher = CurrencyFetcher()
     let defaults = UserDefaults.standard
-    let bag = DisposeBag()
+    var cancellables = Set<AnyCancellable>()
     
     init() {
         rxSubscribing()
@@ -43,13 +44,13 @@ class UniversalCoinWorker {
     }
     
     func rxSubscribing() {
-        rxRateUpdated.subscribe{ success in
+        $rateUpdated.sink { success in
             if success {
                 self.saveCoinsToDefaults()
                 self.fiatList.forEach({ coin in
                 })
             }
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
     }
     
     func returnFiatList() -> [CoinUniversal] {
@@ -109,7 +110,7 @@ extension UniversalCoinWorker: CoinListProtocol {
         }
         
         baseCoin = returnCoin(code: newCode)! // Get updated values. And we've checked existing in first line
-        rxRateUpdated.onNext(true)
+        rateUpdated = true
     }
     
      
@@ -158,7 +159,7 @@ extension UniversalCoinWorker {
             self.fiatList = newFiat
             self.cryptoList = newCrypto
             self.sortCoins()
-            self.rxRateUpdated.onNext(true)
+            self.rateUpdated = true
             
         })
     }
@@ -250,7 +251,7 @@ extension UniversalCoinWorker {
             lastUpdate = date!
         }
         
-        rxRateUpdated.onNext(true)
+        rateUpdated = true
     }
     
     func getCoinsFromDefaults(type: TypeOfCoin) -> [CoinUniversal] {

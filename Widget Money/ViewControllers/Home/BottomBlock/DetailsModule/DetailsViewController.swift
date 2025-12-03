@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
 class DetailsViewController: UIViewController {
     
-    let bag = DisposeBag()
-    let viewModel: DetailsViewModelProtocol = DetailsViewModel()
+    private var cancellables = Set<AnyCancellable>()
+    let viewModel = DetailsViewModel()
     
     let headBlock = HeadBlockView()
     let favoriteView = UIImageView()
@@ -53,14 +53,14 @@ extension DetailsViewController {
 //        }.disposed(by: bag)
        
         //Favorite status
-        viewModel.rxFavoriteStatus.subscribe{ status in
+        viewModel.$rxFavoriteStatus.sink { status in
             if status {
                 self.favoriteView.image = UIImage(systemName: "suit.heart.fill")
             }
             else {
                 self.favoriteView.image = UIImage(systemName: "suit.heart")
             }
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
         
         // Behavior
         let tap = UITapGestureRecognizer(target: self, action: #selector(favoriteButtonTapped))
@@ -68,25 +68,23 @@ extension DetailsViewController {
         favoriteView.addGestureRecognizer(tap)
         
         
-        viewModel.rxAppThemeUpdated.subscribe(onNext: { flag in
+        viewModel.$rxAppThemeUpdated.sink { flag in
             if flag {
                 self.updateColors()
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
     }
     
     @objc private func favoriteButtonTapped() {
-        do {
-            if try self.viewModel.rxFavoriteStatus.value() {
-                showAlert(title: "", message: "Delete from favorite".localized())
-            } else {
-                viewModel.changeFavoriteStatus()
-            }
-        } catch {
+        
+        if self.viewModel.rxFavoriteStatus {
+            showAlert(title: "", message: "Delete from favorite".localized())
+        } else {
             viewModel.changeFavoriteStatus()
         }
     }
+        
 }
 // MARK:  - SETUP UI
 extension DetailsViewController {

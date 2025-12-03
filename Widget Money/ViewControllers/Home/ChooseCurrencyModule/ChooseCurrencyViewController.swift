@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
 protocol ReturnDataFromChooseViewControllerProtocol {
     func passCurrencyShortName(name: String?)
@@ -18,8 +18,9 @@ class ChooseCurrencyViewController: UIViewController {
     var delegate: ReturnDataFromChooseViewControllerProtocol!
     
     //We have to provide type of VM from mother VC
-    var viewModel: CurrencyListViewModelProtocol = CurrencyListViewModelV2(type: .fullList)
-    let disposeBag = DisposeBag()
+    var viewModel = CurrencyListViewModelV2(type: .fullList)
+    private var cancellables = Set<AnyCancellable>()
+
     
     var closingLine = UIView()
     var segmentedControl = CornersWhiteSegmentedControl(items: ["Fiat".localized(), "Crypto".localized()])
@@ -49,39 +50,40 @@ class ChooseCurrencyViewController: UIViewController {
     }
     
     private func subscribing() {
-        viewModel.rxCoinListUpdated.subscribe(onNext: { _ in
+        viewModel.$rxCoinListUpdated.sink { _ in
             self.tableView.reloadData()
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
-        viewModel.rxAppThemeUpdated.subscribe(onNext: { flag in
+        viewModel.$rxAppThemeUpdated.sink { flag in
             if flag {
                 self.updateColors()
             }
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
     }
     
     private func usageSegmentedControl() {
-        segmentedControl.rx.value.subscribe{ index in
-            if index == 0 {
-                self.viewModel.typeOfCoin = .fiat
-            }
-            if index == 1 {
-                self.viewModel.typeOfCoin = .crypto
-            }
-            self.viewModel.resetModel()
-        }.disposed(by: disposeBag)
+        segmentedControl.addTarget(
+                self,
+                action: #selector(segmentedControlChanged(_:)),
+                for: .valueChanged
+            )
+    }
+    
+    @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            viewModel.typeOfCoin = .fiat
+        case 1:
+            viewModel.typeOfCoin = .crypto
+        default:
+            break
+        }
+        viewModel.resetModel()
     }
     
     private func usageSearchBar() {
-        searchBar.rx.text.orEmpty
-            .throttle(.milliseconds(100), scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribe(onNext: { str in
-                self.viewModel.findCurrency(str: str)
-            }).disposed(by: disposeBag)
-        
-        
+        searchBar.delegate = self
     }
 }
 
@@ -256,6 +258,12 @@ extension ChooseCurrencyViewController: UITableViewDataSource {
         cell.configure(coin: viewModel.showedCoinList[indexPath.row])
         return cell
     }
+}
+
+extension ChooseCurrencyViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            viewModel.findCurrency(str: searchText)
+        }
 }
 
 

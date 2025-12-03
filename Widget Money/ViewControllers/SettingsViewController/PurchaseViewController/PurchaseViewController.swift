@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 import StoreKit
 
 class PurchaseViewController: UIViewController {
@@ -16,7 +16,7 @@ class PurchaseViewController: UIViewController {
     
     var colorSet: AppColors!
     
-    let disposeBag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     var closingLine = UIView()
     
@@ -65,7 +65,7 @@ class PurchaseViewController: UIViewController {
     // MARK:  - RX Subscribing
     private func rxSubscribing() {
         
-        CoreWorker.shared.adsWorker.adsIsHidden.subscribe(onNext: { isHidden in
+        CoreWorker.shared.adsWorker.$adsIsHidden.sink { isHidden in
             self.buyButton.isHidden = isHidden
             self.restoreButton.isHidden = isHidden
             
@@ -75,7 +75,7 @@ class PurchaseViewController: UIViewController {
                 self.descriptionTextView.text = "Advertisement banners have been removed".localized()
             }
             
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
     }
     

@@ -7,18 +7,17 @@
 
 import UIKit
 import Foundation
-import RxSwift
-import RxCocoa
+import Combine
 
 
 protocol CurrencyListViewModelProtocol {
-    var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
+    var rxAppThemeUpdated: Bool { get }
     var colorSet: AppColors { get }
 
     func findCurrency(str: String)
    
-    var rxUpdateRatesFlag: BehaviorSubject<Bool> { get }
-    var rxCoinListUpdated: BehaviorSubject<Bool> { get }
+    var rxUpdateRatesFlag: Bool { get }
+    var rxCoinListUpdated: Bool { get }
     var showedCoinList: [CurrencyCellViewModel] { get }
     var typeOfCoin: TypeOfCoin { get set }
     
@@ -29,8 +28,8 @@ protocol CurrencyListViewModelProtocol {
 
 class CurrencyListTableViewController: UIViewController {
     
-    var viewModel: CurrencyListViewModelProtocol = CurrencyListViewModelV2(type: .withoutBaseCoin)
-    let disposeBag = DisposeBag()
+    var viewModel = CurrencyListViewModelV2(type: .withoutBaseCoin)
+    private var cancellables = Set<AnyCancellable>()
     
     var segmentedControl = CornersWhiteSegmentedControl(items: ["Fiat".localized(), "Crypto".localized()])
     var searchBar = UITextField()
@@ -57,48 +56,45 @@ class CurrencyListTableViewController: UIViewController {
 extension CurrencyListTableViewController {
     
     private func setupUsage(){
+        searchBar.delegate = self
         usageTableView()
         usageSegmentedControl()
-        usageSearchBar()
         usageColors()
     }
     
     private func usageTableView(){
-        viewModel.rxCoinListUpdated.subscribe(onNext: { _ in
+        viewModel.$rxCoinListUpdated.sink { _ in
             self.tableView.reloadData()
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
     }
     
     private func usageSegmentedControl() {
-        segmentedControl.rx.value.subscribe(onNext: { index in
-            if index == 0 {
-                self.viewModel.typeOfCoin = .fiat
-                
-            }
-            if index == 1 {
-                self.viewModel.typeOfCoin = .crypto
-            }
-            self.viewModel.resetModel()
-        }).disposed(by: disposeBag)
+        segmentedControl.addTarget(
+            self,
+            action: #selector(segmentedControlChanged(_:)),
+            for: .valueChanged
+        )
+    }
+
+    @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            viewModel.typeOfCoin = .fiat
+        case 1:
+            viewModel.typeOfCoin = .crypto
+        default:
+            break
+        }
+        viewModel.resetModel()
     }
     
-    
-    private func usageSearchBar() {
-        searchBar.rx.text.orEmpty
-            .throttle(.milliseconds(100), scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribe(onNext: { str in
-                    self.viewModel.findCurrency(str: str)
-            }).disposed(by: disposeBag)
-        
-    }
     
     private func usageColors() {
-        viewModel.rxAppThemeUpdated.subscribe(onNext: { flag in
+        viewModel.$rxAppThemeUpdated.sink { flag in
             if flag {
                 self.updateColors()
             }
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
     }
 }
 
@@ -235,6 +231,12 @@ extension CurrencyListTableViewController: UITableViewDataSource {
     }
 }
 
+extension CurrencyListTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            viewModel.findCurrency(str: searchText)
+        }
+}
+
 extension CurrencyListTableViewController {
     
     private func getBaseHeight() -> Double {
@@ -253,6 +255,8 @@ extension CurrencyListTableViewController {
         return baseHeightOfElements*1.5
     }
 }
+
+
 
 // MARK:  - SETUP KEYBOARD
 extension CurrencyListTableViewController: UITextFieldDelegate {

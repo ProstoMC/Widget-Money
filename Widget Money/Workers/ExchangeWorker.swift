@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 protocol ExchangeWorkerProtocol {
     var fromCoin: String { get }
     var toCoin: String { get }
     
-    var rxExchangeFlag: BehaviorSubject<Bool> { get set }
+    var rxExchangeFlag: Bool { get set }
     
     func setFromCoin(code: String)
     func setToCoin(code: String)
@@ -26,8 +26,8 @@ class ExchangeWorker: ExchangeWorkerProtocol {
     
     var fromCoin = ""
     var toCoin = ""
-    var rxExchangeFlag = BehaviorSubject(value: false)
-    var bag = DisposeBag()
+    @Published var rxExchangeFlag: Bool = false
+    private var cancellables = Set<AnyCancellable>()
     
     init() {
 
@@ -35,19 +35,19 @@ class ExchangeWorker: ExchangeWorkerProtocol {
     
     func setFromCoin(code: String) {
         fromCoin = code
-        rxExchangeFlag.onNext(true)
+        rxExchangeFlag = true
     }
     
     func setToCoin(code: String) {
         toCoin = code
-        rxExchangeFlag.onNext(true)
+        rxExchangeFlag = true
     }
     
     func switchRows() {
         let coin = fromCoin
         fromCoin = toCoin
         toCoin = coin
-        rxExchangeFlag.onNext(true)
+        rxExchangeFlag = true
     }
     
 }

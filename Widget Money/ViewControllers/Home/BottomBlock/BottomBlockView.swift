@@ -7,11 +7,11 @@
 
 import UIKit
 import GoogleMobileAds
-import RxSwift
+import Combine
 import YandexMobileAds
 
 class BottomBlockView: UIView {
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     var detailsViewController = DetailsViewController()
 
     
@@ -54,21 +54,21 @@ class BottomBlockView: UIView {
     
     func rxSubscribing() {
         //Appearing of view
-        CoreWorker.shared.exchangeWorker.rxExchangeFlag.subscribe(onNext: { flag in
+        CoreWorker.shared.exchangeWorker.$rxExchangeFlag.sink { flag in
             print("ADS SHOULD BE HIDDEN: \(self.adsShouldBeHidden)")
             // Check should we hide ads or not (In-app purchse)
             self.updateStatus(flag: flag)
             print("DETAILS UPDATE")
             print(flag)
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
-        CoreWorker.shared.purchaseWorker.rxAdsIsHidden.subscribe(onNext: { isHidden in
+        CoreWorker.shared.purchaseWorker.$rxAdsIsHidden.sink { isHidden in
             self.adsShouldBeHidden = isHidden
             //Hide banners because we have purchase
             if isHidden {
                 self.updateStatus(flag: true)
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
     }
     

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 struct CoinPair: Codable {
     var valueCode: String
@@ -18,7 +18,7 @@ struct CoinPair: Codable {
 protocol CoinPairProtocol {
     var pairList: [CoinPair] { get }
     
-    var rxPairListCount: BehaviorSubject<Int> { get }
+    var rxPairListCount: Published<Int>.Publisher { get }
     
     func addNewPair(valueCode: String, baseCode: String, colorIndex: Int?)
     func deletePair(index: Int)
@@ -29,8 +29,10 @@ protocol CoinPairProtocol {
 
 class CoinPairWorker {
     var pairList: [CoinPair] = []
-    var rxPairListCount = BehaviorSubject(value: 0)
-    let bag = DisposeBag()
+    
+    @Published var pairListCount = 0
+    var rxPairListCount: Published<Int>.Publisher { $pairListCount }
+    private var cancellables = Set<AnyCancellable>()
     
     init() {
         createPairList()
@@ -44,14 +46,16 @@ class CoinPairWorker {
         if pairList.isEmpty {
             pairList = [CoinPair(valueCode: "CNY", baseCode: "USD", colorIndex: 0)]
         }
-        rxPairListCount.onNext(pairList.count)
+        pairListCount = pairList.count
     }
     
     func rxSubscribing() {
-        rxPairListCount.subscribe({_ in
-            self.saveToDefaults()
-            self.printList()
-        }).disposed(by: bag)
+        $pairListCount
+            .sink { [weak self] _ in
+                self?.saveToDefaults()
+                self?.printList()
+            }
+            .store(in: &cancellables)
     }
     
     func printList() {
@@ -72,12 +76,12 @@ extension CoinPairWorker: CoinPairProtocol {
         if position > 2 { position = 2 }
         let pair = CoinPair(valueCode: valueCode, baseCode: baseCode, colorIndex: colorIndex)
         pairList.insert(pair, at: position)
-        rxPairListCount.onNext(pairList.count)
+        pairListCount = pairList.count
     }
     
     func deletePair(index: Int) {
         pairList.remove(at: index)
-        rxPairListCount.onNext(pairList.count)
+        pairListCount = pairList.count
     }
     
     func deletePair(valueCode: String, baseCode: String) {
@@ -90,7 +94,7 @@ extension CoinPairWorker: CoinPairProtocol {
         if deleteIndex >= 0 {
             print("Delete index = \(deleteIndex)")
             pairList.remove(at: deleteIndex)
-            rxPairListCount.onNext(pairList.count)
+            pairListCount = pairList.count
         }
         
     }
@@ -98,7 +102,7 @@ extension CoinPairWorker: CoinPairProtocol {
     func reorderPair(from: Int, to: Int) {
         let pair = pairList.remove(at: from)
         pairList.insert(pair, at: to)
-        rxPairListCount.onNext(pairList.count)
+        pairListCount = pairList.count
     }
     
     func checkIsExist(valueCode: String, baseCode: String) -> Bool {

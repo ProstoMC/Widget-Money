@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 import UIKit
 
 enum bannerIDs: String {
@@ -23,7 +23,7 @@ enum bannerIDs: String {
 
 protocol AdsWorkerProtocol {
     var testmode: Bool { get }
-    var adsIsHidden: BehaviorSubject<Bool> { get }
+    var adsIsHidden: Bool { get }
     
 //    func setBottomAnchor(anchor: NSLayoutYAxisAnchor)
 //    func returnBottomAnchor() -> NSLayoutYAxisAnchor?
@@ -37,14 +37,14 @@ class AdsWorker: AdsWorkerProtocol {
 
     var testmode = true
     
-    var adsIsHidden = BehaviorSubject(value: false)
+    @Published var adsIsHidden: Bool = false
     var bottomAnchor: NSLayoutYAxisAnchor? = nil
     
     let defaults = UserDefaults.standard
     
      init() {
-        adsIsHidden.onNext(getAdsStatusFromDefaults())
-        //adsIsHidden.onNext(true) //For tests
+        adsIsHidden = getAdsStatusFromDefaults()
+        //adsIsHidden = true //For tests
     }
     
     func returnYABannerID(bannerType: bannerIDs) -> String {

@@ -17,25 +17,32 @@ struct SmallWidgetView: View {
     }
     
     var body: some View {
-        ZStack  {
-            Color.init(uiColor: UIColor(red: 22/255, green: 30/255, blue: 49/255, alpha: 1))
-            VStack (spacing: 0) {
-                if widgetCellModels.count == 0 {
-                    EmptyCell()
-                }
-                if widgetCellModels.count > 0 {
-                    SmallCell(cellModel: widgetCellModels[0])
-                }
-                if widgetCellModels.count > 1 {
-                    Divider()
-                    SmallCell(cellModel: widgetCellModels[1])
-                }
-                if widgetCellModels.count > 2 {
-                    Divider()
-                    SmallCell(cellModel: widgetCellModels[2])
-                }
+        
+        VStack (spacing: 2) {
+            if widgetCellModels.count == 0 {
+                EmptyCell()
+                
             }
-
+            if widgetCellModels.count > 0 {
+                SmallCell(cellModel: widgetCellModels[0])
+                
+            }
+            if widgetCellModels.count > 1 {
+                Divider()
+                SmallCell(cellModel: widgetCellModels[1])
+                
+            }
+            if widgetCellModels.count > 2 {
+                Divider()
+                SmallCell(cellModel: widgetCellModels[2])
+                
+            }
         }
+        
     }
+    
+}
+
+#Preview {
+    SmallWidgetView(widgetCellModels: [])
 }

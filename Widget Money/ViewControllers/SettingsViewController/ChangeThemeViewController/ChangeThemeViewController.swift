@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
 class ChangeThemeViewController: UIViewController {
     
@@ -16,7 +16,7 @@ class ChangeThemeViewController: UIViewController {
     var settingsList: [ChangeThemeCellViewModel] = []
     var colorSet: AppColors!
     
-    let disposeBag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     var closingLine = UIView()
     
@@ -53,46 +53,46 @@ class ChangeThemeViewController: UIViewController {
     private func rxSubscribing() {
 
         //Update colors
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe { _ in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { _ in
             self.changeColorSet()
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.updateColors()
             })
 
-        }.disposed(by: disposeBag)
+        }.store(in: &cancellables)
     }
     
     private func changeColorSet() {
         colorSet = CoreWorker.shared.colorsWorker.returnColors()
         
         for i in settingsList.indices {
-            settingsList[i].elementsColor.onNext(colorSet.settingsText)
-            settingsList[i].separatorColor.onNext(colorSet.settingsText)
-            settingsList[i].backgroundColor.onNext(colorSet.backgroundForWidgets)
+            settingsList[i].elementsColor = colorSet.settingsText
+            settingsList[i].separatorColor = colorSet.settingsText
+            settingsList[i].backgroundColor = colorSet.backgroundForWidgets
         }
         
-        settingsList[0].imageName.onNext("sun.max")
-        settingsList[1].imageName.onNext("moon")
-        settingsList[2].imageName.onNext("gearshape")
+        settingsList[0].imageName = "sun.max"
+        settingsList[1].imageName = "moon"
+        settingsList[2].imageName = "gearshape"
         
         switch CoreWorker.shared.colorsWorker.returnAppTheme() {
         case .light:
-            settingsList[0].imageName.onNext("sun.max.fill")
-            settingsList[0].elementsColor.onNext(colorSet.closingLine)
+            settingsList[0].imageName = "sun.max.fill"
+            settingsList[0].elementsColor = colorSet.closingLine
         case .dark:
-            settingsList[1].imageName.onNext("moon.fill")
-            settingsList[1].elementsColor.onNext(colorSet.accentColor)
+            settingsList[1].imageName = "moon.fill"
+            settingsList[1].elementsColor = colorSet.accentColor
         case .system:
             if colorSet.theme == .dark {
                 print ("DARK")
-                settingsList[2].elementsColor.onNext(colorSet.accentColor)
-            } 
+                settingsList[2].elementsColor = colorSet.accentColor
+            }
             else {
                 print ("LIGHT")
-                settingsList[2].elementsColor.onNext(colorSet.closingLine)
+                settingsList[2].elementsColor = colorSet.closingLine
             }
-            settingsList[2].imageName.onNext("gearshape.fill")
+            settingsList[2].imageName = "gearshape.fill"
         }
         
     }
@@ -104,25 +104,28 @@ class ChangeThemeViewController: UIViewController {
         //Add base coin form CoinList
         list.append(ChangeThemeCellViewModel(
             name: "Light".localized(),
-            imageName: BehaviorSubject(value: "sun.max"),
-            elementsColor: BehaviorSubject(value: colorSet.settingsText),
-            separatorColor: BehaviorSubject(value: colorSet.settingsText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets)))
+            imageName: "sun.max",
+            elementsColor: colorSet.settingsText,
+            separatorColor: colorSet.settingsText,
+            backgroundColor: colorSet.backgroundForWidgets
+        ))
+                    
         
         list.append(ChangeThemeCellViewModel(
             name: "Dark".localized(),
-            imageName: BehaviorSubject(value: "moon"),
-            elementsColor: BehaviorSubject(value: colorSet.settingsText),
-            separatorColor: BehaviorSubject(value: colorSet.settingsText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets))
-        )
+            imageName: "moon",
+            elementsColor: colorSet.settingsText,
+            separatorColor: colorSet.settingsText,
+            backgroundColor: colorSet.backgroundForWidgets
+        ))
+                    
         list.append(ChangeThemeCellViewModel(
             name: "System".localized(),
-            imageName: BehaviorSubject(value: "gearshape"),
-            elementsColor: BehaviorSubject(value: colorSet.secondText),
-            separatorColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets))
-        )
+            imageName:  "gearshape",
+            elementsColor:  colorSet.secondText,
+            separatorColor: colorSet.secondText,
+            backgroundColor: colorSet.backgroundForWidgets
+        ))
         return list
     }
     

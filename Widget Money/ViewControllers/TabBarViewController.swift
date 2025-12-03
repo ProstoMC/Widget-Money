@@ -8,13 +8,12 @@
 //  It is also Builder of project
 
 import UIKit
-
-import RxSwift
+import Combine
 
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
-    let bag = DisposeBag()
+    var cancellables = Set<AnyCancellable>()
     
     let homeVC = HomeViewController()
     let listVC = SecondViewController()
@@ -33,27 +32,22 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     
-    
-    override func viewWillLayoutSubviews() {
-        
-    }
-    
     private func setupRx() {
         //Return to first VC
-        CoreWorker.shared.exchangeWorker.rxExchangeFlag.subscribe{_ in
+        CoreWorker.shared.exchangeWorker.$rxExchangeFlag.sink{_ in
             self.selectedIndex = 0
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
         //Set active VC
-        CoreWorker.shared.rxViewControllersNumber.subscribe{index in
+        CoreWorker.shared.$rxViewControllersNumber.sink {index in
             self.selectedIndex = index
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
         
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe{ _ in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { _ in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.setupTabBarUI()
             })
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
         
     }
     

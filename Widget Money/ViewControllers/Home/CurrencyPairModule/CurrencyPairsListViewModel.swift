@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 protocol CurrencyPairsListViewModelProtocol {
     var pairList: [CurrencyPairCellModel] { get }
-    var rxPairsUpdated: BehaviorSubject<Bool> { get }
+    var rxPairsUpdated: Bool { get }
     
-    var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
+    var rxAppThemeUpdated: Bool { get }
     var colorSet: AppColors { get }
     
     func selectTail(pair: CurrencyPairCellModel)
@@ -24,12 +24,12 @@ protocol CurrencyPairsListViewModelProtocol {
 
 class CurrencyPairsListViewModel: CurrencyPairsListViewModelProtocol {
     var pairList: [CurrencyPairCellModel] = []
-    var rxPairsUpdated = BehaviorSubject(value: false)
+    @Published private(set) var rxPairsUpdated: Bool = false
     
-    var rxAppThemeUpdated = BehaviorSubject(value: false)
-    var colorSet = CoreWorker.shared.colorsWorker.returnColors()
+    @Published private(set) var rxAppThemeUpdated: Bool = false
+    @Published private(set) var colorSet = CoreWorker.shared.colorsWorker.returnColors()
 
-    let bag = DisposeBag()
+    var cancellables = Set<AnyCancellable>()
     
     init() {
         //Start with nulls
@@ -39,26 +39,25 @@ class CurrencyPairsListViewModel: CurrencyPairsListViewModelProtocol {
     func subscribeToCoreWorker(){
         
         //Update view after pairsList was updated
-        CoreWorker.shared.favouritePairList.rxPairListCount.subscribe{ _ in  //I dont need count
+        CoreWorker.shared.favouritePairList.rxPairListCount.sink { _ in  //I dont need count
             self.pairList = self.createList()
-            self.rxPairsUpdated.onNext(true)
-        }.disposed(by: bag)
+            self.rxPairsUpdated = true
+        }.store(in: &cancellables)
         
         //Update after updating of rates
-        CoreWorker.shared.coinList.rxRateUpdated.subscribe { _ in
+        CoreWorker.shared.coinList.rxRateUpdated.sink { _ in
             self.pairList = self.createList()
-            self.rxPairsUpdated.onNext(true)
-        }
-        .disposed(by: bag)
+            self.rxPairsUpdated = true
+        }.store(in: &cancellables)
         
         //Update Colors
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe{ _ in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { _ in
             self.changeColorSet()
-            self.rxAppThemeUpdated.onNext(true)
-            //Just reload table - it is hidden 
+            self.rxAppThemeUpdated = true
+            //Just reload table - it is hidden
             self.pairList = self.createList()
-            self.rxPairsUpdated.onNext(true)
-        }.disposed(by: bag)
+            self.rxPairsUpdated = true
+        }.store(in: &cancellables)
         
     }
     
@@ -98,6 +97,7 @@ extension CurrencyPairsListViewModel {
         CoreWorker.shared.exchangeWorker.setFromCoin(code: pair.valueCurrencyCode)
         CoreWorker.shared.exchangeWorker.setToCoin(code: pair.baseCurrencyCode)
     }
+    
     func selectTail(indexPath: IndexPath){
         let pair = CoreWorker.shared.favouritePairList.pairList[indexPath.row]
         CoreWorker.shared.exchangeWorker.setFromCoin(code: pair.valueCode)

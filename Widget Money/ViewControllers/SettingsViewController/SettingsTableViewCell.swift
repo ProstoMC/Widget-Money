@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
 class SettingsTableViewCell: UITableViewCell {
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     let iconView = UIImageView()
     let nameLabel = UILabel()
@@ -44,41 +44,42 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     func subscribing(viewModel: SettingsCellViewModel){
-        viewModel.value.subscribe(onNext: { value in
+        viewModel.$value.sink{ value in
             self.valueLabel.text = value
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
         // Colors
-        viewModel.backgroundColor.subscribe(onNext: { color in
+        viewModel.$backgroundColor.sink { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.contentView.backgroundColor = color
             })
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
-        viewModel.nameLabelColor.subscribe(onNext: { color in
+        viewModel.$nameLabelColor.sink  { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.nameLabel.textColor = color
                 //self.iconView.tintColor = color
             })
-        }).disposed(by: bag)
-        viewModel.imageColor.subscribe(onNext: { color in
+        }.store(in: &cancellables)
+        
+        viewModel.$imageColor.sink { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.iconView.tintColor = color.withAlphaComponent(0.9)
                 //self.iconView.tintColor = color
             })
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
-        viewModel.valueLabelColor.subscribe(onNext: { color in
+        viewModel.$valueLabelColor.sink { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.valueLabel.textColor = color
                 self.separatorLine.backgroundColor = color
                 self.chevronView.tintColor = color
             })
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
     }
 }
 

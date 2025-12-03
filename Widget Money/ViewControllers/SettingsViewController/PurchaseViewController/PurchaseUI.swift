@@ -7,19 +7,19 @@
 
 import SwiftUI
 import StoreKit
-import RxSwift
+import Combine
 
 class purchaseViewModel: ObservableObject {
     @Published var description: String = "Error"
     @Published var isHidden: Bool = false
     @Published var imageName: String = ""
+    private var cancellables = Set<AnyCancellable>()
     
-    let bag = DisposeBag()
     func subscribing(product: Product) {
-        CoreWorker.shared.purchaseWorker.rxProductPurchased.subscribe(onNext: { _ in
+        CoreWorker.shared.purchaseWorker.$rxProductPurchased.sink { _ in
             self.updateView(product: product)
             
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
     }
     
     func updateView(product: Product, colorSet: AppColors? = nil) {
@@ -54,7 +54,7 @@ struct PurchaseUI: View {
     var product: Product
     var colorSet: AppColors
     var baseHeight = UIScreen.main.bounds.height*0.058
-    var bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     var buyButtonText: String
     

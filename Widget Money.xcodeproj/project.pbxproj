@@ -59,15 +59,11 @@
 		43D5F5F42B7A85750030DBF5 /* Widget_Money_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5F32B7A85750030DBF5 /* Widget_Money_Extension.swift */; };
 		43D5F5F62B7A857D0030DBF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D5F5F52B7A857D0030DBF5 /* Assets.xcassets */; };
 		43D5F5FA2B7A857D0030DBF5 /* Widget Money ExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 43D5F5EB2B7A85750030DBF5 /* Widget Money ExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		43D5F6022B7A86830030DBF5 /* SmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6002B7A86820030DBF5 /* SmallCell.swift */; };
 		43D5F6032B7A86830030DBF5 /* SmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6002B7A86820030DBF5 /* SmallCell.swift */; };
-		43D5F6042B7A86830030DBF5 /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6012B7A86820030DBF5 /* SmallWidgetView.swift */; };
 		43D5F6052B7A86830030DBF5 /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6012B7A86820030DBF5 /* SmallWidgetView.swift */; };
-		43D5F6072B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6062B7A869E0030DBF5 /* MediumWidgetView.swift */; };
 		43D5F6082B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6062B7A869E0030DBF5 /* MediumWidgetView.swift */; };
 		43D5F60A2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6092B7A86D70030DBF5 /* WidgetCellModel.swift */; };
 		43D5F60B2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6092B7A86D70030DBF5 /* WidgetCellModel.swift */; };
-		43D5F60D2B7A86F60030DBF5 /* BigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F60C2B7A86F60030DBF5 /* BigCell.swift */; };
 		43D5F60E2B7A86F60030DBF5 /* BigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F60C2B7A86F60030DBF5 /* BigCell.swift */; };
 		43D5F6122B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
 		43D5F6132B7A89280030DBF5 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F6112B7A89280030DBF5 /* EmptyCell.swift */; };
@@ -104,12 +100,6 @@
 		84A0BCB42C73E94000B948E0 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 84A0BCB32C73E94000B948E0 /* FirebaseFunctions */; };
 		84A0BD282C74A5C500B948E0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 84A0BD272C74A5C500B948E0 /* Alamofire */; };
 		84A0BD2D2C74A6E600B948E0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 84A0BD2C2C74A6E600B948E0 /* Alamofire */; };
-		84A0BD602C791DF100B948E0 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD0F2C73F56B00B948E0 /* RxCocoa.xcframework */; };
-		84A0BD612C791DF100B948E0 /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD0F2C73F56B00B948E0 /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84A0BD622C791DF100B948E0 /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD102C73F56B00B948E0 /* RxRelay.xcframework */; };
-		84A0BD632C791DF100B948E0 /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD102C73F56B00B948E0 /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84A0BD642C791DF100B948E0 /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD132C73F56C00B948E0 /* RxSwift.xcframework */; };
-		84A0BD652C791DF100B948E0 /* RxSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84A0BD132C73F56C00B948E0 /* RxSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84A0BD6B2C7E26FC00B948E0 /* YandexMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 84A0BD6A2C7E26FC00B948E0 /* YandexMobileAds */; };
 		84A0BD6D2C7E26FC00B948E0 /* YandexMobileAdsInstream in Frameworks */ = {isa = PBXBuildFile; productRef = 84A0BD6C2C7E26FC00B948E0 /* YandexMobileAdsInstream */; };
 		84AD6E922C3190BA00AC0D18 /* PurchaseUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AD6E912C3190BA00AC0D18 /* PurchaseUI.swift */; };
@@ -118,9 +108,12 @@
 		84B95E412BD5317F00EE9CEC /* CoinUniversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5882B7A7A1C0030DBF5 /* CoinUniversal.swift */; };
 		84B95E422BD533B100EE9CEC /* UniversalCoinWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F57B2B7A79F80030DBF5 /* UniversalCoinWorker.swift */; };
 		84B95E442BD5430800EE9CEC /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F5792B7A79F80030DBF5 /* CurrencyFetcher.swift */; };
-		84C7BC822CCFB9A9000AB167 /* File.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84C7BC812CCFB9A9000AB167 /* File.txt */; };
 		84DC5C912C826304005E1D0C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 84DC5C902C826304005E1D0C /* PrivacyInfo.xcprivacy */; };
 		84DC5C922C826304005E1D0C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 84DC5C902C826304005E1D0C /* PrivacyInfo.xcprivacy */; };
+		FB61142D2EE0895D00DA3056 /* OpenPairIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB874B512EDF330900B182A4 /* OpenPairIntent.swift */; };
+		FB61142E2EE089C200DA3056 /* WidgetControlIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB874B5C2EE083F700B182A4 /* WidgetControlIntent.swift */; };
+		FB874B4F2EDA03B700B182A4 /* AccessoryRectangularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB874B4E2EDA03B600B182A4 /* AccessoryRectangularView.swift */; };
+		FB874B522EDF332000B182A4 /* OpenPairIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB874B512EDF330900B182A4 /* OpenPairIntent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,15 +138,12 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84A0BD682C791DF100B948E0 /* Embed Frameworks */ = {
+		FB5287D42ED71FB20065AB42 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				84A0BD632C791DF100B948E0 /* RxRelay.xcframework in Embed Frameworks */,
-				84A0BD652C791DF100B948E0 /* RxSwift.xcframework in Embed Frameworks */,
-				84A0BD612C791DF100B948E0 /* RxCocoa.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,21 +233,16 @@
 		846074082BC6F7B0007AF93E /* Dark 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark 3.png"; sourceTree = "<group>"; };
 		8460740A2BC6F7B9007AF93E /* Widgets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Widgets.png; sourceTree = "<group>"; };
 		846074282BC7E402007AF93E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		8460742F2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImageMapKit.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/SDWebImageMapKit.xcframework; sourceTree = "<group>"; };
-		846074322BC7EAB7007AF93E /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = ../../Desktop/Projects/Extentions/Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
 		84659DF42BF106A300C3BABB /* ChangeThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeThemeCell.swift; sourceTree = "<group>"; };
 		84659DF72BF26A0300C3BABB /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		84659DF92C04C9EB00C3BABB /* PurchaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseWorker.swift; sourceTree = "<group>"; };
 		84659DFB2C06229400C3BABB /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
-		84A0BD0F2C73F56B00B948E0 /* RxCocoa.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:BD802E794C8ABDDA4C3F5D92B3E4C4FBFAE4734410B9AD73442EF1CEB0276140"; lastKnownFileType = wrapper.xcframework; name = RxCocoa.xcframework; path = ../../Desktop/Production/v2/Carthage/Build/RxCocoa.xcframework; sourceTree = "<group>"; };
-		84A0BD102C73F56B00B948E0 /* RxRelay.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:BD802E794C8ABDDA4C3F5D92B3E4C4FBFAE4734410B9AD73442EF1CEB0276140"; lastKnownFileType = wrapper.xcframework; name = RxRelay.xcframework; path = ../../Desktop/Production/v2/Carthage/Build/RxRelay.xcframework; sourceTree = "<group>"; };
-		84A0BD112C73F56B00B948E0 /* RxBlocking.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:BD802E794C8ABDDA4C3F5D92B3E4C4FBFAE4734410B9AD73442EF1CEB0276140"; lastKnownFileType = wrapper.xcframework; name = RxBlocking.xcframework; path = ../../Desktop/Production/v2/Carthage/Build/RxBlocking.xcframework; sourceTree = "<group>"; };
-		84A0BD122C73F56C00B948E0 /* RxTest.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:BD802E794C8ABDDA4C3F5D92B3E4C4FBFAE4734410B9AD73442EF1CEB0276140"; lastKnownFileType = wrapper.xcframework; name = RxTest.xcframework; path = ../../Desktop/Production/v2/Carthage/Build/RxTest.xcframework; sourceTree = "<group>"; };
-		84A0BD132C73F56C00B948E0 /* RxSwift.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:BD802E794C8ABDDA4C3F5D92B3E4C4FBFAE4734410B9AD73442EF1CEB0276140"; lastKnownFileType = wrapper.xcframework; name = RxSwift.xcframework; path = ../../Desktop/Production/v2/Carthage/Build/RxSwift.xcframework; sourceTree = "<group>"; };
 		84AD6E912C3190BA00AC0D18 /* PurchaseUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseUI.swift; sourceTree = "<group>"; };
 		84B95E3E2BD527ED00EE9CEC /* LiteFetcherForWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteFetcherForWidget.swift; sourceTree = "<group>"; };
-		84C7BC812CCFB9A9000AB167 /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
 		84DC5C902C826304005E1D0C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		FB874B4E2EDA03B600B182A4 /* AccessoryRectangularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryRectangularView.swift; sourceTree = "<group>"; };
+		FB874B512EDF330900B182A4 /* OpenPairIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPairIntent.swift; sourceTree = "<group>"; };
+		FB874B5C2EE083F700B182A4 /* WidgetControlIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetControlIntent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,16 +252,13 @@
 			files = (
 				84A0BCB42C73E94000B948E0 /* FirebaseFunctions in Frameworks */,
 				84A0BCB02C73E92900B948E0 /* FirebaseAnalytics in Frameworks */,
-				84A0BD622C791DF100B948E0 /* RxRelay.xcframework in Frameworks */,
 				84A0BD6D2C7E26FC00B948E0 /* YandexMobileAdsInstream in Frameworks */,
 				84A0BC6F2C70F9D400B948E0 /* SDWebImageMapKit in Frameworks */,
 				84A0BD6B2C7E26FC00B948E0 /* YandexMobileAds in Frameworks */,
 				8450C9E02BD80D3A00E1C255 /* GoogleMobileAds in Frameworks */,
-				84A0BD602C791DF100B948E0 /* RxCocoa.xcframework in Frameworks */,
 				84A0BCB22C73E92900B948E0 /* FirebaseAnalyticsSwift in Frameworks */,
 				84A0BD282C74A5C500B948E0 /* Alamofire in Frameworks */,
 				84A0BC6D2C70F9D400B948E0 /* SDWebImage in Frameworks */,
-				84A0BD642C791DF100B948E0 /* RxSwift.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +342,7 @@
 		43D5F5732B7A79F80030DBF5 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				FB874B512EDF330900B182A4 /* OpenPairIntent.swift */,
 				43D5F57C2B7A79F80030DBF5 /* CoreWorker.swift */,
 				43D5F5742B7A79F80030DBF5 /* WidgetWorker.swift */,
 				43D5F5752B7A79F80030DBF5 /* ExchangeWorker.swift */,
@@ -402,7 +385,6 @@
 			children = (
 				43D5F5922B7A7A260030DBF5 /* HomeViewController.swift */,
 				43D5F59B2B7A7A260030DBF5 /* HeaderView.swift */,
-				84C7BC812CCFB9A9000AB167 /* File.txt */,
 				43D5F5962B7A7A260030DBF5 /* CurrencyPairModule */,
 				43D5F59F2B7A7A260030DBF5 /* ExchangeModule */,
 				43D5F59C2B7A7A260030DBF5 /* ChooseCurrencyModule */,
@@ -497,13 +479,6 @@
 		43D5F5C72B7A7BA00030DBF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84A0BD112C73F56B00B948E0 /* RxBlocking.xcframework */,
-				84A0BD0F2C73F56B00B948E0 /* RxCocoa.xcframework */,
-				84A0BD102C73F56B00B948E0 /* RxRelay.xcframework */,
-				84A0BD132C73F56C00B948E0 /* RxSwift.xcframework */,
-				84A0BD122C73F56C00B948E0 /* RxTest.xcframework */,
-				846074322BC7EAB7007AF93E /* SDWebImage.xcframework */,
-				8460742F2BC7EAB7007AF93E /* SDWebImageMapKit.xcframework */,
 				43D5F5EC2B7A85750030DBF5 /* WidgetKit.framework */,
 				43D5F5EE2B7A85750030DBF5 /* SwiftUI.framework */,
 			);
@@ -513,6 +488,7 @@
 		43D5F5F02B7A85750030DBF5 /* Widget Money Extension */ = {
 			isa = PBXGroup;
 			children = (
+				FB874B5C2EE083F700B182A4 /* WidgetControlIntent.swift */,
 				43D5F5FF2B7A86820030DBF5 /* WidgetViews */,
 				43D5F5F12B7A85750030DBF5 /* Widget_Money_ExtensionBundle.swift */,
 				846073622BBC9F6A007AF93E /* ExtensionsForIOS17.swift */,
@@ -527,6 +503,7 @@
 		43D5F5FF2B7A86820030DBF5 /* WidgetViews */ = {
 			isa = PBXGroup;
 			children = (
+				FB874B4E2EDA03B600B182A4 /* AccessoryRectangularView.swift */,
 				43D5F6012B7A86820030DBF5 /* SmallWidgetView.swift */,
 				43D5F6062B7A869E0030DBF5 /* MediumWidgetView.swift */,
 				43D5F6002B7A86820030DBF5 /* SmallCell.swift */,
@@ -590,7 +567,7 @@
 				43D5F5442B7A764D0030DBF5 /* Frameworks */,
 				43D5F5452B7A764D0030DBF5 /* Resources */,
 				43D5F5FB2B7A857D0030DBF5 /* Embed Foundation Extensions */,
-				84A0BD682C791DF100B948E0 /* Embed Frameworks */,
+				FB5287D42ED71FB20065AB42 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -641,7 +618,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					43D5F5462B7A764D0030DBF5 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -689,7 +666,6 @@
 				84DC5C912C826304005E1D0C /* PrivacyInfo.xcprivacy in Resources */,
 				846074292BC7E402007AF93E /* .gitignore in Resources */,
 				846073FF2BC6F787007AF93E /* Light 2.png in Resources */,
-				84C7BC822CCFB9A9000AB167 /* File.txt in Resources */,
 				846074012BC6F78E007AF93E /* Light 1.png in Resources */,
 				846074092BC6F7B0007AF93E /* Dark 3.png in Resources */,
 				8450C9DD2BD7D08E00E1C255 /* GoogleService-Info.plist in Resources */,
@@ -718,12 +694,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43D5F60D2B7A86F60030DBF5 /* BigCell.swift in Sources */,
+				FB874B522EDF332000B182A4 /* OpenPairIntent.swift in Sources */,
 				43D5F5822B7A79F80030DBF5 /* CurrencyFetcher.swift in Sources */,
 				84AD6E922C3190BA00AC0D18 /* PurchaseUI.swift in Sources */,
 				846073672BBDF752007AF93E /* SettingsHeaderView.swift in Sources */,
-				43D5F6042B7A86830030DBF5 /* SmallWidgetView.swift in Sources */,
-				43D5F6022B7A86830030DBF5 /* SmallCell.swift in Sources */,
 				43D5F5C12B7A7A260030DBF5 /* CurrencyListTableViewController.swift in Sources */,
 				43D5F5C02B7A7A260030DBF5 /* SettingsViewController.swift in Sources */,
 				43D5F58A2B7A7A1C0030DBF5 /* AppColors.swift in Sources */,
@@ -741,7 +715,6 @@
 				43D5F5C42B7A7A260030DBF5 /* CurrencyListViewModelV2.swift in Sources */,
 				43D5F5802B7A79F80030DBF5 /* ColorWorker.swift in Sources */,
 				43829DDF2B90DC4000E99F42 /* DetailsLongSubBlock.swift in Sources */,
-				43D5F6072B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */,
 				840C0DC62CCEED39002856CA /* TwoIconsLogoBlock.swift in Sources */,
 				43D5F5832B7A79F80030DBF5 /* CoinPairWorker.swift in Sources */,
 				43D5F60A2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */,
@@ -795,11 +768,14 @@
 				43D5F6032B7A86830030DBF5 /* SmallCell.swift in Sources */,
 				8450C9DB2BD6CAB000E1C255 /* CustomDivider.swift in Sources */,
 				43D5F6082B7A869E0030DBF5 /* MediumWidgetView.swift in Sources */,
+				FB874B4F2EDA03B700B182A4 /* AccessoryRectangularView.swift in Sources */,
+				FB61142E2EE089C200DA3056 /* WidgetControlIntent.swift in Sources */,
 				43D5F5F42B7A85750030DBF5 /* Widget_Money_Extension.swift in Sources */,
 				84B95E422BD533B100EE9CEC /* UniversalCoinWorker.swift in Sources */,
 				43D5F5F22B7A85750030DBF5 /* Widget_Money_ExtensionBundle.swift in Sources */,
 				84B95E442BD5430800EE9CEC /* CurrencyFetcher.swift in Sources */,
 				840C0DC82CCFB64A002856CA /* TwoIconsView.swift in Sources */,
+				FB61142D2EE0895D00DA3056 /* OpenPairIntent.swift in Sources */,
 				43D5F60B2B7A86D70030DBF5 /* WidgetCellModel.swift in Sources */,
 				84B95E412BD5317F00EE9CEC /* CoinUniversal.swift in Sources */,
 			);
@@ -872,6 +848,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -935,6 +912,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -965,7 +943,6 @@
 				CODE_SIGN_ENTITLEMENTS = "Widget Money/Widget Money.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.05;
-				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Widget Money/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Widget Money";
@@ -975,7 +952,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1003,7 +980,6 @@
 				CODE_SIGN_ENTITLEMENTS = "Widget Money/Widget Money.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.05;
-				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Widget Money/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Widget Money";
@@ -1013,7 +989,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1040,11 +1016,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Widget Money ExtensionExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.05;
-				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Widget Money Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Widget Money Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1072,11 +1048,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Widget Money ExtensionExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.05;
-				DEVELOPMENT_TEAM = DV2KL8GXVB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Widget Money Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Widget Money Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

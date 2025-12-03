@@ -6,65 +6,57 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct TwoIconsView: View {
     
-    var mainImage: UIImage!
-    var baseImage: UIImage!
+    let mainImageData: Data?
     
-    init(mainImageData: Data?, baseImageData: Data?) {
-        mainImage = createImage(data: mainImageData)
-        baseImage = createImage(data: baseImageData)
-    }
-    
-    private func createImage(data: Data?) -> UIImage {
-        let defaultImage = UIImage(systemName: "dollarsign.circle")!.withRenderingMode(.alwaysTemplate)
-        defaultImage.withTintColor(
-            UIColor(red: 244/255, green: 177/255, blue: 121/255, alpha: 0.85),
-            renderingMode: .alwaysTemplate)
-        guard let imageData = data else {
-            return defaultImage
-        }
-        guard let newImage = UIImage(data: imageData) else {
-            return defaultImage
-        }
-        
-        return newImage
-    }
     
     //MARK: - BODY
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                HStack {
-                    Spacer()
-                    VStack {
-                        Spacer()
-                        Image(uiImage: baseImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: geometry.size.width*0.55, height: geometry.size.height*0.55)
-                            .clipShape(Circle())
-                    }
-                }
+        
+        if let data = mainImageData, let uiImage = UIImage(data: data) {
+            if #available(iOS 18.0, *) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .widgetAccentedRenderingMode(.accentedDesaturated)
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .padding(1)
+            } else {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .padding(1)
             }
-            HStack {
-                VStack {
-                    Image(uiImage: mainImage)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width*0.7, height: geometry.size.height*0.7)
-                        .clipShape(Circle())
-                    Spacer()
-                }
-                Spacer()
+                
+        }
+        else {
+            if #available(iOS 18.0, *) {
+                Image(systemName: "dollarsign.circle") // плейсхолдер, если data nil
+                    .resizable()
+                    .widgetAccentedRenderingMode(.fullColor)
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .tint(Color(red: 244/255, green: 177/255, blue: 121/255))
+                    .padding(1)
+            } else {
+                // Fallback on earlier versions
+                Image(systemName: "dollarsign.circle") // плейсхолдер, если data nil
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .tint(Color(red: 244/255, green: 177/255, blue: 121/255))
+                    .padding(1)
             }
         }
-        
     }
+    
 }
 
 #Preview {
-    TwoIconsView(mainImageData: nil, baseImageData: nil)
+    TwoIconsView(mainImageData: nil)
 }

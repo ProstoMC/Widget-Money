@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
 class SecondViewController: UIViewController {
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     var headerView: HeaderView!
     var tableViewController = CurrencyListTableViewController()
@@ -30,11 +30,11 @@ extension SecondViewController {
     private func setupUI() {
         view.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().background
         
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe(onNext: { flag in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { flag in
             if flag {
                 self.view.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().background
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
         headerView = HeaderView(frame: CGRect(
             x: 0,

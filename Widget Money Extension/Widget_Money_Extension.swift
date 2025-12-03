@@ -49,7 +49,7 @@ struct Provider: TimelineProvider {
                     byAdding: DateComponents(minute: 30),
                     to: Date()
                 )!
-    
+                
                 let timeline = Timeline(
                     entries: [entry],
                     policy: .after(nextUpdate)
@@ -72,33 +72,57 @@ struct Widget_Money_ExtensionEntryView : View {
     
     @ViewBuilder
     var body: some View {
-        GeometryReader { reader in //For Image size
+        
+        //For lockscreen
+        if family == .accessoryRectangular {
+            AccessoryRectangularView(widgetCellModels: entry.widgetModel.cellModels)
+                .widgetBackground(backgroundView: BackgroundViewForIOS17.init())
+        }
+        else {
+            
             ZStack {
                 VStack(spacing: 0){
-                    Text("🕗 \(entry.widgetModel.date)")
-                        .font(.caption)
-                        .fontWeight(.light)
-                        .scaledToFill()
-                        .foregroundColor(Color.white.opacity(0.5))
-                        .frame(width: reader.size.width-16, height: reader.size.height/15, alignment: .trailing)
-                        .padding(.top, reader.size.height/20)
-                        .padding(.bottom, reader.size.height/40)
-                    //.background(.yellow)
+                    Spacer()
+                    HStack (spacing: 4) {
+                        Spacer()
+                        if #available(iOS 18.0, *) {
+                            Image(systemName: "clock")
+                                .resizable()
+                                .widgetAccentedRenderingMode(.accentedDesaturated)
+                                .scaledToFit()
+                                .frame(width: 12, height: 12)
+                                .foregroundColor(Color.white.opacity(0.5))
+                        } else {
+                            // Fallback on earlier versions
+                            Image(systemName: "clock")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 12, height: 12)
+                                .foregroundColor(Color.white.opacity(0.5))
+                        }
+                        Text("\(entry.widgetModel.date)")
+                            .font(.caption)
+                            .fontWeight(.light)
+                            .scaledToFill()
+                            .foregroundColor(Color.white.opacity(0.5))
+                            .padding(.trailing, 2)
+                        
+                    }
+                    Spacer()
                     
                     if family == .systemSmall {
-//                        CustomDivider(percent: 0.55)
-//                            .frame(width: reader.size.width-16, height: 0.5)
                         SmallWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                            .background(ContainerRelativeShape())
-                    } else 
-                    if family == .systemMedium {
-//                       CustomDivider(percent: 0.25)
-//                           .frame(width: reader.size.width-16, height: 0.5)
-                        MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
-                            .background(ContainerRelativeShape())
                     }
+                    else if family == .systemMedium {
+                        MediumWidgetView(widgetCellModels: entry.widgetModel.cellModels)
+                    }
+                    Spacer()
                 }
-            }.widgetBackground(backgroundView: BackgroundViewForIOS17.init())
+            }
+            .padding(8)
+            .containerBackground(for: .widget) {
+                Color(red: 22/255, green: 30/255, blue: 49/255)
+            }
         }
     }
 }
@@ -112,8 +136,8 @@ struct Widget_Money_Extension: Widget {
             Widget_Money_ExtensionEntryView(entry: entry)
         }
         .configurationDisplayName("WidgetMoney")
-        .description("Widget for showing last course of currency")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .description("A widget that shows the latest currency rate")
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular])
         .contentMarginsDisabledIfAvailable() // For iOS 17 and later
     }
 }

@@ -6,21 +6,28 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
-struct ChangeThemeCellViewModel {
+class ChangeThemeCellViewModel {
+    init(name: String, imageName: String, elementsColor: UIColor, separatorColor: UIColor, backgroundColor: UIColor) {
+        self.name = name
+        self.imageName = imageName
+        self.elementsColor = elementsColor
+        self.separatorColor = separatorColor
+        self.backgroundColor = backgroundColor
+    }
     let name: String
-    var imageName: BehaviorSubject<String>
+    @Published var imageName: String
     
-    var elementsColor: BehaviorSubject<UIColor>
-    var separatorColor: BehaviorSubject<UIColor>
-    var backgroundColor: BehaviorSubject<UIColor>
+    @Published var elementsColor: UIColor
+    @Published var separatorColor: UIColor
+    @Published var backgroundColor: UIColor
 }
 
 class ChangeThemeCell: UITableViewCell {
     
     
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     let iconView = UIImageView()
     let nameLabel = UILabel()
@@ -49,32 +56,32 @@ class ChangeThemeCell: UITableViewCell {
     
     func subscribing(viewModel: ChangeThemeCellViewModel){
         // Image
-        viewModel.imageName.subscribe(onNext: { name in
+        viewModel.$imageName.sink { name in
             self.iconView.image = UIImage(systemName: name)
             
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         // Colors
-        viewModel.backgroundColor.subscribe(onNext: { color in
+        viewModel.$backgroundColor.sink { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.contentView.backgroundColor = color
             })
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
-        viewModel.elementsColor.subscribe(onNext: { color in
+        viewModel.$elementsColor.sink { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.nameLabel.textColor = color
                 self.iconView.tintColor = color
             })
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
-        viewModel.separatorColor.subscribe(onNext: { color in
+        viewModel.$separatorColor.sink { color in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.separatorLine.backgroundColor = color
             })
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
     }
 }
 

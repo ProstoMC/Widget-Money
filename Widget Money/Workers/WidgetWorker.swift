@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 import WidgetKit
-import RxSwift
+import Combine
 
 protocol WidgetWorkerProtocol {
     
 }
 
 class WidgetWorker: WidgetWorkerProtocol {
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     @AppStorage("WidgetModel", store: UserDefaults(suiteName: "group.com.sloniklm.WidgetMoney"))
     var widgetData = Data()
@@ -34,13 +34,13 @@ class WidgetWorker: WidgetWorkerProtocol {
     }
     
     func subscribing() {
-        pairModule.rxPairListCount.subscribe { _ in
+        pairModule.rxPairListCount.sink { _ in
             self.createWidgetModelsFromFavoritePairs()
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
         
-        coinList.rxRateUpdated.subscribe{ _ in
+        coinList.rxRateUpdated.sink { _ in
             self.createWidgetModelsFromFavoritePairs()
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
     }
     
     func createWidgetModelsFromFavoritePairs() {

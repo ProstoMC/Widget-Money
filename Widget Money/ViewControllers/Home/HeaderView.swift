@@ -6,15 +6,15 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
 class HeaderView: UIView {
     
-    let bag = DisposeBag()
+    var cancellables = Set<AnyCancellable>()
     
     let logoImageView = UIImageView()
     let dateTextLabel = UILabel()
-    let rxDate = BehaviorSubject(value: "No date")
+//    let rxDate = BehaviorSubject(value: "No date")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,27 +28,27 @@ class HeaderView: UIView {
     }
     
     private func rxSubscribing() {
-        CoreWorker.shared.coinList.rxRateUpdated.subscribe(onNext: { _ in
+        CoreWorker.shared.coinList.rxRateUpdated.sink { _ in
             if CoreWorker.shared.coinList.lastUpdate == "Error" {
                 self.dateTextLabel.text = "Connection error".localized()
             }
             else {
                 self.dateTextLabel.text = "Actual to ".localized() + CoreWorker.shared.coinList.lastUpdate
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe{ _ in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { _ in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.colorsUpdate()
             })
             
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
 
     }
     
     @objc func logoTapped() {
-        CoreWorker.shared.rxViewControllersNumber.onNext(2)
+        CoreWorker.shared.rxViewControllersNumber = 2
     }
     
 }

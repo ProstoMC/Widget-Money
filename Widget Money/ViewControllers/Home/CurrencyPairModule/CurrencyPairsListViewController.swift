@@ -6,10 +6,8 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
-
-// MARK:  - Setup sections for RxDataSource
 
 // MARK:  ViewController
 
@@ -17,8 +15,8 @@ class CurrencyPairsListViewController: UIViewController {
     
     var collectionView: UICollectionView!
     
-    var viewModel: CurrencyPairsListViewModelProtocol!
-    let bag = DisposeBag()
+    var viewModel: CurrencyPairsListViewModel!
+    var cancellables = Set<AnyCancellable>()
     
     
     override func viewDidLoad() {
@@ -48,15 +46,15 @@ class CurrencyPairsListViewController: UIViewController {
     
     private func subscribing() {
         
-        viewModel.rxPairsUpdated.subscribe(onNext: { _ in
+        viewModel.$rxPairsUpdated.sink { _ in
             self.collectionView.reloadData()
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
 
-        viewModel.rxAppThemeUpdated.subscribe(onNext: { flag in
+        viewModel.$rxAppThemeUpdated.sink { flag in
             if flag {
                 self.updateColors()
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
       
     }
 

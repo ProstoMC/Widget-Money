@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 
 
@@ -20,7 +20,7 @@ enum PropertyType: String, Codable {
 }
 
 protocol SettingsProtocol {
-    var rxSettingsUpdated: BehaviorSubject<PropertyType?> { get set }
+    var rxSettingsUpdated: PropertyType? { get set }
     
     
     func returnSettings() -> [Property]
@@ -30,8 +30,8 @@ protocol SettingsProtocol {
 
 class SettingsWorker {
     
-    var rxSettingsUpdated = BehaviorSubject<PropertyType?>(value: nil)
-    
+    @Published var rxSettingsUpdated: PropertyType? = nil
+    private var cancellables = Set<AnyCancellable>()
     
     let defaults = UserDefaults.standard
     
@@ -39,10 +39,9 @@ class SettingsWorker {
     
     init() {
         settingsList = fetchFromDefaults()
-        
     }
 
-  
+    
 }
 
 extension SettingsWorker: SettingsProtocol {
@@ -63,7 +62,7 @@ extension SettingsWorker: SettingsProtocol {
         for i in settingsList.indices {
             if settingsList[i].key == key {
                 settingsList[i].value = newValue
-                rxSettingsUpdated.onNext(key)
+                rxSettingsUpdated = key
                 return
             }
         }

@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import RxSwift
-
+import Combine
 
 
 
@@ -18,7 +17,7 @@ enum AppTheme: Codable {
 }
 
 protocol ColorsWorkerProtocol {
-    var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
+    var rxAppThemeUpdated: Bool { get }
     
     func returnColors() -> AppColors
     func returnAppTheme() -> AppTheme
@@ -27,9 +26,9 @@ protocol ColorsWorkerProtocol {
 
 class ColorsWorker {
     let defaults = UserDefaults.standard
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
-    var rxAppThemeUpdated = BehaviorSubject(value: false)
+    @Published private(set) var rxAppThemeUpdated: Bool = false
     var appTheme = AppTheme.system
     
     init() {
@@ -38,9 +37,9 @@ class ColorsWorker {
     }
     
     private func subscribing() {
-        rxAppThemeUpdated.subscribe{ _ in
+        $rxAppThemeUpdated.sink{ _ in
             self.saveToDefaults()
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
     }
     
 }
@@ -68,7 +67,7 @@ extension ColorsWorker: ColorsWorkerProtocol {
     
     func newAppTheme(newTheme: AppTheme) {
         appTheme = newTheme
-        rxAppThemeUpdated.onNext(true)
+        rxAppThemeUpdated = true
     }
     
 }
@@ -94,7 +93,7 @@ extension ColorsWorker {
                 print("SAVED THEME IS \(savedTheme)")
                 if savedTheme != .system {
                     appTheme = savedTheme
-                    rxAppThemeUpdated.onNext(true)
+                    rxAppThemeUpdated = true
                 }
             }
             catch { return }

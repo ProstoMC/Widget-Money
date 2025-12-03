@@ -6,17 +6,17 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 
 
 protocol ExchangeViewModelProtocol {
-    var fromText: BehaviorSubject<String> {get set}
-    var toText: BehaviorSubject<String> {get set}
-    var fromCurrency: BehaviorSubject<String> {get set}
-    var toCurrency: BehaviorSubject<String> {get set}
+    var fromText: String {get set}
+    var toText: String {get set}
+    var fromCurrency: String {get set}
+    var toCurrency: String {get set}
     
-    var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
+    var rxAppThemeUpdated: Bool { get }
     var colorSet: AppColors { get }
     
     func makeExchangeNormal()
@@ -28,15 +28,15 @@ protocol ExchangeViewModelProtocol {
 
 class ExchangeViewModel: ExchangeViewModelProtocol  {
     
-    var rxAppThemeUpdated = BehaviorSubject(value: false)
+    @Published var rxAppThemeUpdated: Bool = false
     var colorSet = CoreWorker.shared.colorsWorker.returnColors()
     
-    var fromText = RxSwift.BehaviorSubject<String>(value: "1")
-    var toText = RxSwift.BehaviorSubject<String>(value: "1")
-    var fromCurrency = BehaviorSubject<String>(value: "RUB")
-    var toCurrency = BehaviorSubject<String>(value: "USD")
+    @Published var fromText: String = "1"
+    @Published var toText: String = "1"
+    @Published var fromCurrency: String = "RUB"
+    @Published var toCurrency: String = "USD"
     
-    let disposeBag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     //let formatter = NumberFormatter().numberStyle = .decimal
     
     init() {
@@ -45,52 +45,49 @@ class ExchangeViewModel: ExchangeViewModelProtocol  {
     
     private func subscrubeToCoreWorker() {
         // Update after fetching currency rates
-        CoreWorker.shared.coinList.rxRateUpdated.subscribe(onNext: {_ in
+        CoreWorker.shared.coinList.rxRateUpdated.sink {_ in
             self.makeExchangeNormal()
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
         //Update exchanging and fields after new currency on the fields
-        CoreWorker.shared.exchangeWorker.rxExchangeFlag.subscribe({ _ in
-            self.fromCurrency.onNext(CoreWorker.shared.exchangeWorker.fromCoin)
-            self.toCurrency.onNext(CoreWorker.shared.exchangeWorker.toCoin)
+        CoreWorker.shared.exchangeWorker.$rxExchangeFlag.sink { _ in
+            self.fromCurrency = CoreWorker.shared.exchangeWorker.fromCoin
+            self.toCurrency = CoreWorker.shared.exchangeWorker.toCoin
             self.makeExchangeNormal()
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
         //Update colors
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe{ _ in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { _ in
             self.colorSet = CoreWorker.shared.colorsWorker.returnColors()
-            self.rxAppThemeUpdated.onNext(true)
-        }.disposed(by: disposeBag)
+            self.rxAppThemeUpdated = true
+        }.store(in: &cancellables)
     }
     
     func makeExchangeNormal() {
-        do {
-            let fromValue = convertStringToDouble(text: try fromText.value())
-            let fromRate = CoreWorker.shared.coinList.returnCoin(code: try fromCurrency.value())?.rate ?? 1
-            let toRate = CoreWorker.shared.coinList.returnCoin(code: try toCurrency.value())?.rate ?? 1
-            
-            let rate = toRate/fromRate
-            let value = fromValue/rate
-            let valueText = String(Double(round(100*value)/100))
-            toText.onNext(valueText)
-        } catch {
-            return
-        }
+        
+        let fromValue = convertStringToDouble(text: fromText)
+        let fromRate = CoreWorker.shared.coinList.returnCoin(code: fromCurrency)?.rate ?? 1
+        let toRate = CoreWorker.shared.coinList.returnCoin(code: toCurrency)?.rate ?? 1
+        
+        let rate = toRate/fromRate
+        let value = fromValue/rate
+        let valueText = String(Double(round(100*value)/100))
+        toText = valueText
+        
+        
     }
     
     func makeExchangeReverse() {
-        do {
-            let fromValue = convertStringToDouble(text: try toText.value())
-            let fromRate = CoreWorker.shared.coinList.returnCoin(code: try fromCurrency.value())?.rate ?? 1
-            let toRate = CoreWorker.shared.coinList.returnCoin(code: try toCurrency.value())?.rate ?? 1
-            
-            let rate = fromRate/toRate
-            let value = fromValue/rate
-            let valueText = String(Double(round(100*value)/100))
-            fromText.onNext(valueText)
-        } catch {
-            return
-        }
+        
+        let fromValue = convertStringToDouble(text: toText)
+        let fromRate = CoreWorker.shared.coinList.returnCoin(code:  fromCurrency)?.rate ?? 1
+        let toRate = CoreWorker.shared.coinList.returnCoin(code: toCurrency)?.rate ?? 1
+        
+        let rate = fromRate/toRate
+        let value = fromValue/rate
+        let valueText = String(Double(round(100*value)/100))
+        fromText = valueText
+        
     }
     
     func switchFields() {

@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 protocol DetailsViewModelProtocol {
-    var rxIsAppearFlag: BehaviorSubject<Bool> { get }
-    var rxFavoriteStatus: BehaviorSubject<Bool> { get set }
+    var rxIsAppearFlag: Bool { get }
+    var rxFavoriteStatus: Bool { get set }
     
-    var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
+    var rxAppThemeUpdated: Bool { get }
     var colorSet: AppColors { get }
     var pair: CurrencyPairCellModel { get }
     
@@ -21,17 +21,17 @@ protocol DetailsViewModelProtocol {
 
 class DetailsViewModel: DetailsViewModelProtocol {
     
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     var pair = CurrencyPairCellModel(
         valueCurrency: CoreWorker.shared.coinList.baseCoin,
         baseCurrency: CoreWorker.shared.coinList.baseCoin,
         colorIndex: nil
     )
     
-    var rxIsAppearFlag = RxSwift.BehaviorSubject(value: false) //hidden as default
-    var rxFavoriteStatus = RxSwift.BehaviorSubject(value: false)
+    @Published var rxIsAppearFlag: Bool = false //hidden as default
+    @Published var rxFavoriteStatus: Bool = false
     
-    var rxAppThemeUpdated = BehaviorSubject(value: false)
+    @Published var rxAppThemeUpdated: Bool = false
     var colorSet = CoreWorker.shared.colorsWorker.returnColors()
     
     init() {
@@ -41,8 +41,8 @@ class DetailsViewModel: DetailsViewModelProtocol {
     
     func changeFavoriteStatus() {
         
-        do {
-            let status = try rxFavoriteStatus.value()
+        
+            let status = rxFavoriteStatus
             let from = CoreWorker.shared.exchangeWorker.fromCoin
             let to = CoreWorker.shared.exchangeWorker.toCoin
 
@@ -52,11 +52,9 @@ class DetailsViewModel: DetailsViewModelProtocol {
             else {
                 CoreWorker.shared.favouritePairList.addNewPair(valueCode: from, baseCode: to, colorIndex: nil)
             }
-            CoreWorker.shared.exchangeWorker.rxExchangeFlag.onNext(true)
+            CoreWorker.shared.exchangeWorker.rxExchangeFlag = true
 
-        } catch {
-            return
-        }
+        
     }
     
 }
@@ -64,17 +62,17 @@ class DetailsViewModel: DetailsViewModelProtocol {
 extension DetailsViewModel {
     
     private func subscribeToCoreWorker() {
-        CoreWorker.shared.exchangeWorker.rxExchangeFlag.subscribe { flag in
+        CoreWorker.shared.exchangeWorker.$rxExchangeFlag.sink { flag in
             self.updatePair()
             self.getFavouriteStatus()
-            self.rxIsAppearFlag.onNext(flag)
-        }.disposed(by: bag)
+            self.rxIsAppearFlag = flag
+        }.store(in: &cancellables)
         
         //Update colors
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe{ _ in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { _ in
             self.colorSet = CoreWorker.shared.colorsWorker.returnColors()
-            self.rxAppThemeUpdated.onNext(true)
-        }.disposed(by: bag)
+            self.rxAppThemeUpdated = true
+        }.store(in: &cancellables)
     }
     
     private func updatePair() {
@@ -91,10 +89,10 @@ extension DetailsViewModel {
     
     private func getFavouriteStatus() {
         
-        rxFavoriteStatus.onNext(
-            CoreWorker.shared.favouritePairList.checkIsExist(
+        rxFavoriteStatus = CoreWorker.shared.favouritePairList.checkIsExist(
                 valueCode: pair.valueCurrencyCode,
-                baseCode: pair.baseCurrencyCode)
+                baseCode: pair.baseCurrencyCode
         )
+        
     }
 }

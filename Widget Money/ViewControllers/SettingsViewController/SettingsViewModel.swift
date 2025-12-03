@@ -6,29 +6,49 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 import UIKit
 import StoreKit
 
-struct SettingsCellViewModel {
-    let name: String
-    var value: BehaviorSubject<String>
-    var imageName: String
-    var productID: String? = nil
+class SettingsCellViewModel {
+    init(
+        name: String,
+        value: String,
+        imageName: String,
+        productID: String? = nil,
+        nameLabelColor: UIColor,
+        valueLabelColor: UIColor,
+        backgroundColor: UIColor,
+        imageColor: UIColor) {
+        
+            self.name = name
+            self.value = value
+            self.imageName = imageName
+            self.productID = productID
+            self.nameLabelColor = nameLabelColor
+            self.valueLabelColor = valueLabelColor
+            self.backgroundColor = backgroundColor
+            self.imageColor = imageColor
+    }
     
-    var nameLabelColor: BehaviorSubject<UIColor>
-    var valueLabelColor: BehaviorSubject<UIColor>
-    var backgroundColor: BehaviorSubject<UIColor>
-    var imageColor: BehaviorSubject<UIColor>
+    let name: String
+    @Published var value: String
+    let imageName: String
+    var productID: String? = nil
+        
+    @Published var nameLabelColor: UIColor
+    @Published var valueLabelColor: UIColor
+    @Published var backgroundColor: UIColor
+    @Published var imageColor: UIColor
 }
 
 protocol SettingsViewModelProtocol {
     var colorSet: AppColors { get }
-    var rxAppThemeUpdated: BehaviorSubject<Bool> { get }
-    var rxAdsIsHidden: BehaviorSubject<Bool> { get }
+    var rxAppThemeUpdated: Bool { get }
+    var rxAdsIsHidden: Bool { get }
     
     var settingsList: [SettingsCellViewModel] { get }
-    var rxSettingsListUpdated: BehaviorSubject<Bool> { get }
+    var rxSettingsListUpdated: Bool { get }
     
     var bannerID: String { get }
     
@@ -39,16 +59,16 @@ protocol SettingsViewModelProtocol {
 
 class SettingsViewModel: SettingsViewModelProtocol {
     
-    var rxAdsIsHidden = BehaviorSubject(value: false)
+    @Published var rxAdsIsHidden: Bool = false
     
     var colorSet: AppColors = CoreWorker.shared.colorsWorker.returnColors()
-    var rxAppThemeUpdated = BehaviorSubject(value: true)
+    @Published var rxAppThemeUpdated: Bool = true
     var bannerID: String = CoreWorker.shared.adsWorker.returnYABannerID(bannerType: .yaSettingsBannerID)
     
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
 
     var settingsList: [SettingsCellViewModel] = []
-    var rxSettingsListUpdated = BehaviorSubject(value: false)
+    @Published var rxSettingsListUpdated: Bool = false
     
     init() {
         settingsList = createSettingsList()
@@ -58,15 +78,15 @@ class SettingsViewModel: SettingsViewModelProtocol {
     private func subscribing() {
         
         //Subscribe to Coin List
-        CoreWorker.shared.coinList.rxRateUpdated.subscribe { _ in
-            self.settingsList[0].value.onNext(CoreWorker.shared.coinList.baseCoin.code)
-        }.disposed(by: bag)
+        CoreWorker.shared.coinList.rxRateUpdated.sink { _ in
+            self.settingsList[0].value = CoreWorker.shared.coinList.baseCoin.code
+        }.store(in: &cancellables)
         
         //Subscribe to Colors worker
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe { _ in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { _ in
             //Update colors in VC
             self.changeColorSet()
-            self.rxAppThemeUpdated.onNext(true)
+            self.rxAppThemeUpdated = true
             
             var valueName = ""
             switch CoreWorker.shared.colorsWorker.returnAppTheme() {
@@ -75,27 +95,27 @@ class SettingsViewModel: SettingsViewModelProtocol {
             case .system: valueName = "System".localized()
             }
             //Change name of theme
-            self.settingsList[1].value.onNext(valueName)
-        }.disposed(by: bag)
+            self.settingsList[1].value = valueName
+        }.store(in: &cancellables)
         
         
         //Subscribe to adsWorker
-        CoreWorker.shared.purchaseWorker.rxAdsIsHidden.subscribe(onNext: { isHidden in
-            self.rxAdsIsHidden.onNext(isHidden)
-        }).disposed(by: bag)
+        CoreWorker.shared.purchaseWorker.$rxAdsIsHidden.sink { isHidden in
+            self.rxAdsIsHidden = isHidden
+        }.store(in: &cancellables)
         
         
         //Subscribe to Purchase worker
             //After getting purchaces - add it to Settings list and update view
-        CoreWorker.shared.purchaseWorker.rxProductsFetchedFlag.subscribe(onNext: { flag in
+        CoreWorker.shared.purchaseWorker.$rxProductsFetchedFlag.sink { flag in
             if flag {
                 let products = CoreWorker.shared.purchaseWorker.returnProducts()
                 products.forEach({ product in
                     self.settingsList.append(self.createPurchaseSettings(product: product))
                 })
-                self.rxSettingsListUpdated.onNext(true)
+                self.rxSettingsListUpdated = true
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
 
     }
 
@@ -128,12 +148,12 @@ extension SettingsViewModel {
     private func createBaseCurrencySettings() -> SettingsCellViewModel {
         return SettingsCellViewModel(
             name: "Base currency".localized(),
-            value: BehaviorSubject(value: CoreWorker.shared.coinList.baseCoin.code),
+            value: CoreWorker.shared.coinList.baseCoin.code,
             imageName: "dollarsign.circle.fill",
-            nameLabelColor: BehaviorSubject(value: colorSet.mainText),
-            valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets),
-            imageColor: BehaviorSubject(value: colorSet.closingLine)
+            nameLabelColor: colorSet.mainText,
+            valueLabelColor: colorSet.secondText,
+            backgroundColor: colorSet.backgroundForWidgets,
+            imageColor: colorSet.closingLine
         )
     }
     private func createThemeSettigs() -> SettingsCellViewModel {
@@ -147,28 +167,28 @@ extension SettingsViewModel {
         
         return SettingsCellViewModel(
             name: "App theme".localized(),
-            value: BehaviorSubject(value: valueName),
+            value: valueName,
             imageName: "circle.lefthalf.filled.inverse",
-            nameLabelColor: BehaviorSubject(value: colorSet.mainText),
-            valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets),
-            imageColor: BehaviorSubject(value: colorSet.closingLine)
+            nameLabelColor: colorSet.mainText,
+            valueLabelColor: colorSet.secondText,
+            backgroundColor: colorSet.backgroundForWidgets,
+            imageColor: colorSet.closingLine
         )
     }
     
     private func createPurchaseSettings(product: Product) -> SettingsCellViewModel {
         
         //Check has product already purchased. If it is -> change name for "Purchased"
-        let value = BehaviorSubject(value: product.displayPrice)
+        var value = product.displayPrice
         if CoreWorker.shared.purchaseWorker.isProductPurchased(product.id) {
-            value.onNext("Purchased".localized())
+            value = "Purchased".localized()
         }
         //Subscribe for purchasing for changeing name
-        CoreWorker.shared.purchaseWorker.rxProductPurchased.subscribe(onNext: { _ in
+        CoreWorker.shared.purchaseWorker.$rxProductPurchased.sink { _ in
             if CoreWorker.shared.purchaseWorker.isProductPurchased(product.id) {
-                value.onNext("Purchased".localized())
+                value = "Purchased".localized()
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
         
         
@@ -177,10 +197,10 @@ extension SettingsViewModel {
             value: value,
             imageName: "xmark.circle.fill",
             productID: product.id,
-            nameLabelColor: BehaviorSubject(value: colorSet.mainText),
-            valueLabelColor: BehaviorSubject(value: colorSet.secondText),
-            backgroundColor: BehaviorSubject(value: colorSet.backgroundForWidgets),
-            imageColor: BehaviorSubject(value: colorSet.closingLine)
+            nameLabelColor: colorSet.mainText,
+            valueLabelColor: colorSet.secondText,
+            backgroundColor: colorSet.backgroundForWidgets,
+            imageColor: colorSet.closingLine
         )
     }
     
@@ -200,10 +220,10 @@ extension SettingsViewModel {
         colorSet = CoreWorker.shared.colorsWorker.returnColors()
         
         for i in settingsList.indices {
-            settingsList[i].nameLabelColor.onNext(colorSet.mainText)
-            settingsList[i].valueLabelColor.onNext(colorSet.settingsText)
-            settingsList[i].backgroundColor.onNext(colorSet.backgroundForWidgets)
-            settingsList[i].imageColor.onNext(colorSet.closingLine)
+            settingsList[i].nameLabelColor = colorSet.mainText
+            settingsList[i].valueLabelColor = colorSet.settingsText
+            settingsList[i].backgroundColor = colorSet.backgroundForWidgets
+            settingsList[i].imageColor = colorSet.closingLine
         }
         
     }

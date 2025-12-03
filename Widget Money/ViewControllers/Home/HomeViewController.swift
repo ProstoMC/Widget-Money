@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 import GoogleMobileAds
 import YandexMobileAds
 
 class HomeViewController: UIViewController {
-    let bag = DisposeBag()
+    var cancellables = Set<AnyCancellable>()
 
     var headerView = HeaderView()
     
@@ -42,19 +42,19 @@ class HomeViewController: UIViewController {
     
     private func subscribing() {
         //Update colors
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe(onNext: { flag in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { flag in
             if flag {
                 self.view.backgroundColor = CoreWorker.shared.colorsWorker.returnColors().background
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         //End refreshing
-        CoreWorker.shared.coinList.rxRateUpdated.subscribe{ _ in
+        CoreWorker.shared.coinList.rxRateUpdated.sink { _ in
             
             self.refreshControl.endRefreshing()
             //self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.scrollView.setContentOffset(CGPointMake(0.0, 0.0), animated: false)
             self.isUpdating = false
-        }.disposed(by: bag)
+        }.store(in: &cancellables)
 
     }
 

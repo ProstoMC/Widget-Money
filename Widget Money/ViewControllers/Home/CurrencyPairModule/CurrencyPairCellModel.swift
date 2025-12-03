@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxSwift
 
 struct CurrencyPairCellModel {
     var valueCurrencyCode: String
@@ -22,8 +21,6 @@ struct CurrencyPairCellModel {
     
     var value: Double
     var flow: Double
-    
-    let bag = DisposeBag()
     
 
     init(valueCurrency: CoinUniversal, baseCurrency: CoinUniversal, colorIndex: Int?) {

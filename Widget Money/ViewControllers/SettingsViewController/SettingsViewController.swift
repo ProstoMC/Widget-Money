@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 import GoogleMobileAds
 import SwiftUI
 import StoreKit
@@ -15,8 +15,8 @@ import YandexMobileAdsInstream
 
 class SettingsViewController: UIViewController {
     
-    var viewModel: SettingsViewModelProtocol = SettingsViewModel()
-    let disposeBag = DisposeBag()
+    var viewModel = SettingsViewModel()
+    private var cancellables = Set<AnyCancellable>()
     
     var headerView: SettingsHeaderView!
     var topline: UIView!
@@ -55,23 +55,23 @@ class SettingsViewController: UIViewController {
     private func rxSubscribing() {
 
         //Update colors
-        viewModel.rxAppThemeUpdated.subscribe { _ in
+        viewModel.$rxAppThemeUpdated.sink { _ in
             UIView.animate(withDuration: 0.5, delay: 0.0,
                            options: [.allowUserInteraction], animations: { () -> Void in
                 self.colorsUpdate()
             })
-        }.disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
-        viewModel.rxAdsIsHidden.subscribe(onNext: { isHidden in
+        viewModel.$rxAdsIsHidden.sink { isHidden in
             self.yaAdsBlock.isHidden = isHidden
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
-        viewModel.rxSettingsListUpdated.subscribe(onNext: { flag in
+        viewModel.$rxSettingsListUpdated.sink { flag in
             if flag {
                 self.setupTableView()
                 self.tableView.reloadData()
             }
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
     }
     

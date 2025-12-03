@@ -7,13 +7,12 @@
 
 import UIKit
 import Foundation
-import RxSwift
-import RxCocoa
+import Combine
 
 class ExchangeViewController: UIViewController {
     
-    let viewModel: ExchangeViewModelProtocol = ExchangeViewModel()
-    let disposeBag = DisposeBag()
+    let viewModel = ExchangeViewModel()
+    var cancellables = Set<AnyCancellable>()
     
     let exchangeLabel = UILabel()
     let changeButton = UIButton()
@@ -22,6 +21,7 @@ class ExchangeViewController: UIViewController {
     let toView = EnterCurrencyView()
     
     var typeOfRow = "" //To or From
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,79 +36,115 @@ extension ExchangeViewController {
     private func setupRx() {
   
         //Setting to FromView
-        viewModel.fromText.subscribe(onNext: { text in
+        viewModel.$fromText.sink { text in
             self.fromView.textField.text = text
             if text != "1.0" {
                 self.fromView.textField.textColor = self.viewModel.colorSet.mainText
                 self.toView.textField.textColor = self.viewModel.colorSet.mainText
             }
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
         //Setting to ToView
-        viewModel.toText.subscribe(onNext: { text in
+        viewModel.$toText.sink { text in
             self.toView.textField.text = text
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
         //Setting currency names
-        viewModel.fromCurrency.subscribe(onNext: { text in
+        viewModel.$fromCurrency.sink { text in
             self.fromView.currencyButton.setTitle(" \(text)", for: .normal)
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
-        viewModel.toCurrency.subscribe(onNext: { text in
+        viewModel.$toCurrency.sink { text in
             self.toView.currencyButton.setTitle(" \(text)", for: .normal)
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
-        
-        //Getting from FromView
-        fromView.textField.rx.text.orEmpty
-            .throttle(.milliseconds(100), scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribe(onNext: { str in
-                self.viewModel.fromText.on(.next(str))
-                self.viewModel.makeExchangeNormal()
-                
-                if str == "1" {
-                    self.fromView.textField.textColor = self.viewModel.colorSet.secondText.withAlphaComponent(0.7)
-                    self.toView.textField.textColor = self.viewModel.colorSet.secondText.withAlphaComponent(0.7)
-                } else {
-                    self.fromView.textField.textColor = self.viewModel.colorSet.mainText
-                    self.toView.textField.textColor = self.viewModel.colorSet.mainText
-                }
-            }).disposed(by: disposeBag)
-        
-        //Getting from ToView
-        toView.textField.rx.text.orEmpty
-            .throttle(.milliseconds(100), scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribe(onNext: { str in
-                self.viewModel.toText.on(.next(str))
-                self.viewModel.makeExchangeReverse()
-
-            }).disposed(by: disposeBag)
-        
-        //Setup button
-        changeButton.rx.tap.asDriver().drive(onNext: {
-            self.viewModel.switchFields()
-        }).disposed(by: disposeBag)
+    
         
         //Setup Choose currency button
         
-        fromView.currencyButton.rx.tap.asDriver().drive(onNext: {
-            self.typeOfRow = "From"
-            let vc = ChooseCurrencyViewController()
-            vc.delegate = self
-            self.present(vc, animated: true)
-        }).disposed(by: disposeBag)
+        // From button
+        fromView.currencyButton.addTarget(
+            self,
+            action: #selector(fromCurrencyTapped),
+            for: .touchUpInside
+        )
+
+        // To button
+        toView.currencyButton.addTarget(
+            self,
+            action: #selector(toCurrencyTapped),
+            for: .touchUpInside
+        )
         
-        toView.currencyButton.rx.tap.asDriver().drive(onNext: {
-            self.typeOfRow = "To"
-            let vc = ChooseCurrencyViewController()
-            vc.modalPresentationStyle = .automatic
-            vc.delegate = self
-            self.present(vc, animated: true)
-        }).disposed(by: disposeBag)
+
+        //Getting from FromView
+        fromView.textField.addTarget(
+            self,
+            action: #selector(fromTextChanged),
+            for: .editingChanged
+        )
+        
+        //Getting from ToView
+        toView.textField.addTarget(
+            self,
+            action: #selector(toTextChanged),
+            for: .editingChanged
+        )
+        
+        changeButton.addTarget(
+            self,
+            action: #selector(switchFields),
+            for: .touchUpInside)
    
     }
+    
+    @objc private func fromTextChanged(_ textField: UITextField) {
+        handleTextChange(textField, normalExchange: true)
+    }
+
+    @objc private func toTextChanged(_ textField: UITextField) {
+        handleTextChange(textField, normalExchange: false)
+    }
+    
+    private func handleTextChange(_ textField: UITextField, normalExchange: Bool) {
+        let str = textField.text ?? ""
+
+        if normalExchange {
+            viewModel.fromText = str
+            viewModel.makeExchangeNormal()
+        } else {
+            viewModel.toText = str
+            viewModel.makeExchangeReverse()
+        }
+
+        if str == "1" {
+            fromView.textField.textColor = viewModel.colorSet.secondText.withAlphaComponent(0.7)
+            toView.textField.textColor = viewModel.colorSet.secondText.withAlphaComponent(0.7)
+        } else {
+            fromView.textField.textColor = viewModel.colorSet.mainText
+            toView.textField.textColor = viewModel.colorSet.mainText
+        }
+    }
+    
+    @objc private func switchFields() {
+        viewModel.switchFields()
+    }
+    
+    @objc private func fromCurrencyTapped() {
+        typeOfRow = "From"
+        let vc = ChooseCurrencyViewController()
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+
+    @objc private func toCurrencyTapped() {
+        typeOfRow = "To"
+        let vc = ChooseCurrencyViewController()
+        vc.modalPresentationStyle = .automatic
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
 }
 
 extension ExchangeViewController: ReturnDataFromChooseViewControllerProtocol {
@@ -131,11 +167,11 @@ extension ExchangeViewController: UITextFieldDelegate {
     }
     
     private func rxColors() {
-        viewModel.rxAppThemeUpdated.subscribe(onNext: { flag in
+        viewModel.$rxAppThemeUpdated.sink { flag in
             if flag {
                 self.colorsUpdate()
             }
-        }).disposed(by: disposeBag)
+        }.store(in: &cancellables)
     }
     
     private func colorsUpdate() {

@@ -7,12 +7,12 @@
 
 import Foundation
 import StoreKit
-import RxSwift
+import Combine
 
 protocol PurchaseWorkerProtocol {
-    var rxProductsFetchedFlag: BehaviorSubject<Bool> { get }
-    var rxProductPurchased: BehaviorSubject<Bool> { get }
-    var rxAdsIsHidden: BehaviorSubject<Bool> { get }
+    var rxProductsFetchedFlag: Bool { get }
+    var rxProductPurchased: Bool { get }
+    var rxAdsIsHidden: Bool { get }
     
     func makePurchase(_ product: Product) async throws
     func returnProducts() -> [Product]
@@ -33,30 +33,30 @@ class PurchaseWorker {
     
     var purchasedProductIDs: Set<String> = []
     
-    var rxProductsFetchedFlag = BehaviorSubject(value: false)
-    var rxProductPurchased = BehaviorSubject(value: false)
-    var rxAdsIsHidden = BehaviorSubject(value: false)
+    @Published private(set) var rxProductsFetchedFlag: Bool = false
+    @Published private(set) var rxProductPurchased: Bool = false
+    @Published private(set) var rxAdsIsHidden: Bool = false
     private var updates: Task<Void, Never>? = nil
     
-    let bag = DisposeBag()
+    var cancellables = Set<AnyCancellable>()
     
     var products: [Product] = []
 
     init() {
         subscribing()
-        rxProductsFetchedFlag.onNext(true)
+        rxProductsFetchedFlag = true
         //Fetching products
         Task {
             do {
                 try await fetchProducts()
-                rxProductsFetchedFlag.onNext(true)
+                rxProductsFetchedFlag = true
             } catch { return }
         }
         
         //Checking purchased products
         Task {
             await updatePurchasedProducts()
-            rxProductsFetchedFlag.onNext(true)
+            rxProductsFetchedFlag = true
         }
         updates = observeTransactionUpdates()
     }
@@ -93,21 +93,21 @@ class PurchaseWorker {
     }
     
     func subscribing() {
-        rxProductPurchased.subscribe(onNext: { _ in
+        $rxProductPurchased.sink { _ in
             if self.isProductPurchased("com.sloniklm.WidgetMoney.RemoveAd") {
                 DispatchQueue.main.async {
-                    self.rxAdsIsHidden.onNext(true)
+                    self.rxAdsIsHidden = true
                 }
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
         
-        rxProductsFetchedFlag.subscribe(onNext: { _ in
+        $rxProductsFetchedFlag.sink { _ in
             if self.isProductPurchased("com.sloniklm.WidgetMoney.RemoveAd") {
                 DispatchQueue.main.async {
-                    self.rxAdsIsHidden.onNext(true)
+                    self.rxAdsIsHidden = true
                 }
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
     }
     
 }
@@ -127,7 +127,7 @@ extension PurchaseWorker: PurchaseWorkerProtocol {
             do {
                 try await AppStore.sync()
                 await MainActor.run {
-                    self.rxProductPurchased.onNext(true)
+                    self.rxProductPurchased = true
                 }
             } catch {
                 print(error)
@@ -144,7 +144,7 @@ extension PurchaseWorker: PurchaseWorkerProtocol {
             await transaction.finish()
             await self.updatePurchasedProducts()
             await MainActor.run {
-                self.rxProductPurchased.onNext(true)
+                self.rxProductPurchased = true
             }
            
         case let .success(.unverified(_, error)):

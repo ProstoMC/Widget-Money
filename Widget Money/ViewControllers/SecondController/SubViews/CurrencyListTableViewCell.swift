@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 import SDWebImage
 
 class CurrencyListTableViewCell: UITableViewCell {
@@ -28,7 +28,7 @@ class CurrencyListTableViewCell: UITableViewCell {
     
     let favoriteButton = UIButton()
     
-    let disposeBag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     var baseName = ""
     var valueName = ""
@@ -90,14 +90,14 @@ class CurrencyListTableViewCell: UITableViewCell {
             favoriteButton.setImage(UIImage(systemName: "suit.heart"), for: .normal)
         }
         
-        CoreWorker.shared.favouritePairList.rxPairListCount.subscribe { _ in
+        CoreWorker.shared.favouritePairList.rxPairListCount.sink { _ in
             let isExist = CoreWorker.shared.favouritePairList.checkIsExist(valueCode: self.valueName, baseCode: self.baseName)
             if isExist {
                 self.favoriteButton.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
             } else {
                 self.favoriteButton.setImage(UIImage(systemName: "suit.heart"), for: .normal)
             }
-        }.disposed(by: disposeBag)
+        }.store(in: &cancellables)
         
     }
     

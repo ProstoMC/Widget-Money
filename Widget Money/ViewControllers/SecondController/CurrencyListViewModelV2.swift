@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
 struct CurrencyCellViewModel {
     let type: TypeOfCoin
@@ -37,15 +37,15 @@ class CurrencyListViewModelV2: CurrencyListViewModelProtocol {
 
     var typeOfViewModel: TypeOfCurrencyListViewModel
 
-    let bag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
     
     var showedCoinList: [CurrencyCellViewModel] = []
-    var rxCoinListUpdated = BehaviorSubject(value: false)
+    @Published var rxCoinListUpdated: Bool = false
     
-    var rxAppThemeUpdated = BehaviorSubject(value: false)
+    @Published var rxAppThemeUpdated: Bool = false
     var colorSet = CoreWorker.shared.colorsWorker.returnColors()
 
-    var rxUpdateRatesFlag = BehaviorSubject(value: false)
+    @Published var rxUpdateRatesFlag: Bool = false
     
     var typeOfCoin: TypeOfCoin = .fiat
     
@@ -53,7 +53,7 @@ class CurrencyListViewModelV2: CurrencyListViewModelProtocol {
         
         typeOfViewModel = type
         showedCoinList = createCoinList(type: typeOfCoin) //Always start with fiat
-        rxCoinListUpdated.onNext(true)
+        rxCoinListUpdated = true
         
         subscribing()
     }
@@ -82,12 +82,12 @@ class CurrencyListViewModelV2: CurrencyListViewModelProtocol {
         }
         //Make new table
         showedCoinList = foundedList
-        rxCoinListUpdated.onNext(true)
+        rxCoinListUpdated = true
     }
     
     func resetModel() {
         showedCoinList = createCoinList(type: typeOfCoin)
-        rxCoinListUpdated.onNext(true)
+        rxCoinListUpdated = true
     }
     
 }
@@ -95,21 +95,21 @@ class CurrencyListViewModelV2: CurrencyListViewModelProtocol {
 extension CurrencyListViewModelV2 {
 
     private func subscribing(){
-        CoreWorker.shared.coinList.rxRateUpdated.subscribe{ status in
+        CoreWorker.shared.coinList.rxRateUpdated.sink { status in
             self.showedCoinList = self.createCoinList(type: self.typeOfCoin)
-            self.rxCoinListUpdated.onNext(true)
-        }.disposed(by: bag)
+            self.rxCoinListUpdated = true
+        }.store(in: &cancellables)
         
         //Update colors
-        CoreWorker.shared.colorsWorker.rxAppThemeUpdated.subscribe(onNext: { flag in
+        CoreWorker.shared.colorsWorker.$rxAppThemeUpdated.sink { flag in
             if flag {
                 self.colorSet = CoreWorker.shared.colorsWorker.returnColors()
-                self.rxAppThemeUpdated.onNext(true)
+                self.rxAppThemeUpdated = true
                 //Reload full cells
                 self.showedCoinList = self.createCoinList(type: self.typeOfCoin)
-                self.rxCoinListUpdated.onNext(true)
+                self.rxCoinListUpdated = true
             }
-        }).disposed(by: bag)
+        }.store(in: &cancellables)
     }
     
     private func createCoinList(type: TypeOfCoin) -> [CurrencyCellViewModel] {

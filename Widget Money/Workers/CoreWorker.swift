@@ -11,35 +11,35 @@
 //  Launched from TabBar View Controller
 
 import Foundation
-import RxSwift
 import YandexMobileAds
+import Combine
 
 class CoreWorker {
     
     static let shared = CoreWorker()
     
-    let bag = DisposeBag()
+    @Published var rxViewControllersNumber: Int = 0
     
-    let adsWorker: AdsWorkerProtocol = AdsWorker()
+    private var cancellables = Set<AnyCancellable>()
+    
+    let adsWorker = AdsWorker()
     
     //Colors
-    let colorsWorker: ColorsWorkerProtocol = ColorsWorker()
+    let colorsWorker = ColorsWorker()
     
     //Currency List
-    let coinList: CoinListProtocol = UniversalCoinWorker()
+    let coinList = UniversalCoinWorker()
     
     //Favourite pairs
-    let favouritePairList: CoinPairProtocol = CoinPairWorker()
+    let favouritePairList = CoinPairWorker()
     
     //Exchange
-    let exchangeWorker: ExchangeWorkerProtocol = ExchangeWorker()
+    var exchangeWorker = ExchangeWorker()
     
-    var purchaseWorker: PurchaseWorkerProtocol = PurchaseWorker()
+    var purchaseWorker = PurchaseWorker()
     
     //Widget
     let widgetWorker: WidgetWorkerProtocol
-    
-    var rxViewControllersNumber: BehaviorSubject<Int> = BehaviorSubject.init(value: 0)
     
     
     init() {
@@ -49,29 +49,45 @@ class CoreWorker {
         //Request of review
         AppReviewWorker.requestIf(launches: 3, days: 3)
         
+        subscribeToWidget()
+        
     }
     
     private func updateExchangeFields(){
-        favouritePairList.rxPairListCount.subscribe { count in
-            //We do not need update it if we have rows filled
-            if self.exchangeWorker.fromCoin != "" && self.exchangeWorker.toCoin != "" {
-                return
+        favouritePairList.rxPairListCount
+            .sink { count in
+                //We do not need update it if we have rows filled
+                if self.exchangeWorker.fromCoin != "" && self.exchangeWorker.toCoin != "" {
+                    return
+                }
+                //Make default if we do not have favourite pairs
+                if count < 1 {
+                    self.exchangeWorker.setFromCoin(code: "USD")
+                    self.exchangeWorker.setToCoin(code: "RUB")
+                    
+                    self.exchangeWorker.rxExchangeFlag = false // Do not open details
+                    return
+                }
+                
+                self.exchangeWorker.setFromCoin(code: self.favouritePairList.pairList[0].valueCode)
+                self.exchangeWorker.setToCoin(code: self.favouritePairList.pairList[0].baseCode)
+                self.exchangeWorker.rxExchangeFlag = false // Do not open details
+                
             }
-            //Make default if we do not have favourite pairs
-            if count < 1 {
-            self.exchangeWorker.setFromCoin(code: "USD")
-            self.exchangeWorker.setToCoin(code: "RUB")
-            
-            
-                self.exchangeWorker.rxExchangeFlag.onNext(false) // Do not open details
-                return
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToWidget() {
+        NotificationCenter.default.addObserver(
+            forName: .intentTriggered, object: nil, queue: .main) { notification in
+                guard let main = notification.userInfo?["main"] as? String,
+                      let base = notification.userInfo?["base"] as? String else { return }
+                
+                
+                self.exchangeWorker.setFromCoin(code: main)
+                self.exchangeWorker.setToCoin(code: base)
+                self.exchangeWorker.rxExchangeFlag = true
             }
-            
-            self.exchangeWorker.setFromCoin(code: self.favouritePairList.pairList[0].valueCode)
-            self.exchangeWorker.setToCoin(code: self.favouritePairList.pairList[0].baseCode)
-            self.exchangeWorker.rxExchangeFlag.onNext(false) // Do not open details
-            
-        }.disposed(by: bag)
     }
     
     
