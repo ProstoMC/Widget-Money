@@ -1,0 +1,848 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "✅ Already purchased" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "✅ Уже у вас"
+          }
+        }
+      }
+    },
+    "Actual to " : {
+      "comment" : "HeadView",
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновлено "
+          }
+        }
+      }
+    },
+    "Advertisement banners have been removed" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рекламные баннеры удалены"
+          }
+        }
+      }
+    },
+    "App theme" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цветовая схема"
+          }
+        }
+      }
+    },
+    "Armenian Dram" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Армянский Драм"
+          }
+        }
+      }
+    },
+    "Australian Dollar" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Австралийский Доллар"
+          }
+        }
+      }
+    },
+    "Azerbaijani Manat" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Азербайджанский Манат"
+          }
+        }
+      }
+    },
+    "Back" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назад"
+          }
+        }
+      }
+    },
+    "Base currency" : {
+      "comment" : "Settings",
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основная валюта"
+          }
+        }
+      }
+    },
+    "Belarusian Ruble" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Беларусский Рубль"
+          }
+        }
+      }
+    },
+    "Brazilian Real" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бразильский Реал"
+          }
+        }
+      }
+    },
+    "British Pound" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Британский Фунт"
+          }
+        }
+      }
+    },
+    "British Pound Sterling" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Британский Фунт"
+          }
+        }
+      }
+    },
+    "Bulgarian Lev" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Болгарский Лев"
+          }
+        }
+      }
+    },
+    "Buy now for " : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приобрести за "
+          }
+        }
+      }
+    },
+    "Canadian Dollar" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Канадский Доллар"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "Chinese Yuan" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Китайский Юань"
+          }
+        }
+      }
+    },
+    "Connection error" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка подключения"
+          }
+        }
+      }
+    },
+    "Crypto" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Криптовалюта"
+          }
+        }
+      }
+    },
+    "Czech Koruna" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чешская Крона"
+          }
+        }
+      }
+    },
+    "Danish Krone" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Датская Крона"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темная"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "Delete from favorite" : {
+      "comment" : "Details Controller",
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удаление из избранного"
+          }
+        }
+      }
+    },
+    "Egyptian Pound" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Египетский Фунт"
+          }
+        }
+      }
+    },
+    "Euro" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Евро"
+          }
+        }
+      }
+    },
+    "Exchange" : {
+      "comment" : "Home Controller",
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конвертер"
+          }
+        }
+      }
+    },
+    "Fiat" : {
+      "comment" : "Second Controller",
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фиат"
+          }
+        }
+      }
+    },
+    "for" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "за"
+          }
+        }
+      }
+    },
+    "From" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Из"
+          }
+        }
+      }
+    },
+    "Georgian Lari" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грузинский Лари"
+          }
+        }
+      }
+    },
+    "Hide all advertisement banners" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыть все рекламные баннеры"
+          }
+        }
+      }
+    },
+    "Home" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Главная"
+          }
+        }
+      }
+    },
+    "Hong Kong Dollar" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гонконгский Доллар"
+          }
+        }
+      }
+    },
+    "Hungarian Forint" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Венгерский Форинт"
+          }
+        }
+      }
+    },
+    "Indian Rupee" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Индийская Рупия"
+          }
+        }
+      }
+    },
+    "Indonesian Rupiah" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Индонезийская Рупия"
+          }
+        }
+      }
+    },
+    "Japanese Yen" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Японская Йена"
+          }
+        }
+      }
+    },
+    "Kazakhstani Tenge" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Казахстанский Тенге"
+          }
+        }
+      }
+    },
+    "Korean Won" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Корейский Вон"
+          }
+        }
+      }
+    },
+    "Kyrgystani Som" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Киргизский Cом"
+          }
+        }
+      }
+    },
+    "Light" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлая"
+          }
+        }
+      }
+    },
+    "List" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список"
+          }
+        }
+      }
+    },
+    "Moldovan Leu" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Молдавский Лей"
+          }
+        }
+      }
+    },
+    "New Zealand Dollar" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новозеландский Доллар"
+          }
+        }
+      }
+    },
+    "Norwegian Krone" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Норвежская Крона"
+          }
+        }
+      }
+    },
+    "Polish Zloty" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Польский Злотый"
+          }
+        }
+      }
+    },
+    "Purchased" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уже у вас"
+          }
+        }
+      }
+    },
+    "Qatari Rial" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Катарский Риал"
+          }
+        }
+      }
+    },
+    "Remove Ads" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить рекламу"
+          }
+        }
+      }
+    },
+    "Remove banner ads" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить баннерную рекламу"
+          }
+        }
+      }
+    },
+    "Restore purchase" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановить покупку"
+          }
+        }
+      }
+    },
+    "Romanian Leu" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Румынский Лей"
+          }
+        }
+      }
+    },
+    "Russian Ruble" : {
+      "comment" : "Fiat",
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Российский Рубль"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить"
+          }
+        }
+      }
+    },
+    "Search" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск"
+          }
+        }
+      }
+    },
+    "Serbian Dinar" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сербский Динар"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
+    },
+    "Singapore Dollar" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сингапурский Доллар"
+          }
+        }
+      }
+    },
+    "South African Rand" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Южноафриканский Ранд"
+          }
+        }
+      }
+    },
+    "Special Drawing Rights" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Специальные Права Заимствования"
+          }
+        }
+      }
+    },
+    "Swedish Krona" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шведская Крона"
+          }
+        }
+      }
+    },
+    "Swiss Franc" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Швейцарский Франк"
+          }
+        }
+      }
+    },
+    "System" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системная"
+          }
+        }
+      }
+    },
+    "Tajikistani Somoni" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таджикский Сомони"
+          }
+        }
+      }
+    },
+    "Test" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тест"
+          }
+        }
+      }
+    },
+    "Thai Baht" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тайский Бат"
+          }
+        }
+      }
+    },
+    "To" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В"
+          }
+        }
+      }
+    },
+    "Turkish Lira" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Турецкая Лира"
+          }
+        }
+      }
+    },
+    "Turkmenistani Manat" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Туркменский Манат"
+          }
+        }
+      }
+    },
+    "UAE Dirham" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОАЭ Дирхам"
+          }
+        }
+      }
+    },
+    "Ukranian Hryvnia" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Украинская Гривна"
+          }
+        }
+      }
+    },
+    "United States Dollar" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "США Доллар"
+          }
+        }
+      }
+    },
+    "Uzbekistan Som" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Узбекистанский Сом"
+          }
+        }
+      }
+    },
+    "Vietnamese Dong" : {
+      "extractionState" : "migrated",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вьетнамский Донг"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

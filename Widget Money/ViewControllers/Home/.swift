@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
             x: 0,
             y: view.safeAreaInsets.top,
             width: view.bounds.width,
-            height: view.bounds.height*0.08)
+            height: 30)
         )
         
 
